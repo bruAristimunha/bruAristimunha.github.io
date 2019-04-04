@@ -1,11 +1,11 @@
 # Site settings
-title: Data Science Specialization
-email:
-description: Community Site
+title: BruAristimunha 
+email: b.aristimunha@gmail.com  
+description: Personal Site
 baseurl:
-url:
+url: 
 twitter_username:
-github_username:  DataScienceSpecialization
+github_username:  bruAristimunha
 
 # Build settings
 markdown: kramdown
