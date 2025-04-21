@@ -20,11 +20,11 @@ redirect_from:
 {% include_relative includes/intro.md %}
 
 # 🔥 News
-- *2022.02*: &nbsp;🎉🎉 TO-DO
+- *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list...
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
@@ -36,7 +36,7 @@ redirect_from:
 </div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020** -->
 
 
 - Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases, Klepachevskyi, D., Romano, A., **Aristimunha, B.**, Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P., Heliyon Cells (Accepted), 2024
@@ -68,10 +68,12 @@ redirect_from:
 
 
 # 📖 Educations
-- *09/2020 – 02/2026*, Ph.D. IN COMPUTER SCIENCE @Université Paris-Saclay and UFABC. Thesis: **LEARNING REPRESENTATIONS OF ELECTROENCEPHALOGRAM USING DEEP LEARNING**. Supervisors: Dr Sylvain Chevallier, Dr Marie-Constance Corsi and Dr Raphael Y. de Camargo.
+- *09/2020 – 02/2026*, Ph.D. IN COMPUTER SCIENCE @Université Paris-Saclay and UFABC. 
+
 - *2016-2020*, Double BSc COMPUTER SCIENCE and Science and Technology, at the Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil.
 
 # 💬 Invited Talks
+- Fill with all the talks...
 
 # 💻 Internships
 - *03/2022 – 06/2022*, Data Scientist Intern, University of Glasgow/FGV, Brazil.
