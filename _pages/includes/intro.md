@@ -10,8 +10,7 @@ You can usually check my current work on [GitHub](https://github.com/bruAristimu
 
 During my PhD, I collaborated with research groups across the US (San Diego, San Francisco, Washington), UK, Ireland, Germany, Italy, Netherlands, Canada (Waterloo, MILA), Brazil (Sao Paulo), and France, resulting in over 16 publications (full/short papers, reports, abstracts) covering diverse aspects of my doctoral research. My publications are available on [Google Scholar](https://scholar.google.com.br/citations?user=2Gd5gOQAAAAJ). I particularly enjoyed the experience of collaborating on self-contained, code-oriented projects 🧠⚙️. For academic cooperation, please contact me via email or [LinkedIn](https://www.linkedin.com/in/bruaristimunha/).
 
-Regarding community engagement, I organized the [Braindecode Code-Sprint](https://braindecode.org/sprint2023/) during the European summer of 2023, and I am currently leading the [Special Session on Decoding the brain time series](https://mlsp2025-decoding-brain.github.io/) at IEEE International Workshop on
-Machine Learning for Signal Processing (MLSP) 2025. 
+Regarding community engagement, I organized the [Braindecode Code-Sprint](https://braindecode.org/sprint2023/) during the European summer of 2023, co-organized the Designing Brain-Computer Interfaces from theory to real-life scenarios Workshop at [Graz BCI 2024](https://github.com/Inria-NERV/Graz24-DesigningBCITools-Workshop) Conference and I am currently leading the [Special Session on Decoding the brain time series](https://mlsp2025-decoding-brain.github.io/) at IEEE International Workshop on Machine Learning for Signal Processing (MLSP) 2025. 
 
 I have served as a reviewer for machine learning conferences and journals, NeurIPS (x2), ICLR, ICML, NeuroImage, Imaging Neuroscience, Journal of Machine Learning Research (JMLR) and Learning from Time Series for Health Workshop@ICLR, ensuring reviews are within my area of expertise.
 
