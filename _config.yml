@@ -6,7 +6,7 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Bruno Aristimunha webpage"
+title                    : "Bruno Aristimunha (Bru)"
 description              : "Ph.D. student in Paris-Saclay University. Focusing on machine learning and deep learning for time-series decoding. "
 repository               : "bruaristimunha/bruaristimunha.github.io"
 google_scholar_stats_use_cdn : true
