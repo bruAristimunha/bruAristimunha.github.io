@@ -21,7 +21,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Bruno Aristimunha"
   avatar           : "images/bruno_profile.png"
-  bio              : "Research Engineer and PhD student "
+  bio              : "Research Engineer <br>PhD student "
   location         : "Paris-Saclay University, France"
   employer         : INRIA TAU
   pubmed           : 
