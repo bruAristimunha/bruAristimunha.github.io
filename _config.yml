@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Bruno Aristimunha (Bru)"
-description              : "Ph.D. student in Paris-Saclay University. Focusing on machine learning and deep learning for time-series decoding. "
+description              : "Ph.D. student in Paris-Saclay University. Focusing on deep learning for time-series decoding. "
 repository               : "bruaristimunha/bruaristimunha.github.io"
 google_scholar_stats_use_cdn : true
 # google analytics
@@ -23,7 +23,7 @@ author:
   avatar           : "images/bruno_profile.png"
   bio              : "Computer Science Ph.D. student at Paris-Saclay University"
   location         : "Paris, France"
-  employer         : INRIA TAU team
+  employer         : Research Engineer at INRIA TAU team
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=2Gd5gOQAAAAJ"
   email            : "b.aristimunha@gmail.com"

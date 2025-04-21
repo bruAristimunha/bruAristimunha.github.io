@@ -2,7 +2,7 @@ I am the 4-th-year *Computer Science* Ph.D. student at the [Paris-Saclay Univers
 
 My current research interests include **Learning Representation** from the time series (Decoding, Generating and Transferring knowledge), Brain-Computer Interfaces, Machine Learning for brain decoding, Benchmark, and Riemannian Geometry (mostly Symmetric Positive Definite Neural Networks - SPDNets).
 
-I strongly advocate for open source for reproducible science and community-driven progress, while occasionally working with closed code. I lead the widely used Python libraries [**BRAINDECODE**](https://braindecode.org) [![pypi downloads](https://pepy.tech/badge/braindecode)](https://pepy.tech/project/braindecode) and [MOABB](https://moabb.neurotechx.com/docs/index.html) [![pypi downloads](https://pepy.tech/badge/moabb)](https://pepy.tech/project/moabb), actively shaping standards and enabling EEG Decoding in both. I also collaborate with related open-source projects like MNE-Python, MONAI, MONAI Generative, SpeechBrain, and EEG Dash. 
+I strongly advocate for open source for reproducible science and community-driven progress, while occasionally working with closed code. I lead the widely used Python libraries [**Braindecode**](https://braindecode.org) [![pypi downloads](https://pepy.tech/badge/braindecode)](https://pepy.tech/project/braindecode) and [**MOABB**](https://moabb.neurotechx.com/docs/index.html) [![pypi downloads](https://pepy.tech/badge/moabb)](https://pepy.tech/project/moabb), actively shaping standards and enabling EEG Decoding in both. I also collaborate with related open-source projects like MNE-Python, MONAI, MONAI Generative, SpeechBrain, and EEG Dash. 
 
 You can usually check my current work on [GitHub](https://github.com/bruAristimunha):
 
