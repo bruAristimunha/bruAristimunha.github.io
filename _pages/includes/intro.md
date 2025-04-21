@@ -13,3 +13,5 @@ Regarding community engagement, I organized the [Braindecode Code-Sprint](https:
 Machine Learning for Signal Processing (MLSP) 2025. 
 
 I have served as a reviewer for machine learning conferences and journals, NeurIPS (x2), ICLR, ICML, NeuroImage, Imaging Neuroscience, Journal of Machine Learning Research (JMLR) and Learning from Time Series for Health Workshop@ICLR, ensuring reviews are within my area of expertise.
+
+**I am currently seeking job opportunities in the industry. If there are suitable positions available for next year, please feel free to reach out. Thank you!**
