@@ -75,8 +75,17 @@ redirect_from:
 # 💬 Invited Talks
 - Fill with all the talks...
 
-# 💻 Internships
+# 💻 Work Experience
 - *03/2022 – 06/2022*, Data Scientist Intern, University of Glasgow/FGV, Brazil.
 - *03/2021 – 08/2021*, Data Scientist internship, Getúlio Vargas Foundation - FGV, Brazil.
 - *07/2014 – 12/2015*, Research Intern in Computer Vision, Dom Bosco Catholic University, Brazil.
 
+# Menthorship
+
+I was privileged to work with and mentor a group of outstanding students:
+
+- [Jose Mauricio](https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/) Master Student at Federal University of ABC
+- [Taha Habib](https://www.linkedin.com/in/taha-habib-a694a31b7/) Undergraduate student at Paris-Saclay
+- [Gustavo H Rodrigues](https://orcid.org/0000-0002-0922-126X) Undergraduate student at Universidade de Sao Paulo
+- [Bruna Juqueira](https://www.linkedin.com/in/brunajaflopes/) Undergraduate student at Universidade de Sao Paulo
+- [Alexandre Janoni](https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/) Undergraduate student at Federal University of ABC
