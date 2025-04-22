@@ -19,8 +19,8 @@ redirect_from:
 
 {% include_relative includes/intro.md %}
 
-# 🔥 News
-- *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list...
+<!-- # 🔥 News
+- *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list... -->
 
 # 📝 Publications 
 
@@ -72,8 +72,8 @@ redirect_from:
 
 - *2016-2020*, Double BSc COMPUTER SCIENCE and Science and Technology, at the Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil.
 
-# 💬 Invited Talks
-- Fill with all the talks...
+<!-- # 💬 Invited Talks
+- Fill with all the talks... -->
 
 # 💻 Work Experience
 - *03/2022 – 06/2022*, Data Scientist Intern, University of Glasgow/FGV, Brazil.
