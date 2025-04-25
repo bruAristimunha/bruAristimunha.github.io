@@ -41,7 +41,7 @@ redirect_from:
 - Klepachevskyi, D., Romano, A., **Aristimunha, B.**, Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P. (2024).
     Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases. Heliyon Cells, The paper has been accepted.
 
-- Wimpff, M., M. , **Aristimunha, B.**, Chevallier, S. & Yang, B. (2025). 
+- Wimpff, M. , **Aristimunha, B.**, Chevallier, S. & Yang, B. (2025). 
     Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study. In 2025 47th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) (pp. 1-7). IEEE.
 
 - Darvishi-Bayazi M. J., Ghonia H., Riachi R., **Aristimunha, B.**, Khorasani A., Arefin M. R., Dumas G. & Rish I. (2024) 
