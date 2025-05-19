@@ -48,7 +48,7 @@ redirect_from:
     General-Purpose Brain Foundation Models for Time-Series Neuroimaging Data. Workshop on Time Series in the Age of Large Models @ NeurIPS 2024.
 
 - Carrara, I.*, **Aristimunha, B.***, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T. (2024). 
-    Geometric Neural Network based on Phase Space for BCI decoding. Journal of Neural Engineering. 
+    Geometric Neural Network based on Phase Space for BCI decoding. Journal of Neural Engineering. Joint first author
 
 - **Aristimunha, B.**, Moreau T., Chevallier, S, Camargo, R. Y., & Corsi, M. C. 
     What is the best model for decoding neurophysiological signals? Depends on how you evaluate. In 33rd Annual Computational Neuroscience Meeting*CNS 2024.
