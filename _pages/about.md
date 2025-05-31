@@ -106,7 +106,7 @@ redirect_from:
 # 💻 Work Experience
 - *03/2022 – 06/2022*, Data Scientist Intern, University of Glasgow/FGV, Brazil.
 - *03/2021 – 08/2021*, Data Scientist internship, Getúlio Vargas Foundation - FGV, Brazil.
-- *07/2014 – 12/2015*, Research Intern in Computer Vision, Dom Bosco Catholic University, Brazil.
+- *07/2014 – 12/2015*, Research Intern during High school in Computer Vision, Dom Bosco Catholic University, Brazil. I published two papers :) 
 
 # Menthorship
 
