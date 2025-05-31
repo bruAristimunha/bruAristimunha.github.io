@@ -112,8 +112,8 @@ redirect_from:
 
 I was privileged to work with and mentor a group of outstanding students:
 
-- [Jose Mauricio](https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/) Master Student at Federal University of ABC
-- [Taha Habib](https://www.linkedin.com/in/taha-habib-a694a31b7/) Undergraduate student at Paris-Saclay University
-- [Gustavo H Rodrigues](https://orcid.org/0000-0002-0922-126X) Undergraduate student at Universidade de Sao Paulo
-- [Bruna Juqueira](https://www.linkedin.com/in/brunajaflopes/) Undergraduate student at Universidade de Sao Paulo. Now MVA student at Universite Paris-Saclay.
-- [Alexandre Janoni](https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/) Undergraduate student at Federal University of ABC
+- [Jose Mauricio](https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/) Master Student at Federal University of ABC in Computer Science.
+- [Taha Habib](https://www.linkedin.com/in/taha-habib-a694a31b7/) Undergraduate student at Paris-Saclay University, now master student.
+- [Gustavo H Rodrigues](https://orcid.org/0000-0002-0922-126X) Undergraduate student at Universidade de Sao Paulo, now master student at Universidade de Sao Paulo.
+- [Bruna Juqueira](https://www.linkedin.com/in/brunajaflopes/) Undergraduate student at Universidade de Sao Paulo. Now Mathématiques, Vision, Apprentissage master student at Universite Paris-Saclay.
+- [Alexandre Janoni](https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/) Undergraduate student at Federal University of ABC, now working at Hospital Albert Einstein, the best hospital in Latin America.
