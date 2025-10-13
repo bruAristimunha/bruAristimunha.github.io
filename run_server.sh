@@ -1,1 +1,3 @@
-bundle exec jekyll liveserve
+#!/bin/bash
+
+bundle exec jekyll serve --livereload
