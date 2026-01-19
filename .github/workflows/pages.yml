@@ -48,14 +48,14 @@ jobs:
 
       - name: Encrypt spd_learn pages
         run: |
-          staticrypt "_site/spd_learn/**/*.html" \
+          find _site/spd_learn -name "*.html" -exec staticrypt {} \
             -p "${{ secrets.SPD_LEARN_PASSWORD }}" \
             --short \
             -r \
             --remember 7 \
             --template-title "SPD Learn Documentation" \
             --template-instructions "Enter the password to access the documentation." \
-            --template-button "Access Documentation"
+            --template-button "Access Documentation" \;
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
