@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inherent Properties and Their Exploitation &#8212; SPD Learn 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=7073f910" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5aa371e9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background/2_inherent_properties';</script>
+    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/background/2_inherent_properties.html" />
+    <link rel="icon" href="../_static/spd_learn.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Different Types of Covariance and Computation Methods" href="3_different_types_of_covariance.html" />
+    <link rel="prev" title="SPD Geometry: Motivation and Core Properties" href="1_spd_motivation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/spd_learn.png" class="logo__image only-light" alt="SPD Learn Logo"/>
+    <img src="../_static/spd_learn.png" class="logo__image only-dark pst-js-only" alt="SPD Learn Logo"/>
+  
+  
+    <p class="title logo__title"><strong>SPD</strong> Learn</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../theory.html">
+    Theory
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../generated/auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../faq.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="External Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/spd_learn/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../theory.html">
+    Theory
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../generated/auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../faq.html">
+    FAQ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="External Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/spd_learn/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_spd_motivation.html">SPD Geometry: Motivation and Core Properties</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inherent Properties and Their Exploitation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_different_types_of_covariance.html">Different Types of Covariance and Computation Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_limitations.html">Limitations and When Not to Use SPD Approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_computation_methods.html">Computational Methods for SPD Manifolds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_deep_learning_integration.html">Deep Learning Integration: Autograd and Trivialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_spd_layers.html">SPD Neural Network Layers: A Complete Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_historical_context.html">Historical Context: SPD Methods in Neuroscience</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Background</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Inherent Properties and Their Exploitation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="inherent-properties-and-their-exploitation">
+<span id="inherent-properties"></span><h1>Inherent Properties and Their Exploitation<a class="headerlink" href="#inherent-properties-and-their-exploitation" title="Link to this heading">#</a></h1>
+<p>The SPD manifold structure offers several unique properties that can be exploited for neuroimaging
+analysis. Understanding these properties is crucial for building effective machine learning models.</p>
+<section id="geodesic-completeness-and-boundary-avoidance">
+<h2>Geodesic Completeness and Boundary Avoidance<a class="headerlink" href="#geodesic-completeness-and-boundary-avoidance" title="Link to this heading">#</a></h2>
+<p>Unlike Euclidean space, where interpolation or optimization can produce rank-deficient matrices at
+finite distances, the affine-invariant and log-Euclidean Riemannian metrics ensure <strong>geodesic
+completeness</strong>:</p>
+<ul class="simple">
+<li><p><strong>Boundary avoidance</strong>: Geodesics between SPD matrices never reach boundary points (matrices with
+zero eigenvalues remain infinitely distant)</p></li>
+<li><p><strong>Intrinsic optimization</strong>: Iterative updates during gradient descent stay strictly within the
+SPD manifold, preventing invalid intermediate results</p></li>
+</ul>
+<p>This property resolves critical limitations in conventional tensor field processing, where
+operations like interpolation, regularization, or noise filtering often produce non-SPD matrices.</p>
+<section id="mathematical-formulation">
+<h3>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h3>
+<p>For any two SPD matrices <span class="math notranslate nohighlight">\(\mathbf{P}_1, \mathbf{P}_2 \in \mathcal{S}_{++}^n\)</span>, the geodesic
+connecting them is given by:</p>
+<div class="math notranslate nohighlight" id="equation-geodesic-path">
+<span class="eqno">(1)<a class="headerlink" href="#equation-geodesic-path" title="Link to this equation">#</a></span>\[\gamma(t) = \mathbf{P}_1^{1/2} \left( \mathbf{P}_1^{-1/2} \mathbf{P}_2 \mathbf{P}_1^{-1/2} \right)^t \mathbf{P}_1^{1/2}, \quad t \in [0, 1]\]</div>
+<p>For all <span class="math notranslate nohighlight">\(t \in [0, 1]\)</span>, <span class="math notranslate nohighlight">\(\gamma(t)\)</span> remains strictly SPD—never approaching the
+boundary where eigenvalues would be zero.</p>
+</section>
+</section>
+<section id="example-geodesic-completeness">
+<h2>Example: Geodesic Completeness<a class="headerlink" href="#example-geodesic-completeness" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">geodesic_interpolation_spdairm</span>
+
+<span class="c1"># Two SPD matrices with very different eigenvalue scales</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]])</span>  <span class="c1"># Large condition number</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="c1"># Interpolate along geodesic - all points remain SPD</span>
+<span class="n">t_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_values</span><span class="p">:</span>
+    <span class="n">P_t</span> <span class="o">=</span> <span class="n">geodesic_interpolation_spdairm</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+    <span class="n">eigvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">P_t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">: min eigenvalue = </span><span class="si">{</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> (always &gt; 0)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="affine-invariance-and-robustness">
+<h2>Affine Invariance and Robustness<a class="headerlink" href="#affine-invariance-and-robustness" title="Link to this heading">#</a></h2>
+<p>The affine-invariant metric exhibits <strong>congruence invariance</strong>, a critical property for
+neuroimaging analysis:</p>
+<div class="math notranslate nohighlight" id="equation-congruence-invariance">
+<span class="eqno">(2)<a class="headerlink" href="#equation-congruence-invariance" title="Link to this equation">#</a></span>\[d(\mathbf{A}\mathbf{P}_1\mathbf{A}^\top, \mathbf{A}\mathbf{P}_2\mathbf{A}^\top) = d(\mathbf{P}_1, \mathbf{P}_2)\]</div>
+<p>for any invertible matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<section id="why-this-matters-for-eeg-meg">
+<h3>Why This Matters for EEG/MEG<a class="headerlink" href="#why-this-matters-for-eeg-meg" title="Link to this heading">#</a></h3>
+<p>In EEG/MEG analysis, the observed signals are linear mixtures of neural sources:</p>
+<div class="math notranslate nohighlight" id="equation-eeg-mixing">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eeg-mixing" title="Link to this equation">#</a></span>\[\mathbf{x}(t) = \mathbf{A} \mathbf{s}(t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the spatial mixing matrix (electrode/sensor positions, head geometry,
+conductivity) and <span class="math notranslate nohighlight">\(\mathbf{s}(t)\)</span> are the neural sources.</p>
+<p><strong>The problem</strong>: <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> varies across:</p>
+<ul class="simple">
+<li><p>Different subjects (individual head anatomy)</p></li>
+<li><p>Different sessions (electrode repositioning)</p></li>
+<li><p>Different experimental setups (cap placement, impedance changes)</p></li>
+</ul>
+<p><strong>The solution</strong>: The Riemannian distance between covariance matrices remains consistent despite
+these variations, making classification and analysis robust to session/subject-specific mixing
+matrices.</p>
+</section>
+</section>
+<section id="example-affine-invariance">
+<h2>Example: Affine Invariance<a class="headerlink" href="#example-affine-invariance" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">geodesic_distance_spdairm</span>
+
+<span class="c1"># Original covariance matrices</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]])</span>
+
+<span class="c1"># Compute original distance</span>
+<span class="n">dist_original</span> <span class="o">=</span> <span class="n">geodesic_distance_spdairm</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">)</span>
+
+<span class="c1"># Apply arbitrary linear transformation (simulate subject/session change)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">P1_transformed</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">P1</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+<span class="n">P2_transformed</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">P2</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Distance is preserved!</span>
+<span class="n">dist_transformed</span> <span class="o">=</span> <span class="n">geodesic_distance_spdairm</span><span class="p">(</span><span class="n">P1_transformed</span><span class="p">,</span> <span class="n">P2_transformed</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original distance: </span><span class="si">{</span><span class="n">dist_original</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transformed distance: </span><span class="si">{</span><span class="n">dist_transformed</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Difference: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">dist_original</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dist_transformed</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="outlier-resistance-of-geometric-mean">
+<h2>Outlier Resistance of Geometric Mean<a class="headerlink" href="#outlier-resistance-of-geometric-mean" title="Link to this heading">#</a></h2>
+<p>The Riemannian (Fréchet) mean demonstrates inherent resistance to outliers compared to the
+arithmetic mean. In both Gaussian and chi-square distributions, the geometric mean deviates less
+significantly from distribution centers, making it more robust for neuroimaging applications where
+artifacts and noise are common.</p>
+<section id="geometric-vs-arithmetic-mean">
+<h3>Geometric vs. Arithmetic Mean<a class="headerlink" href="#geometric-vs-arithmetic-mean" title="Link to this heading">#</a></h3>
+<p>For a set of SPD matrices <span class="math notranslate nohighlight">\(\{\mathbf{P}_1, \ldots, \mathbf{P}_N\}\)</span>:</p>
+<p><strong>Arithmetic mean</strong> (Euclidean):</p>
+<div class="math notranslate nohighlight" id="equation-arithmetic-mean">
+<span class="eqno">(4)<a class="headerlink" href="#equation-arithmetic-mean" title="Link to this equation">#</a></span>\[\bar{\mathbf{P}}_{\text{arith}} = \frac{1}{N} \sum_{i=1}^N \mathbf{P}_i\]</div>
+<p><strong>Geometric mean</strong> (Riemannian):</p>
+<div class="math notranslate nohighlight" id="equation-geometric-mean">
+<span class="eqno">(5)<a class="headerlink" href="#equation-geometric-mean" title="Link to this equation">#</a></span>\[\bar{\mathbf{P}}_{\text{geom}} = \arg\min_{\mathbf{P}} \sum_{i=1}^N d^2(\mathbf{P}, \mathbf{P}_i)\]</div>
+<p>The geometric mean is less influenced by outliers because extreme values contribute less to the
+minimization in the curved geometry of the manifold.</p>
+</section>
+</section>
+<section id="example-outlier-resistance">
+<h2>Example: Outlier Resistance<a class="headerlink" href="#example-outlier-resistance" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">frechet_mean</span>
+
+<span class="c1"># Generate a set of &quot;normal&quot; covariance matrices</span>
+<span class="n">normal_covs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">normal_covs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+
+<span class="c1"># Add an outlier (very large eigenvalues)</span>
+<span class="n">outlier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
+<span class="n">all_covs</span> <span class="o">=</span> <span class="n">normal_covs</span> <span class="o">+</span> <span class="p">[</span><span class="n">outlier</span><span class="p">]</span>
+
+<span class="c1"># Compute both means</span>
+<span class="n">all_covs_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">all_covs</span><span class="p">)</span>
+
+<span class="c1"># Arithmetic mean (affected by outlier)</span>
+<span class="n">mean_arith</span> <span class="o">=</span> <span class="n">all_covs_tensor</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Geometric (Riemannian) mean (robust to outlier)</span>
+<span class="n">mean_geom</span> <span class="o">=</span> <span class="n">frechet_mean</span><span class="p">(</span><span class="n">all_covs_tensor</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arithmetic mean trace: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">mean_arith</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geometric mean trace: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">mean_geom</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geometric mean is less affected by the outlier!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="from-neuroimaging-signals-to-spd-matrices">
+<h2>From Neuroimaging Signals to SPD Matrices<a class="headerlink" href="#from-neuroimaging-signals-to-spd-matrices" title="Link to this heading">#</a></h2>
+<p>In practice, covariance matrices are constructed from time-series neuroimaging data. Understanding
+this process clarifies how SPD geometry applies to real-world signals.</p>
+<section id="covariance-from-fourier-coefficients">
+<h3>Covariance from Fourier Coefficients<a class="headerlink" href="#covariance-from-fourier-coefficients" title="Link to this heading">#</a></h3>
+<p>For frequency-specific analysis (e.g., EEG motor imagery), signals are often bandpass-filtered and
+Fourier-transformed. Let <span class="math notranslate nohighlight">\(\mathbf{Z}_f^{(i)}\)</span> denote the complex Fourier coefficients at
+frequency <span class="math notranslate nohighlight">\(f\)</span> for trial <span class="math notranslate nohighlight">\(i\)</span>. The spatial covariance matrix is derived as:</p>
+<div class="math notranslate nohighlight" id="equation-covariance-construction">
+<span class="eqno">(6)<a class="headerlink" href="#equation-covariance-construction" title="Link to this equation">#</a></span>\[\mathbf{C}_f^{(i)} = \Re\!\left( \mathbf{Z}_f^{(i)} \, \overline{\mathbf{Z}_f^{(i)}}^{\,\top} \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{\mathbf{Z}_f^{(i)}}^{\,\top}\)</span> denotes the conjugate transpose and
+<span class="math notranslate nohighlight">\(\Re\)</span> extracts the real part. This produces an SPD matrix capturing spatial dependencies at
+frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+<section id="connection-to-classical-features">
+<h3>Connection to Classical Features<a class="headerlink" href="#connection-to-classical-features" title="Link to this heading">#</a></h3>
+<p>The diagonal elements of <span class="math notranslate nohighlight">\(\mathbf{C}_f^{(i)}\)</span> correspond to the power spectral density (PSD)
+at each channel. The classical log-PSD features can be extracted as:</p>
+<div class="math notranslate nohighlight" id="equation-log-psd">
+<span class="eqno">(7)<a class="headerlink" href="#equation-log-psd" title="Link to this equation">#</a></span>\[\log\mathrm{PSD}^{(i)} =
+\log\!\big[\, \mathrm{diag}(\mathbf{C}_1^{(i)})^{\top}, \ldots, \mathrm{diag}(\mathbf{C}_F^{(i)})^{\top} \,\big]\]</div>
+<p><strong>Key insight</strong>: The full covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C}_f^{(i)}\)</span> contains not only the
+diagonal PSD values but also the <strong>off-diagonal cross-channel correlations</strong>. SPD geometry allows
+us to leverage this complete second-order structure, which encodes functional connectivity patterns
+that are lost when using only diagonal elements.</p>
+<p>This is identical to the log-diagonal vectorization used for predictive modeling, but SPD methods
+work with the full matrix structure rather than discarding the off-diagonal information.</p>
+</section>
+</section>
+<section id="example-covariance-construction-from-eeg">
+<h2>Example: Covariance Construction from EEG<a class="headerlink" href="#example-covariance-construction-from-eeg" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">stft</span>
+
+<span class="c1"># Simulate EEG data: (n_channels, n_timepoints)</span>
+<span class="n">eeg_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 32 channels, 1000 time points</span>
+
+<span class="c1"># Apply bandpass filter (e.g., 8-13 Hz for alpha band)</span>
+<span class="c1"># [Filtering code omitted for brevity]</span>
+
+<span class="c1"># Compute Short-Time Fourier Transform</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Zxx</span> <span class="o">=</span> <span class="n">stft</span><span class="p">(</span><span class="n">eeg_data</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">fs</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+
+<span class="c1"># Select frequency band of interest (e.g., alpha: 8-13 Hz)</span>
+<span class="n">freq_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">f</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">f</span> <span class="o">&lt;=</span> <span class="mi">13</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Z_alpha</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">Zxx</span><span class="p">[:,</span> <span class="n">freq_idx</span><span class="p">,</span> <span class="p">:])</span>
+
+<span class="c1"># Compute covariance for each time window</span>
+<span class="n">n_channels</span> <span class="o">=</span> <span class="n">Z_alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n_times</span> <span class="o">=</span> <span class="n">Z_alpha</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">covariances</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_times</span><span class="p">):</span>
+    <span class="n">Z_t</span> <span class="o">=</span> <span class="n">Z_alpha</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">t_idx</span><span class="p">]</span>  <span class="c1"># Shape: (n_channels, n_freqs)</span>
+    <span class="c1"># Covariance: C = Re(Z * Z^H)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">Z_t</span> <span class="o">@</span> <span class="n">Z_t</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">covariances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+
+<span class="c1"># Stack into batch of SPD matrices</span>
+<span class="n">C_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">covariances</span><span class="p">)</span>  <span class="c1"># Shape: (n_times, n_channels, n_channels)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Covariance batch shape: </span><span class="si">{</span><span class="n">C_batch</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract log-PSD (diagonal elements only - classical approach)</span>
+<span class="n">log_psd</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">C_batch</span><span class="p">,</span> <span class="n">dim1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log-PSD shape: </span><span class="si">{</span><span class="n">log_psd</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Information used: Diagonal only (</span><span class="si">{</span><span class="n">log_psd</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span><span class="si">}</span><span class="s2"> features)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Or work with full SPD matrices using Riemannian geometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">frechet_mean</span>
+
+<span class="n">mean_cov</span> <span class="o">=</span> <span class="n">frechet_mean</span><span class="p">(</span><span class="n">C_batch</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Riemannian mean covariance shape: </span><span class="si">{</span><span class="n">mean_cov</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Information used: Full matrix (</span><span class="si">{</span><span class="n">mean_cov</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span><span class="si">}</span><span class="s2"> features)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="summary-of-advantages">
+<h2>Summary of Advantages<a class="headerlink" href="#summary-of-advantages" title="Link to this heading">#</a></h2>
+<p>The inherent properties of SPD manifolds provide concrete advantages for neuroimaging analysis:</p>
+<ol class="arabic simple">
+<li><p><strong>Geodesic Completeness</strong>: Ensures all optimization and interpolation operations stay within
+valid SPD space, preventing numerical issues and invalid matrices.</p></li>
+<li><p><strong>Affine Invariance</strong>: Provides robustness to session-specific and subject-specific variations
+in the spatial mixing matrix—critical for EEG/MEG where electrode placement varies.</p></li>
+<li><p><strong>Outlier Resistance</strong>: The geometric mean naturally resists artifacts and noise, common in
+real-world neuroimaging data.</p></li>
+<li><p><strong>Complete Second-Order Information</strong>: Full covariance matrices capture both power (diagonal)
+and synchronization (off-diagonal) patterns, unlike classical methods that discard
+cross-channel correlations.</p></li>
+<li><p><strong>Statistical Efficiency</strong>: Riemannian methods often require fewer samples to achieve good
+performance—valuable when data acquisition is expensive.</p></li>
+<li><p><strong>Natural Geometry</strong>: The manifold structure aligns with the intrinsic geometry of covariance
+data, leading to better generalization in machine learning tasks.</p></li>
+</ol>
+</section>
+<section id="application-context-why-these-properties-matter">
+<h2>Application Context: Why These Properties Matter<a class="headerlink" href="#application-context-why-these-properties-matter" title="Link to this heading">#</a></h2>
+<p><strong>EEG/MEG/ECoG</strong>: Spatial covariance matrices capture event-related desynchronization/synchronization
+effects that characterize sensorimotor rhythms during motor imagery. The affine-invariant metric’s
+congruence invariance handles subject-specific and session-specific variations in the spatial
+mixing matrix, while the geometric mean resists bio-artifacts and environmental noise.</p>
+<p><strong>fMRI</strong>: Functional connectivity matrices (connectomes) encode temporal correlations between BOLD
+signals across brain regions. The complete second-order structure captures not just regional
+activity (diagonal) but also functional coupling (off-diagonal), essential for characterizing
+disorders and cognitive states.</p>
+<p><strong>DTI</strong>: Diffusion tensors within each voxel form tensor fields. Geodesic completeness prevents
+invalid intermediate results during anatomical smoothing, fiber tractography, and disease biomarker
+extraction—operations where Euclidean methods fail by producing non-SPD matrices.</p>
+</section>
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Geodesic completeness ensures optimization never leaves the SPD manifold</p></li>
+<li><p>Affine invariance provides robustness to coordinate system changes and mixing matrix variations</p></li>
+<li><p>Geometric mean resists outliers better than arithmetic mean</p></li>
+<li><p>Full covariance matrices encode both power and synchronization patterns</p></li>
+<li><p>SPD geometry exploits complete second-order statistics beyond diagonal PSD features</p></li>
+<li><p>These properties directly address neuroimaging challenges: low SNR, non-stationarity, artifacts,
+and limited sample sizes</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<span class="target" id="id1"></span></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_spd_motivation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SPD Geometry: Motivation and Core Properties</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3_different_types_of_covariance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Different Types of Covariance and Computation Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025-2026, SPD Learn Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

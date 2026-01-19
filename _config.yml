@@ -62,6 +62,10 @@ include:
   - .htaccess
   - _pages
   - files
+  - spd_learn/_static
+  - spd_learn/_images
+  - spd_learn/_downloads
+  - spd_learn/_sphinx_design_static
 exclude:
   - docs
   - google_scholar_crawler
