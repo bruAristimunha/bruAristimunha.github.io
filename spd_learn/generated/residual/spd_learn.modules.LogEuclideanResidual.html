@@ -597,12 +597,12 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>Residual/skip connection for SPD networks using the Log-Euclidean metric.</p>
 <p>This module implements a Riemannian residual connection based on the
-Log-Euclidean framework <span id="id1">[<a class="reference internal" href="../../references.html#id45" title="Isay Katsman, Eric Chen, Sidhanth Holalkere, Anna Asch, Aaron Lou, Ser-Nam Lim, and Christopher De Sa. Riemannian residual neural networks. In Advances in Neural Information Processing Systems, volume 36. 2023.">Katsman <em>et al.</em>, 2023</a>]</span>. It enables skip
+Log-Euclidean framework <span id="id1">[<a class="reference internal" href="../../references.html#id43" title="Isay Katsman, Eric Chen, Sidhanth Holalkere, Anna Asch, Aaron Lou, Ser-Nam Lim, and Christopher De Sa. Riemannian residual neural networks. In Advances in Neural Information Processing Systems, volume 36. 2023.">Katsman <em>et al.</em>, 2023</a>]</span>. It enables skip
 connections in SPD neural networks while respecting the manifold geometry,
 addressing a fundamental challenge in geometric deep learning.</p>
 <p class="rubric">Notes</p>
 <p>Standard residual connections <span class="math notranslate nohighlight">\(y = x + f(x)\)</span> from ResNets
-<span id="id2">[<a class="reference internal" href="../../references.html#id46" title="Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition. In IEEE Conference on Computer Vision and Pattern Recognition, 770–778. 2016. doi:10.1109/CVPR.2016.90.">He <em>et al.</em>, 2016</a>]</span> cannot be directly applied to SPD manifolds because
+<span id="id2">[<a class="reference internal" href="../../references.html#id44" title="Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition. In IEEE Conference on Computer Vision and Pattern Recognition, 770–778. 2016. doi:10.1109/CVPR.2016.90.">He <em>et al.</em>, 2016</a>]</span> cannot be directly applied to SPD manifolds because
 the sum of two SPD matrices does not preserve the geometric structure
 needed for Riemannian operations. The Log-Euclidean residual provides a
 geometrically principled alternative by performing addition in the tangent
@@ -622,7 +622,7 @@ for residual connections on SPD manifolds. The operation is:</p>
 <li><p><strong>Identity-preserving</strong>: <span class="math notranslate nohighlight">\(\text{residual}(X, I) = X\)</span> when <span class="math notranslate nohighlight">\(Y = I\)</span></p></li>
 <li><p><strong>SPD-preserving</strong>: Output is guaranteed to be SPD if inputs are SPD</p></li>
 </ul>
-<p>The authors of <span id="id3">Katsman <em>et al.</em> [<a class="reference internal" href="../../references.html#id45" title="Isay Katsman, Eric Chen, Sidhanth Holalkere, Anna Asch, Aaron Lou, Ser-Nam Lim, and Christopher De Sa. Riemannian residual neural networks. In Advances in Neural Information Processing Systems, volume 36. 2023.">2023</a>]</span> demonstrate that Riemannian
+<p>The authors of <span id="id3">Katsman <em>et al.</em> [<a class="reference internal" href="../../references.html#id43" title="Isay Katsman, Eric Chen, Sidhanth Holalkere, Anna Asch, Aaron Lou, Ser-Nam Lim, and Christopher De Sa. Riemannian residual neural networks. In Advances in Neural Information Processing Systems, volume 36. 2023.">2023</a>]</span> demonstrate that Riemannian
 ResNets:</p>
 <ol class="arabic simple">
 <li><p>Outperform existing manifold neural networks on hyperbolic graph learning</p></li>

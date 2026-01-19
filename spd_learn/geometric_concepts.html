@@ -492,43 +492,43 @@ covariance matrices on the SPD (Symmetric Positive Definite) manifold.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-spd-manifold" id="id68">The SPD Manifold</a></p>
+<li><p><a class="reference internal" href="#the-spd-manifold" id="id61">The SPD Manifold</a></p>
 <ul>
-<li><p><a class="reference internal" href="#what-is-an-spd-matrix" id="id69">What is an SPD Matrix?</a></p></li>
-<li><p><a class="reference internal" href="#why-spd-matrices-form-a-manifold" id="id70">Why SPD Matrices Form a Manifold</a></p></li>
-<li><p><a class="reference internal" href="#the-spd-cone-2x2-example" id="id71">The SPD Cone (2x2 Example)</a></p></li>
+<li><p><a class="reference internal" href="#what-is-an-spd-matrix" id="id62">What is an SPD Matrix?</a></p></li>
+<li><p><a class="reference internal" href="#why-spd-matrices-form-a-manifold" id="id63">Why SPD Matrices Form a Manifold</a></p></li>
+<li><p><a class="reference internal" href="#the-spd-cone-2x2-example" id="id64">The SPD Cone (2x2 Example)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tangent-spaces-and-exponential-maps" id="id72">Tangent Spaces and Exponential Maps</a></p>
+<li><p><a class="reference internal" href="#tangent-spaces-and-exponential-maps" id="id65">Tangent Spaces and Exponential Maps</a></p>
 <ul>
-<li><p><a class="reference internal" href="#tangent-space-at-a-point" id="id73">Tangent Space at a Point</a></p></li>
-<li><p><a class="reference internal" href="#the-exponential-map" id="id74">The Exponential Map</a></p></li>
-<li><p><a class="reference internal" href="#the-logarithmic-map" id="id75">The Logarithmic Map</a></p></li>
+<li><p><a class="reference internal" href="#tangent-space-at-a-point" id="id66">Tangent Space at a Point</a></p></li>
+<li><p><a class="reference internal" href="#the-exponential-map" id="id67">The Exponential Map</a></p></li>
+<li><p><a class="reference internal" href="#the-logarithmic-map" id="id68">The Logarithmic Map</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#riemannian-metrics-on-spd-manifolds" id="id76">Riemannian Metrics on SPD Manifolds</a></p>
+<li><p><a class="reference internal" href="#riemannian-metrics-on-spd-manifolds" id="id69">Riemannian Metrics on SPD Manifolds</a></p>
 <ul>
-<li><p><a class="reference internal" href="#affine-invariant-riemannian-metric-airm" id="id77">Affine-Invariant Riemannian Metric (AIRM)</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-metric-lem" id="id78">Log-Euclidean Metric (LEM)</a></p></li>
-<li><p><a class="reference internal" href="#bures-wasserstein-metric" id="id79">Bures-Wasserstein Metric</a></p></li>
-<li><p><a class="reference internal" href="#log-cholesky-metric" id="id80">Log-Cholesky Metric</a></p></li>
-<li><p><a class="reference internal" href="#metric-comparison-table" id="id81">Metric Comparison Table</a></p></li>
+<li><p><a class="reference internal" href="#affine-invariant-riemannian-metric-airm" id="id70">Affine-Invariant Riemannian Metric (AIRM)</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-metric-lem" id="id71">Log-Euclidean Metric (LEM)</a></p></li>
+<li><p><a class="reference internal" href="#bures-wasserstein-metric" id="id72">Bures-Wasserstein Metric</a></p></li>
+<li><p><a class="reference internal" href="#log-cholesky-metric" id="id73">Log-Cholesky Metric</a></p></li>
+<li><p><a class="reference internal" href="#metric-comparison-table" id="id74">Metric Comparison Table</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#parallel-transport" id="id82">Parallel Transport</a></p></li>
-<li><p><a class="reference internal" href="#why-this-matters-for-eeg-analysis" id="id83">Why This Matters for EEG Analysis</a></p>
+<li><p><a class="reference internal" href="#parallel-transport" id="id75">Parallel Transport</a></p></li>
+<li><p><a class="reference internal" href="#why-this-matters-for-eeg-analysis" id="id76">Why This Matters for EEG Analysis</a></p>
 <ul>
-<li><p><a class="reference internal" href="#practical-implications" id="id84">Practical Implications</a></p></li>
+<li><p><a class="reference internal" href="#practical-implications" id="id77">Practical Implications</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#spd-layer-visualizations" id="id85">SPD Layer Visualizations</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id86">References</a></p></li>
+<li><p><a class="reference internal" href="#spd-layer-visualizations" id="id78">SPD Layer Visualizations</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id79">References</a></p></li>
 </ul>
 </nav>
 <section id="the-spd-manifold">
-<h2><a class="toc-backref" href="#id68" role="doc-backlink">The SPD Manifold</a><a class="headerlink" href="#the-spd-manifold" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id61" role="doc-backlink">The SPD Manifold</a><a class="headerlink" href="#the-spd-manifold" title="Link to this heading">#</a></h2>
 <section id="what-is-an-spd-matrix">
-<h3><a class="toc-backref" href="#id69" role="doc-backlink">What is an SPD Matrix?</a><a class="headerlink" href="#what-is-an-spd-matrix" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id62" role="doc-backlink">What is an SPD Matrix?</a><a class="headerlink" href="#what-is-an-spd-matrix" title="Link to this heading">#</a></h3>
 <p>A <strong>Symmetric Positive Definite (SPD)</strong> matrix <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times n}\)</span>
 satisfies two conditions:</p>
 <ol class="arabic simple">
@@ -546,7 +546,7 @@ other multivariate signals.</p>
 </div>
 </section>
 <section id="why-spd-matrices-form-a-manifold">
-<h3><a class="toc-backref" href="#id70" role="doc-backlink">Why SPD Matrices Form a Manifold</a><a class="headerlink" href="#why-spd-matrices-form-a-manifold" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id63" role="doc-backlink">Why SPD Matrices Form a Manifold</a><a class="headerlink" href="#why-spd-matrices-form-a-manifold" title="Link to this heading">#</a></h3>
 <p>SPD matrices do <strong>not</strong> form a vector space because:</p>
 <ol class="arabic simple">
 <li><p><strong>Not closed under subtraction</strong>: If <span class="math notranslate nohighlight">\(A, B\)</span> are SPD, <span class="math notranslate nohighlight">\(A - B\)</span>
@@ -562,7 +562,7 @@ This cone has a natural Riemannian manifold structure with well-defined
 notions of distance, geodesics, and curvature.</p>
 </section>
 <section id="the-spd-cone-2x2-example">
-<h3><a class="toc-backref" href="#id71" role="doc-backlink">The SPD Cone (2x2 Example)</a><a class="headerlink" href="#the-spd-cone-2x2-example" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id64" role="doc-backlink">The SPD Cone (2x2 Example)</a><a class="headerlink" href="#the-spd-cone-2x2-example" title="Link to this heading">#</a></h3>
 <p>For <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices, we can visualize the SPD cone. A symmetric
 <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix has three free parameters:</p>
 <div class="math notranslate nohighlight">
@@ -586,9 +586,9 @@ points to see their details.</p>
 </section>
 </section>
 <section id="tangent-spaces-and-exponential-maps">
-<h2><a class="toc-backref" href="#id72" role="doc-backlink">Tangent Spaces and Exponential Maps</a><a class="headerlink" href="#tangent-spaces-and-exponential-maps" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id65" role="doc-backlink">Tangent Spaces and Exponential Maps</a><a class="headerlink" href="#tangent-spaces-and-exponential-maps" title="Link to this heading">#</a></h2>
 <section id="tangent-space-at-a-point">
-<h3><a class="toc-backref" href="#id73" role="doc-backlink">Tangent Space at a Point</a><a class="headerlink" href="#tangent-space-at-a-point" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id66" role="doc-backlink">Tangent Space at a Point</a><a class="headerlink" href="#tangent-space-at-a-point" title="Link to this heading">#</a></h3>
 <p>At any point <span class="math notranslate nohighlight">\(P\)</span> on the SPD manifold, the <strong>tangent space</strong>
 <span class="math notranslate nohighlight">\(T_P \mathcal{M}\)</span> is the set of symmetric matrices. This is a vector
 space where we can perform standard linear algebra operations.</p>
@@ -598,7 +598,7 @@ space where we can perform standard linear algebra operations.</p>
 many operations are simplified there.</p>
 </section>
 <section id="the-exponential-map">
-<h3><a class="toc-backref" href="#id74" role="doc-backlink">The Exponential Map</a><a class="headerlink" href="#the-exponential-map" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id67" role="doc-backlink">The Exponential Map</a><a class="headerlink" href="#the-exponential-map" title="Link to this heading">#</a></h3>
 <p>The <strong>exponential map</strong> <span class="math notranslate nohighlight">\(\text{Exp}_P: T_P\mathcal{M} \to \mathcal{M}\)</span>
 projects tangent vectors back onto the manifold. At the identity:</p>
 <div class="math notranslate nohighlight">
@@ -607,7 +607,7 @@ projects tangent vectors back onto the manifold. At the identity:</p>
 to an SPD matrix, ensuring we stay on the manifold.</p>
 </section>
 <section id="the-logarithmic-map">
-<h3><a class="toc-backref" href="#id75" role="doc-backlink">The Logarithmic Map</a><a class="headerlink" href="#the-logarithmic-map" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id68" role="doc-backlink">The Logarithmic Map</a><a class="headerlink" href="#the-logarithmic-map" title="Link to this heading">#</a></h3>
 <p>The <strong>logarithmic map</strong> <span class="math notranslate nohighlight">\(\text{Log}_P: \mathcal{M} \to T_P\mathcal{M}\)</span>
 is the inverse, projecting from the manifold to the tangent space:</p>
 <div class="math notranslate nohighlight">
@@ -617,12 +617,12 @@ matrices to a vector space for classification.</p>
 </section>
 </section>
 <section id="riemannian-metrics-on-spd-manifolds">
-<h2><a class="toc-backref" href="#id76" role="doc-backlink">Riemannian Metrics on SPD Manifolds</a><a class="headerlink" href="#riemannian-metrics-on-spd-manifolds" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id69" role="doc-backlink">Riemannian Metrics on SPD Manifolds</a><a class="headerlink" href="#riemannian-metrics-on-spd-manifolds" title="Link to this heading">#</a></h2>
 <p>A <strong>Riemannian metric</strong> defines inner products on tangent spaces, enabling
 us to measure distances and angles on the manifold. Several metrics are
 commonly used for SPD matrices, each with different properties.</p>
 <section id="affine-invariant-riemannian-metric-airm">
-<h3><a class="toc-backref" href="#id77" role="doc-backlink">Affine-Invariant Riemannian Metric (AIRM)</a><a class="headerlink" href="#affine-invariant-riemannian-metric-airm" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id70" role="doc-backlink">Affine-Invariant Riemannian Metric (AIRM)</a><a class="headerlink" href="#affine-invariant-riemannian-metric-airm" title="Link to this heading">#</a></h3>
 <p>The <strong>Affine-Invariant Riemannian Metric</strong> <span id="id3">[<a class="reference internal" href="references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span> is the most natural metric for SPD
 matrices. At point <span class="math notranslate nohighlight">\(P\)</span>, it is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -653,7 +653,7 @@ matrices. At point <span class="math notranslate nohighlight">\(P\)</span>, it i
 </div>
 </section>
 <section id="log-euclidean-metric-lem">
-<h3><a class="toc-backref" href="#id78" role="doc-backlink">Log-Euclidean Metric (LEM)</a><a class="headerlink" href="#log-euclidean-metric-lem" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id71" role="doc-backlink">Log-Euclidean Metric (LEM)</a><a class="headerlink" href="#log-euclidean-metric-lem" title="Link to this heading">#</a></h3>
 <p>The <strong>Log-Euclidean Metric</strong> <span id="id4">[<a class="reference internal" href="references.html#id4" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> treats the logarithm of SPD matrices as vectors
 in Euclidean space:</p>
 <div class="math notranslate nohighlight">
@@ -683,7 +683,7 @@ in Euclidean space:</p>
 </div>
 </section>
 <section id="bures-wasserstein-metric">
-<h3><a class="toc-backref" href="#id79" role="doc-backlink">Bures-Wasserstein Metric</a><a class="headerlink" href="#bures-wasserstein-metric" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id72" role="doc-backlink">Bures-Wasserstein Metric</a><a class="headerlink" href="#bures-wasserstein-metric" title="Link to this heading">#</a></h3>
 <p>The <strong>Bures-Wasserstein</strong> <span id="id5">[<a class="reference internal" href="references.html#id17" title="Suvrit Sra. Positive definite matrices and the s-divergence. Proceedings of the American Mathematical Society, 144(7):2787–2797, 2016. doi:10.1090/proc/12953.">Sra, 2016</a>, <a class="reference internal" href="references.html#id18" title="Donald Bures. An extension of kakutani's theorem on infinite product measures to the tensor product of semifinite w*-algebras. Transactions of the American Mathematical Society, 135:199–212, 1969. doi:10.1090/S0002-9947-1969-0236719-2.">Bures, 1969</a>]</span> (or Bures) metric comes from optimal transport theory:</p>
 <div class="math notranslate nohighlight">
 \[d_{\text{BW}}(A, B)^2 = \text{tr}(A) + \text{tr}(B) - 2\text{tr}\left((A^{1/2} B A^{1/2})^{1/2}\right)\]</div>
@@ -704,7 +704,7 @@ in Euclidean space:</p>
 </div>
 </section>
 <section id="log-cholesky-metric">
-<h3><a class="toc-backref" href="#id80" role="doc-backlink">Log-Cholesky Metric</a><a class="headerlink" href="#log-cholesky-metric" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id73" role="doc-backlink">Log-Cholesky Metric</a><a class="headerlink" href="#log-cholesky-metric" title="Link to this heading">#</a></h3>
 <p>The <strong>Log-Cholesky</strong> metric uses the Cholesky decomposition for efficiency:</p>
 <div class="math notranslate nohighlight">
 \[d_{\text{LC}}(A, B) = \| \text{logchol}(L_A) - \text{logchol}(L_B) \|_F\]</div>
@@ -724,7 +724,7 @@ applies log to the diagonal entries.</p>
 </div>
 </section>
 <section id="metric-comparison-table">
-<h3><a class="toc-backref" href="#id81" role="doc-backlink">Metric Comparison Table</a><a class="headerlink" href="#metric-comparison-table" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id74" role="doc-backlink">Metric Comparison Table</a><a class="headerlink" href="#metric-comparison-table" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 20.0%" />
@@ -772,7 +772,7 @@ applies log to the diagonal entries.</p>
 </section>
 </section>
 <section id="parallel-transport">
-<h2><a class="toc-backref" href="#id82" role="doc-backlink">Parallel Transport</a><a class="headerlink" href="#parallel-transport" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id75" role="doc-backlink">Parallel Transport</a><a class="headerlink" href="#parallel-transport" title="Link to this heading">#</a></h2>
 <p><strong>Parallel transport</strong> moves tangent vectors between different tangent spaces
 while preserving their geometric properties. This is essential for:</p>
 <ul class="simple">
@@ -805,13 +805,13 @@ in the new tangent space</p></li>
 </ol>
 </section>
 <section id="why-this-matters-for-eeg-analysis">
-<h2><a class="toc-backref" href="#id83" role="doc-backlink">Why This Matters for EEG Analysis</a><a class="headerlink" href="#why-this-matters-for-eeg-analysis" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id76" role="doc-backlink">Why This Matters for EEG Analysis</a><a class="headerlink" href="#why-this-matters-for-eeg-analysis" title="Link to this heading">#</a></h2>
 <p>In EEG/MEG analysis, spatial covariance matrices are naturally SPD matrices.
 Methods like:</p>
 <ul class="simple">
 <li><p><strong>MDM</strong> (Minimum Distance to Mean) classifier <span id="id6">[<a class="reference internal" href="references.html#id5" title="Alexandre Barachant, Stéphane Bonnet, Marco Congedo, and Christian Jutten. Multiclass brain–computer interface classification by riemannian geometry. IEEE Transactions on Biomedical Engineering, 59(4):920–928, 2012. doi:10.1109/TBME.2011.2172210.">Barachant <em>et al.</em>, 2012</a>]</span></p></li>
 <li><p><strong>Tangent Space</strong> projection for machine learning</p></li>
-<li><p><strong>SPDNet</strong> <span id="id7">[<a class="reference internal" href="references.html#id9" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> and other geometric deep learning architectures</p></li>
+<li><p><strong>SPDNet</strong> <span id="id7">[<a class="reference internal" href="user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> and other geometric deep learning architectures</p></li>
 </ul>
 <p>all leverage the Riemannian geometry of the SPD manifold. Understanding
 these concepts helps explain:</p>
@@ -822,7 +822,7 @@ these concepts helps explain:</p>
 <li><p>Why domain adaptation methods like RPA use parallel transport</p></li>
 </ul>
 <section id="practical-implications">
-<h3><a class="toc-backref" href="#id84" role="doc-backlink">Practical Implications</a><a class="headerlink" href="#practical-implications" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id77" role="doc-backlink">Practical Implications</a><a class="headerlink" href="#practical-implications" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Distance computation</strong>: Use Log-Euclidean for speed, AIRM for theoretical
 guarantees, Bures-Wasserstein for ill-conditioned matrices.</p></li>
@@ -836,7 +836,7 @@ across subjects or sessions.</p></li>
 </section>
 </section>
 <section id="spd-layer-visualizations">
-<h2><a class="toc-backref" href="#id85" role="doc-backlink">SPD Layer Visualizations</a><a class="headerlink" href="#spd-layer-visualizations" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id78" role="doc-backlink">SPD Layer Visualizations</a><a class="headerlink" href="#spd-layer-visualizations" title="Link to this heading">#</a></h2>
 <p>Understanding how SPD network layers transform data on the manifold is crucial
 for building intuition about geometric deep learning. The visualizations below
 show each layer’s operation using 2x2 SPD matrices represented as ellipsoids.</p>
@@ -864,7 +864,7 @@ See <a class="reference internal" href="generated/auto_examples/visualizations/p
 See <a class="reference internal" href="generated/auto_examples/visualizations/plot_batchnorm_animation.html#sphx-glr-generated-auto-examples-visualizations-plot-batchnorm-animation-py"><span class="std std-ref">SPD Batch Normalization Animation</span></a></p>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id86" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id79" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id8">
 <div role="list" class="citation-list">
 <div class="citation" id="id15" role="doc-biblioentry">
