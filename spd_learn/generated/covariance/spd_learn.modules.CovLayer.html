@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/covariance/spd_learn.modules.CovLayer';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/covariance/spd_learn.modules.CovLayer.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/covariance/spd_learn.modules.CovLayer.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -595,23 +581,63 @@
 <dt class="sig sig-object py" id="spd_learn.modules.CovLayer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.modules.</span></span><span class="sig-name descname"><span class="pre">CovLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">covariance&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/modules.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.modules.CovLayer" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
-<p>Covariance layer.</p>
-<p>This class computes the covariance of a batch of multivariate data. The
-input data is assumed to have shape <cite>(…, n_channels, n_times)</cite>, where
-<cite>…</cite> represents an arbitrary number of dimensions.</p>
+<p>Covariance Estimation Layer for Neuroimaging Data.</p>
+<p>This layer computes spatial covariance matrices from multivariate time series,
+transforming input data of shape <cite>(…, n_channels, n_times)</cite> into SPD matrices
+of shape <cite>(…, n_channels, n_channels)</cite>.</p>
+<p><strong>Mathematical Definition</strong></p>
+<p>Given a data segment <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n_C \times n_T}\)</span> formed by
+concatenating <span class="math notranslate nohighlight">\(n_T\)</span> consecutive time samples:</p>
 <div class="math notranslate nohighlight">
-\[\Sigma = \frac{1}{T-1} X X^\top\]</div>
-<p>where <span class="math notranslate nohighlight">\(X\)</span> is the mean-centered input data.</p>
+\[X = [x(t), x(t+1), \ldots, x(t+n_T-1)]\]</div>
+<p>The spatial covariance matrix is defined as the second-order moment:</p>
+<div class="math notranslate nohighlight">
+\[C = \mathbb{E}[x(t) x(t)^\top] \in \mathcal{S}_{+}^{n_C}\]</div>
+<p>capturing linear statistical dependencies across spatial channels. In practice,
+this is estimated as <span class="math notranslate nohighlight">\(\hat{C} = \frac{1}{n_T-1} X X^\top\)</span> after centering.</p>
+<p><strong>Statistical Assumptions</strong></p>
+<p>The covariance estimator assumes approximate stationarity within the temporal
+window. The true covariance is strictly positive definite if the underlying
+process is nondegenerate; however, empirical estimates may be:</p>
+<ul class="simple">
+<li><p><strong>Rank-deficient</strong> when <span class="math notranslate nohighlight">\(n_T &lt; n_C\)</span> (more channels than time samples)</p></li>
+<li><p><strong>Ill-conditioned</strong> due to strong linear dependencies or narrow-band filtering</p></li>
+</ul>
+<p>For ill-conditioned cases, consider using <a class="reference internal" href="../regularization/spd_learn.modules.Shrinkage.html#spd_learn.modules.Shrinkage" title="spd_learn.modules.Shrinkage"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shrinkage</span></code></a> regularization.</p>
+<p><strong>Neuroimaging Context</strong></p>
+<ul class="simple">
+<li><p><strong>EEG/MEG/ECoG</strong>: Spatial covariance summarizes pairwise dependencies between
+neural signals, encoding task-relevant spectral modulations (ERD/ERS).</p></li>
+<li><p><strong>fMRI</strong>: Applied to parcellated regional time series to compute functional
+connectivity matrices.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>method</strong> (<em>Callable</em><em>, </em><em>default=covariance</em>) – The covariance estimation method to use. Can be one of <cite>covariance</cite>,
-<cite>sample_covariance</cite>, <cite>real_covariance</cite>, or <cite>cross_covariance</cite>.</p></li>
+<li><p><strong>method</strong> (<em>Callable</em><em>, </em><em>default=covariance</em>) – <p>The covariance estimation method. Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">covariance</span></code>: Standard empirical covariance</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_covariance</span></code>: With Bessel correction (divides by n-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_covariance</span></code>: For complex-valued signals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cross_covariance</span></code>: Cross-covariance between channel groups</p></li>
+</ul>
+</p></li>
 <li><p><strong>device</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.device" title="(in PyTorch v2.9)"><em>torch.device</em></a><em>, </em><em>optional</em>) – The device to move the covariance matrices to.</p></li>
 <li><p><strong>dtype</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.9)"><em>torch.dtype</em></a><em>, </em><em>optional</em>) – The data type to cast the covariance matrices to.</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../regularization/spd_learn.modules.Shrinkage.html#spd_learn.modules.Shrinkage" title="spd_learn.modules.Shrinkage"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shrinkage</span></code></a></dt><dd><p>Regularizes ill-conditioned covariance matrices.</p>
+</dd>
+<dt><a class="reference internal" href="../bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a></dt><dd><p>Bilinear mapping for covariance dimensionality reduction.</p>
+</dd>
+<dt><a class="reference internal" href="../batchnorm/spd_learn.modules.SPDBatchNorm.html#spd_learn.modules.SPDBatchNorm" title="spd_learn.modules.SPDBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code></a></dt><dd><p>Batch normalization on the SPD manifold.</p>
+</dd>
+</dl>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">CovLayer</span>
@@ -758,7 +784,7 @@ input data is assumed to have shape <cite>(…, n_channels, n_times)</cite>, whe
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

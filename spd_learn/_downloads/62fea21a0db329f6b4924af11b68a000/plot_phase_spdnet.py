@@ -132,7 +132,7 @@ print("Phase-space embedding reveals the underlying attractor structure!")
 # 1. **PhaseDelay**: Applies time-delay embedding
 # 2. **SPDNet**: Processes the embedded signals
 #
-# The embedding expands channels: 22 channels × order 3 = 66 channels
+# The embedding expands channels: 22 channels x order 3 = 66 channels
 #
 
 n_chans = 22

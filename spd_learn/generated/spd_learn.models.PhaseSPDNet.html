@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/spd_learn.models.PhaseSPDNet';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/spd_learn.models.PhaseSPDNet.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/spd_learn.models.PhaseSPDNet.html" />
     <link rel="icon" href="../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -175,15 +175,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
     Contributing
@@ -332,13 +325,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../background/index.html">
-    Background
   </a>
 </li>
 
@@ -595,7 +581,7 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.models.</span></span><span class="sig-name descname"><span class="pre">PhaseSPDNet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subspacedim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/models.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.models.PhaseSPDNet" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>Phase SPDNet.</p>
-<p>This class implements the Phase SPDNet model <span id="id1">[<a class="reference internal" href="../user_guide.html#id28" title="Igor Carrara, Bruno Aristimunha, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara <em>et al.</em>, 2024</a>]</span>.
+<p>This class implements the Phase SPDNet model <span id="id1">[<a class="reference internal" href="../user_guide.html#id24" title="Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara* <em>et al.</em>, 2024</a>]</span>.
 This model first applies a Phase-Space Embedding (PSE) to the input time
 series data, followed by an SPDNet for classification.</p>
 <figure class="align-center">
@@ -698,7 +684,7 @@ Embedding.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

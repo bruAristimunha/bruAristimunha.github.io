@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/manifolds/spd_learn.functional.log_euclidean_distance';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/manifolds/spd_learn.functional.log_euclidean_distance.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/manifolds/spd_learn.functional.log_euclidean_distance.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -594,27 +580,52 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="spd_learn.functional.log_euclidean_distance">
 <span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">log_euclidean_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.log_euclidean_distance" title="Link to this definition">#</a></dt>
-<dd><p>Computes the Log-Euclidean distance between two batches of SPD matrices.</p>
-<p>The Log-Euclidean distance is computed by first taking the matrix logarithm
-of each SPD matrix, then calculating the Frobenius norm of the difference
-between the logarithms.</p>
+<dd><p>Computes the Log-Euclidean distance between SPD matrices.</p>
+<p>The Log-Euclidean Metric (LEM) simplifies computations by using the matrix
+logarithm to map the SPD manifold diffeomorphically to the Euclidean vector
+space of symmetric matrices. The mapping <span class="math notranslate nohighlight">\(\log: \mathcal{S}_{++}^n \to
+\mathcal{S}^n\)</span> is a global diffeomorphism.</p>
+<p>The Log-Euclidean distance is defined as the Frobenius norm of the difference
+of the matrix logarithms:</p>
 <div class="math notranslate nohighlight">
-\[d(A, B) = \| \log(A) - \log(B) \|_F\]</div>
+\[d_{\text{LEM}}(A, B) = \| \log(A) - \log(B) \|_F\]</div>
+<p>This metric endows SPD matrices with a <strong>commutative Lie group structure</strong>,
+where the group operation is <span class="math notranslate nohighlight">\(A \odot B = \exp(\log(A) + \log(B))\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – A batch of SPD matrices with shape <cite>(…, n, n)</cite>.</p></li>
-<li><p><strong>B</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – A batch of SPD matrices with the same shape as <cite>A</cite>.</p></li>
+<li><p><strong>A</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – SPD matrices with shape <cite>(…, n, n)</cite>.</p></li>
+<li><p><strong>B</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – SPD matrices with shape <cite>(…, n, n)</cite>. Must be broadcastable with <cite>A</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>torch.Tensor</em> – A tensor of distances with shape <cite>(…)</cite>.</p></li>
-<li><p>See <span id="id1">[<a class="reference internal" href="../../references.html#id4" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> for more details.</p></li>
-</ul>
-</p>
+<dd class="field-even"><p>Distances with shape <cite>(…)</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)">torch.Tensor</a></p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>Unlike the Affine-Invariant Riemannian Metric (AIRM), the Log-Euclidean
+metric is <strong>not affine-invariant</strong>. It is invariant only under orthogonal
+transformations (rotations): <span class="math notranslate nohighlight">\(d(QAQ^\top, QBQ^\top) = d(A, B)\)</span> for
+orthogonal <span class="math notranslate nohighlight">\(Q\)</span>. However, it offers computational advantages as all
+operations reduce to standard Euclidean operations in the log-domain.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.functional.geodesic_distance_spdairm.html#spd_learn.functional.geodesic_distance_spdairm" title="spd_learn.functional.geodesic_distance_spdairm"><code class="xref py py-func docutils literal notranslate"><span class="pre">geodesic_distance_spdairm()</span></code></a></dt><dd><p>Distance under affine-invariant metric.</p>
+</dd>
+<dt><a class="reference internal" href="../bures_wasserstein/spd_learn.functional.bures_wasserstein_distance.html#spd_learn.functional.bures_wasserstein_distance" title="spd_learn.functional.bures_wasserstein_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">bures_wasserstein_distance()</span></code></a></dt><dd><p>Distance under Bures-Wasserstein metric.</p>
+</dd>
+<dt><a class="reference internal" href="../log_cholesky/spd_learn.functional.log_cholesky_distance.html#spd_learn.functional.log_cholesky_distance" title="spd_learn.functional.log_cholesky_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_cholesky_distance()</span></code></a></dt><dd><p>Distance under Log-Cholesky metric.</p>
+</dd>
+<dt><a class="reference internal" href="../frechet/spd_learn.functional.frechet_mean.html#spd_learn.functional.frechet_mean" title="spd_learn.functional.frechet_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></dt><dd><p>Computes the Fréchet mean under Log-Euclidean metric.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>See <span id="id1">[<a class="reference internal" href="../../references.html#id4" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> for more details.</p>
 </dd></dl>
 
 </section>
@@ -677,7 +688,7 @@ between the logarithms.</p>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

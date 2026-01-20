@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/log_cholesky/spd_learn.functional.cholesky_log';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/log_cholesky/spd_learn.functional.cholesky_log.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/log_cholesky/spd_learn.functional.cholesky_log.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -619,9 +605,20 @@ shape <cite>(…, n, n)</cite>.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>The backward pass is derived analytically <span id="id1">[<a class="reference internal" href="../../references.html#id42" title="Zhenhua Lin. Riemannian geometry of symmetric positive definite matrices via cholesky decomposition. SIAM Journal on Matrix Analysis and Applications, 40(4):1353–1370, 2019. doi:10.1137/18M1221084.">Lin, 2019</a>]</span>. For
+<p>The backward pass is derived analytically <span id="id1">[<a class="reference internal" href="../../references.html#id46" title="Zhenhua Lin. Riemannian geometry of symmetric positive definite matrices via cholesky decomposition. SIAM Journal on Matrix Analysis and Applications, 40(4):1353–1370, 2019. doi:10.1137/18M1221084.">Lin, 2019</a>]</span>. For
 the forward map <span class="math notranslate nohighlight">\(f: X \\mapsto \\log_{\\text{chol}}(L)\)</span> where
 <span class="math notranslate nohighlight">\(X = LL^T\)</span>, the gradient computation involves the Cholesky derivative.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.functional.cholesky_exp.html#spd_learn.functional.cholesky_exp" title="spd_learn.functional.cholesky_exp"><code class="xref py py-class docutils literal notranslate"><span class="pre">cholesky_exp</span></code></a></dt><dd><p>Inverse mapping from Log-Cholesky space to SPD.</p>
+</dd>
+<dt><a class="reference internal" href="spd_learn.functional.log_cholesky_distance.html#spd_learn.functional.log_cholesky_distance" title="spd_learn.functional.log_cholesky_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_cholesky_distance()</span></code></a></dt><dd><p>Distance under Log-Cholesky metric.</p>
+</dd>
+<dt><a class="reference internal" href="../functional/spd_learn.functional.matrix_log.html#spd_learn.functional.matrix_log" title="spd_learn.functional.matrix_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">matrix_log()</span></code></a></dt><dd><p>Matrix logarithm via eigendecomposition.</p>
+</dd>
+</dl>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="spd_learn.functional.cholesky_log.backward">
 <em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.cholesky_log.backward" title="Link to this definition">#</a></dt>
@@ -750,7 +747,7 @@ if they are intended to be used for in <code class="docutils literal notranslate
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

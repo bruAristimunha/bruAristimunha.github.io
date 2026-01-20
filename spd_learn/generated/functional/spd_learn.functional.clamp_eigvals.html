@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/functional/spd_learn.functional.clamp_eigvals';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/functional/spd_learn.functional.clamp_eigvals.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/functional/spd_learn.functional.clamp_eigvals.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,15 +175,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -332,13 +325,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -597,7 +583,7 @@
 <p>Rectification of the eigenvalues of a symmetric matrix.</p>
 <p>This function computes the regularized matrix logarithm of a symmetric
 matrix <cite>X</cite>. It also adapts the backpropagation according to the chain
-rule <span id="id1">[<a class="reference internal" href="../../references.html#id38" title="Catalin Ionescu, Orestis Vantzos, and Cristian Sminchisescu. Matrix backpropagation for deep networks with structured layers. In IEEE International Conference on Computer Vision, 2965–2973. 2015. doi:10.1109/ICCV.2015.339.">Ionescu <em>et al.</em>, 2015</a>]</span>, <span id="id2">[<a class="reference internal" href="../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>.</p>
+rule <span id="id1">[<a class="reference internal" href="../../references.html#id42" title="Catalin Ionescu, Orestis Vantzos, and Cristian Sminchisescu. Matrix backpropagation for deep networks with structured layers. In IEEE International Conference on Computer Vision, 2965–2973. 2015. doi:10.1109/ICCV.2015.339.">Ionescu <em>et al.</em>, 2015</a>]</span>, <span id="id2">[<a class="reference internal" href="../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -612,6 +598,15 @@ rule <span id="id1">[<a class="reference internal" href="../../references.html#i
 <dd class="field-odd"><p><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)">torch.Tensor</a></p>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a></dt><dd><p>Neural network layer using eigenvalue clamping.</p>
+</dd>
+<dt><a class="reference internal" href="spd_learn.functional.matrix_log.html#spd_learn.functional.matrix_log" title="spd_learn.functional.matrix_log"><code class="xref py py-class docutils literal notranslate"><span class="pre">matrix_log</span></code></a></dt><dd><p>Matrix logarithm (often used after clamping).</p>
+</dd>
+</dl>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="spd_learn.functional.clamp_eigvals.applied_fct">
 <em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">applied_fct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.clamp_eigvals.applied_fct" title="Link to this definition">#</a></dt>
@@ -755,7 +750,7 @@ if they are intended to be used for in <code class="docutils literal notranslate
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

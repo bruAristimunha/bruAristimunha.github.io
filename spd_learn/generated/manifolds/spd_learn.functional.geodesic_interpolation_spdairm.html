@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,8 +53,9 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/manifolds/spd_learn.functional.geodesic_interpolation_spdairm';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/manifolds/spd_learn.functional.geodesic_interpolation_spdairm.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/manifolds/spd_learn.functional.geodesic_interpolation_spdairm.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -332,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -593,24 +580,51 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="spd_learn.functional.geodesic_interpolation_spdairm">
 <span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">geodesic_interpolation_spdairm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.geodesic_interpolation_spdairm" title="Link to this definition">#</a></dt>
-<dd><p>Geodesic interpolation between points <cite>A</cite> and <cite>B</cite> on the SPD manifold
-equipped with AIRM.</p>
+<dd><p>Geodesic interpolation on the SPD manifold under the Affine-Invariant
+Riemannian Metric (AIRM).</p>
+<p>The AIRM endows the SPD manifold with a geometry that is invariant under
+congruence transformations <span class="math notranslate nohighlight">\(P \mapsto WPW^\top\)</span> for any invertible
+matrix <span class="math notranslate nohighlight">\(W\)</span>. The geodesic (shortest path) between two SPD matrices
+<span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\gamma(t) = A^{1/2} (A^{-1/2} B A^{-1/2})^t A^{1/2}\]</div>
+<p>for <span class="math notranslate nohighlight">\(t \in [0, 1]\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – Interpolation starting point.</p></li>
-<li><p><strong>B</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – Interpolation end point.</p></li>
-<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Interpolation step size. For <cite>t = 0</cite>, the output will be equal to <cite>A</cite>.
-For <cite>t = 1</cite>, the output will be equal to <cite>B</cite>.</p></li>
+<li><p><strong>A</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – Starting point SPD matrices with shape <cite>(…, n, n)</cite>.</p></li>
+<li><p><strong>B</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – End point SPD matrices with shape <cite>(…, n, n)</cite>.</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Interpolation parameter. For <cite>t = 0</cite>, returns <cite>A</cite>.
+For <cite>t = 1</cite>, returns <cite>B</cite>. For <cite>t = 0.5</cite>, returns the geodesic midpoint
+(Riemannian mean of two matrices).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Interpolated point on the SPD manifold.</p>
+<dd class="field-even"><p>Interpolated SPD matrices on the geodesic with shape <cite>(…, n, n)</cite>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)">torch.Tensor</a></p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>The geodesic midpoint at <span class="math notranslate nohighlight">\(t = 0.5\)</span> corresponds to the matrix geometric
+mean <span class="math notranslate nohighlight">\(A \# B = A^{1/2}(A^{-1/2}BA^{-1/2})^{1/2}A^{1/2}\)</span>, which is the
+unique positive definite solution to the Riccati equation <span class="math notranslate nohighlight">\(XA^{-1}X = B\)</span>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.functional.geodesic_distance_spdairm.html#spd_learn.functional.geodesic_distance_spdairm" title="spd_learn.functional.geodesic_distance_spdairm"><code class="xref py py-func docutils literal notranslate"><span class="pre">geodesic_distance_spdairm()</span></code></a></dt><dd><p>Computes the geodesic distance under AIRM.</p>
+</dd>
+<dt><a class="reference internal" href="../bures_wasserstein/spd_learn.functional.bures_wasserstein_geodesic.html#spd_learn.functional.bures_wasserstein_geodesic" title="spd_learn.functional.bures_wasserstein_geodesic"><code class="xref py py-func docutils literal notranslate"><span class="pre">bures_wasserstein_geodesic()</span></code></a></dt><dd><p>Geodesic under Bures-Wasserstein metric.</p>
+</dd>
+<dt><a class="reference internal" href="../log_cholesky/spd_learn.functional.log_cholesky_geodesic.html#spd_learn.functional.log_cholesky_geodesic" title="spd_learn.functional.log_cholesky_geodesic"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_cholesky_geodesic()</span></code></a></dt><dd><p>Geodesic under Log-Cholesky metric.</p>
+</dd>
+<dt><a class="reference internal" href="../parallel_transport/spd_learn.functional.parallel_transport_airm.html#spd_learn.functional.parallel_transport_airm" title="spd_learn.functional.parallel_transport_airm"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel_transport_airm()</span></code></a></dt><dd><p>Parallel transport under AIRM.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>See <span id="id1">[<a class="reference internal" href="../../references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span>, <span id="id2">[<a class="reference internal" href="../../references.html#id6" title="Rajendra Bhatia. Positive Definite Matrices. Princeton University Press, 2007. doi:10.1515/9781400827787.">Bhatia, 2007</a>]</span> for more details.</p>
 </dd></dl>
 
 </section>
@@ -673,7 +687,7 @@ For <cite>t = 1</cite>, the output will be equal to <cite>B</cite>.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

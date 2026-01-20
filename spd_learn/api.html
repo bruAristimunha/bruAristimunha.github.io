@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/api.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/api.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -175,15 +175,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="contributing.html">
     Contributing
@@ -332,13 +325,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
   </a>
 </li>
 
@@ -711,7 +697,7 @@
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/covariance/spd_learn.modules.CovLayer.html#spd_learn.modules.CovLayer" title="spd_learn.modules.CovLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CovLayer</span></code></a>(method[, device, dtype])</p></td>
-<td><p>Covariance layer.</p></td>
+<td><p>Covariance Estimation Layer for Neuroimaging Data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -804,10 +790,10 @@
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/regularization/spd_learn.modules.TraceNorm.html#spd_learn.modules.TraceNorm" title="spd_learn.modules.TraceNorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraceNorm</span></code></a>([epsilon, device, dtype])</p></td>
-<td><p>Trace Normalization Layer.</p></td>
+<td><p>Trace Normalization Layer for Scale-Invariant Covariance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/regularization/spd_learn.modules.Shrinkage.html#spd_learn.modules.Shrinkage" title="spd_learn.modules.Shrinkage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Shrinkage</span></code></a>(n_chans[, init_shrinkage, ...])</p></td>
-<td><p>Learnable Shrinkage Regularization.</p></td>
+<td><p>Learnable Shrinkage Regularization for Covariance Matrices.</p></td>
 </tr>
 </tbody>
 </table>
@@ -875,7 +861,7 @@
 <td><p>Ensures that a matrix is symmetric.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/functional/spd_learn.functional.upper_to_sym.html#spd_learn.functional.upper_to_sym" title="spd_learn.functional.upper_to_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upper_to_sym</span></code></a>(x_vec)</p></td>
-<td><p>Converts elements of vectors with dimensions <cite>(..., n * (n + 1) / 2)</cite> to upper triangular matrices with dimension <cite>(..., n, n)</cite>.</p></td>
+<td><p>Reconstructs symmetric matrices from norm-preserving vectorization.</p></td>
 </tr>
 </tbody>
 </table>
@@ -887,16 +873,16 @@
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/manifolds/spd_learn.functional.log_euclidean_distance.html#spd_learn.functional.log_euclidean_distance" title="spd_learn.functional.log_euclidean_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_euclidean_distance</span></code></a>(A, B)</p></td>
-<td><p>Computes the Log-Euclidean distance between two batches of SPD matrices.</p></td>
+<td><p>Computes the Log-Euclidean distance between SPD matrices.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/manifolds/spd_learn.functional.log_euclidean_mean.html#spd_learn.functional.log_euclidean_mean" title="spd_learn.functional.log_euclidean_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_euclidean_mean</span></code></a>(weights, V)</p></td>
 <td><p>Computes the weighted Log-Euclidean mean of a batch of SPD matrices.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/manifolds/spd_learn.functional.geodesic_interpolation_spdairm.html#spd_learn.functional.geodesic_interpolation_spdairm" title="spd_learn.functional.geodesic_interpolation_spdairm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodesic_interpolation_spdairm</span></code></a>(A, B, t)</p></td>
-<td><p>Geodesic interpolation between points <cite>A</cite> and <cite>B</cite> on the SPD manifold equipped with AIRM.</p></td>
+<td><p>Geodesic interpolation on the SPD manifold under the Affine-Invariant Riemannian Metric (AIRM).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/manifolds/spd_learn.functional.geodesic_distance_spdairm.html#spd_learn.functional.geodesic_distance_spdairm" title="spd_learn.functional.geodesic_distance_spdairm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodesic_distance_spdairm</span></code></a>(A, B)</p></td>
-<td><p>Compute the geodesic distance between points <cite>A</cite> and <cite>B</cite> on the SPD manifold equipped with the affine invariant Riemannian metric (AIRM).</p></td>
+<td><p>Compute the geodesic distance under the Affine-Invariant Riemannian Metric (AIRM).</p></td>
 </tr>
 </tbody>
 </table>
@@ -1025,7 +1011,7 @@
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/frechet/spd_learn.functional.frechet_mean.html#spd_learn.functional.frechet_mean" title="spd_learn.functional.frechet_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frechet_mean</span></code></a>(V[, dim])</p></td>
-<td><p>Computes the (unweighted) Fréchet mean under the Log-Euclidean metric.</p></td>
+<td><p>Computes the Fréchet mean under the Log-Euclidean metric.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/frechet/spd_learn.functional.frechet_mean_weighted.html#spd_learn.functional.frechet_mean_weighted" title="spd_learn.functional.frechet_mean_weighted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frechet_mean_weighted</span></code></a>(weights, V)</p></td>
 <td><p>Computes the weighted Fréchet mean under the Log-Euclidean metric.</p></td>
@@ -1134,7 +1120,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

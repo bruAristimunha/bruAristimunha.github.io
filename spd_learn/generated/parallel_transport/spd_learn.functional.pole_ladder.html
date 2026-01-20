@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/parallel_transport/spd_learn.functional.pole_ladder';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/parallel_transport/spd_learn.functional.pole_ladder.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/parallel_transport/spd_learn.functional.pole_ladder.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,15 +175,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -332,13 +325,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -622,7 +608,7 @@ geodesic midpoint as the reflection center, which gives better accuracy.</p>
 <p class="rubric">Notes</p>
 <p>Pole ladder has O(h^2) approximation error where h is the geodesic
 distance between P and Q. For small distances, it provides a good
-balance between accuracy and computational cost <span id="id1">[<a class="reference internal" href="../../references.html#id26" title="Marco Lorenzi and Xavier Pennec. Efficient parallel transport of deformations in time series of images: from schild's to pole ladder. Journal of Mathematical Imaging and Vision, 50(1):5–17, 2014. doi:10.1007/s10851-013-0470-3.">Lorenzi and Pennec, 2014</a>]</span>.</p>
+balance between accuracy and computational cost <span id="id1">[<a class="reference internal" href="../../references.html#id30" title="Marco Lorenzi and Xavier Pennec. Efficient parallel transport of deformations in time series of images: from schild's to pole ladder. Journal of Mathematical Imaging and Vision, 50(1):5–17, 2014. doi:10.1007/s10851-013-0470-3.">Lorenzi and Pennec, 2014</a>]</span>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">pole_ladder</span><span class="p">,</span> <span class="n">parallel_transport_airm</span>
@@ -641,9 +627,11 @@ balance between accuracy and computational cost <span id="id1">[<a class="refere
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="spd_learn.functional.parallel_transport_airm.html#spd_learn.functional.parallel_transport_airm" title="spd_learn.functional.parallel_transport_airm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_transport_airm</span></code></a></dt><dd><p>Closed-form parallel transport under AIRM</p>
+<dt><a class="reference internal" href="spd_learn.functional.parallel_transport_airm.html#spd_learn.functional.parallel_transport_airm" title="spd_learn.functional.parallel_transport_airm"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel_transport_airm()</span></code></a></dt><dd><p>Closed-form parallel transport under AIRM.</p>
 </dd>
-<dt><a class="reference internal" href="spd_learn.functional.schild_ladder.html#spd_learn.functional.schild_ladder" title="spd_learn.functional.schild_ladder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schild_ladder</span></code></a></dt><dd><p>Multi-step numerical approximation</p>
+<dt><a class="reference internal" href="spd_learn.functional.schild_ladder.html#spd_learn.functional.schild_ladder" title="spd_learn.functional.schild_ladder"><code class="xref py py-func docutils literal notranslate"><span class="pre">schild_ladder()</span></code></a></dt><dd><p>Multi-step numerical approximation.</p>
+</dd>
+<dt><a class="reference internal" href="../manifolds/spd_learn.functional.geodesic_interpolation_spdairm.html#spd_learn.functional.geodesic_interpolation_spdairm" title="spd_learn.functional.geodesic_interpolation_spdairm"><code class="xref py py-func docutils literal notranslate"><span class="pre">geodesic_interpolation_spdairm()</span></code></a></dt><dd><p>Geodesic under AIRM.</p>
 </dd>
 </dl>
 </div>
@@ -709,7 +697,7 @@ balance between accuracy and computational cost <span id="id1">[<a class="refere
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

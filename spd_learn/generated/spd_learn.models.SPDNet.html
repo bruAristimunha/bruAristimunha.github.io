@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/spd_learn.models.SPDNet';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/spd_learn.models.SPDNet.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/spd_learn.models.SPDNet.html" />
     <link rel="icon" href="../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -175,15 +175,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
     Contributing
@@ -332,13 +325,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../background/index.html">
-    Background
   </a>
 </li>
 
@@ -595,7 +581,7 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.models.</span></span><span class="sig-name descname"><span class="pre">SPDNet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_type='raw'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov_method=&lt;function</span> <span class="pre">covariance&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subspacedim=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold=0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_chans=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/models.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.models.SPDNet" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>Symmetric Positive Definite Neural Network (SPDNet).</p>
-<p>This class implements the SPDNet model <span id="id1">[<a class="reference internal" href="../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. SPDNet
+<p>This class implements the SPDNet model <span id="id1">[<a class="reference internal" href="../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. SPDNet
 is a deep learning architecture designed for processing SPD matrices, which
 are common in applications like diffusion tensor imaging and covariance-based
 representations of EEG signals.</p>
@@ -711,7 +697,7 @@ the shape should be <cite>(batch_size, n_channels, n_channels)</cite>.</p>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,8 +53,9 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/frechet/spd_learn.functional.frechet_mean';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/frechet/spd_learn.functional.frechet_mean.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/frechet/spd_learn.functional.frechet_mean.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -332,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -593,23 +580,64 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="spd_learn.functional.frechet_mean">
 <span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">frechet_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.frechet_mean" title="Link to this definition">#</a></dt>
-<dd><p>Computes the (unweighted) Fréchet mean under the Log-Euclidean metric.</p>
-<p>This function averages in the log-domain and maps back to the SPD manifold.</p>
+<dd><p>Computes the Fréchet mean under the Log-Euclidean metric.</p>
+<p>The Fréchet mean generalizes the Euclidean mean to Riemannian manifolds
+<span id="id1">[<a class="reference internal" href="../../references.html#id8" title="Maurice Fréchet. Les éléments aléatoires de nature quelconque dans un espace distancié. Annales de l'Institut Henri Poincaré, 10(4):215–310, 1948. URL: http://eudml.org/doc/79021.">Fréchet, 1948</a>]</span>. Given samples <span class="math notranslate nohighlight">\(\{P_i\}_{i=1}^N\)</span> on a
+manifold <span class="math notranslate nohighlight">\((\mathcal{M}, g)\)</span>, the Fréchet mean is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\mu := \arg\min_{P \in \mathcal{M}} \frac{1}{N} \sum_{i=1}^{N} d_g^2(P, P_i)\]</div>
+<p>The associated <strong>Fréchet variance</strong> measures the dispersion:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2 := \frac{1}{N} \sum_{i=1}^{N} d_g^2(\mu, P_i)\]</div>
+<p>Together, <span class="math notranslate nohighlight">\((\mu, \sigma^2)\)</span> provide natural parameters for defining
+normal-like distributions on Riemannian manifolds.</p>
+<p><strong>Closed-Form Solution under LEM</strong></p>
+<p>Under the Log-Euclidean metric, the Fréchet mean has a closed-form solution:</p>
+<div class="math notranslate nohighlight">
+\[\bar{X} = \exp\left( \frac{1}{N} \sum_{i=1}^{N} \log(X_i) \right)\]</div>
+<p>This is computed by averaging in the log-domain and mapping back to the
+SPD manifold via the matrix exponential.</p>
+<p><strong>Existence and Uniqueness</strong></p>
+<p>On a complete Riemannian manifold, existence and uniqueness of the Fréchet
+mean are guaranteed under mild assumptions on sectional curvature and
+injectivity radius <span id="id2">[<a class="reference internal" href="../../references.html#id9" title="Bijan Afsari. Riemannian $L^p$ center of mass: existence, uniqueness, and convexity. Proceedings of the American Mathematical Society, 139(2):655–673, 2011. doi:10.1090/S0002-9939-2010-10541-5.">Afsari, 2011</a>]</span>. For the SPD manifold
+with AIRM (which forms a Hadamard manifold with nonpositive curvature),
+the Fréchet mean always exists and is unique.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>V</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – SPD matrices with shape <cite>(…, n, n)</cite>.</p></li>
+<li><p><strong>V</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><em>torch.Tensor</em></a>) – SPD matrices with shape <cite>(…, N, n, n)</cite> where N is the number of
+matrices to average.</p></li>
 <li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default=-3</em>) – Dimension over which to compute the mean. This should index the
 matrix batch dimension (not the last two matrix dimensions).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The Log-Euclidean mean SPD matrix.</p>
+<dd class="field-even"><p>The Log-Euclidean Fréchet mean SPD matrix with shape <cite>(…, n, n)</cite>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)">torch.Tensor</a></p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>The closed-form solution is a key advantage of the Log-Euclidean metric
+over the Affine-Invariant Riemannian Metric (AIRM), which requires
+iterative optimization (e.g., Karcher flow) to compute the Fréchet mean.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../manifolds/spd_learn.functional.log_euclidean_mean.html#spd_learn.functional.log_euclidean_mean" title="spd_learn.functional.log_euclidean_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_euclidean_mean()</span></code></a></dt><dd><p>Weighted Log-Euclidean mean.</p>
+</dd>
+<dt><a class="reference internal" href="../bures_wasserstein/spd_learn.functional.bures_wasserstein_mean.html#spd_learn.functional.bures_wasserstein_mean" title="spd_learn.functional.bures_wasserstein_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">bures_wasserstein_mean()</span></code></a></dt><dd><p>Mean under Bures-Wasserstein metric.</p>
+</dd>
+<dt><a class="reference internal" href="../log_cholesky/spd_learn.functional.log_cholesky_mean.html#spd_learn.functional.log_cholesky_mean" title="spd_learn.functional.log_cholesky_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_cholesky_mean()</span></code></a></dt><dd><p>Mean under Log-Cholesky metric.</p>
+</dd>
+<dt><a class="reference internal" href="../batchnorm/spd_learn.modules.SPDBatchNorm.html#spd_learn.modules.SPDBatchNorm" title="spd_learn.modules.SPDBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code></a></dt><dd><p>Uses Fréchet mean for batch normalization.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>See <span id="id3">[<a class="reference internal" href="../../references.html#id4" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> for more details.</p>
 </dd></dl>
 
 </section>
@@ -672,7 +700,7 @@ matrix batch dimension (not the last two matrix dimensions).</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

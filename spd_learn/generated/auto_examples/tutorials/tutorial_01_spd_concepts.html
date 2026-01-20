@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/tutorials/tutorial_01_spd_concepts';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_01_spd_concepts.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_01_spd_concepts.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -175,16 +175,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
-    Examples
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../contributing.html">
     Contributing
@@ -341,13 +334,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
@@ -444,13 +430,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_eegspdnet.html">EEG Classification with EEGSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_cross_dataset.html">Cross-Dataset EEG Classification with SPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_self_supervised_eeg.html">Self-Supervised Contrastive Learning on SPD Manifolds for EEG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/radar.html">Radar Image Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/fnirs.html">fNIRS Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_skada_integration.html">Domain Adaptation with skada and SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
 </details></li>
@@ -586,7 +568,7 @@ vectors <span class="math notranslate nohighlight">\(x\)</span></p></li>
 <a href="https://docs.pytorch.org/docs/stable/generated/torch.manual_seed.html#torch.manual_seed" title="torch.manual_seed" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span></a><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator object at 0x108a392d0&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator object at 0x10ab473f0&gt;
 </pre></div>
 </div>
 </section>
@@ -1245,7 +1227,11 @@ the shortest path on the manifold.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_tutorial_01_spd_concepts_005.png" srcset="../../../_images/sphx_glr_tutorial_01_spd_concepts_005.png" alt="Interpolation Between SPD Matrices, Euclidean Interpolation, Log-Euclidean (Geodesic) Interpolation" class = "sphx-glr-single-img"/></section>
+<img src="../../../_images/sphx_glr_tutorial_01_spd_concepts_005.png" srcset="../../../_images/sphx_glr_tutorial_01_spd_concepts_005.png" alt="Interpolation Between SPD Matrices, Euclidean Interpolation, Log-Euclidean (Geodesic) Interpolation" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/bruaristimunha/Projects/spd_learn_private/examples/tutorials/tutorial_01_spd_concepts.py:681: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+</pre></div>
+</div>
+</section>
 <section id="determinant-along-interpolation-paths">
 <h2><a class="toc-backref" href="#id18" role="doc-backlink">Determinant Along Interpolation Paths</a><a class="headerlink" href="#determinant-along-interpolation-paths" title="Link to this heading">#</a></h2>
 <p>We can further see the swelling effect by plotting the determinant
@@ -1381,8 +1367,8 @@ matrices:</p>
 respect the manifold structure.</p></li>
 </ol>
 <p>These concepts form the foundation for deep learning on SPD manifolds
-<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, which is the focus of the SPD Learn library.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.699 seconds)</p>
+<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, which is the focus of the SPD Learn library.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.364 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-tutorials-tutorial-01-spd-concepts-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/37632e9b080e370cc20b4ff2b757ec0e/tutorial_01_spd_concepts.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tutorial_01_spd_concepts.ipynb</span></code></a></p>
@@ -1551,7 +1537,7 @@ respect the manifold structure.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

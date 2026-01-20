@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,8 +53,9 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/modeig/spd_learn.modules.ExpEig';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/modeig/spd_learn.modules.ExpEig.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/modeig/spd_learn.modules.ExpEig.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -332,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -595,19 +582,50 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.modules.</span></span><span class="sig-name descname"><span class="pre">ExpEig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autograd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/modules.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.modules.ExpEig" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>Exponential Eigenvalue Layer (ExpEig).</p>
-<p>This layer projects a matrix from a flat Euclidean space back to the
-SPD manifold by applying the exponential to its eigenvalues
-<span id="id1">[<a class="reference internal" href="../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>.</p>
+<p>This layer maps symmetric matrices from the tangent space back to the SPD
+manifold via the matrix exponential <span id="id1">[<a class="reference internal" href="../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. It is
+the inverse operation of <a class="reference internal" href="spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a>.</p>
+<div class="math notranslate nohighlight">
+\[\exp(X) = U \exp(\Lambda) U^\top\]</div>
+<p>where <span class="math notranslate nohighlight">\(X = U \Lambda U^\top\)</span> is the eigendecomposition of the
+symmetric input matrix, and <span class="math notranslate nohighlight">\(\exp(\Lambda)\)</span> applies the exponential
+element-wise to eigenvalues.</p>
+<p><strong>Geometric Interpretation</strong></p>
+<p>The exponential map <span class="math notranslate nohighlight">\(\exp_I: T_I\mathcal{S}_{++}^n \to \mathcal{S}_{++}^n\)</span>
+projects tangent vectors at the identity to points on the SPD manifold.
+This enables:</p>
+<ol class="arabic simple">
+<li><p><strong>Manifold reconstruction</strong>: After processing in tangent space (e.g.,
+via Euclidean layers), data can be projected back to valid SPD matrices.</p></li>
+<li><p><strong>Generative models</strong>: Sampling in tangent space and mapping to manifold.</p></li>
+<li><p><strong>Residual connections</strong>: Combined with LogEig for manifold-aware skip
+connections.</p></li>
+</ol>
+<p>Since <span class="math notranslate nohighlight">\(\exp(\cdot)\)</span> always produces positive values, the output is
+guaranteed to be SPD regardless of the input symmetric matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>upper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – If <cite>True</cite>, the input is assumed to be the upper triangular part of a
-symmetric matrix.</p></li>
+<li><p><strong>upper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – If <cite>True</cite>, assumes input is vectorized upper triangular and reconstructs
+symmetric matrix before applying exponential.</p></li>
 <li><p><strong>flatten</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – If <cite>True</cite>, the output is flattened.</p></li>
 <li><p><strong>autograd</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – Whether to use the autograd backend.</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a></dt><dd><p>Inverse operation, maps SPD to tangent space.</p>
+</dd>
+<dt><a class="reference internal" href="spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a></dt><dd><p>Eigenvalue rectification for numerical stability.</p>
+</dd>
+<dt><a class="reference internal" href="../functional/spd_learn.functional.matrix_exp.html#spd_learn.functional.matrix_exp" title="spd_learn.functional.matrix_exp"><code class="xref py py-func docutils literal notranslate"><span class="pre">matrix_exp()</span></code></a></dt><dd><p>Functional version.</p>
+</dd>
+<dt><a class="reference internal" href="../residual/spd_learn.modules.LogEuclideanResidual.html#spd_learn.modules.LogEuclideanResidual" title="spd_learn.modules.LogEuclideanResidual"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEuclideanResidual</span></code></a></dt><dd><p>Uses exp/log for manifold residuals.</p>
+</dd>
+</dl>
+</div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spd_learn.modules.ExpEig.autograd_">
 <span class="sig-name descname"><span class="pre">autograd_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/modules.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.modules.ExpEig.autograd_" title="Link to this definition">#</a></dt>
@@ -692,7 +710,7 @@ symmetric matrix.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/tutorials/tutorial_02_building_blocks';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_02_building_blocks.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_02_building_blocks.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -175,16 +175,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
-    Examples
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../contributing.html">
     Contributing
@@ -341,13 +334,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
@@ -444,13 +430,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_eegspdnet.html">EEG Classification with EEGSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_cross_dataset.html">Cross-Dataset EEG Classification with SPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_self_supervised_eeg.html">Self-Supervised Contrastive Learning on SPD Manifolds for EEG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/radar.html">Radar Image Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/fnirs.html">fNIRS Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_skada_integration.html">Domain Adaptation with skada and SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
 </details></li>
@@ -568,7 +550,7 @@ the mathematical foundations and geometric intuitions behind each layer.</p>
 <p>Traditional neural networks operate on vectors in Euclidean space.
 However, many real-world signals (EEG, fMRI, radar) are better represented
 as covariance matrices, which lie on a curved Riemannian manifold.</p>
-<p>The SPDNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> pipeline transforms raw signals
+<p>The SPDNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> pipeline transforms raw signals
 through a series of geometry-aware operations:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw Signal --&gt; Covariance --&gt; BiMap --&gt; ReEig --&gt; LogEig --&gt; Linear
 (n_chans, n_times)   (n, n)    (m, m)    (m, m)   (m*(m+1)/2)   (n_classes)
@@ -754,7 +736,7 @@ Output (covariance matrices):
 <p>Sample covariance matrices can be ill-conditioned, especially when
 the number of samples is small relative to the number of channels.
 Regularization improves numerical stability.</p>
-<p><strong>Shrinkage (Ledoit-Wolf)</strong> <span id="id2">[<a class="reference internal" href="../../../references.html#id23" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span>:</p>
+<p><strong>Shrinkage (Ledoit-Wolf)</strong> <span id="id2">[<a class="reference internal" href="../../../references.html#id27" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\Sigma_{reg} = (1 - \alpha) \Sigma + \alpha \cdot \mu \cdot I\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the shrinkage coefficient and <span class="math notranslate nohighlight">\(\mu\)</span> is
@@ -1357,12 +1339,12 @@ operations apply, enabling standard linear classification</p></li>
 <ul class="simple">
 <li><p>All operations preserve SPD structure until LogEig</p></li>
 <li><p>BiMap uses Stiefel manifold constraints for stable training
-<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id24" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
+<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
 <li><p>The pipeline gradually reduces dimensionality while preserving information</p></li>
 <li><p>LogEig “flattens” the manifold for classification</p></li>
 </ul>
 <p>For more advanced architectures, see the EEGSPDNet and TSMNet tutorials.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.405 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.877 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-tutorials-tutorial-02-building-blocks-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/fd7ab92ec6d780bfe36ceab2c9f1aad9/tutorial_02_building_blocks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tutorial_02_building_blocks.ipynb</span></code></a></p>
@@ -1540,7 +1522,7 @@ operations apply, enabling standard linear classification</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

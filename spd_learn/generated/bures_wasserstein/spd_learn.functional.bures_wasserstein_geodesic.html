@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/bures_wasserstein/spd_learn.functional.bures_wasserstein_geodesic';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/bures_wasserstein/spd_learn.functional.bures_wasserstein_geodesic.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/bures_wasserstein/spd_learn.functional.bures_wasserstein_geodesic.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -642,7 +628,20 @@ broadcastable with the batch dimensions.</p></li>
 <div class="math notranslate nohighlight">
 \[\gamma(t) = (1-t)^2 A + t^2 B + t(1-t)(M + M^T)\]</div>
 <p>where <span class="math notranslate nohighlight">\(M = (A^{1/2} B A^{1/2})^{1/2}\)</span>. This formulation is
-numerically stable and efficient to compute <span id="id1">[<a class="reference internal" href="../../references.html#id27" title="Rajendra Bhatia, Tanvi Jain, and Yongdo Lim. On the bures-wasserstein distance between positive definite matrices. Expositiones Mathematicae, 37(2):165–191, 2019. doi:10.1016/j.exmath.2018.01.002.">Bhatia <em>et al.</em>, 2019</a>]</span>.</p>
+numerically stable and efficient to compute <span id="id1">[<a class="reference internal" href="../../references.html#id31" title="Rajendra Bhatia, Tanvi Jain, and Yongdo Lim. On the bures-wasserstein distance between positive definite matrices. Expositiones Mathematicae, 37(2):165–191, 2019. doi:10.1016/j.exmath.2018.01.002.">Bhatia <em>et al.</em>, 2019</a>]</span>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.functional.bures_wasserstein_distance.html#spd_learn.functional.bures_wasserstein_distance" title="spd_learn.functional.bures_wasserstein_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">bures_wasserstein_distance()</span></code></a></dt><dd><p>Distance under BWM.</p>
+</dd>
+<dt><a class="reference internal" href="spd_learn.functional.bures_wasserstein_mean.html#spd_learn.functional.bures_wasserstein_mean" title="spd_learn.functional.bures_wasserstein_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">bures_wasserstein_mean()</span></code></a></dt><dd><p>Fréchet mean under BWM.</p>
+</dd>
+<dt><a class="reference internal" href="../manifolds/spd_learn.functional.geodesic_interpolation_spdairm.html#spd_learn.functional.geodesic_interpolation_spdairm" title="spd_learn.functional.geodesic_interpolation_spdairm"><code class="xref py py-func docutils literal notranslate"><span class="pre">geodesic_interpolation_spdairm()</span></code></a></dt><dd><p>Geodesic under AIRM.</p>
+</dd>
+<dt><a class="reference internal" href="../log_cholesky/spd_learn.functional.log_cholesky_geodesic.html#spd_learn.functional.log_cholesky_geodesic" title="spd_learn.functional.log_cholesky_geodesic"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_cholesky_geodesic()</span></code></a></dt><dd><p>Geodesic under Log-Cholesky metric.</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 </section>
@@ -705,7 +704,7 @@ numerically stable and efficient to compute <span id="id1">[<a class="reference 
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

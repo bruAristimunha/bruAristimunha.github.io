@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,12 +54,12 @@
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/applied_examples/moabb_hydra_benchmark';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/auto_examples/applied_examples/moabb_hydra_benchmark.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/applied_examples/moabb_hydra_benchmark.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Frequently Asked Questions" href="../../../faq.html" />
-    <link rel="prev" title="Domain Adaptation with skada and SPD Learn" href="plot_skada_integration.html" />
+    <link rel="prev" title="Cross-Session Transfer with TSMNet" href="plot_tsmnet_domain_adaptation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.0" />
@@ -174,16 +174,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
-    Examples
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../contributing.html">
     Contributing
@@ -340,13 +333,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
@@ -443,13 +429,9 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_eegspdnet.html">EEG Classification with EEGSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_cross_dataset.html">Cross-Dataset EEG Classification with SPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_self_supervised_eeg.html">Self-Supervised Contrastive Learning on SPD Manifolds for EEG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="radar.html">Radar Image Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fnirs.html">fNIRS Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_skada_integration.html">Domain Adaptation with skada and SPD Learn</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
 </details></li>
@@ -553,10 +535,10 @@ architectures on motor imagery EEG classification.</p>
 <p>Reproducible machine learning experiments require systematic
 configuration management. This tutorial shows how to:</p>
 <ol class="arabic simple">
-<li><p><strong>Use Hydra</strong> <span id="id1">[<a class="reference internal" href="../../../references.html#id50" title="Omry Yadan. Hydra - a framework for elegantly configuring complex applications. GitHub, 2019. URL: https://github.com/facebookresearch/hydra.">Yadan, 2019</a>]</span> for declarative experiment configuration</p></li>
+<li><p><strong>Use Hydra</strong> <span id="id1">[<a class="reference internal" href="../../../references.html#id54" title="Omry Yadan. Hydra - a framework for elegantly configuring complex applications. GitHub, 2019. URL: https://github.com/facebookresearch/hydra.">Yadan, 2019</a>]</span> for declarative experiment configuration</p></li>
 <li><p><strong>Benchmark multiple models</strong> from SPD Learn (SPDNet
-<span id="id2">[<a class="reference internal" href="../../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, TSMNet, etc.)</p></li>
-<li><p><strong>Leverage MOABB</strong> <span id="id3">[<a class="reference internal" href="../../../references.html#id51" title="Vinay Jayaram and Alexandre Barachant. Moabb: trustworthy algorithm benchmarking for bcis. Journal of Neural Engineering, 15(6):066011, 2018. doi:10.1088/1741-2552/aadea0.">Jayaram and Barachant, 2018</a>]</span> for standardized EEG dataset access</p></li>
+<span id="id2">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, TSMNet, etc.)</p></li>
+<li><p><strong>Leverage MOABB</strong> <span id="id3">[<a class="reference internal" href="../../../references.html#id55" title="Vinay Jayaram and Alexandre Barachant. Moabb: trustworthy algorithm benchmarking for bcis. Journal of Neural Engineering, 15(6):066011, 2018. doi:10.1088/1741-2552/aadea0.">Jayaram and Barachant, 2018</a>]</span> for standardized EEG dataset access</p></li>
 <li><p><strong>Implement proper cross-validation</strong> for reliable performance estimates</p></li>
 <li><p><strong>Visualize and compare results</strong> across models</p></li>
 </ol>
@@ -573,7 +555,7 @@ in practice you would use YAML files for better organization.</p>
 <ul class="simple">
 <li><p><strong>SPDNet</strong>: Works on covariance matrices, can use higher learning rates (1e-3)</p></li>
 <li><p><strong>TSMNet</strong>: Works on raw signals with SPDBatchNorm
-<span id="id4">[<a class="reference internal" href="../../../user_guide.html#id25" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, requires lower learning rate (1e-4) and more
+<span id="id4">[<a class="reference internal" href="../../../user_guide.html#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, requires lower learning rate (1e-4) and more
 epochs (100+) for stable SPD learning</p></li>
 <li><p><strong>EEGSPDNet</strong>: Works on raw signals, also requires lower learning rate (1e-4)
 and more epochs for the channel-specific convolutions to converge</p></li>
@@ -626,7 +608,7 @@ each model achieves optimal performance.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch.optim.lr_scheduler</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ReduceLROnPlateau</span></a>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">EEGSPDNet</span><span class="p">,</span> <span class="n">SPDNet</span><span class="p">,</span> <span class="n">TensorCSPNet</span><span class="p">,</span> <span class="n">TSMNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <a href="../../spd_learn.models.EEGSPDNet.html#spd_learn.models.EEGSPDNet" title="spd_learn.models.EEGSPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EEGSPDNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.SPDNet.html#spd_learn.models.SPDNet" title="spd_learn.models.SPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SPDNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.TensorCSPNet.html#spd_learn.models.TensorCSPNet" title="spd_learn.models.TensorCSPNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TensorCSPNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.TSMNet.html#spd_learn.models.TSMNet" title="spd_learn.models.TSMNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TSMNet</span></a>
 
 
 <a href="https://docs.python.org/3/library/warnings.html#warnings.filterwarnings" title="warnings.filterwarnings" class="sphx-glr-backref-module-warnings sphx-glr-backref-type-py-function"><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span></a><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -985,7 +967,7 @@ This pattern allows easy switching between models via configuration.</p>
 <span class="sd">    &gt;&gt;&gt; model = create_model(&quot;TSMNet&quot;, n_chans=22, n_outputs=4, n_temp_filters=8)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;SPDNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">SPDNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.SPDNet.html#spd_learn.models.SPDNet" title="spd_learn.models.SPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SPDNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">input_type</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input_type&quot;</span><span class="p">,</span> <span class="s2">&quot;raw&quot;</span><span class="p">),</span>
@@ -994,7 +976,7 @@ This pattern allows easy switching between models via configuration.</p>
             <span class="n">upper</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;TSMNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">TSMNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.TSMNet.html#spd_learn.models.TSMNet" title="spd_learn.models.TSMNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TSMNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">n_temp_filters</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_temp_filters&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
@@ -1004,7 +986,7 @@ This pattern allows easy switching between models via configuration.</p>
             <span class="n">reeig_threshold</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;reeig_threshold&quot;</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;EEGSPDNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">EEGSPDNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.EEGSPDNet.html#spd_learn.models.EEGSPDNet" title="spd_learn.models.EEGSPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EEGSPDNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">n_filters</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_filters&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
@@ -1018,7 +1000,7 @@ This pattern allows easy switching between models via configuration.</p>
         <span class="n">n_freqs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_freqs&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
         <span class="n">model</span> <span class="o">=</span> <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span></a><span class="p">(</span>
             <span class="n">Rearrange</span><span class="p">(</span><span class="s2">&quot;b c t f -&gt; b f c t&quot;</span><span class="p">),</span>
-            <span class="n">TensorCSPNet</span><span class="p">(</span>
+            <a href="../../spd_learn.models.TensorCSPNet.html#spd_learn.models.TensorCSPNet" title="spd_learn.models.TensorCSPNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TensorCSPNet</span></a><span class="p">(</span>
                 <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
                 <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
                 <span class="n">n_patches</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_patches&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
@@ -1059,26 +1041,26 @@ This pattern allows easy switching between models via configuration.</p>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;SPDNet&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
-            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>  <span class="c1"># Reduced from 100 for faster documentation build</span>
             <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;AdamW&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="s2">&quot;TSMNet&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="c1"># TSMNet requires lower LR for stable SPD learning</span>
             <span class="c1"># Reference: plot_tsmnet_domain_adaptation.py</span>
             <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">,</span>
-            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Reduced from 150 for faster documentation build</span>
             <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="s2">&quot;EEGSPDNet&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="c1"># EEGSPDNet requires lower LR for channel-specific convolutions</span>
             <span class="c1"># Reference: plot_eegspdnet.py</span>
             <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">,</span>
-            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Reduced from 150 for faster documentation build</span>
             <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="s2">&quot;TensorCSPNet&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
-            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">&quot;max_epochs&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>  <span class="c1"># Reduced from 100 for faster documentation build</span>
             <span class="s2">&quot;optimizer&quot;</span><span class="p">:</span> <span class="s2">&quot;AdamW&quot;</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">}</span>
@@ -1168,7 +1150,7 @@ functionality as Hydra YAML files but defined programmatically.</p>
     <span class="n">ExperimentConfig</span><span class="p">(</span>
         <span class="n">training</span><span class="o">=</span><span class="n">TrainingConfig</span><span class="p">(</span>
             <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
-            <span class="n">max_epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>  <span class="c1"># Increased for better convergence</span>
+            <span class="n">max_epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>  <span class="c1"># Reduced from 150 for faster documentation build</span>
             <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
             <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
             <span class="n">gradient_clip_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
@@ -1187,7 +1169,7 @@ functionality as Hydra YAML files but defined programmatically.</p>
             <span class="n">fmax</span><span class="o">=</span><span class="mf">38.0</span><span class="p">,</span>
         <span class="p">),</span>
         <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SPDNet&quot;</span><span class="p">,</span> <span class="s2">&quot;TSMNet&quot;</span><span class="p">,</span> <span class="s2">&quot;EEGSPDNet&quot;</span><span class="p">],</span>
-        <span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Reduced for demonstration</span>
+        <span class="n">n_folds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Reduced from 3 for faster documentation build</span>
         <span class="n">use_session_split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">device</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -2229,7 +2211,7 @@ FilterBankMotorImagery paradigm. Here’s how to configure this:</p>
 <li><p><strong>Model-specific training</strong> is essential - TSMNet/EEGSPDNet need
 lower learning rates (1e-4) and more epochs than SPDNet</p></li>
 <li><p><strong>Proper cross-validation</strong> is essential for reliable benchmarks</p></li>
-<li><p><strong>SPD Learn models</strong> <span id="id5">[]</span> offer different trade-offs for EEG classification</p></li>
+<li><p><strong>SPD Learn models</strong> <span id="id5">[<a class="reference internal" href="../../../references.html#id60" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> offer different trade-offs for EEG classification</p></li>
 </ul>
 <p>For production benchmarks, consider:</p>
 <ul class="simple">
@@ -2264,12 +2246,12 @@ lower learning rates (1e-4) and more epochs than SPDNet</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="plot_skada_integration.html"
+       href="plot_tsmnet_domain_adaptation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Domain Adaptation with skada and SPD Learn</p>
+        <p class="prev-next-title">Cross-Session Transfer with TSMNet</p>
       </div>
     </a>
     <a class="right-next"
@@ -2406,7 +2388,7 @@ lower learning rates (1e-4) and more epochs than SPDNet</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

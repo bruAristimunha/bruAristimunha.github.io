@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/modeig/spd_learn.modules.LogEig';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/modeig/spd_learn.modules.LogEig.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/modeig/spd_learn.modules.LogEig.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -596,12 +582,16 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.modules.</span></span><span class="sig-name descname"><span class="pre">LogEig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autograd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/modules.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.modules.LogEig" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>Logarithmic Eigenvalue Layer (LogEig).</p>
-<p>This layer projects an SPD matrix into a flat Euclidean space by
-applying the logarithm to its eigenvalues <span id="id1">[<a class="reference internal" href="../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>.
-The output is then vectorized.</p>
+<p>This layer maps SPD matrices to the tangent space at the identity via the
+Riemannian logarithm under the affine-invariant metric
+<span id="id1">[<a class="reference internal" href="../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. The output is then vectorized.</p>
 <div class="math notranslate nohighlight">
 \[\log(X) = U \log(\Lambda) U^\top\]</div>
 <p>where <span class="math notranslate nohighlight">\(X = U \Lambda U^\top\)</span> is the eigendecomposition.</p>
+<p>This operation embeds SPD matrices into the tangent space at the identity,
+which is a vector space, thereby enabling the use of standard Euclidean
+layers such as linear classifiers or fully connected networks for downstream
+tasks.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -612,6 +602,21 @@ vectorized.</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.modules.ExpEig.html#spd_learn.modules.ExpEig" title="spd_learn.modules.ExpEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExpEig</span></code></a></dt><dd><p>Inverse operation, maps from tangent space back to manifold.</p>
+</dd>
+<dt><a class="reference internal" href="spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a></dt><dd><p>Eigenvalue rectification to ensure numerical stability before LogEig.</p>
+</dd>
+<dt><a class="reference internal" href="../bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a></dt><dd><p>Bilinear mapping for dimensionality reduction on SPD matrices.</p>
+</dd>
+<dt><a class="reference internal" href="../functional/spd_learn.functional.matrix_log.html#spd_learn.functional.matrix_log" title="spd_learn.functional.matrix_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">matrix_log()</span></code></a></dt><dd><p>Functional version of matrix logarithm.</p>
+</dd>
+<dt><a class="reference internal" href="../manifolds/spd_learn.functional.log_euclidean_distance.html#spd_learn.functional.log_euclidean_distance" title="spd_learn.functional.log_euclidean_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_euclidean_distance()</span></code></a></dt><dd><p>Distance computation in log-domain.</p>
+</dd>
+</dl>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogEig</span>
@@ -759,7 +764,7 @@ vectorized.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

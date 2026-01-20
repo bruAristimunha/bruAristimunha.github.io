@@ -52,15 +52,15 @@ ax1.set_xlabel('Time')
 
 ax2 = axes[0, 1]
 im2 = ax2.imshow(intermediates['cov'][0].detach().numpy(), cmap='RdBu_r', aspect='auto')
-ax2.set_title('2. Covariance (16×16)', fontweight='bold')
+ax2.set_title('2. Covariance (16x16)', fontweight='bold')
 
 ax3 = axes[0, 2]
 im3 = ax3.imshow(intermediates['bimap1'][0].detach().numpy(), cmap='RdBu_r', aspect='auto')
-ax3.set_title('3. After BiMap1 (8×8)', fontweight='bold')
+ax3.set_title('3. After BiMap1 (8x8)', fontweight='bold')
 
 ax4 = axes[0, 3]
 im4 = ax4.imshow(intermediates['reeig1'][0].detach().numpy(), cmap='RdBu_r', aspect='auto')
-ax4.set_title('4. After ReEig1 (8×8)', fontweight='bold')
+ax4.set_title('4. After ReEig1 (8x8)', fontweight='bold')
 
 # Row 2: Show ReEig effect with before/after eigenvalue comparison
 eigvals_bimap1 = torch.linalg.eigvalsh(intermediates['bimap1'][0]).detach().numpy()

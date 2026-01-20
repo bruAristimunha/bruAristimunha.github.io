@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/contributing.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/contributing.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -174,15 +174,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="faq.html">
+    FAQ
   </a>
 </li>
 
@@ -194,13 +194,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" current active">
   <a class="nav-link dropdown-item nav-internal" href="#">
     Contributing
@@ -331,13 +324,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
   </a>
 </li>
 
@@ -533,7 +519,7 @@ you get started with contributing to the project.</p>
 <h3><a class="toc-backref" href="#id3" role="doc-backlink">Setting Up Development Environment</a><a class="headerlink" href="#setting-up-development-environment" title="Link to this heading">#</a></h3>
 <ol class="arabic">
 <li><p><strong>Fork and clone the repository</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/spd_learn.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spdlearn/spd_learn.git
 <span class="nb">cd</span><span class="w"> </span>spd_learn
 </pre></div>
 </div>
@@ -788,8 +774,8 @@ xdg-open<span class="w"> </span>build/html/index.html<span class="w">  </span><s
 <section id="naming-conventions">
 <h3><a class="toc-backref" href="#id21" role="doc-backlink">Naming Conventions</a><a class="headerlink" href="#naming-conventions" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Modules</strong>: <code class="docutils literal notranslate"><span class="pre">CamelCase</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">BiMap</span></code>, <code class="docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code>)</p></li>
-<li><p><strong>Functions</strong>: <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">matrix_log</span></code>, <code class="docutils literal notranslate"><span class="pre">sample_covariance</span></code>)</p></li>
+<li><p><strong>Modules</strong>: <code class="docutils literal notranslate"><span class="pre">CamelCase</span></code> (e.g., <a class="reference internal" href="generated/bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a>, <a class="reference internal" href="generated/batchnorm/spd_learn.modules.SPDBatchNorm.html#spd_learn.modules.SPDBatchNorm" title="spd_learn.modules.SPDBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code></a>)</p></li>
+<li><p><strong>Functions</strong>: <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> (e.g., <a class="reference internal" href="generated/functional/spd_learn.functional.matrix_log.html#spd_learn.functional.matrix_log" title="spd_learn.functional.matrix_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">matrix_log()</span></code></a>, <a class="reference internal" href="generated/covariance_functional/spd_learn.functional.sample_covariance.html#spd_learn.functional.sample_covariance" title="spd_learn.functional.sample_covariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_covariance()</span></code></a>)</p></li>
 <li><p><strong>Private methods</strong>: prefix with <code class="docutils literal notranslate"><span class="pre">_</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">_compute_mean</span></code>)</p></li>
 </ul>
 </section>
@@ -908,7 +894,7 @@ xdg-open<span class="w"> </span>build/html/index.html<span class="w">  </span><s
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

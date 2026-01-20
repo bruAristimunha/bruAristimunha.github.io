@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/batchnorm/spd_learn.modules.SPDBatchNorm';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/batchnorm/spd_learn.modules.SPDBatchNorm.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/batchnorm/spd_learn.modules.SPDBatchNorm.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -597,13 +583,23 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
 <p>SPD Batch Normalization.</p>
 <p>This class implements the SPD Batch Normalization (SPDBN) layer for the
-Symmetric Positive Definite (SPD) manifold <span id="id1">[<a class="reference internal" href="../../user_guide.html#id25" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>.</p>
-<p>The normalization centers data around the identity matrix using the
-Riemannian (Fréchet) mean:</p>
+Symmetric Positive Definite (SPD) manifold <span id="id1">[<a class="reference internal" href="../../user_guide.html#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>.</p>
+<p>The normalization performs Riemannian centering via parallel transport under
+the affine-invariant Riemannian metric. Given a batch of SPD matrices
+<span class="math notranslate nohighlight">\(\{P_i\}_{i=1}^N\)</span> with batch Fréchet mean <span class="math notranslate nohighlight">\(\mathcal{G}\)</span>, samples
+are centered through:</p>
 <div class="math notranslate nohighlight">
-\[\tilde{P}_i = \mathcal{G}^{-\frac{1}{2}} P_i \mathcal{G}^{-\frac{1}{2}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the batch Fréchet mean, followed by
-dispersion normalization.</p>
+\[\tilde{P}_i = \Gamma_{\mathcal{G} \to I}(P_i) = \mathcal{G}^{-\frac{1}{2}} P_i \mathcal{G}^{-\frac{1}{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Gamma_{\mathcal{G} \to I}\)</span> represents parallel transport from
+<span class="math notranslate nohighlight">\(\mathcal{G}\)</span> to the identity matrix <span class="math notranslate nohighlight">\(I\)</span>. This is followed by
+dispersion normalization and an optional learnable re-biasing via a congruence
+transformation with learnable SPD matrix <span class="math notranslate nohighlight">\(G\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{P}_i = \Gamma_{I \to G}(\tilde{P}_i) = G^{\frac{1}{2}} \tilde{P}_i G^{\frac{1}{2}}\]</div>
+<p>This acts as a manifold-consistent analogue of Euclidean batch normalization,
+absorbing global covariance shifts and improving conditioning for subsequent
+tangent-space operations. The momentum-based estimator updates the running
+mean in a single pass, reducing the need for repeated Karcher iterations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -619,6 +615,23 @@ Default: None.</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a></dt><dd><p>Alternative Riemannian batch normalization from Brooks et al.</p>
+</dd>
+<dt><a class="reference internal" href="../bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a></dt><dd><p>Bilinear mapping layer often used before batch normalization.</p>
+</dd>
+<dt><a class="reference internal" href="../modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a></dt><dd><p>Eigenvalue rectification for numerical stability.</p>
+</dd>
+<dt><a class="reference internal" href="../modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a></dt><dd><p>Projects normalized SPD matrices to tangent space.</p>
+</dd>
+<dt><a class="reference internal" href="../frechet/spd_learn.functional.frechet_mean.html#spd_learn.functional.frechet_mean" title="spd_learn.functional.frechet_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></dt><dd><p>Computes the Fréchet mean of SPD matrices.</p>
+</dd>
+<dt><a class="reference internal" href="../parallel_transport/spd_learn.functional.parallel_transport_airm.html#spd_learn.functional.parallel_transport_airm" title="spd_learn.functional.parallel_transport_airm"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel_transport_airm()</span></code></a></dt><dd><p>Parallel transport under AIRM.</p>
+</dd>
+</dl>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPDBatchNorm</span>
@@ -829,7 +842,7 @@ along the batch dimension is an SPD matrix.</p>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

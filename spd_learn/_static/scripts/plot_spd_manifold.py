@@ -137,7 +137,7 @@ def create_spd_manifold_visualization():
             z=sample_z,
             mode="markers",
             marker=dict(size=6, color=colors, line=dict(width=1, color="white")),
-            name="EEG Covariance Matrices",
+            name="EEG Spatial Covariance Matrices",
             hovertemplate="Covariance Matrix<br>Class: %{text}<extra></extra>",
             text=["Class A" if c == "red" else "Class B" for c in colors],
         )

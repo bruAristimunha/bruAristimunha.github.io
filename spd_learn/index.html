@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/index.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/index.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -174,15 +174,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="faq.html">
+    FAQ
   </a>
 </li>
 
@@ -194,13 +194,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="contributing.html">
     Contributing
@@ -338,13 +331,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="background/index.html">
-    Background
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="generated/auto_examples/index.html">
     Examples
   </a>
@@ -470,9 +456,10 @@ h1 {
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 hf-hero-grid docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
 <div class="sd-col sd-d-flex-column hf-hero-copy hf-reveal hf-delay-1 docutils">
-<p class="hf-hero-title">Deep Learning on Riemannian Manifolds made easy.</p>
-<p class="hf-hero-lede"><strong>SPD Learn</strong> is a pure PyTorch library for Symmetric Positive Definite (SPD) matrices.
-Unlock the power of Riemannian geometry with efficient, broadcast-compatible operations and a comprehensive model zoo.</p>
+<p class="hf-hero-title">Deep Learning on Symmetric Positive Definite Manifolds</p>
+<p class="hf-hero-lede"><strong>SPD Learn</strong> is a __pure__ PyTorch library for geometric deep learning on Symmetric Positive Definite (SPD) matrices.
+The library provides differentiable Riemannian operations, broadcast-compatible layers,
+and reference implementations of published neural network architectures for SPD data.</p>
 <div class="hf-hero-actions docutils container">
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-btn-lg hf-btn hf-btn-primary reference internal" href="installation.html"><span class="doc">Get Started</span></a></p>
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary sd-btn-lg hf-btn hf-btn-secondary reference internal" href="generated/auto_examples/index.html"><span class="doc">Examples</span></a></p>
@@ -515,7 +502,7 @@ Basic Usage</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <h2 class="hf-section-title hf-section-title-center">Why SPD Learn?</h2>
-<p class="hf-section-subtitle" style="text-align: center; margin-left: auto; margin-right: auto;">A robust framework for geometry-aware deep learning on manifolds.</p><div class="hf-badges docutils container">
+<p class="hf-section-subtitle" style="text-align: center; margin-left: auto; margin-right: auto;">A PyTorch library providing differentiable Riemannian operations and neural network layers for SPD matrix-valued data.</p><div class="hf-badges docutils container">
 <img alt="Python Versions" src="https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue?style=flat-square" />
 <a class="reference external image-reference" href="https://github.com/spdlearn/spd_learn/blob/main/LICENSE.txt"><img alt="License" src="https://img.shields.io/badge/license-BSD--3--Clause-green?style=flat-square" />
 </a>
@@ -529,7 +516,7 @@ Basic Usage</label><div class="sd-tab-content docutils">
 <div style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--eegdash-primary);">
    <i class="fa-brands fa-python"></i>
 </div><p class="sd-card-text"><strong>Pure PyTorch</strong></p>
-<p class="hf-stat-text sd-card-text">Built entirely on PyTorch for seamless integration, automatic differentiation, and GPU acceleration out of the box.</p>
+<p class="hf-stat-text sd-card-text">Built entirely on PyTorch __only__, with automatic differentiation, and GPU acceleration.</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="api.html"><span class="doc">API Reference</span></a></div>
 </div>
@@ -565,7 +552,7 @@ Basic Usage</label><div class="sd-tab-content docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
 SPDNet</div>
 <img alt="SPDNet Architecture" class="sd-card-img-top" src="_images/spdnet.png" />
-<p class="sd-card-text">The foundational architecture for deep learning on SPD manifolds. Performs dimension reduction while preserving the SPD structure.</p>
+<p class="sd-card-text">The cornerstone architecture for deep learning on non-Euclidean geometry of SPD manifolds. Performs dimension reduction while preserving the SPD structure.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">BiMap</span>
 <span class="hf-tag">ReEig</span>
@@ -579,7 +566,7 @@ SPDNet</div>
 <div class="sd-card-title sd-font-weight-bold docutils">
 EEGSPDNet</div>
 <img alt="EEGSPDNet Architecture" class="sd-card-img-top" src="_images/eegspdnet.jpeg" />
-<p class="sd-card-text">Specialized for EEG signal classification. Combines covariance estimation with SPD network layers for BCI applications.</p>
+<p class="sd-card-text">Specialized for EEG signal classification. Combines convolutional with covariance SPD network layers for Brain-Computer Interface applications.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">Covariance</span>
 <span class="hf-tag">BiMap</span>
@@ -593,7 +580,7 @@ EEGSPDNet</div>
 <div class="sd-card-title sd-font-weight-bold docutils">
 TSMNet</div>
 <img alt="TSMNet Architecture" class="sd-card-img-top" src="_images/tsmnet.png" />
-<p class="sd-card-text">Tangent Space Mapping Network combining convolutional features with SPD batch normalization.</p>
+<p class="sd-card-text">Tangent Space Mapping Network (TSMNet) combining convolutional features with SPD batch normalization.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">BatchNorm</span>
 <span class="hf-tag">LogEig</span>
@@ -607,7 +594,7 @@ TSMNet</div>
 <div class="sd-card-title sd-font-weight-bold docutils">
 TensorCSPNet</div>
 <img alt="TensorCSPNet Architecture" class="sd-card-img-top" src="_images/tensorcspnet.png" />
-<p class="sd-card-text">SPDNet variant with Tensor Common Spatial Patterns for multi-band EEG feature extraction.</p>
+<p class="sd-card-text">Filterbank SPDNet with Tensor Common Spatial Patterns for multi-band EEG feature extraction.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">Multi-band</span>
 <span class="hf-tag">CSP</span>
@@ -621,7 +608,7 @@ TensorCSPNet</div>
 <div class="sd-card-title sd-font-weight-bold docutils">
 PhaseSPDNet</div>
 <img alt="PhaseSPDNet Architecture" class="sd-card-img-top" src="_images/phase_spdnet.png" />
-<p class="sd-card-text">Phase-based SPDNet that leverages instantaneous phase information from analytic signals.</p>
+<p class="sd-card-text">Phase-based SPDNet that leverages phase information from the signals.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">Phase</span>
 <span class="hf-tag">Hilbert</span>
@@ -635,7 +622,7 @@ PhaseSPDNet</div>
 <div class="sd-card-title sd-font-weight-bold docutils">
 GREEN</div>
 <img alt="GREEN Architecture" class="sd-card-img-top" src="_images/green.png" />
-<p class="sd-card-text">Gabor Riemann EEGNet combining Gabor wavelets with Riemannian geometry for robust EEG decoding.</p>
+<p class="sd-card-text">Gabor Riemann EEGNet combining Gabor wavelets with Riemannian geometry for interpretable EEG decoding.</p>
 <div class="hf-card-tags docutils container">
 <span class="hf-tag">Gabor</span>
 <span class="hf-tag">Wavelet</span>
@@ -647,7 +634,7 @@ GREEN</div>
 </div>
 <hr class="docutils" />
 <h2 class="hf-section-title hf-section-title-center">Key Features</h2>
-<p class="hf-section-subtitle" style="text-align: center; margin-left: auto; margin-right: auto;">Everything you need for manifold-aware deep learning.</p><div class="sd-container-fluid sd-sphinx-override sd-mb-4 hf-features-grid docutils">
+<p class="hf-section-subtitle" style="text-align: center; margin-left: auto; margin-right: auto;">Core components for constructing and training geometric neural networks on SPD manifolds.</p><div class="sd-container-fluid sd-sphinx-override sd-mb-4 hf-features-grid docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm hf-feature-card docutils">
@@ -685,7 +672,7 @@ GREEN</div>
 <div class="hf-feature-icon">
    <i class="fa-solid fa-diagram-project"></i>
 </div><p class="sd-card-text"><strong>scikit-learn Compatible</strong></p>
-<p class="sd-card-text">Seamlessly integrate with scikit-learn pipelines, cross-validation, and hyperparameter tuning via skorch/Braindecode wrappers.</p>
+<p class="sd-card-text">Seamlessly integrate with scikit-learn pipelines, cross-validation, and hyperparameter tuning via skorch/Braindecode wrappers, with many tutorials provided.</p>
 </div>
 </div>
 </div>
@@ -705,7 +692,7 @@ GREEN</div>
 <div class="hf-feature-icon">
    <i class="fa-solid fa-code-branch"></i>
 </div><p class="sd-card-text"><strong>Open Source</strong></p>
-<p class="sd-card-text">BSD-3-Clause licensed, actively maintained, and welcoming contributions. Comprehensive documentation and examples to get you started quickly.</p>
+<p class="sd-card-text">BSD-3-Clause licensed, for friendly for commercially applications, with actively maintained by experts from the field, and welcoming contributions.</p>
 </div>
 </div>
 </div>
@@ -822,10 +809,6 @@ Join our community and help advance deep learning on Riemannian manifolds.</p>
     <img src="_static/support/atr_logo_white.png" alt="ATR" class="logo-light" style="height: 300px; width: auto;">
     <img src="_static/support/atr_logo_white.png" alt="ATR" class="logo-dark" style="height: 300px; width: auto;">
   </div>
-  <div class="logo-item">
-    <img src="_static/support/riken_logo.png" alt="RIKEN" class="logo-light" style="height: 300px; width: auto;">
-    <img src="_static/support/riken_logo.png" alt="RIKEN" class="logo-dark" style="height: 300px; width: auto;">
-  </div>
 </div></div>
 <hr class="docutils" />
 <h2 class="hf-section-title hf-section-title-center">Citation</h2>
@@ -890,7 +873,7 @@ Join our community and help advance deep learning on Riemannian manifolds.</p>
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -55,7 +55,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/regularization/spd_learn.modules.Shrinkage';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/regularization/spd_learn.modules.Shrinkage.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/regularization/spd_learn.modules.Shrinkage.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -176,15 +176,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../auto_examples/index.html">
-    Examples
+  <a class="nav-link nav-internal" href="../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -196,13 +196,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
     Contributing
@@ -333,13 +326,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../api.html">
     API
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../background/index.html">
-    Background
   </a>
 </li>
 
@@ -595,21 +581,71 @@
 <dt class="sig sig-object py" id="spd_learn.modules.Shrinkage">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.modules.</span></span><span class="sig-name descname"><span class="pre">Shrinkage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_chans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_shrinkage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learnable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/modules.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.modules.Shrinkage" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
-<p>Learnable Shrinkage Regularization.</p>
+<p>Learnable Shrinkage Regularization for Covariance Matrices.</p>
 <p>This module applies a learnable shrinkage transformation inspired by the
-Ledoit-Wolf formula <span id="id1">[<a class="reference internal" href="../../references.html#id23" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span> to regularize covariance matrices.</p>
+Ledoit-Wolf and Oracle Approximating Shrinkage (OAS) estimators
+<span id="id1">[<a class="reference internal" href="../../references.html#id27" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span> to regularize covariance matrices:</p>
 <div class="math notranslate nohighlight">
-\[X_{\text{out}} = (1 - \alpha) X + \alpha \mu I\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a learnable shrinkage coefficient.</p>
+\[\hat{C} = (1 - \alpha) C + \alpha \cdot \frac{\text{tr}(C)}{n} \cdot I_n\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha \in [0, 1]\)</span> is the shrinkage intensity and <span class="math notranslate nohighlight">\(n\)</span> is
+the matrix dimension. This convex combination interpolates between the
+empirical covariance <span class="math notranslate nohighlight">\(C\)</span> and a structured target (scaled identity).</p>
+<p><strong>Why Shrinkage is Necessary</strong></p>
+<p>Reliable covariance estimation in neuroimaging faces three fundamental
+challenges <span id="id2">[<a class="reference internal" href="../../references.html#id34" title="Gaël Varoquaux, Alexandre Gramfort, Jean Baptiste Poline, and Bertrand Thirion. Brain covariance selection: better individual functional connectivity models using population prior. NeuroImage, 54(3):2453–2461, 2010. doi:10.1016/j.neuroimage.2010.10.013.">Varoquaux <em>et al.</em>, 2010</a>]</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Curse of dimensionality</strong>: When the number of variables exceeds the
+number of samples (<span class="math notranslate nohighlight">\(n_C &gt; n_T\)</span>), empirical covariance estimates
+become ill-conditioned or rank-deficient.</p></li>
+<li><p><strong>Non-Gaussian artifacts</strong>: Outliers such as eye blinks in EEG or head
+motion in fMRI violate distributional assumptions.</p></li>
+<li><p><strong>Temporal non-stationarity</strong>: Brain signals evolve over time, breaking
+i.i.d. assumptions and causing estimation errors to propagate.</p></li>
+</ol>
+<p>Shrinkage estimators address these issues by trading variance for bias,
+pulling extreme eigenvalues toward a common mean, which improves
+conditioning and stability of downstream analyses. Automated model
+selection methods can determine the optimal shrinkage estimator for
+MEG and EEG applications <span id="id3">[<a class="reference internal" href="../../references.html#id65" title="Denis A Engemann and Alexandre Gramfort. Automated model selection in covariance estimation and spatial whitening of meg and eeg signals. NeuroImage, 108:328–342, 2015. doi:10.1016/j.neuroimage.2014.12.040.">Engemann and Gramfort, 2015</a>]</span>.</p>
+<p><strong>Typical Pipeline</strong></p>
+<p>Shrinkage is typically the final step in covariance regularization
+<span id="id4">[<a class="reference internal" href="../../references.html#id23" title="Bruno Aristimunha, Ce Ju, Antoine Collas, Florent Bouchard, Ammar Mian, Bertrand Thirion, Sylvain Chevallier, and Reinmar Kobler. Spdlearn: a geometric deep learning python library for neural decoding through trivialization. To be submitted, 2026. URL: https://github.com/spd-learn/spd_learn.">Aristimunha <em>et al.</em>, 2026</a>]</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Normalize time series</strong>: Zero mean and unit L2 norm per channel</p></li>
+<li><p><strong>Compute sample covariance</strong>: <span class="math notranslate nohighlight">\(C = XX^T\)</span></p></li>
+<li><p><strong>Apply shrinkage</strong>: <span class="math notranslate nohighlight">\(\hat{C} = (1-\alpha)C + \alpha \cdot
+\text{tr}(C)/n \cdot I\)</span></p></li>
+</ol>
+<p><strong>Limitations</strong></p>
+<p>While shrinkage estimators are theoretically well-founded, they rely on
+structured targets (e.g., scaled identity) that may not capture complex
+covariance structure in densely connected brain networks. This limitation
+motivates alternative approaches such as population-level shrinkage
+<span id="id5">[<a class="reference internal" href="../../references.html#id66" title="Mehdi Rahim, Bertrand Thirion, and Gaël Varoquaux. Population-shrinkage of covariance to estimate better brain functional connectivity. In Medical Image Computing and Computer-Assisted Intervention (MICCAI), 566–574. 2019. doi:10.1007/978-3-030-32248-9_63.">Rahim <em>et al.</em>, 2019</a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_chans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The size of the square matrices expected as input.</p></li>
-<li><p><strong>init_shrinkage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default=0.0</em>) – The initial value for the pre-sigmoid shrinkage parameter.</p></li>
-<li><p><strong>learnable</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – If <cite>True</cite>, the shrinkage parameter is learnable.</p></li>
+<li><p><strong>init_shrinkage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default=0.0</em>) – The initial value for the pre-sigmoid shrinkage parameter.
+After sigmoid: 0.0 → α ≈ 0.5, negative → less shrinkage, positive → more.</p></li>
+<li><p><strong>learnable</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default=False</em>) – If <cite>True</cite>, the shrinkage parameter is learned during training.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>The optimal shrinkage intensity depends on the sample size, dimensionality,
+and signal properties. The Ledoit-Wolf estimator provides an analytical
+formula for the optimal <span class="math notranslate nohighlight">\(\alpha\)</span>, while this module allows learning
+it from data when <code class="docutils literal notranslate"><span class="pre">learnable=True</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="spd_learn.modules.TraceNorm.html#spd_learn.modules.TraceNorm" title="spd_learn.modules.TraceNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">TraceNorm</span></code></a></dt><dd><p>Normalizes by trace without shrinkage.</p>
+</dd>
+<dt><a class="reference internal" href="../covariance/spd_learn.modules.CovLayer.html#spd_learn.modules.CovLayer" title="spd_learn.modules.CovLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CovLayer</span></code></a></dt><dd><p>Computes covariance matrices from time series.</p>
+</dd>
+</dl>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shrinkage</span>
@@ -761,7 +797,7 @@ Ledoit-Wolf formula <span id="id1">[<a class="reference internal" href="../../re
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

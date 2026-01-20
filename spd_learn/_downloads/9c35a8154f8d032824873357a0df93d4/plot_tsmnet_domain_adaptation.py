@@ -39,14 +39,25 @@ adaptation to new sessions without labeled data from the target session.
 
 import warnings
 
+from typing import List, Tuple
+
 import matplotlib.pyplot as plt
+import numpy as np
 import torch
 
 from braindecode import EEGClassifier
 from moabb.datasets import BNCI2014_001
 from moabb.paradigms import MotorImagery
+from skada import (
+    CORALAdapter,
+    EntropicOTMapping,
+    SubspaceAlignment,
+    make_da_pipeline,
+)
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from skorch.callbacks import EpochScoring, GradientNormClipping
 from skorch.dataset import ValidSplit
 
@@ -119,7 +130,7 @@ print(model)
 source_subject = 1
 target_subject = 1  # Same subject, different session
 batch_size = 32
-max_epochs = 100
+max_epochs = 300
 learning_rate = 1e-4  # Low learning rate for stable SPD learning
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -225,7 +236,14 @@ print(f"Performance Drop: {(source_acc - target_acc_no_adapt)*100:.2f}%")
 #
 
 
-def adapt_spdbn(model, X_target, n_passes=3, reset_stats=True):
+def adapt_spdbn(
+    model,
+    X_target,
+    n_passes=10,
+    reset_stats=False,
+    adapt_momentum=0.8,
+    batch_size=64,
+):
     """Adapt SPDBatchNorm statistics to target domain.
 
     Parameters
@@ -238,7 +256,11 @@ def adapt_spdbn(model, X_target, n_passes=3, reset_stats=True):
         Number of passes through the data for statistics update.
     reset_stats : bool
         If True, reset running statistics before adaptation.
-        This allows the model to fully adapt to the target domain.
+        Default is False to preserve source domain knowledge.
+    adapt_momentum : float
+        Momentum to use during adaptation (higher = faster adaptation).
+    batch_size : int
+        Batch size for adaptation (larger = more stable statistics).
 
     Returns
     -------
@@ -247,15 +269,19 @@ def adapt_spdbn(model, X_target, n_passes=3, reset_stats=True):
     """
     model.eval()  # Freeze other layers
 
-    # Find SPDBatchNorm layers (may be wrapped as ParametrizedSPDBatchNorm)
+    # Find SPDBatchNorm layers and configure for adaptation
     spdbn_modules = []
+    original_momentums = []
     for module in model.modules():
         class_name = module.__class__.__name__
         if "SPDBatchNorm" in class_name:
             spdbn_modules.append(module)
+            original_momentums.append(module.momentum)
+
             if reset_stats:
                 # Reset to identity mean and unit variance for fresh adaptation
                 module.reset_running_stats()
+
             module.train()  # Enable running stats update
 
     print(f"Found {len(spdbn_modules)} SPDBatchNorm layer(s) to adapt")
@@ -265,31 +291,323 @@ def adapt_spdbn(model, X_target, n_passes=3, reset_stats=True):
     if next(model.parameters()).is_cuda:
         X_tensor = X_tensor.cuda()
 
-    # Shuffle data for better statistics estimation
-    perm = torch.randperm(len(X_tensor))
-    X_tensor = X_tensor[perm]
-
     # Pass data through model multiple times to update statistics
     with torch.no_grad():
         for pass_idx in range(n_passes):
+            # Set momentum for this pass
+            for module in spdbn_modules:
+                module.momentum = adapt_momentum
+
+            # Reshuffle each pass for better statistics
+            perm = torch.randperm(len(X_tensor))
+            X_shuffled = X_tensor[perm]
+
             # Process in batches
-            for i in range(0, len(X_tensor), 32):
-                batch = X_tensor[i : i + 32]
+            for i in range(0, len(X_shuffled), batch_size):
+                batch = X_shuffled[i : i + batch_size]
                 _ = model(batch)
-            print(f"  Adaptation pass {pass_idx + 1}/{n_passes} complete")
+
+            if (pass_idx + 1) % 10 == 0 or pass_idx == 0:
+                print(f"  Adaptation pass {pass_idx + 1}/{n_passes}")
+
+    # Restore original momentum values
+    for module, orig_momentum in zip(spdbn_modules, original_momentums):
+        module.momentum = orig_momentum
 
     model.eval()  # Set everything back to eval
     return model
 
 
+def predict_with_domain_specific_bn(model, X_data):
+    """Predict using domain-specific batch normalization (SPDDSMBN approach).
+
+    This implements the key idea from Kobler et al. (NeurIPS 2022):
+    Compute domain-specific statistics on the target domain and use them
+    directly for normalization. This is different from standard adaptation
+    which tries to blend source and target statistics.
+
+    Parameters
+    ----------
+    model : nn.Module
+        TSMNet model with SPDBatchNorm layer.
+    X_data : array
+        Target domain data to predict on.
+
+    Returns
+    -------
+    predictions : array
+        Predicted class labels.
+    """
+    # Find SPDBatchNorm layers
+    spdbn_modules = []
+    for module in model.modules():
+        class_name = module.__class__.__name__
+        if "SPDBatchNorm" in class_name:
+            spdbn_modules.append(module)
+
+    model.eval()
+
+    # Convert to tensor
+    X_tensor = torch.tensor(X_data, dtype=torch.float32)
+    if next(model.parameters()).is_cuda:
+        X_tensor = X_tensor.cuda()
+
+    # Key insight from SPDDSMBN: Compute domain-specific statistics
+    # by processing ALL target data with momentum=1.0 (full batch stats)
+    # This estimates the target domain's Fréchet mean and variance
+    for module in spdbn_modules:
+        module.reset_running_stats()  # Start fresh for target domain
+        module.momentum = 1.0  # Use full batch statistics
+        module.train()  # Enable running stats update
+
+    # Single pass to compute target domain statistics using all data
+    with torch.no_grad():
+        _ = model(X_tensor)  # This updates running_mean and running_var
+
+    # Now predict using the target domain statistics
+    model.eval()  # Back to eval mode - uses the updated running stats
+
+    with torch.no_grad():
+        logits = model(X_tensor)
+        predictions = logits.argmax(dim=1).cpu().numpy()
+
+    return predictions
+
+
+def extract_features_from_tsmnet(model, X, batch_size=32):
+    """Extract tangent space features from TSMNet (before classification head).
+
+    This extracts the Euclidean features from the tangent space projection,
+    which can be used with standard domain adaptation methods like CORAL,
+    Subspace Alignment, and Optimal Transport.
+
+    Parameters
+    ----------
+    model : nn.Module
+        TSMNet model.
+    X : array
+        Input EEG data of shape (n_samples, n_channels, n_times).
+    batch_size : int
+        Batch size for processing.
+
+    Returns
+    -------
+    features : np.ndarray
+        Tangent space features of shape (n_samples, n_features).
+    """
+    model.eval()
+    X_tensor = torch.tensor(X, dtype=torch.float32)
+    device = next(model.parameters()).device
+    X_tensor = X_tensor.to(device)
+
+    features_list = []
+    with torch.no_grad():
+        for i in range(0, len(X_tensor), batch_size):
+            batch = X_tensor[i : i + batch_size]
+            # Process through TSMNet layers up to LogEig (before classification head)
+            x = batch[:, None, ...]  # Add channel dim for CNN
+            x = model.cnn(x)
+            x = model.covpool(x)
+            x = model.spdnet(x)
+            x = model.spdbnorm(x)
+            x = model.logeig(x)  # Tangent space features
+            features_list.append(x.cpu())
+
+    return torch.cat(features_list, dim=0).numpy()
+
+
+def plot_domain_shift_comprehensive(
+    features_source: np.ndarray,
+    features_target: np.ndarray,
+    y_source: np.ndarray,
+    y_target: np.ndarray,
+    class_names: List[str],
+    title: str = "Domain Shift Visualization",
+    figsize: Tuple[int, int] = (16, 12),
+) -> plt.Figure:
+    """Comprehensive visualization of domain shift.
+
+    Creates a 2x3 grid showing:
+    - Domain distributions (PCA)
+    - Source and target by class
+    - Feature histograms per domain
+    - Class-conditional distributions
+
+    Parameters
+    ----------
+    features_source : np.ndarray
+        Source domain features.
+    features_target : np.ndarray
+        Target domain features.
+    y_source : np.ndarray
+        Source domain labels.
+    y_target : np.ndarray
+        Target domain labels.
+    class_names : List[str]
+        Names of the classes.
+    title : str
+        Overall figure title.
+    figsize : Tuple[int, int]
+        Figure size.
+
+    Returns
+    -------
+    plt.Figure
+        The matplotlib figure.
+    """
+    # Combine features for PCA
+    features_all = np.vstack([features_source, features_target])
+    pca = PCA(n_components=2)
+    features_2d = pca.fit_transform(features_all)
+
+    n_source = len(features_source)
+    source_2d = features_2d[:n_source]
+    target_2d = features_2d[n_source:]
+
+    fig, axes = plt.subplots(2, 3, figsize=figsize)
+
+    # --- Row 1 ---
+    # Plot 1: All data by domain
+    ax1 = axes[0, 0]
+    ax1.scatter(
+        source_2d[:, 0],
+        source_2d[:, 1],
+        c="blue",
+        alpha=0.5,
+        label="Source",
+        marker="o",
+        s=40,
+    )
+    ax1.scatter(
+        target_2d[:, 0],
+        target_2d[:, 1],
+        c="red",
+        alpha=0.5,
+        label="Target",
+        marker="s",
+        s=40,
+    )
+    ax1.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+    ax1.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+    ax1.set_title("Domain Distribution", fontweight="bold")
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
+
+    # Plot 2: Source domain by class
+    ax2 = axes[0, 1]
+    n_classes = len(np.unique(y_source))
+    colors = plt.cm.tab10(np.linspace(0, 1, max(n_classes, 4)))[:n_classes]
+    for label_idx, label in enumerate(np.unique(y_source)):
+        mask = y_source == label
+        ax2.scatter(
+            source_2d[mask, 0],
+            source_2d[mask, 1],
+            c=colors[label_idx],
+            alpha=0.6,
+            label=f"{class_names[label_idx]}",
+            marker="o",
+            s=40,
+        )
+    ax2.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+    ax2.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+    ax2.set_title("Source Domain (by class)", fontweight="bold")
+    ax2.legend()
+    ax2.grid(True, alpha=0.3)
+
+    # Plot 3: Target domain by class
+    ax3 = axes[0, 2]
+    for label_idx, label in enumerate(np.unique(y_target)):
+        mask = y_target == label
+        ax3.scatter(
+            target_2d[mask, 0],
+            target_2d[mask, 1],
+            c=colors[label_idx],
+            alpha=0.6,
+            label=f"{class_names[label_idx]}",
+            marker="s",
+            s=40,
+        )
+    ax3.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+    ax3.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+    ax3.set_title("Target Domain (by class)", fontweight="bold")
+    ax3.legend()
+    ax3.grid(True, alpha=0.3)
+
+    # --- Row 2 ---
+    # Plot 4: Feature histogram (first 3 features)
+    ax4 = axes[1, 0]
+    for feat_idx in range(min(3, features_source.shape[1])):
+        ax4.hist(
+            features_source[:, feat_idx],
+            bins=20,
+            alpha=0.5,
+            label=f"Source feat {feat_idx}",
+            density=True,
+        )
+        ax4.hist(
+            features_target[:, feat_idx],
+            bins=20,
+            alpha=0.5,
+            label=f"Target feat {feat_idx}",
+            density=True,
+            linestyle="--",
+        )
+    ax4.set_xlabel("Feature Value")
+    ax4.set_ylabel("Density")
+    ax4.set_title("Feature Distribution (first 3)", fontweight="bold")
+    ax4.legend(fontsize=8)
+    ax4.grid(True, alpha=0.3)
+
+    # Plot 5: Class-conditional distributions (Source)
+    ax5 = axes[1, 1]
+    for label_idx, label in enumerate(np.unique(y_source)):
+        mask_s = y_source == label
+        ax5.hist(
+            source_2d[mask_s, 0],
+            bins=15,
+            alpha=0.5,
+            label=f"Source-{class_names[label_idx]}",
+            color=colors[label_idx],
+            density=True,
+        )
+    ax5.set_xlabel("PC1")
+    ax5.set_ylabel("Density")
+    ax5.set_title("Class Distribution (Source)", fontweight="bold")
+    ax5.legend()
+    ax5.grid(True, alpha=0.3)
+
+    # Plot 6: Class-conditional distributions (Target)
+    ax6 = axes[1, 2]
+    for label_idx, label in enumerate(np.unique(y_target)):
+        mask_t = y_target == label
+        ax6.hist(
+            target_2d[mask_t, 0],
+            bins=15,
+            alpha=0.5,
+            label=f"Target-{class_names[label_idx]}",
+            color=colors[label_idx],
+            density=True,
+        )
+    ax6.set_xlabel("PC1")
+    ax6.set_ylabel("Density")
+    ax6.set_title("Class Distribution (Target)", fontweight="bold")
+    ax6.legend()
+    ax6.grid(True, alpha=0.3)
+
+    plt.suptitle(title, fontsize=14, fontweight="bold")
+    plt.tight_layout()
+    return fig
+
+
 # Get the underlying model from the classifier
 underlying_model = clf.module_
 
-# Adapt to target domain
+# Use Domain-Specific Batch Normalization (SPDDSMBN approach from Kobler et al.)
+# This computes target-domain-specific statistics and uses them for normalization
 print("\n" + "=" * 50)
-print("Adapting SPDBatchNorm to Target Domain")
+print("Using Domain-Specific Batch Normalization (SPDDSMBN)")
 print("=" * 50)
-adapted_model = adapt_spdbn(underlying_model, X_target, n_passes=5)
+print("Computing target domain statistics (Fréchet mean and variance)")
 
 ######################################################################
 # Evaluating After Adaptation
@@ -308,15 +626,9 @@ adapted_model = adapt_spdbn(underlying_model, X_target, n_passes=5)
 #    Typical improvements range from 3-10% for cross-session transfer.
 #
 
-# Convert target data for prediction
-X_target_tensor = torch.tensor(X_target, dtype=torch.float32)
-if next(adapted_model.parameters()).is_cuda:
-    X_target_tensor = X_target_tensor.cuda()
-
-# Predict with adapted model
-with torch.no_grad():
-    logits = adapted_model(X_target_tensor)
-    y_pred_target_adapted = logits.argmax(dim=1).cpu().numpy()
+# Predict using domain-specific batch normalization
+# Key insight: Use target domain statistics directly (not blended with source)
+y_pred_target_adapted = predict_with_domain_specific_bn(underlying_model, X_target)
 
 target_acc_adapted = accuracy_score(y_target, y_pred_target_adapted)
 improvement = target_acc_adapted - target_acc_no_adapt
@@ -332,22 +644,192 @@ else:
     print(f"Improvement: {improvement*100:.2f}%")
 
 ######################################################################
+# Domain Adaptation with SKADA
+# ----------------------------
+#
+# Now we compare SPDBatchNorm/TTBN with domain adaptation methods from
+# `skada <https://scikit-adaptation.github.io/>`_ (scikit-learn domain
+# adaptation). These methods operate on the Euclidean tangent space
+# features extracted from TSMNet.
+#
+# **Methods compared:**
+#
+# - **CORAL**: Correlation Alignment - aligns second-order statistics
+# - **Subspace Alignment**: Linear subspace mapping between domains
+# - **Entropic Optimal Transport**: Sample-to-sample mapping
+#
+
+print("\n" + "=" * 50)
+print("SKADA Domain Adaptation Methods")
+print("=" * 50)
+
+# Extract tangent space features for SKADA methods
+features_source = extract_features_from_tsmnet(underlying_model, X_source)
+features_target = extract_features_from_tsmnet(underlying_model, X_target)
+
+print(f"Source features shape: {features_source.shape}")
+print(f"Target features shape: {features_target.shape}")
+
+######################################################################
+# Visualizing Domain Shift
+# ------------------------
+#
+# Before applying domain adaptation, let's visualize the distribution
+# shift between source and target sessions using PCA projection.
+#
+
+class_names = [str(c) for c in le.classes_]
+fig = plot_domain_shift_comprehensive(
+    features_source,
+    features_target,
+    y_source,
+    y_target,
+    class_names=class_names,
+    title="Riemannian Feature Space - Cross-Session Distribution",
+)
+plt.show()
+
+# Prepare data in SKADA format
+# SKADA uses sample_domain to distinguish domains:
+# - Positive values (1): Source domain
+# - Negative values (-1): Target domain
+X_combined = np.vstack([features_source, features_target])
+y_combined = np.concatenate([y_source, -np.ones(len(y_target))])
+sample_domain = np.concatenate(
+    [np.ones(len(features_source)), -np.ones(len(features_target))]
+)
+
+# Initialize results dictionary
+results = {
+    "No Adaptation": target_acc_no_adapt,
+    "SPDBatchNorm (TTBN)": target_acc_adapted,
+}
+
+######################################################################
+# CORAL (Correlation Alignment)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# CORAL aligns the second-order statistics (covariance) of source and
+# target feature distributions. This is particularly suitable for
+# SPD-derived features since they already capture covariance structure.
+#
+
+print("\n" + "-" * 50)
+print("CORAL (Correlation Alignment)")
+print("-" * 50)
+
+coral_pipeline = make_da_pipeline(
+    StandardScaler(),
+    CORALAdapter(reg=1e-3),
+    LogisticRegression(max_iter=1000),
+)
+coral_pipeline.fit(X_combined, y_combined, sample_domain=sample_domain)
+y_pred_coral = coral_pipeline.predict(features_target)
+coral_acc = accuracy_score(y_target, y_pred_coral)
+
+print(f"CORAL Accuracy: {coral_acc*100:.2f}%")
+print(f"Improvement over baseline: {(coral_acc - target_acc_no_adapt)*100:+.2f}%")
+results["CORAL"] = coral_acc
+
+######################################################################
+# Subspace Alignment
+# ~~~~~~~~~~~~~~~~~~
+#
+# Subspace Alignment learns a linear transformation that aligns the
+# principal subspaces of source and target domains.
+#
+
+print("\n" + "-" * 50)
+print("Subspace Alignment")
+print("-" * 50)
+
+sa_clf = SubspaceAlignment(
+    base_estimator=LogisticRegression(max_iter=1000),
+    n_components=min(10, features_source.shape[1]),
+)
+sa_clf.fit(X_combined, y_combined, sample_domain=sample_domain)
+y_pred_sa = sa_clf.predict(features_target)
+sa_acc = accuracy_score(y_target, y_pred_sa)
+
+print(f"Subspace Alignment Accuracy: {sa_acc*100:.2f}%")
+print(f"Improvement over baseline: {(sa_acc - target_acc_no_adapt)*100:+.2f}%")
+results["Subspace Alignment"] = sa_acc
+
+######################################################################
+# Entropic Optimal Transport
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Optimal Transport finds the minimum cost mapping between source and
+# target distributions. Entropic regularization makes the optimization
+# tractable and provides smoother mappings.
+#
+
+print("\n" + "-" * 50)
+print("Entropic Optimal Transport")
+print("-" * 50)
+
+try:
+    ot_clf = EntropicOTMapping(
+        base_estimator=LogisticRegression(max_iter=1000),
+        reg_e=1.0,
+    )
+    ot_clf.fit(X_combined, y_combined, sample_domain=sample_domain)
+    y_pred_ot = ot_clf.predict(features_target)
+    ot_acc = accuracy_score(y_target, y_pred_ot)
+
+    print(f"Entropic OT Accuracy: {ot_acc*100:.2f}%")
+    print(f"Improvement over baseline: {(ot_acc - target_acc_no_adapt)*100:+.2f}%")
+    results["Entropic OT"] = ot_acc
+except Exception as e:
+    print(f"Entropic OT failed: {e}")
+
+######################################################################
+# Results Summary
+# ---------------
+#
+
+print("\n" + "=" * 60)
+print("Domain Adaptation Results Summary")
+print("=" * 60)
+print(f"{'Method':<25} {'Accuracy':>12} {'vs Baseline':>14}")
+print("-" * 55)
+for method, acc in results.items():
+    if method == "No Adaptation":
+        print(f"{method:<25} {acc*100:>10.2f}% {'-':>14}")
+    else:
+        imp = acc - target_acc_no_adapt
+        print(f"{method:<25} {acc*100:>10.2f}% {imp*100:>+12.2f}%")
+print("-" * 55)
+print("Chance level: 25.00% (4 classes)")
+
+# Find best method
+best_method = max(results.keys(), key=lambda k: results[k])
+print(f"\nBest method: {best_method} ({results[best_method]*100:.2f}%)")
+
+######################################################################
 # Visualizing Results
 # -------------------
 #
 
-fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+fig, axes = plt.subplots(1, 3, figsize=(16, 5))
 
-# Accuracy comparison
+# 1. Domain Adaptation Methods Comparison
 ax1 = axes[0]
-conditions = ["Source\n(Train)", "Target\n(No Adapt)", "Target\n(Adapted)"]
-accuracies = [source_acc * 100, target_acc_no_adapt * 100, target_acc_adapted * 100]
-colors = ["#2ecc71", "#e74c3c", "#3498db"]
-bars = ax1.bar(conditions, accuracies, color=colors, edgecolor="black", linewidth=1.5)
+methods = list(results.keys())
+accuracies = [results[m] * 100 for m in methods]
+colors = ["#e74c3c", "#3498db", "#2ecc71", "#9b59b6", "#f39c12"][: len(methods)]
+bars = ax1.bar(methods, accuracies, color=colors, edgecolor="black", linewidth=1.5)
 ax1.set_ylabel("Accuracy (%)", fontsize=12)
-ax1.set_title("Domain Adaptation Results", fontsize=14)
+ax1.set_title("Domain Adaptation Comparison", fontsize=14)
 ax1.set_ylim([0, 100])
-ax1.axhline(y=25, color="gray", linestyle="--", alpha=0.5, label="Chance level")
+ax1.axhline(y=25, color="gray", linestyle="--", alpha=0.5, label="Chance (25%)")
+ax1.axhline(
+    y=source_acc * 100,
+    color="blue",
+    linestyle=":",
+    alpha=0.5,
+    label=f"Source ({source_acc*100:.1f}%)",
+)
 
 # Add value labels
 for bar, acc in zip(bars, accuracies):
@@ -357,48 +839,55 @@ for bar, acc in zip(bars, accuracies):
         f"{acc:.1f}%",
         ha="center",
         va="bottom",
-        fontsize=11,
+        fontsize=9,
         fontweight="bold",
     )
 
-# Add improvement annotation with arrow between target bars
-if improvement != 0:
-    arrow_y = max(target_acc_no_adapt, target_acc_adapted) * 100 + 15
-    ax1.annotate(
-        "",
-        xy=(2, target_acc_adapted * 100 + 5),
-        xytext=(1, target_acc_no_adapt * 100 + 5),
-        arrowprops=dict(
-            arrowstyle="->",
-            color="green" if improvement > 0 else "red",
-            lw=2,
-            connectionstyle="arc3,rad=0.2",
-        ),
-    )
-    sign = "+" if improvement > 0 else ""
-    ax1.text(
-        1.5,
-        arrow_y,
-        f"{sign}{improvement*100:.1f}%",
-        ha="center",
-        fontsize=10,
-        fontweight="bold",
-        color="green" if improvement > 0 else "red",
-    )
+ax1.legend(loc="lower right", fontsize=8)
+plt.setp(ax1.xaxis.get_majorticklabels(), rotation=30, ha="right")
 
-ax1.legend()
-
-# Training history
+# 2. Training history
 ax2 = axes[1]
 history = clf.history
-epochs = range(1, len(history) + 1)
-ax2.plot(epochs, history[:, "train_loss"], "b-", label="Train Loss", linewidth=2)
-ax2.plot(epochs, history[:, "valid_loss"], "r--", label="Valid Loss", linewidth=2)
+epochs_hist = range(1, len(history) + 1)
+ax2.plot(epochs_hist, history[:, "train_loss"], "b-", label="Train Loss", linewidth=2)
+ax2.plot(epochs_hist, history[:, "valid_loss"], "r--", label="Valid Loss", linewidth=2)
 ax2.set_xlabel("Epoch", fontsize=12)
 ax2.set_ylabel("Loss", fontsize=12)
-ax2.set_title("Training History (Source Domain)", fontsize=14)
+ax2.set_title("Training History", fontsize=14)
 ax2.legend(fontsize=10)
 ax2.grid(True, alpha=0.3)
+
+# 3. Feature space PCA visualization
+ax3 = axes[2]
+pca = PCA(n_components=2)
+features_all = np.vstack([features_source, features_target])
+features_2d = pca.fit_transform(features_all)
+n_source = len(features_source)
+
+ax3.scatter(
+    features_2d[:n_source, 0],
+    features_2d[:n_source, 1],
+    c="blue",
+    alpha=0.5,
+    label="Source",
+    marker="o",
+    s=30,
+)
+ax3.scatter(
+    features_2d[n_source:, 0],
+    features_2d[n_source:, 1],
+    c="red",
+    alpha=0.5,
+    label="Target",
+    marker="s",
+    s=30,
+)
+ax3.set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)", fontsize=12)
+ax3.set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)", fontsize=12)
+ax3.set_title("Feature Space (PCA)", fontsize=14)
+ax3.legend(fontsize=10)
+ax3.grid(True, alpha=0.3)
 
 plt.tight_layout()
 plt.show()
@@ -435,15 +924,28 @@ plt.show()
 #
 # 1. Training TSMNet on source session
 # 2. Observing performance drop on target session
-# 3. Adapting SPDBatchNorm statistics using unlabeled target data
-# 4. Achieving improved cross-session transfer performance
+# 3. Adapting using SPDBatchNorm (Test-Time Batch Normalization)
+# 4. Comparing with SKADA domain adaptation methods:
 #
-# Cross-session non-stationarity is a key challenge in BCI. SPDBatchNorm
-# adaptation compensates for these shifts by re-centering the covariance
-# distribution.
+#    - **CORAL**: Correlation Alignment
+#    - **Subspace Alignment**: Linear subspace mapping
+#    - **Entropic Optimal Transport**: Sample-to-sample mapping
 #
-# This **source-free unsupervised domain adaptation** is particularly
-# valuable in BCI applications where:
+# **Key insights:**
+#
+# - SPDBatchNorm provides a native Riemannian approach that operates
+#   directly on SPD matrices
+# - SKADA methods operate on Euclidean tangent space features and can
+#   complement or outperform SPDBatchNorm depending on the domain shift
+# - Combining multiple approaches allows practitioners to select the best
+#   method for their specific use case
+#
+# Cross-session non-stationarity is a key challenge in BCI. Domain
+# adaptation methods compensate for these shifts by aligning feature
+# distributions between source and target domains.
+#
+# This **unsupervised domain adaptation** is particularly valuable in BCI
+# applications where:
 #
 # - Calibration time should be minimized
 # - Users return for multiple sessions

@@ -539,26 +539,26 @@ def get_default_model_training_overrides() -> Dict[str, Dict[str, Any]]:
     return {
         "SPDNet": {
             "learning_rate": 1e-3,
-            "max_epochs": 100,
+            "max_epochs": 20,  # Reduced from 100 for faster documentation build
             "optimizer": "AdamW",
         },
         "TSMNet": {
             # TSMNet requires lower LR for stable SPD learning
             # Reference: plot_tsmnet_domain_adaptation.py
             "learning_rate": 1e-4,
-            "max_epochs": 150,
+            "max_epochs": 30,  # Reduced from 150 for faster documentation build
             "optimizer": "Adam",
         },
         "EEGSPDNet": {
             # EEGSPDNet requires lower LR for channel-specific convolutions
             # Reference: plot_eegspdnet.py
             "learning_rate": 1e-4,
-            "max_epochs": 150,
+            "max_epochs": 30,  # Reduced from 150 for faster documentation build
             "optimizer": "Adam",
         },
         "TensorCSPNet": {
             "learning_rate": 1e-3,
-            "max_epochs": 100,
+            "max_epochs": 20,  # Reduced from 100 for faster documentation build
             "optimizer": "AdamW",
         },
     }
@@ -657,7 +657,7 @@ config = OmegaConf.structured(
     ExperimentConfig(
         training=TrainingConfig(
             batch_size=32,
-            max_epochs=150,  # Increased for better convergence
+            max_epochs=30,  # Reduced from 150 for faster documentation build
             learning_rate=1e-3,
             weight_decay=1e-4,
             gradient_clip_value=1.0,
@@ -676,7 +676,7 @@ config = OmegaConf.structured(
             fmax=38.0,
         ),
         models=["SPDNet", "TSMNet", "EEGSPDNet"],
-        n_folds=3,  # Reduced for demonstration
+        n_folds=1,  # Reduced from 3 for faster documentation build
         use_session_split=True,
         device="auto",
     )

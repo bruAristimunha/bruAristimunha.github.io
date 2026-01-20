@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -54,7 +54,7 @@
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/tutorials/tutorial_03_eeg_classification';</script>
-    <link rel="canonical" href="https://spd-learn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_03_eeg_classification.html" />
+    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_03_eeg_classification.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -174,16 +174,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Examples
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
-    Examples
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../faq.html">
+    FAQ
   </a>
 </li>
 
@@ -195,13 +195,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../faq.html">
-    FAQ
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../contributing.html">
     Contributing
@@ -340,13 +333,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../background/index.html">
-    Background
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Examples
@@ -443,13 +429,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_eegspdnet.html">EEG Classification with EEGSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_cross_dataset.html">Cross-Dataset EEG Classification with SPDNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_self_supervised_eeg.html">Self-Supervised Contrastive Learning on SPD Manifolds for EEG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/radar.html">Radar Image Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/fnirs.html">fNIRS Classification with SPD Learn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_skada_integration.html">Domain Adaptation with skada and SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
 </details></li>
@@ -566,7 +548,7 @@ control devices through thought alone</p></li>
 (CSP) to extract discriminative features. SPD Learn takes this further
 by operating directly on the manifold of Symmetric Positive Definite
 (SPD) matrices (covariance matrices), preserving their geometric structure.</p>
-<p>This tutorial uses the BNCI2014_001 dataset <span id="id1">[<a class="reference internal" href="../../../references.html#id48" title="Michael Tangermann, Klaus-Robert Müller, Ad Aertsen, Niels Birbaumer, Christoph Braun, Clemens Brunner, Robert Leeb, Carsten Mehring, Kai J Miller, Gernot R Müller-Putz, and others. Review of the bci competition iv. Frontiers in Neuroscience, 6:55, 2012. doi:10.3389/fnins.2012.00055.">Tangermann <em>et al.</em>, 2012</a>]</span>
+<p>This tutorial uses the BNCI2014_001 dataset <span id="id1">[<a class="reference internal" href="../../../references.html#id52" title="Michael Tangermann, Klaus-Robert Müller, Ad Aertsen, Niels Birbaumer, Christoph Braun, Clemens Brunner, Robert Leeb, Carsten Mehring, Kai J Miller, Gernot R Müller-Putz, and others. Review of the bci competition iv. Frontiers in Neuroscience, 6:55, 2012. doi:10.3389/fnins.2012.00055.">Tangermann <em>et al.</em>, 2012</a>]</span>
 (BCI Competition IV 2a), which contains 4-class motor imagery data from
 9 subjects.</p>
 </section>
@@ -729,28 +711,28 @@ Data split:
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Model Selection Guide</a><a class="headerlink" href="#model-selection-guide" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides several models optimized for different scenarios.
 Here’s a guide to help you choose:</p>
-<p><strong>SPDNet</strong> <span id="id2">[<a class="reference internal" href="../../../user_guide.html#id23" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> - The Classic Choice</p>
+<p><strong>SPDNet</strong> <span id="id2">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> - The Classic Choice</p>
 <ul class="simple">
 <li><p>Best for: Simple pipelines, pre-computed covariance matrices</p></li>
 <li><p>Pros: Simple architecture, fast training, interpretable</p></li>
 <li><p>Cons: No temporal feature learning</p></li>
 <li><p>Use when: You want a baseline or have limited data</p></li>
 </ul>
-<p><strong>TSMNet</strong> <span id="id3">[<a class="reference internal" href="../../../user_guide.html#id25" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span> - Best for Session Transfer</p>
+<p><strong>TSMNet</strong> <span id="id3">[<a class="reference internal" href="../../../user_guide.html#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span> - Best for Session Transfer</p>
 <ul class="simple">
 <li><p>Best for: Cross-session/cross-subject scenarios</p></li>
 <li><p>Pros: SPDBatchNorm enables domain adaptation without labels</p></li>
 <li><p>Cons: More parameters, requires more data</p></li>
 <li><p>Use when: You need to transfer to new sessions/subjects</p></li>
 </ul>
-<p><strong>EEGSPDNet</strong> <span id="id4">[]</span> - Channel-Specific Processing</p>
+<p><strong>EEGSPDNet</strong> <span id="id4">[<a class="reference internal" href="../../../references.html#id60" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> - Channel-Specific Processing</p>
 <ul class="simple">
 <li><p>Best for: When spatial information is important</p></li>
 <li><p>Pros: Learns channel-specific temporal filters</p></li>
 <li><p>Cons: More memory intensive</p></li>
 <li><p>Use when: Channels have different characteristics</p></li>
 </ul>
-<p><strong>TensorCSPNet</strong> <span id="id5">[<a class="reference internal" href="../../../user_guide.html#id27" title="Ce Ju, Reinmar J Kobler, Lu Tang, Cuntai Guan, and Motoaki Kawanabe. Deep geodesic canonical correlation analysis for covariance-based neuroimaging data. In The Twelfth International Conference on Learning Representations. 2024. URL: https://openreview.net/forum?id=bFMwxryaJV.">Ju <em>et al.</em>, 2024</a>]</span> - Multi-Frequency Analysis</p>
+<p><strong>TensorCSPNet</strong> <span id="id5">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022.">Ju and Guan, 2022</a>]</span> - Multi-Frequency Analysis</p>
 <ul class="simple">
 <li><p>Best for: Filter bank approaches with multiple frequency bands</p></li>
 <li><p>Pros: Captures frequency-specific spatial patterns</p></li>
@@ -1412,7 +1394,7 @@ If your model isn&#39;t working:
 <li><p>Explore domain adaptation with TSMNet’s SPDBatchNorm</p></li>
 <li><p>Implement your own preprocessing pipeline for specific needs</p></li>
 </ul>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 20.850 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 14.848 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-tutorials-tutorial-03-eeg-classification-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/b1bd940e7a93dd04253a67db05f33a47/tutorial_03_eeg_classification.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tutorial_03_eeg_classification.ipynb</span></code></a></p>
@@ -1580,7 +1562,7 @@ If your model isn&#39;t working:
 
   <p class="copyright">
     
-      © Copyright 2025-2026, SPD Learn Developers.
+      © Copyright 2024-2026, SPD Learn Developers.
       <br/>
     
   </p>

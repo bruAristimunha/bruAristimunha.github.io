@@ -208,7 +208,7 @@ print(f"  Testing (Session 2): {len(test_idx)} trials")
 # - Cons: More memory intensive
 # - Use when: Channels have different characteristics
 #
-# **TensorCSPNet** :cite:p:`ju2024deep` - Multi-Frequency Analysis
+# **TensorCSPNet** :cite:p:`ju2022tensor` - Multi-Frequency Analysis
 #
 # - Best for: Filter bank approaches with multiple frequency bands
 # - Pros: Captures frequency-specific spatial patterns

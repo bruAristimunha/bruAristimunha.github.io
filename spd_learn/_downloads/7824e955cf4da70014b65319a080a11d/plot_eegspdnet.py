@@ -133,10 +133,10 @@ print(model)
 
 # Show BiMap layer dimensions
 print("\nBiMap Layer Dimensions:")
-print("Input: 88 × 88 (22 channels × 4 filters)")
+print("Input: 88 x 88 (22 channels x 4 filters)")
 print("→ BiMap0: 88 → 44")
 print("→ BiMap1: 44 → 22")
-print("→ LogEig: 22 × 22 → 253 (upper triangular)")
+print("→ LogEig: 22 x 22 → 253 (upper triangular)")
 
 ######################################################################
 # Setting up the Classifier
