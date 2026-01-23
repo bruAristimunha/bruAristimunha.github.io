@@ -592,7 +592,7 @@ the matrix dimension. This convex combination interpolates between the
 empirical covariance <span class="math notranslate nohighlight">\(C\)</span> and a structured target (scaled identity).</p>
 <p><strong>Why Shrinkage is Necessary</strong></p>
 <p>Reliable covariance estimation in neuroimaging faces three fundamental
-challenges <span id="id2">[<a class="reference internal" href="../../references.html#id34" title="Gaël Varoquaux, Alexandre Gramfort, Jean Baptiste Poline, and Bertrand Thirion. Brain covariance selection: better individual functional connectivity models using population prior. NeuroImage, 54(3):2453–2461, 2010. doi:10.1016/j.neuroimage.2010.10.013.">Varoquaux <em>et al.</em>, 2010</a>]</span>:</p>
+challenges <span id="id2">[<a class="reference internal" href="../../references.html#id34" title="Gaël Varoquaux, Alexandre Gramfort, Jean Baptiste Poline, and Bertrand Thirion. Brain covariance selection: better individual functional connectivity models using population prior. In Advances in Neural Information Processing Systems, volume 23, 2334–2342. 2010. URL: https://proceedings.neurips.cc/paper/2010/hash/db576a7d2453575f29eab4bac787b919-Abstract.html.">Varoquaux <em>et al.</em>, 2010</a>]</span>:</p>
 <ol class="arabic simple">
 <li><p><strong>Curse of dimensionality</strong>: When the number of variables exceeds the
 number of samples (<span class="math notranslate nohighlight">\(n_C &gt; n_T\)</span>), empirical covariance estimates
@@ -621,7 +621,7 @@ MEG and EEG applications <span id="id3">[<a class="reference internal" href="../
 structured targets (e.g., scaled identity) that may not capture complex
 covariance structure in densely connected brain networks. This limitation
 motivates alternative approaches such as population-level shrinkage
-<span id="id5">[<a class="reference internal" href="../../references.html#id66" title="Mehdi Rahim, Bertrand Thirion, and Gaël Varoquaux. Population-shrinkage of covariance to estimate better brain functional connectivity. In Medical Image Computing and Computer-Assisted Intervention (MICCAI), 566–574. 2019. doi:10.1007/978-3-030-32248-9_63.">Rahim <em>et al.</em>, 2019</a>]</span>.</p>
+<span id="id5">[<a class="reference internal" href="../../references.html#id66" title="Mehdi Rahim, Bertrand Thirion, and Gaël Varoquaux. Population-shrinkage of covariance to estimate better brain functional connectivity. In Medical Image Computing and Computer-Assisted Intervention (MICCAI), 460–468. 2017. doi:10.1007/978-3-319-66182-7_53.">Rahim <em>et al.</em>, 2017</a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

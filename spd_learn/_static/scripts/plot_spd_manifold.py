@@ -121,7 +121,7 @@ def create_spd_manifold_visualization():
     # Generate points on the cone surface
     theta = np.random.uniform(0, 2 * np.pi, n_samples)
     z_vals = np.random.uniform(0.5, 2.0, n_samples)
-    r_vals = z_vals * 0.5  # On cone surface
+    r_vals = z_vals * 0.5 * np.random.uniform(0.3, 0.9, n_samples)  # Inside the cone
 
     sample_x = r_vals * np.cos(theta)
     sample_y = r_vals * np.sin(theta)

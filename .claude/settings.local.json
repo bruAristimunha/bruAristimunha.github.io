@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:bruaristimunha.github.io)",
+      "Bash(gh run list:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(gh run watch:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(gh run view:*)"
+    ]
+  }
+}
