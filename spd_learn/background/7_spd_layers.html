@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -492,55 +492,55 @@ matrices while preserving their geometric structure.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview-the-spd-layer-zoo" id="id75">Overview: The SPD Layer Zoo</a></p></li>
-<li><p><a class="reference internal" href="#covariance-layer" id="id76">Covariance Layer</a></p>
+<li><p><a class="reference internal" href="#overview-the-spd-layer-zoo" id="id77">Overview: The SPD Layer Zoo</a></p></li>
+<li><p><a class="reference internal" href="#covariance-layer" id="id78">Covariance Layer</a></p>
 <ul>
-<li><p><a class="reference internal" href="#covlayer" id="id77">CovLayer</a></p></li>
+<li><p><a class="reference internal" href="#covlayer" id="id79">CovLayer</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#bilinear-mapping-layers" id="id78">Bilinear Mapping Layers</a></p>
+<li><p><a class="reference internal" href="#bilinear-mapping-layers" id="id80">Bilinear Mapping Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#bimap" id="id79">BiMap</a></p></li>
-<li><p><a class="reference internal" href="#bimapincreasedim" id="id80">BiMapIncreaseDim</a></p></li>
+<li><p><a class="reference internal" href="#bimap" id="id81">BiMap</a></p></li>
+<li><p><a class="reference internal" href="#bimapincreasedim" id="id82">BiMapIncreaseDim</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#nonlinearity-layers" id="id81">Nonlinearity Layers</a></p>
+<li><p><a class="reference internal" href="#nonlinearity-layers" id="id83">Nonlinearity Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#reeig-rectified-eigenvalues" id="id82">ReEig (Rectified Eigenvalues)</a></p></li>
+<li><p><a class="reference internal" href="#reeig-rectified-eigenvalues" id="id84">ReEig (Rectified Eigenvalues)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#projection-layers" id="id83">Projection Layers</a></p>
+<li><p><a class="reference internal" href="#projection-layers" id="id85">Projection Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#logeig-logarithmic-eigenvalues" id="id84">LogEig (Logarithmic Eigenvalues)</a></p></li>
-<li><p><a class="reference internal" href="#expeig-exponential-eigenvalues" id="id85">ExpEig (Exponential Eigenvalues)</a></p></li>
+<li><p><a class="reference internal" href="#logeig-logarithmic-eigenvalues" id="id86">LogEig (Logarithmic Eigenvalues)</a></p></li>
+<li><p><a class="reference internal" href="#expeig-exponential-eigenvalues" id="id87">ExpEig (Exponential Eigenvalues)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#batch-normalization-layers" id="id86">Batch Normalization Layers</a></p>
+<li><p><a class="reference internal" href="#batch-normalization-layers" id="id88">Batch Normalization Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#brooksbatchnorm" id="id87">BrooksBatchNorm</a></p></li>
-<li><p><a class="reference internal" href="#spdbatchnorm" id="id88">SPDBatchNorm</a></p></li>
+<li><p><a class="reference internal" href="#brooksbatchnorm" id="id89">BrooksBatchNorm</a></p></li>
+<li><p><a class="reference internal" href="#spdbatchnorm" id="id90">SPDBatchNorm</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#regularization-layers" id="id89">Regularization Layers</a></p>
+<li><p><a class="reference internal" href="#regularization-layers" id="id91">Regularization Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#shrinkage" id="id90">Shrinkage</a></p></li>
-<li><p><a class="reference internal" href="#tracenorm" id="id91">TraceNorm</a></p></li>
-<li><p><a class="reference internal" href="#spddropout" id="id92">SPDDropout</a></p></li>
+<li><p><a class="reference internal" href="#shrinkage" id="id92">Shrinkage</a></p></li>
+<li><p><a class="reference internal" href="#tracenorm" id="id93">TraceNorm</a></p></li>
+<li><p><a class="reference internal" href="#spddropout" id="id94">SPDDropout</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#utility-layers" id="id93">Utility Layers</a></p>
+<li><p><a class="reference internal" href="#utility-layers" id="id95">Utility Layers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#vec-and-vech" id="id94">Vec and Vech</a></p></li>
-<li><p><a class="reference internal" href="#patchembeddinglayer" id="id95">PatchEmbeddingLayer</a></p></li>
+<li><p><a class="reference internal" href="#vec-and-vech" id="id96">Vec and Vech</a></p></li>
+<li><p><a class="reference internal" href="#patchembeddinglayer" id="id97">PatchEmbeddingLayer</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#typical-network-architecture" id="id96">Typical Network Architecture</a></p></li>
-<li><p><a class="reference internal" href="#layer-selection-guide" id="id97">Layer Selection Guide</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id98">References</a></p></li>
+<li><p><a class="reference internal" href="#typical-network-architecture" id="id98">Typical Network Architecture</a></p></li>
+<li><p><a class="reference internal" href="#layer-selection-guide" id="id99">Layer Selection Guide</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id100">References</a></p></li>
 </ul>
 </nav>
 <section id="overview-the-spd-layer-zoo">
-<h2><a class="toc-backref" href="#id75" role="doc-backlink">Overview: The SPD Layer Zoo</a><a class="headerlink" href="#overview-the-spd-layer-zoo" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id77" role="doc-backlink">Overview: The SPD Layer Zoo</a><a class="headerlink" href="#overview-the-spd-layer-zoo" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides specialized layers organized into categories:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
@@ -588,10 +588,10 @@ matrices while preserving their geometric structure.</p>
 </div>
 </section>
 <section id="covariance-layer">
-<h2><a class="toc-backref" href="#id76" role="doc-backlink">Covariance Layer</a><a class="headerlink" href="#covariance-layer" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id78" role="doc-backlink">Covariance Layer</a><a class="headerlink" href="#covariance-layer" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Transform raw multivariate signals into SPD covariance matrices.</p>
 <section id="covlayer">
-<h3><a class="toc-backref" href="#id77" role="doc-backlink">CovLayer</a><a class="headerlink" href="#covlayer" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id79" role="doc-backlink">CovLayer</a><a class="headerlink" href="#covlayer" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../generated/covariance/spd_learn.modules.CovLayer.html#spd_learn.modules.CovLayer" title="spd_learn.modules.CovLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CovLayer</span></code></a> computes the covariance matrix of input signals:</p>
 <div class="math notranslate nohighlight">
 \[\Sigma = \frac{1}{T-1} (X - \bar{X})(X - \bar{X})^\top\]</div>
@@ -616,11 +616,11 @@ and <span class="math notranslate nohighlight">\(T\)</span> time samples.</p>
 </section>
 </section>
 <section id="bilinear-mapping-layers">
-<h2><a class="toc-backref" href="#id78" role="doc-backlink">Bilinear Mapping Layers</a><a class="headerlink" href="#bilinear-mapping-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id80" role="doc-backlink">Bilinear Mapping Layers</a><a class="headerlink" href="#bilinear-mapping-layers" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Reduce or increase the dimension of SPD matrices while preserving
 the SPD property.</p>
 <section id="bimap">
-<h3><a class="toc-backref" href="#id79" role="doc-backlink">BiMap</a><a class="headerlink" href="#bimap" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id81" role="doc-backlink">BiMap</a><a class="headerlink" href="#bimap" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../generated/bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a> layer performs a bilinear congruence transformation:</p>
 <div class="math notranslate nohighlight">
 \[Y = W^\top X W\]</div>
@@ -657,7 +657,7 @@ the SPD property.</p>
 </ul>
 </section>
 <section id="bimapincreasedim">
-<h3><a class="toc-backref" href="#id80" role="doc-backlink">BiMapIncreaseDim</a><a class="headerlink" href="#bimapincreasedim" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id82" role="doc-backlink">BiMapIncreaseDim</a><a class="headerlink" href="#bimapincreasedim" title="Link to this heading">#</a></h3>
 <p>For <strong>dimension expansion</strong> (when <code class="docutils literal notranslate"><span class="pre">out_features</span> <span class="pre">&gt;</span> <span class="pre">in_features</span></code>), <a class="reference internal" href="../generated/bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a>
 automatically uses <a class="reference internal" href="../generated/bilinear/spd_learn.modules.BiMapIncreaseDim.html#spd_learn.modules.BiMapIncreaseDim" title="spd_learn.modules.BiMapIncreaseDim"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMapIncreaseDim</span></code></a> internally:</p>
 <div class="math notranslate nohighlight">
@@ -667,10 +667,10 @@ projection.</p>
 </section>
 </section>
 <section id="nonlinearity-layers">
-<h2><a class="toc-backref" href="#id81" role="doc-backlink">Nonlinearity Layers</a><a class="headerlink" href="#nonlinearity-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id83" role="doc-backlink">Nonlinearity Layers</a><a class="headerlink" href="#nonlinearity-layers" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Introduce nonlinearity while maintaining the SPD constraint.</p>
 <section id="reeig-rectified-eigenvalues">
-<h3><a class="toc-backref" href="#id82" role="doc-backlink">ReEig (Rectified Eigenvalues)</a><a class="headerlink" href="#reeig-rectified-eigenvalues" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id84" role="doc-backlink">ReEig (Rectified Eigenvalues)</a><a class="headerlink" href="#reeig-rectified-eigenvalues" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a> layer is the <strong>ReLU of SPD networks</strong>. It clamps small eigenvalues
 to a threshold <span class="math notranslate nohighlight">\(\varepsilon\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -700,10 +700,10 @@ to a threshold <span class="math notranslate nohighlight">\(\varepsilon\)</span>
 </section>
 </section>
 <section id="projection-layers">
-<h2><a class="toc-backref" href="#id83" role="doc-backlink">Projection Layers</a><a class="headerlink" href="#projection-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id85" role="doc-backlink">Projection Layers</a><a class="headerlink" href="#projection-layers" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Map between the SPD manifold and the tangent space (Euclidean).</p>
 <section id="logeig-logarithmic-eigenvalues">
-<h3><a class="toc-backref" href="#id84" role="doc-backlink">LogEig (Logarithmic Eigenvalues)</a><a class="headerlink" href="#logeig-logarithmic-eigenvalues" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id86" role="doc-backlink">LogEig (Logarithmic Eigenvalues)</a><a class="headerlink" href="#logeig-logarithmic-eigenvalues" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a> layer projects SPD matrices to the tangent space at the identity:</p>
 <div class="math notranslate nohighlight">
 \[\log(X) = U \log(\Lambda) U^\top\]</div>
@@ -729,7 +729,7 @@ to vector space where standard classifiers can be applied.</p>
 output has dimension <span class="math notranslate nohighlight">\(\frac{n(n+1)}{2}\)</span>.</p>
 </section>
 <section id="expeig-exponential-eigenvalues">
-<h3><a class="toc-backref" href="#id85" role="doc-backlink">ExpEig (Exponential Eigenvalues)</a><a class="headerlink" href="#expeig-exponential-eigenvalues" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id87" role="doc-backlink">ExpEig (Exponential Eigenvalues)</a><a class="headerlink" href="#expeig-exponential-eigenvalues" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../generated/modeig/spd_learn.modules.ExpEig.html#spd_learn.modules.ExpEig" title="spd_learn.modules.ExpEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExpEig</span></code></a> layer is the inverse of <a class="reference internal" href="../generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a>, mapping from tangent space
 back to the manifold:</p>
 <div class="math notranslate nohighlight">
@@ -745,10 +745,10 @@ back to the manifold:</p>
 </section>
 </section>
 <section id="batch-normalization-layers">
-<h2><a class="toc-backref" href="#id86" role="doc-backlink">Batch Normalization Layers</a><a class="headerlink" href="#batch-normalization-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id88" role="doc-backlink">Batch Normalization Layers</a><a class="headerlink" href="#batch-normalization-layers" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Normalize batches of SPD matrices while respecting Riemannian geometry.</p>
 <section id="brooksbatchnorm">
-<h3><a class="toc-backref" href="#id87" role="doc-backlink">BrooksBatchNorm</a><a class="headerlink" href="#brooksbatchnorm" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id89" role="doc-backlink">BrooksBatchNorm</a><a class="headerlink" href="#brooksbatchnorm" title="Link to this heading">#</a></h3>
 <p>Implements Riemannian Batch Normalization from <span id="id1">Brooks <em>et al.</em> [<a class="reference internal" href="../user_guide.html#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">2019</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{P}_i = \mathcal{G}^{-\frac{1}{2}} P_i \mathcal{G}^{-\frac{1}{2}}\]</div>
@@ -761,7 +761,7 @@ back to the manifold:</p>
 </div>
 </section>
 <section id="spdbatchnorm">
-<h3><a class="toc-backref" href="#id88" role="doc-backlink">SPDBatchNorm</a><a class="headerlink" href="#spdbatchnorm" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id90" role="doc-backlink">SPDBatchNorm</a><a class="headerlink" href="#spdbatchnorm" title="Link to this heading">#</a></h3>
 <p>Extends <a class="reference internal" href="../generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> with <strong>dispersion normalization</strong> from <span id="id2">Kobler <em>et al.</em> [<a class="reference internal" href="../user_guide.html#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">2022</a>]</span>:</p>
 <ol class="arabic simple">
 <li><p><strong>Centering</strong>: Same as BrooksBatchNorm</p></li>
@@ -787,10 +787,10 @@ subjects/sessions have varying signal scales.</p>
 </section>
 </section>
 <section id="regularization-layers">
-<h2><a class="toc-backref" href="#id89" role="doc-backlink">Regularization Layers</a><a class="headerlink" href="#regularization-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id91" role="doc-backlink">Regularization Layers</a><a class="headerlink" href="#regularization-layers" title="Link to this heading">#</a></h2>
 <p><strong>Purpose</strong>: Regularize covariance matrices for stability and robustness.</p>
 <section id="shrinkage">
-<h3><a class="toc-backref" href="#id90" role="doc-backlink">Shrinkage</a><a class="headerlink" href="#shrinkage" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id92" role="doc-backlink">Shrinkage</a><a class="headerlink" href="#shrinkage" title="Link to this heading">#</a></h3>
 <p>Applies Ledoit-Wolf-style shrinkage to covariance matrices:</p>
 <div class="math notranslate nohighlight">
 \[\Sigma_{\text{reg}} = (1 - \alpha) \Sigma + \alpha \cdot \text{tr}(\Sigma) / n \cdot I\]</div>
@@ -808,7 +808,7 @@ subjects/sessions have varying signal scales.</p>
 </ul>
 </section>
 <section id="tracenorm">
-<h3><a class="toc-backref" href="#id91" role="doc-backlink">TraceNorm</a><a class="headerlink" href="#tracenorm" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id93" role="doc-backlink">TraceNorm</a><a class="headerlink" href="#tracenorm" title="Link to this heading">#</a></h3>
 <p>Normalizes matrices to have unit trace:</p>
 <div class="math notranslate nohighlight">
 \[\hat{X} = \frac{X}{\text{tr}(X)}\]</div>
@@ -819,7 +819,7 @@ subjects/sessions have varying signal scales.</p>
 </div>
 </section>
 <section id="spddropout">
-<h3><a class="toc-backref" href="#id92" role="doc-backlink">SPDDropout</a><a class="headerlink" href="#spddropout" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id94" role="doc-backlink">SPDDropout</a><a class="headerlink" href="#spddropout" title="Link to this heading">#</a></h3>
 <p>Dropout for SPD matrices. During training, randomly sets channels to a scaled
 identity:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPDDropout</span>
@@ -830,9 +830,9 @@ identity:</p>
 </section>
 </section>
 <section id="utility-layers">
-<h2><a class="toc-backref" href="#id93" role="doc-backlink">Utility Layers</a><a class="headerlink" href="#utility-layers" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id95" role="doc-backlink">Utility Layers</a><a class="headerlink" href="#utility-layers" title="Link to this heading">#</a></h2>
 <section id="vec-and-vech">
-<h3><a class="toc-backref" href="#id94" role="doc-backlink">Vec and Vech</a><a class="headerlink" href="#vec-and-vech" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id96" role="doc-backlink">Vec and Vech</a><a class="headerlink" href="#vec-and-vech" title="Link to this heading">#</a></h3>
 <p>Vectorization operations for symmetric matrices:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../generated/utils/spd_learn.modules.Vec.html#spd_learn.modules.Vec" title="spd_learn.modules.Vec"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vec</span></code></a>: Full matrix vectorization</p></li>
@@ -851,7 +851,7 @@ identity:</p>
 </div>
 </section>
 <section id="patchembeddinglayer">
-<h3><a class="toc-backref" href="#id95" role="doc-backlink">PatchEmbeddingLayer</a><a class="headerlink" href="#patchembeddinglayer" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id97" role="doc-backlink">PatchEmbeddingLayer</a><a class="headerlink" href="#patchembeddinglayer" title="Link to this heading">#</a></h3>
 <p>Creates patch embeddings from input signals (for transformer-style architectures):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">PatchEmbeddingLayer</span>
 
@@ -862,7 +862,7 @@ identity:</p>
 </section>
 </section>
 <section id="typical-network-architecture">
-<h2><a class="toc-backref" href="#id96" role="doc-backlink">Typical Network Architecture</a><a class="headerlink" href="#typical-network-architecture" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id98" role="doc-backlink">Typical Network Architecture</a><a class="headerlink" href="#typical-network-architecture" title="Link to this heading">#</a></h2>
 <p>A standard SPDNet <span id="id3">[<a class="reference internal" href="../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> follows this pipeline:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw Signal → CovLayer → Shrinkage → BiMap → ReEig → BiMap → ReEig → LogEig → Linear
 </pre></div>
@@ -899,7 +899,7 @@ identity:</p>
 </div>
 </section>
 <section id="layer-selection-guide">
-<h2><a class="toc-backref" href="#id97" role="doc-backlink">Layer Selection Guide</a><a class="headerlink" href="#layer-selection-guide" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id99" role="doc-backlink">Layer Selection Guide</a><a class="headerlink" href="#layer-selection-guide" title="Link to this heading">#</a></h2>
 <p><strong>When to use which layer:</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
@@ -935,7 +935,7 @@ identity:</p>
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id98" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id100" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <div role="list" class="citation-list">
 <div class="citation" id="id13" role="doc-biblioentry">

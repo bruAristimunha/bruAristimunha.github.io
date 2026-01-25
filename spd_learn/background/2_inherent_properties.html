@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -552,7 +552,7 @@ conductivity) and <span class="math notranslate nohighlight">\(\mathbf{s}(t)\)</
 </ul>
 <p><strong>The solution</strong>: The Riemannian distance between covariance matrices remains consistent despite
 these variations, making classification and analysis robust to session/subject-specific mixing
-matrices.</p>
+matrices <span id="id2">[<a class="reference internal" href="../references.html#id74" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span>.</p>
 </section>
 </section>
 <section id="example-affine-invariance">
@@ -589,7 +589,7 @@ significantly from distribution centers, making it more robust for neuroimaging 
 artifacts and noise are common.</p>
 <section id="geometric-vs-arithmetic-mean">
 <h3>Geometric vs. Arithmetic Mean<a class="headerlink" href="#geometric-vs-arithmetic-mean" title="Link to this heading">#</a></h3>
-<p><em>This section draws from the detailed exposition in</em> <span id="id2">Congedo <em>et al.</em> [<a class="reference internal" href="../references.html#id24" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">2017</a>]</span>.</p>
+<p><em>This section draws from the detailed exposition in</em> <span id="id3">Congedo <em>et al.</em> [<a class="reference internal" href="../references.html#id24" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">2017</a>]</span>.</p>
 <p>For a set of SPD matrices <span class="math notranslate nohighlight">\(\{\mathbf{P}_1, \ldots, \mathbf{P}_N\}\)</span>:</p>
 <p><strong>Arithmetic mean</strong> (Euclidean):</p>
 <div class="math notranslate nohighlight" id="equation-arithmetic-mean">
@@ -649,7 +649,7 @@ frequency <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
 <section id="connection-to-classical-features">
 <h3>Connection to Classical Features<a class="headerlink" href="#connection-to-classical-features" title="Link to this heading">#</a></h3>
-<p><em>This section is based on the treatment presented in</em> <span id="id3">Congedo <em>et al.</em> [<a class="reference internal" href="../references.html#id24" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">2017</a>]</span>.</p>
+<p><em>This section is based on the treatment presented in</em> <span id="id4">Congedo <em>et al.</em> [<a class="reference internal" href="../references.html#id24" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">2017</a>]</span>.</p>
 <p>The diagonal elements of <span class="math notranslate nohighlight">\(\mathbf{C}_f^{(i)}\)</span> correspond to the power spectral density (PSD)
 at each channel. The classical log-PSD features can be extracted as:</p>
 <div class="math notranslate nohighlight" id="equation-log-psd">
@@ -759,12 +759,16 @@ and limited sample sizes</p></li>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
-<div class="docutils container" id="id4">
+<div class="docutils container" id="id5">
 <div role="list" class="citation-list">
-<div class="citation" id="id26" role="doc-biblioentry">
+<div class="citation" id="id27" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>)</span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id3">2</a>,<a role="doc-backlink" href="#id4">3</a>)</span>
 <p>Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. <em>Brain-Computer Interfaces</em>, 4(3):155–174, 2017. <a class="reference external" href="https://doi.org/10.1080/2326263X.2017.1297192">doi:10.1080/2326263X.2017.1297192</a>.</p>
+</div>
+<div class="citation" id="id77" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. <em>IEEE Transactions on Biomedical Engineering</em>, 65(5):1107–1116, 2017.</p>
 </div>
 </div>
 </div>

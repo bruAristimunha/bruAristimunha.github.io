@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -60,7 +60,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Applied Examples" href="../applied_examples/index.html" />
-    <link rel="prev" title="LogEig Layer Animation" href="plot_logeig_animation.html" />
+    <link rel="prev" title="SPD Batch Normalization Animation" href="plot_batchnorm_animation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.0" />
@@ -417,10 +417,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">SPD Layer Visualizations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_logeig_animation.html">LogEig: Linearization and the Swelling Effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_bimap_animation.html">BiMap Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_reeig_animation.html">ReEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_batchnorm_animation.html">SPD Batch Normalization Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_logeig_animation.html">LogEig Layer Animation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">CovLayer Animation</a></li>
 </ul>
 </details></li>
@@ -1215,42 +1215,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img42796322232042e1a69c56c06685cd20">
+  <img id="_anim_img711b34fdbaaf44c499f216aec6acd042">
   <div class="anim-controls">
-    <input id="_anim_slider42796322232042e1a69c56c06685cd20" type="range" class="anim-slider"
+    <input id="_anim_slider711b34fdbaaf44c499f216aec6acd042" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim42796322232042e1a69c56c06685cd20.set_frame(parseInt(this.value));">
+           oninput="anim711b34fdbaaf44c499f216aec6acd042.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim42796322232042e1a69c56c06685cd20.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim711b34fdbaaf44c499f216aec6acd042.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim42796322232042e1a69c56c06685cd20.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim711b34fdbaaf44c499f216aec6acd042.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim42796322232042e1a69c56c06685cd20.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim711b34fdbaaf44c499f216aec6acd042.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim42796322232042e1a69c56c06685cd20.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim711b34fdbaaf44c499f216aec6acd042.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim42796322232042e1a69c56c06685cd20.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim711b34fdbaaf44c499f216aec6acd042.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim42796322232042e1a69c56c06685cd20.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim711b34fdbaaf44c499f216aec6acd042.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim42796322232042e1a69c56c06685cd20.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim711b34fdbaaf44c499f216aec6acd042.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim42796322232042e1a69c56c06685cd20.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim711b34fdbaaf44c499f216aec6acd042.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim42796322232042e1a69c56c06685cd20.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim711b34fdbaaf44c499f216aec6acd042.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select42796322232042e1a69c56c06685cd20"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select711b34fdbaaf44c499f216aec6acd042"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_42796322232042e1a69c56c06685cd20"
+      <input type="radio" name="state" value="once" id="_anim_radio1_711b34fdbaaf44c499f216aec6acd042"
              >
-      <label for="_anim_radio1_42796322232042e1a69c56c06685cd20">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_42796322232042e1a69c56c06685cd20"
+      <label for="_anim_radio1_711b34fdbaaf44c499f216aec6acd042">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_711b34fdbaaf44c499f216aec6acd042"
              checked>
-      <label for="_anim_radio2_42796322232042e1a69c56c06685cd20">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_42796322232042e1a69c56c06685cd20"
+      <label for="_anim_radio2_711b34fdbaaf44c499f216aec6acd042">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_711b34fdbaaf44c499f216aec6acd042"
              >
-      <label for="_anim_radio3_42796322232042e1a69c56c06685cd20">Reflect</label>
+      <label for="_anim_radio3_711b34fdbaaf44c499f216aec6acd042">Reflect</label>
     </form>
   </div>
 </div>
@@ -1260,9 +1260,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img42796322232042e1a69c56c06685cd20";
-    var slider_id = "_anim_slider42796322232042e1a69c56c06685cd20";
-    var loop_select_id = "_anim_loop_select42796322232042e1a69c56c06685cd20";
+    var img_id = "_anim_img711b34fdbaaf44c499f216aec6acd042";
+    var slider_id = "_anim_slider711b34fdbaaf44c499f216aec6acd042";
+    var loop_select_id = "_anim_loop_select711b34fdbaaf44c499f216aec6acd042";
     var frames = new Array(9);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADwCAYAAADcthp2AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -6719,12 +6719,12 @@ rTtr1iyKjY013VdcXJwoo4QfBrh/S5cubbou3NsY8KHe82FhYdS7d2+qVKlSnq+Y2fZoB4LRa9Wq\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim42796322232042e1a69c56c06685cd20 = new Animation(frames, img_id, slider_id, 100.0,
+        anim711b34fdbaaf44c499f216aec6acd042 = new Animation(frames, img_id, slider_id, 100.0,
                                  loop_select_id);
     }, 0);
   })()
 </script></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.763 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.198 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-visualizations-plot-covlayer-animation-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/ea9ec7166ce4239e5843af159df27f8d/plot_covlayer_animation.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_covlayer_animation.ipynb</span></code></a></p>
@@ -6750,12 +6750,12 @@ rTtr1iyKjY013VdcXJwoo4QfBrh/S5cubbou3NsY8KHe82FhYdS7d2+qVKlSnq+Y2fZoB4LRa9Wq\
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="plot_logeig_animation.html"
+       href="plot_batchnorm_animation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">LogEig Layer Animation</p>
+        <p class="prev-next-title">SPD Batch Normalization Animation</p>
       </div>
     </a>
     <a class="right-next"

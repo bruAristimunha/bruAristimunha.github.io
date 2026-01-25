@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -416,10 +416,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../visualizations/index.html">SPD Layer Visualizations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig: Linearization and the Swelling Effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_bimap_animation.html">BiMap Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_reeig_animation.html">ReEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_batchnorm_animation.html">SPD Batch Normalization Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_covlayer_animation.html">CovLayer Animation</a></li>
 </ul>
 </details></li>
@@ -608,7 +608,7 @@ each model achieves optimal performance.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch.optim.lr_scheduler</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ReduceLROnPlateau</span></a>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">EEGSPDNet</span><span class="p">,</span> <span class="n">SPDNet</span><span class="p">,</span> <span class="n">TensorCSPNet</span><span class="p">,</span> <span class="n">TSMNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <a href="../../spd_learn.models.EEGSPDNet.html#spd_learn.models.EEGSPDNet" title="spd_learn.models.EEGSPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EEGSPDNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.SPDNet.html#spd_learn.models.SPDNet" title="spd_learn.models.SPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SPDNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.TensorCSPNet.html#spd_learn.models.TensorCSPNet" title="spd_learn.models.TensorCSPNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TensorCSPNet</span></a><span class="p">,</span> <a href="../../spd_learn.models.TSMNet.html#spd_learn.models.TSMNet" title="spd_learn.models.TSMNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TSMNet</span></a>
 
 
 <a href="https://docs.python.org/3/library/warnings.html#warnings.filterwarnings" title="warnings.filterwarnings" class="sphx-glr-backref-module-warnings sphx-glr-backref-type-py-function"><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span></a><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -967,7 +967,7 @@ This pattern allows easy switching between models via configuration.</p>
 <span class="sd">    &gt;&gt;&gt; model = create_model(&quot;TSMNet&quot;, n_chans=22, n_outputs=4, n_temp_filters=8)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;SPDNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">SPDNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.SPDNet.html#spd_learn.models.SPDNet" title="spd_learn.models.SPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SPDNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">input_type</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input_type&quot;</span><span class="p">,</span> <span class="s2">&quot;raw&quot;</span><span class="p">),</span>
@@ -976,7 +976,7 @@ This pattern allows easy switching between models via configuration.</p>
             <span class="n">upper</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;TSMNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">TSMNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.TSMNet.html#spd_learn.models.TSMNet" title="spd_learn.models.TSMNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TSMNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">n_temp_filters</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_temp_filters&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
@@ -986,7 +986,7 @@ This pattern allows easy switching between models via configuration.</p>
             <span class="n">reeig_threshold</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;reeig_threshold&quot;</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span> <span class="s2">&quot;EEGSPDNet&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">EEGSPDNet</span><span class="p">(</span>
+        <span class="k">return</span> <a href="../../spd_learn.models.EEGSPDNet.html#spd_learn.models.EEGSPDNet" title="spd_learn.models.EEGSPDNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EEGSPDNet</span></a><span class="p">(</span>
             <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
             <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
             <span class="n">n_filters</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_filters&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
@@ -1000,7 +1000,7 @@ This pattern allows easy switching between models via configuration.</p>
         <span class="n">n_freqs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_freqs&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
         <span class="n">model</span> <span class="o">=</span> <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span></a><span class="p">(</span>
             <span class="n">Rearrange</span><span class="p">(</span><span class="s2">&quot;b c t f -&gt; b f c t&quot;</span><span class="p">),</span>
-            <span class="n">TensorCSPNet</span><span class="p">(</span>
+            <a href="../../spd_learn.models.TensorCSPNet.html#spd_learn.models.TensorCSPNet" title="spd_learn.models.TensorCSPNet" class="sphx-glr-backref-module-spd_learn-models sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">TensorCSPNet</span></a><span class="p">(</span>
                 <span class="n">n_chans</span><span class="o">=</span><span class="n">n_chans</span><span class="p">,</span>
                 <span class="n">n_outputs</span><span class="o">=</span><span class="n">n_outputs</span><span class="p">,</span>
                 <span class="n">n_patches</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_patches&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>

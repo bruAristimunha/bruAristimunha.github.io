@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -416,10 +416,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../visualizations/index.html">SPD Layer Visualizations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig: Linearization and the Swelling Effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_bimap_animation.html">BiMap Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_reeig_animation.html">ReEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_batchnorm_animation.html">SPD Batch Normalization Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_covlayer_animation.html">CovLayer Animation</a></li>
 </ul>
 </details></li>
@@ -695,40 +695,7 @@ the covariance matrix estimation. Ensure clean data before training.</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Testing (Session 2): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">test_idx</span></a><span class="p">)</span><span class="si">}</span><span class="s2"> trials&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Writing &#39;/Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/dataset_description.json&#39;...
-Writing &#39;/Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/participants.tsv&#39;...
-Writing &#39;/Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/participants.json&#39;...
-Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-02ea329 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=8, h_freq=32, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-Executing the following operations:
-
-Writing &#39;/Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/dataset_description.json&#39;...
-Writing &#39;/Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/dataset_description.json&#39;...
-
-Data loaded for Subject 1:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data loaded for Subject 1:
   Shape: (576, 22, 1001) (trials, channels, timepoints)
   Sampling rate: 250 Hz
   Epoch length: 4.0 seconds
@@ -765,7 +732,7 @@ Here’s a guide to help you choose:</p>
 <li><p>Cons: More memory intensive</p></li>
 <li><p>Use when: Channels have different characteristics</p></li>
 </ul>
-<p><strong>TensorCSPNet</strong> <span id="id5">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022.">Ju and Guan, 2022</a>]</span> - Multi-Frequency Analysis</p>
+<p><strong>TensorCSPNet</strong> <span id="id5">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> - Multi-Frequency Analysis</p>
 <ul class="simple">
 <li><p>Best for: Filter bank approaches with multiple frequency bands</p></li>
 <li><p>Pros: Captures frequency-specific spatial patterns</p></li>
@@ -1427,7 +1394,7 @@ If your model isn&#39;t working:
 <li><p>Explore domain adaptation with TSMNet’s SPDBatchNorm</p></li>
 <li><p>Implement your own preprocessing pipeline for specific needs</p></li>
 </ul>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 26.649 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 58.120 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-tutorials-tutorial-03-eeg-classification-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/b1bd940e7a93dd04253a67db05f33a47/tutorial_03_eeg_classification.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tutorial_03_eeg_classification.ipynb</span></code></a></p>

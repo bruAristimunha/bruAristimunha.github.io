@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -416,10 +416,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../visualizations/index.html">SPD Layer Visualizations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig: Linearization and the Swelling Effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_bimap_animation.html">BiMap Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_reeig_animation.html">ReEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_batchnorm_animation.html">SPD Batch Normalization Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_covlayer_animation.html">CovLayer Animation</a></li>
 </ul>
 </details></li>
@@ -533,7 +533,7 @@ a motor action without actually executing it. EEG-based brain-computer
 interfaces (BCIs) can decode these imagined movements to control devices.</p>
 <p>Filter bank approaches decompose the EEG signal into multiple frequency
 bands, allowing the model to capture frequency-specific spatial patterns.
-TensorCSPNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022.">Ju and Guan, 2022</a>]</span> leverages this by creating SPD (Symmetric
+TensorCSPNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> leverages this by creating SPD (Symmetric
 Positive
 Definite) covariance matrices for each frequency band and processing
 them through a geometry-aware neural network.</p>
@@ -648,16 +648,16 @@ Frequency bands (Hz):
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of classes: 4 (left hand, right hand, feet, tongue)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2026-01-23 14:42:41,508 WARNING MainThread moabb.paradigms.motor_imagery Choosing from all possible events
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2026-01-25 15:49:40,901 WARNING MainThread moabb.paradigms.motor_imagery Choosing from all possible events
 
-Paradigm: &lt;moabb.paradigms.motor_imagery.FilterBankMotorImagery object at 0x16a720e90&gt;
+Paradigm: &lt;moabb.paradigms.motor_imagery.FilterBankMotorImagery object at 0x16cd33950&gt;
 Number of classes: 4 (left hand, right hand, feet, tongue)
 </pre></div>
 </div>
 </section>
 <section id="creating-the-tensorcspnet-model">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Creating the TensorCSPNet Model</a><a class="headerlink" href="#creating-the-tensorcspnet-model" title="Link to this heading">#</a></h2>
-<p>TensorCSPNet <span id="id4">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022.">Ju and Guan, 2022</a>]</span> is a deep learning architecture designed
+<p>TensorCSPNet <span id="id4">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> is a deep learning architecture designed
 for filter
 bank EEG classification. The architecture consists of:</p>
 <ol class="arabic simple">
@@ -862,394 +862,52 @@ per subject, depending on your hardware.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================
 Evaluating Subject 1
 ==================================================
-2026-01-23 14:42:41,532 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7...
-2026-01-23 14:42:41,610 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:41,625 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-8083da0...
-2026-01-23 14:42:41,669 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:41,669 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-abae374...
-2026-01-23 14:42:41,672 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:41,672 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:41,673 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:43,431 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-abae374
-2026-01-23 14:42:43,541 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-abae374 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=4, h_freq=8, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:43,541 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-abae374...
-2026-01-23 14:42:43,557 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-abae374.
-2026-01-23 14:42:43,656 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-8083da0
-2026-01-23 14:42:44,028 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-8083da0 to disk.
-2026-01-23 14:42:44,065 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7
-2026-01-23 14:42:44,456 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7 to disk.
-2026-01-23 14:42:44,477 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c...
-2026-01-23 14:42:44,533 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:44,546 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3da33d8...
-2026-01-23 14:42:44,595 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:44,595 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-97d39f9...
-2026-01-23 14:42:44,597 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:44,597 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:44,599 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:46,032 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-97d39f9
-2026-01-23 14:42:46,110 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-97d39f9 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=8, h_freq=12, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:46,110 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-97d39f9...
-2026-01-23 14:42:46,127 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-97d39f9.
-2026-01-23 14:42:46,217 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3da33d8
-2026-01-23 14:42:46,554 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3da33d8 to disk.
-2026-01-23 14:42:46,590 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c
-2026-01-23 14:42:46,980 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c to disk.
-2026-01-23 14:42:47,000 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f...
-2026-01-23 14:42:47,067 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:47,079 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3b1a9a4...
-2026-01-23 14:42:47,123 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:47,123 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5209998...
-2026-01-23 14:42:47,130 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:47,131 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:47,132 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:48,551 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5209998
-2026-01-23 14:42:48,627 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5209998 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=12, h_freq=16, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:48,628 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5209998...
-2026-01-23 14:42:48,644 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5209998.
-2026-01-23 14:42:48,730 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3b1a9a4
-2026-01-23 14:42:49,074 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-3b1a9a4 to disk.
-2026-01-23 14:42:49,112 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f
-2026-01-23 14:42:49,487 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f to disk.
-2026-01-23 14:42:49,506 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179...
-2026-01-23 14:42:49,566 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:49,579 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-9449d93...
-2026-01-23 14:42:49,620 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:49,620 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-3bd7c02...
-2026-01-23 14:42:49,623 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:49,623 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:49,625 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:50,975 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-3bd7c02
-2026-01-23 14:42:51,080 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-3bd7c02 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=16, h_freq=20, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:51,080 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-3bd7c02...
-2026-01-23 14:42:51,097 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-3bd7c02.
-2026-01-23 14:42:51,189 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-9449d93
-2026-01-23 14:42:51,516 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-9449d93 to disk.
-2026-01-23 14:42:51,549 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179
-2026-01-23 14:42:51,931 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179 to disk.
-2026-01-23 14:42:51,950 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb...
-2026-01-23 14:42:52,014 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:52,028 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-b6328dc...
-2026-01-23 14:42:52,072 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:52,072 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-8acd516...
-2026-01-23 14:42:52,075 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:52,076 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:52,077 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:53,456 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-8acd516
-2026-01-23 14:42:53,537 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-8acd516 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=20, h_freq=24, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:53,537 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-8acd516...
-2026-01-23 14:42:53,554 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-8acd516.
-2026-01-23 14:42:53,638 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-b6328dc
-2026-01-23 14:42:53,944 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-b6328dc to disk.
-2026-01-23 14:42:53,992 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb
-2026-01-23 14:42:54,436 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb to disk.
-2026-01-23 14:42:54,454 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a...
-2026-01-23 14:42:54,513 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:54,526 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-048a1da...
-2026-01-23 14:42:54,571 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:54,571 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5a5a5b3...
-2026-01-23 14:42:54,573 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:54,573 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:54,575 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:56,034 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5a5a5b3
-2026-01-23 14:42:56,107 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5a5a5b3 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=24, h_freq=28, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:56,108 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5a5a5b3...
-2026-01-23 14:42:56,126 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-5a5a5b3.
-2026-01-23 14:42:56,217 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-048a1da
-2026-01-23 14:42:56,581 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-048a1da to disk.
-2026-01-23 14:42:56,616 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a
-2026-01-23 14:42:56,998 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a to disk.
-2026-01-23 14:42:57,016 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a...
-2026-01-23 14:42:57,073 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:57,086 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-0e1ee9a...
-2026-01-23 14:42:57,125 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:57,126 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-350b40f...
-2026-01-23 14:42:57,128 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:57,128 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:57,130 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:58,528 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-350b40f
-2026-01-23 14:42:58,613 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-350b40f to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=28, h_freq=32, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:42:58,614 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-350b40f...
-2026-01-23 14:42:58,633 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-350b40f.
-2026-01-23 14:42:58,728 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-0e1ee9a
-2026-01-23 14:42:59,045 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-0e1ee9a to disk.
-2026-01-23 14:42:59,077 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a
-2026-01-23 14:42:59,475 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a to disk.
-2026-01-23 14:42:59,494 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610...
-2026-01-23 14:42:59,555 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:59,569 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-2c5bbd2...
-2026-01-23 14:42:59,624 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:59,624 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-cc6f517...
-2026-01-23 14:42:59,626 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:42:59,626 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:42:59,628 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:43:01,004 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-cc6f517
-2026-01-23 14:43:01,093 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-cc6f517 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=32, h_freq=36, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:43:01,094 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-cc6f517...
-2026-01-23 14:43:01,111 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-cc6f517.
-2026-01-23 14:43:01,202 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-2c5bbd2
-2026-01-23 14:43:01,515 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-2c5bbd2 to disk.
-2026-01-23 14:43:01,548 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610
-2026-01-23 14:43:01,922 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610 to disk.
-2026-01-23 14:43:01,940 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87...
-2026-01-23 14:43:02,000 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:43:02,014 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-baef94d...
-2026-01-23 14:43:02,055 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:43:02,055 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-487c4d1...
-2026-01-23 14:43:02,058 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:43:02,058 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-c6ddd98...
-2026-01-23 14:43:02,059 INFO MainThread moabb.datasets.bids_interface No cache found at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1.
-2026-01-23 14:43:03,447 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-487c4d1
-2026-01-23 14:43:03,520 WARNING MainThread moabb.datasets.base Failed to save &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-487c4d1 to BIDS format:
-################### Pipeline: ####################
-Pipeline(steps=[(&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 SetRawAnnotations(event_id={&#39;feet&#39;: 3, &#39;left_hand&#39;: 1,
-                                             &#39;right_hand&#39;: 2, &#39;tongue&#39;: 4},
-                                   interval=[2, 6])),
-                (&lt;StepType.RAW: &#39;raw&#39;&gt;,
-                 FunctionTransformer(func=operator.methodcaller(&#39;filter&#39;, l_freq=36, h_freq=40, method=&#39;iir&#39;, picks=&#39;eeg&#39;, verbose=False)))])
-################### Exception: ###################
-Traceback (most recent call last):
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/base.py&quot;, line 588, in _get_single_subject_data_using_cache
-    interface.save(sessions_data)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 261, in save
-    self._write_file(bids_path, obj)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/moabb/datasets/bids_interface.py&quot;, line 351, in _write_file
-    mne_bids.write_raw_bids(
-  File &quot;&lt;decorator-gen-463&gt;&quot;, line 12, in write_raw_bids
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/write.py&quot;, line 2257, in write_raw_bids
-    _write_dig_bids(
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 585, in _write_dig_bids
-    _channels_fun(raw, channels_path, bids_path.datatype, overwrite)
-  File &quot;/Users/bruaristimunha/miniforge3/lib/python3.12/site-packages/mne_bids/dig.py&quot;, line 207, in _write_electrodes_tsv
-    raise RuntimeError(
-RuntimeError: Trying to write electrodes.tsv, but it already exists at /Users/bruaristimunha/mne_data/MNE-BIDS-bnci2014-001/sub-1/ses-0train/eeg/sub-1_ses-0train_space-CapTrak_electrodes.tsv and the contents do not match. You must differentiate this electrodes.tsv file from the existing one, or set &quot;overwrite&quot; to True.
-##################################################
-2026-01-23 14:43:03,521 INFO MainThread moabb.datasets.bids_interface Starting erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-487c4d1...
-2026-01-23 14:43:03,538 INFO MainThread moabb.datasets.bids_interface Finished erasing cache of &#39;BNCI2014-001&#39; sub-1 suffix-eeg desc-487c4d1.
-2026-01-23 14:43:03,629 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-baef94d
-2026-01-23 14:43:03,947 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-epo desc-baef94d to disk.
-2026-01-23 14:43:03,984 INFO MainThread moabb.datasets.bids_interface Starting caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87
-2026-01-23 14:43:04,368 INFO MainThread moabb.datasets.bids_interface Finished caching &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87 to disk.
+2026-01-25 15:49:40,933 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7...
+2026-01-25 15:49:41,186 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7
+2026-01-25 15:49:41,218 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c...
+2026-01-25 15:49:41,461 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c
+2026-01-25 15:49:41,491 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f...
+2026-01-25 15:49:41,750 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f
+2026-01-25 15:49:41,786 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179...
+2026-01-25 15:49:42,063 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179
+2026-01-25 15:49:42,097 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb...
+2026-01-25 15:49:42,343 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb
+2026-01-25 15:49:42,375 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a...
+2026-01-25 15:49:42,660 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a
+2026-01-25 15:49:42,698 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a...
+2026-01-25 15:49:42,970 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a
+2026-01-25 15:49:43,005 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610...
+2026-01-25 15:49:43,267 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610
+2026-01-25 15:49:43,300 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87...
+2026-01-25 15:49:43,695 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87
 Data shape: (576, 22, 1001, 9)
 Labels: [&#39;feet&#39; &#39;left_hand&#39; &#39;right_hand&#39; &#39;tongue&#39;]
 Training samples: 288
 Test samples: 288
-2026-01-23 14:43:04,752 INFO MainThread braindecode.eegneuralnet.EEGClassifier The module passed is already initialized which is not recommended. Instead, you can pass the module class and its parameters separately.
+2026-01-25 15:49:44,440 INFO MainThread braindecode.eegneuralnet.EEGClassifier The module passed is already initialized which is not recommended. Instead, you can pass the module class and its parameters separately.
 For more details, see https://skorch.readthedocs.io/en/stable/user/neuralnet.html#module
 Skipping setting signal-related parameters from data.
   epoch    train_acc    train_loss    valid_acc    valid_loss     dur
 -------  -----------  ------------  -----------  ------------  ------
-      1       0.2852        3.0996       0.2759        3.3176  2.3961
-      2       0.4531        1.4756       0.4828        1.2609  2.4190
-      3       0.7031        0.7801       0.3103        1.2368  2.4619
-      4       0.7969        0.5932       0.5517        0.9098  2.4321
-      5       0.9336        0.3722       0.6897        0.7479  2.4620
-      6       0.9766        0.2523       0.7241        0.7530  2.5781
-      7       0.9961        0.1591       0.6207        0.7179  2.5868
-      8       1.0000        0.1045       0.7586        0.6591  2.5630
-      9       1.0000        0.0720       0.6552        0.6535  2.4609
-     10       1.0000        0.0508       0.6207        0.6779  2.4714
-     11       1.0000        0.0335       0.7241        0.6271  2.4553
-     12       1.0000        0.0275       0.6897        0.7189  2.4634
-     13       1.0000        0.0228       0.6897        0.6273  2.4879
-     14       1.0000        0.0193       0.7586        0.6421  2.5361
-     15       1.0000        0.0168       0.6897        0.6560  2.4644
+      1       0.2891        3.1579       0.2759        2.5562  5.1896
+      2       0.4219        1.5282       0.2414        1.5387  4.5482
+      3       0.6172        0.8249       0.4483        0.9347  4.3030
+      4       0.8203        0.5412       0.6552        0.8104  4.1906
+      5       0.9648        0.3640       0.6207        0.7524  4.3163
+      6       0.9609        0.2975       0.6207        0.7656  4.2533
+      7       0.9961        0.1817       0.6897        0.6523  4.3601
+      8       1.0000        0.1263       0.6897        0.6330  4.4205
+      9       1.0000        0.0935       0.6897        0.6398  4.0795
+     10       1.0000        0.0689       0.7241        0.5934  4.4066
+     11       1.0000        0.0558       0.6207        0.6713  4.1120
+     12       1.0000        0.0458       0.6897        0.6072  4.4094
+     13       1.0000        0.0381       0.6552        0.6591  4.0681
+     14       1.0000        0.0316       0.7241        0.6446  4.0810
+     15       1.0000        0.0254       0.7241        0.5836  4.0759
 
 Results for Subject 1:
-  Train Accuracy: 96.88%
-  Test Accuracy:  74.65%
+  Train Accuracy: 97.22%
+  Test Accuracy:  73.61%
 </pre></div>
 </div>
 </section>
@@ -1313,7 +971,7 @@ different motor imagery classes.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" srcset="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" alt="Confusion Matrix - Subject 1 Test Accuracy: 74.65%" class = "sphx-glr-single-img"/></section>
+<img src="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" srcset="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" alt="Confusion Matrix - Subject 1 Test Accuracy: 73.61%" class = "sphx-glr-single-img"/></section>
 <section id="summary">
 <h2><a class="toc-backref" href="#id16" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we demonstrated how to:</p>
@@ -1326,7 +984,7 @@ different motor imagery classes.</p>
 <p>TensorCSPNet leverages the geometry of SPD matrices to learn
 discriminative spatial filters across multiple frequency bands,
 making it well-suited for motor imagery classification.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 7.009 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 18.075 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-applied-examples-plot-benchmark-filterbank-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d95aa9689f6fb3dd21fcdcf4b54e7853/plot_benchmark_filterbank.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_benchmark_filterbank.ipynb</span></code></a></p>

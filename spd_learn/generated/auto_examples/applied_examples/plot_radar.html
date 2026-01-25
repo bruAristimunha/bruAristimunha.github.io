@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -416,10 +416,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../visualizations/index.html">SPD Layer Visualizations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig: Linearization and the Swelling Effect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_bimap_animation.html">BiMap Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_reeig_animation.html">ReEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_batchnorm_animation.html">SPD Batch Normalization Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_logeig_animation.html">LogEig Layer Animation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualizations/plot_covlayer_animation.html">CovLayer Animation</a></li>
 </ul>
 </details></li>
@@ -1149,26 +1149,26 @@ For more details, see https://skorch.readthedocs.io/en/stable/user/neuralnet.htm
 Skipping setting signal-related parameters from data.
   epoch    train_acc    train_loss    valid_acc    valid_loss     dur
 -------  -----------  ------------  -----------  ------------  ------
-      1       0.8487        0.4020       0.8738        0.3241  0.5086
-      2       0.8763        0.3177       0.8750        0.3055  0.5065
-      3       0.8859        0.2904       0.8858        0.2752  0.5119
-      4       0.8951        0.2682       0.8962        0.2517  0.5113
-      5       0.9007        0.2522       0.9085        0.2360  0.4987
-      6       0.9066        0.2396       0.9105        0.2283  0.4868
-      7       0.9089        0.2311       0.9110        0.2205  0.5444
-      8       0.9124        0.2224       0.9127        0.2122  0.5152
-      9       0.9126        0.2181       0.9112        0.2151  0.4919
-     10       0.9145        0.2133       0.9125        0.2104  0.5473
-     11       0.9156        0.2093       0.9209        0.1989  0.4869
-     12       0.9162        0.2055       0.9206        0.1991  0.4823
-     13       0.9168        0.2040       0.9196        0.1987  0.5315
-     14       0.9175        0.2017       0.9218        0.1934  0.5206
-     15       0.9191        0.1997       0.9191        0.1956  0.5131
-     16       0.9182        0.1991       0.9201        0.1901  0.4862
-     17       0.9195        0.1961       0.9206        0.1948  0.4913
-     18       0.9192        0.1960       0.9157        0.1960  0.4885
-     19       0.9181        0.1952       0.9214        0.1922  0.4951
-     20       0.9201        0.1935       0.9181        0.1890  0.5030
+      1       0.8487        0.4020       0.8738        0.3241  0.7669
+      2       0.8763        0.3177       0.8750        0.3055  0.7536
+      3       0.8859        0.2904       0.8858        0.2752  0.7531
+      4       0.8951        0.2682       0.8962        0.2517  0.7466
+      5       0.9007        0.2522       0.9085        0.2360  0.7456
+      6       0.9066        0.2396       0.9105        0.2283  0.7486
+      7       0.9089        0.2311       0.9110        0.2205  0.7474
+      8       0.9124        0.2224       0.9127        0.2122  0.7472
+      9       0.9126        0.2181       0.9112        0.2151  0.7477
+     10       0.9145        0.2133       0.9125        0.2104  0.7512
+     11       0.9156        0.2093       0.9209        0.1989  0.7577
+     12       0.9162        0.2055       0.9206        0.1991  0.7596
+     13       0.9168        0.2040       0.9196        0.1987  0.7615
+     14       0.9175        0.2017       0.9218        0.1934  0.7491
+     15       0.9191        0.1997       0.9191        0.1956  0.7491
+     16       0.9182        0.1991       0.9201        0.1901  0.7488
+     17       0.9195        0.1961       0.9206        0.1948  0.7530
+     18       0.9192        0.1960       0.9157        0.1960  0.7592
+     19       0.9181        0.1952       0.9214        0.1922  0.7544
+     20       0.9201        0.1935       0.9181        0.1890  0.7523
 
 SPDNet Accuracy: 92.46%
 SPDNet Balanced Accuracy: 92.37%
@@ -1391,7 +1391,7 @@ and SPDNet on real radar data</p></li>
 <li><p>SPDNet learns features directly on the SPD manifold</p></li>
 <li><p>Classification maps reveal spatial patterns in the radar image</p></li>
 </ul>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (32 minutes 1.049 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (44 minutes 37.223 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-applied-examples-plot-radar-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/8c7472e5fe3f94bf257731cc4711a302/plot_radar.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_radar.ipynb</span></code></a></p>

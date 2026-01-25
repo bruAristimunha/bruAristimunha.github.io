@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -468,63 +468,63 @@ behind deep learning on Symmetric Positive Definite (SPD) matrices.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id82">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#what-are-spd-matrices" id="id83">What are SPD Matrices?</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id84">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#what-are-spd-matrices" id="id85">What are SPD Matrices?</a></p>
 <ul>
-<li><p><a class="reference internal" href="#why-riemannian-geometry" id="id84">Why Riemannian Geometry?</a></p></li>
-<li><p><a class="reference internal" href="#visualizing-spd-matrices-as-ellipses" id="id85">Visualizing SPD Matrices as Ellipses</a></p></li>
+<li><p><a class="reference internal" href="#why-riemannian-geometry" id="id86">Why Riemannian Geometry?</a></p></li>
+<li><p><a class="reference internal" href="#visualizing-spd-matrices-as-ellipses" id="id87">Visualizing SPD Matrices as Ellipses</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id8" id="id86">Why Riemannian Geometry?</a></p>
+<li><p><a class="reference internal" href="#id8" id="id88">Why Riemannian Geometry?</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-swelling-effect" id="id87">The Swelling Effect</a></p></li>
-<li><p><a class="reference internal" href="#the-spd-manifold-structure" id="id88">The SPD Manifold Structure</a></p></li>
+<li><p><a class="reference internal" href="#the-swelling-effect" id="id89">The Swelling Effect</a></p></li>
+<li><p><a class="reference internal" href="#the-spd-manifold-structure" id="id90">The SPD Manifold Structure</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#package-architecture" id="id89">Package Architecture</a></p></li>
-<li><p><a class="reference internal" href="#neural-network-modules" id="id90">Neural Network Modules</a></p>
+<li><p><a class="reference internal" href="#package-architecture" id="id91">Package Architecture</a></p></li>
+<li><p><a class="reference internal" href="#neural-network-modules" id="id92">Neural Network Modules</a></p>
 <ul>
-<li><p><a class="reference internal" href="#covlayer-computing-covariances" id="id91">CovLayer: Computing Covariances</a></p></li>
-<li><p><a class="reference internal" href="#bimap-layer-bilinear-mapping" id="id92">BiMap Layer: Bilinear Mapping</a></p></li>
-<li><p><a class="reference internal" href="#reeig-layer-rectified-eigenvalues" id="id93">ReEig Layer: Rectified Eigenvalues</a></p></li>
-<li><p><a class="reference internal" href="#logeig-layer-tangent-space-projection" id="id94">LogEig Layer: Tangent Space Projection</a></p></li>
-<li><p><a class="reference internal" href="#batch-normalization" id="id95">Batch Normalization</a></p></li>
+<li><p><a class="reference internal" href="#covlayer-computing-covariances" id="id93">CovLayer: Computing Covariances</a></p></li>
+<li><p><a class="reference internal" href="#bimap-layer-bilinear-mapping" id="id94">BiMap Layer: Bilinear Mapping</a></p></li>
+<li><p><a class="reference internal" href="#reeig-layer-rectified-eigenvalues" id="id95">ReEig Layer: Rectified Eigenvalues</a></p></li>
+<li><p><a class="reference internal" href="#logeig-layer-tangent-space-projection" id="id96">LogEig Layer: Tangent Space Projection</a></p></li>
+<li><p><a class="reference internal" href="#batch-normalization" id="id97">Batch Normalization</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#typical-spdnet-pipeline" id="id96">Typical SPDNet Pipeline</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-operations" id="id97">Log-Euclidean Operations</a></p>
+<li><p><a class="reference internal" href="#typical-spdnet-pipeline" id="id98">Typical SPDNet Pipeline</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-operations" id="id99">Log-Euclidean Operations</a></p>
 <ul>
-<li><p><a class="reference internal" href="#matrix-logarithm-and-exponential" id="id98">Matrix Logarithm and Exponential</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-distance" id="id99">Log-Euclidean Distance</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-mean" id="id100">Log-Euclidean Mean</a></p></li>
+<li><p><a class="reference internal" href="#matrix-logarithm-and-exponential" id="id100">Matrix Logarithm and Exponential</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-distance" id="id101">Log-Euclidean Distance</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-mean" id="id102">Log-Euclidean Mean</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#available-models" id="id101">Available Models</a></p></li>
-<li><p><a class="reference internal" href="#integration-with-ecosystems" id="id102">Integration with Ecosystems</a></p>
+<li><p><a class="reference internal" href="#available-models" id="id103">Available Models</a></p></li>
+<li><p><a class="reference internal" href="#integration-with-ecosystems" id="id104">Integration with Ecosystems</a></p>
 <ul>
-<li><p><a class="reference internal" href="#moabb-eeg" id="id103">MOABB (EEG)</a></p></li>
-<li><p><a class="reference internal" href="#nilearn-fmri" id="id104">Nilearn (fMRI)</a></p></li>
+<li><p><a class="reference internal" href="#moabb-eeg" id="id105">MOABB (EEG)</a></p></li>
+<li><p><a class="reference internal" href="#nilearn-fmri" id="id106">Nilearn (fMRI)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#next-steps" id="id105">Next Steps</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id106">References</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id107">Next Steps</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id108">References</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id82" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id84" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides a principled neural network framework for learning from
 covariance representations by exploiting the geometry of the space of
 Symmetric Positive Definite (SPD) matrices <span id="id2">[<a class="reference internal" href="#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. By capturing
 second-order statistics while preserving geometric structure, SPDNet
 architectures have been successfully applied to:</p>
 <ul class="simple">
-<li><p><strong>EEG-based brain-computer interfaces</strong> <span id="id3">[<a class="reference internal" href="#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022.">Ju and Guan, 2022</a>]</span>, <span id="id4">[<a class="reference internal" href="#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, <span id="id5">[<a class="reference internal" href="#id24" title="Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara* <em>et al.</em>, 2024</a>]</span></p></li>
+<li><p><strong>EEG-based brain-computer interfaces</strong> <span id="id3">[<a class="reference internal" href="#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span>, <span id="id4">[<a class="reference internal" href="#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, <span id="id5">[<a class="reference internal" href="#id24" title="Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara* <em>et al.</em>, 2024</a>]</span></p></li>
 <li><p><strong>Neuroimaging analysis</strong> (fMRI functional connectivity) <span id="id6">[<a class="reference internal" href="#id25" title="Antoine Collas, Ce Ju, Nicolas Salvy, and Bertrand Thirion. Riemannian flow matching for brain connectivity matrices via pullback geometry. In The Thirty-ninth Annual Conference on Neural Information Processing Systems. 2025. URL: https://openreview.net/forum?id=NY3LzmUXl7.">Collas <em>et al.</em>, 2025</a>]</span></p></li>
 <li><p><strong>Signal processing tasks</strong> <span id="id7">[<a class="reference internal" href="#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
 </ul>
 </section>
 <section id="what-are-spd-matrices">
-<h2><a class="toc-backref" href="#id83" role="doc-backlink">What are SPD Matrices?</a><a class="headerlink" href="#what-are-spd-matrices" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id85" role="doc-backlink">What are SPD Matrices?</a><a class="headerlink" href="#what-are-spd-matrices" title="Link to this heading">#</a></h2>
 <p>A Symmetric Positive Definite (SPD) matrix is a square matrix <span class="math notranslate nohighlight">\(X\)</span> that is:</p>
 <ol class="arabic simple">
 <li><p><strong>Symmetric</strong>: <span class="math notranslate nohighlight">\(X = X^\top\)</span></p></li>
@@ -539,7 +539,7 @@ different brain regions (fMRI) or electrode channels (EEG).</p>
 \[\Sigma = \frac{1}{T-1} \sum_{t=1}^{T} (x_t - \bar{x})(x_t - \bar{x})^\top\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_t \in \mathbb{R}^n\)</span> are the observations and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is their mean.</p>
 <section id="why-riemannian-geometry">
-<h3><a class="toc-backref" href="#id84" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#why-riemannian-geometry" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id86" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#why-riemannian-geometry" title="Link to this heading">#</a></h3>
 <p>Mathematically, the set of SPD matrices does not constitute a vector space under
 standard matrix operations. In particular, simple addition or the use of Euclidean
 distances may yield results that are not positive definite, thereby violating the
@@ -556,7 +556,7 @@ manifold enable algorithms to:</p>
 <p>See <a class="reference internal" href="geometric_concepts.html"><span class="doc">Geometric Concepts</span></a> for a deeper dive into the mathematical foundations.</p>
 </section>
 <section id="visualizing-spd-matrices-as-ellipses">
-<h3><a class="toc-backref" href="#id85" role="doc-backlink">Visualizing SPD Matrices as Ellipses</a><a class="headerlink" href="#visualizing-spd-matrices-as-ellipses" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id87" role="doc-backlink">Visualizing SPD Matrices as Ellipses</a><a class="headerlink" href="#visualizing-spd-matrices-as-ellipses" title="Link to this heading">#</a></h3>
 <p>A 2x2 SPD matrix can be visualized as an ellipse. The eigenvectors define the
 principal axes, and the square roots of eigenvalues define the semi-axis lengths.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -615,7 +615,7 @@ principal axes, and the square roots of eigenvalues define the semi-axis lengths
 </section>
 </section>
 <section id="id8">
-<h2><a class="toc-backref" href="#id86" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id88" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>SPD matrices do not form a vector space - they form a <strong>Riemannian manifold</strong>.
 This has important implications:</p>
 <ul class="simple">
@@ -624,7 +624,7 @@ This has important implications:</p>
 <li><p>Distance metrics like Euclidean distance are not appropriate</p></li>
 </ul>
 <section id="the-swelling-effect">
-<h3><a class="toc-backref" href="#id87" role="doc-backlink">The Swelling Effect</a><a class="headerlink" href="#the-swelling-effect" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id89" role="doc-backlink">The Swelling Effect</a><a class="headerlink" href="#the-swelling-effect" title="Link to this heading">#</a></h3>
 <p>When computing the arithmetic (Euclidean) mean of SPD matrices, the determinant
 of the mean is often larger than expected. This “swelling effect” violates the
 intuition that an average should be “in the middle.”</p>
@@ -690,7 +690,7 @@ intuition that an average should be “in the middle.”</p>
 </figure>
 </section>
 <section id="the-spd-manifold-structure">
-<h3><a class="toc-backref" href="#id88" role="doc-backlink">The SPD Manifold Structure</a><a class="headerlink" href="#the-spd-manifold-structure" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id90" role="doc-backlink">The SPD Manifold Structure</a><a class="headerlink" href="#the-spd-manifold-structure" title="Link to this heading">#</a></h3>
 <p>The set of SPD matrices forms an open convex cone. For 2x2 matrices, this can
 be visualized in 3D where the boundary represents singular matrices.</p>
 <p>A 2x2 symmetric matrix <span class="math notranslate nohighlight">\(\begin{bmatrix} a &amp; b \\ b &amp; c \end{bmatrix}\)</span> is SPD when
@@ -698,7 +698,7 @@ be visualized in 3D where the boundary represents singular matrices.</p>
 <iframe src="_static/spd_manifold_eeg.html" width="100%" height="700px" style="border:none; border-radius: 8px; margin: 1rem 0;"></iframe></section>
 </section>
 <section id="package-architecture">
-<h2><a class="toc-backref" href="#id89" role="doc-backlink">Package Architecture</a><a class="headerlink" href="#package-architecture" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id91" role="doc-backlink">Package Architecture</a><a class="headerlink" href="#package-architecture" title="Link to this heading">#</a></h2>
 <p>SPD Learn is organized into three main components:</p>
 <ol class="arabic simple">
 <li><p><strong>functional</strong> - Low-level operations for symmetric and SPD matrices</p></li>
@@ -713,12 +713,12 @@ be visualized in 3D where the boundary represents singular matrices.</p>
 </div>
 </section>
 <section id="neural-network-modules">
-<h2><a class="toc-backref" href="#id90" role="doc-backlink">Neural Network Modules</a><a class="headerlink" href="#neural-network-modules" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id92" role="doc-backlink">Neural Network Modules</a><a class="headerlink" href="#neural-network-modules" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides specialized neural network layers that respect the geometry
 of the SPD manifold. Each layer is designed to transform SPD matrices while
 preserving their positive definiteness.</p>
 <section id="covlayer-computing-covariances">
-<h3><a class="toc-backref" href="#id91" role="doc-backlink">CovLayer: Computing Covariances</a><a class="headerlink" href="#covlayer-computing-covariances" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id93" role="doc-backlink">CovLayer: Computing Covariances</a><a class="headerlink" href="#covlayer-computing-covariances" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/covariance/spd_learn.modules.CovLayer.html#spd_learn.modules.CovLayer" title="spd_learn.modules.CovLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CovLayer</span></code></a> transforms raw multivariate time series into SPD covariance
 matrices:</p>
 <div class="math notranslate nohighlight">
@@ -790,7 +790,7 @@ matrices:</p>
 </div>
 </section>
 <section id="bimap-layer-bilinear-mapping">
-<h3><a class="toc-backref" href="#id92" role="doc-backlink">BiMap Layer: Bilinear Mapping</a><a class="headerlink" href="#bimap-layer-bilinear-mapping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id94" role="doc-backlink">BiMap Layer: Bilinear Mapping</a><a class="headerlink" href="#bimap-layer-bilinear-mapping" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a> layer performs dimensionality reduction while preserving the SPD
 structure through a bilinear congruence transformation:</p>
 <div class="math notranslate nohighlight">
@@ -867,7 +867,7 @@ the <strong>Stiefel manifold</strong> (<span class="math notranslate nohighlight
 </div>
 </section>
 <section id="reeig-layer-rectified-eigenvalues">
-<h3><a class="toc-backref" href="#id93" role="doc-backlink">ReEig Layer: Rectified Eigenvalues</a><a class="headerlink" href="#reeig-layer-rectified-eigenvalues" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id95" role="doc-backlink">ReEig Layer: Rectified Eigenvalues</a><a class="headerlink" href="#reeig-layer-rectified-eigenvalues" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a> layer introduces non-linearity by applying a ReLU-like function
 to eigenvalues:</p>
 <div class="math notranslate nohighlight">
@@ -971,7 +971,7 @@ is a small threshold.</p>
 </div>
 </section>
 <section id="logeig-layer-tangent-space-projection">
-<h3><a class="toc-backref" href="#id94" role="doc-backlink">LogEig Layer: Tangent Space Projection</a><a class="headerlink" href="#logeig-layer-tangent-space-projection" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id96" role="doc-backlink">LogEig Layer: Tangent Space Projection</a><a class="headerlink" href="#logeig-layer-tangent-space-projection" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a> layer maps SPD matrices to the tangent space at the identity by
 applying the matrix logarithm:</p>
 <div class="math notranslate nohighlight">
@@ -1042,7 +1042,7 @@ applying the matrix logarithm:</p>
 </div>
 </section>
 <section id="batch-normalization">
-<h3><a class="toc-backref" href="#id95" role="doc-backlink">Batch Normalization</a><a class="headerlink" href="#batch-normalization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id97" role="doc-backlink">Batch Normalization</a><a class="headerlink" href="#batch-normalization" title="Link to this heading">#</a></h3>
 <p>SPD Learn provides Riemannian batch normalization layers:</p>
 <dl>
 <dt><a class="reference internal" href="generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> <span id="id9">[<a class="reference internal" href="#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></dt><dd><p>Estimates the batch Fréchet mean <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and centers inputs:</p>
@@ -1060,7 +1060,7 @@ applying the matrix logarithm:</p>
 </section>
 </section>
 <section id="typical-spdnet-pipeline">
-<h2><a class="toc-backref" href="#id96" role="doc-backlink">Typical SPDNet Pipeline</a><a class="headerlink" href="#typical-spdnet-pipeline" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id98" role="doc-backlink">Typical SPDNet Pipeline</a><a class="headerlink" href="#typical-spdnet-pipeline" title="Link to this heading">#</a></h2>
 <p>Most SPD Learn models follow this general pipeline:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw Data --&gt; Covariance --&gt; BiMap --&gt; ReEig --&gt; BiMap --&gt; ReEig --&gt; LogEig --&gt; Linear
 </pre></div>
@@ -1193,21 +1193,21 @@ applying the matrix logarithm:</p>
 </div>
 </section>
 <section id="log-euclidean-operations">
-<h2><a class="toc-backref" href="#id97" role="doc-backlink">Log-Euclidean Operations</a><a class="headerlink" href="#log-euclidean-operations" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id99" role="doc-backlink">Log-Euclidean Operations</a><a class="headerlink" href="#log-euclidean-operations" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides operations based on the Log-Euclidean metric, which respects
 the manifold structure while being computationally efficient.</p>
 <section id="matrix-logarithm-and-exponential">
-<h3><a class="toc-backref" href="#id98" role="doc-backlink">Matrix Logarithm and Exponential</a><a class="headerlink" href="#matrix-logarithm-and-exponential" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id100" role="doc-backlink">Matrix Logarithm and Exponential</a><a class="headerlink" href="#matrix-logarithm-and-exponential" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\log(S) = U \log(\Lambda) U^\top, \quad \exp(X) = U \exp(\Lambda) U^\top\]</div>
 </section>
 <section id="log-euclidean-distance">
-<h3><a class="toc-backref" href="#id99" role="doc-backlink">Log-Euclidean Distance</a><a class="headerlink" href="#log-euclidean-distance" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id101" role="doc-backlink">Log-Euclidean Distance</a><a class="headerlink" href="#log-euclidean-distance" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[d_{LE}(A, B) = \|\log(A) - \log(B)\|_F\]</div>
 </section>
 <section id="log-euclidean-mean">
-<h3><a class="toc-backref" href="#id100" role="doc-backlink">Log-Euclidean Mean</a><a class="headerlink" href="#log-euclidean-mean" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id102" role="doc-backlink">Log-Euclidean Mean</a><a class="headerlink" href="#log-euclidean-mean" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\bar{S}_{LE} = \exp\left(\frac{1}{n}\sum_{i=1}^n \log(S_i)\right)\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -1282,7 +1282,7 @@ the manifold structure while being computationally efficient.</p>
 </section>
 </section>
 <section id="available-models">
-<h2><a class="toc-backref" href="#id101" role="doc-backlink">Available Models</a><a class="headerlink" href="#available-models" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id103" role="doc-backlink">Available Models</a><a class="headerlink" href="#available-models" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides several pre-built architectures:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
@@ -1321,9 +1321,9 @@ the manifold structure while being computationally efficient.</p>
 </div>
 </section>
 <section id="integration-with-ecosystems">
-<h2><a class="toc-backref" href="#id102" role="doc-backlink">Integration with Ecosystems</a><a class="headerlink" href="#integration-with-ecosystems" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id104" role="doc-backlink">Integration with Ecosystems</a><a class="headerlink" href="#integration-with-ecosystems" title="Link to this heading">#</a></h2>
 <section id="moabb-eeg">
-<h3><a class="toc-backref" href="#id103" role="doc-backlink">MOABB (EEG)</a><a class="headerlink" href="#moabb-eeg" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id105" role="doc-backlink">MOABB (EEG)</a><a class="headerlink" href="#moabb-eeg" title="Link to this heading">#</a></h3>
 <p>SPD Learn integrates with <a class="reference external" href="https://moabb.neurotechx.com/">MOABB</a> for EEG
 benchmarking:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">BNCI2014_001</span>
@@ -1349,7 +1349,7 @@ benchmarking:</p>
 </div>
 </section>
 <section id="nilearn-fmri">
-<h3><a class="toc-backref" href="#id104" role="doc-backlink">Nilearn (fMRI)</a><a class="headerlink" href="#nilearn-fmri" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id106" role="doc-backlink">Nilearn (fMRI)</a><a class="headerlink" href="#nilearn-fmri" title="Link to this heading">#</a></h3>
 <p>SPD Learn works with <a class="reference external" href="https://nilearn.github.io/">Nilearn</a> for fMRI analysis:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.connectome</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectivityMeasure</span>
@@ -1364,7 +1364,7 @@ benchmarking:</p>
 </section>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id105" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id107" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Tutorials</strong>: See the <a class="reference internal" href="generated/auto_examples/tutorials/index.html#sphx-glr-generated-auto-examples-tutorials"><span class="std std-ref">tutorials</span></a> for hands-on examples</p></li>
 <li><p><strong>Visualizations</strong>: Explore <a class="reference internal" href="generated/auto_examples/visualizations/index.html#sphx-glr-generated-auto-examples-visualizations"><span class="std std-ref">layer animations</span></a> to build intuition</p></li>
@@ -1372,7 +1372,7 @@ benchmarking:</p>
 </ul>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id106" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id108" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id11">
 <div role="list" class="citation-list">
 <div class="citation" id="id20" role="doc-biblioentry">
@@ -1381,7 +1381,7 @@ benchmarking:</p>
 </div>
 <div class="citation" id="id26" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
-<p>Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 34(12):10955–10969, 2022.</p>
+<p>Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 34(12):10955–10969, 2022. URL: <a class="reference external" href="https://ieeexplore.ieee.org/document/9805775">https://ieeexplore.ieee.org/document/9805775</a>.</p>
 </div>
 <div class="citation" id="id22" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
