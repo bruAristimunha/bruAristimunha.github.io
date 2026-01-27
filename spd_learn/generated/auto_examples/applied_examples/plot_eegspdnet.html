@@ -55,7 +55,7 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/applied_examples/plot_eegspdnet';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/applied_examples/plot_eegspdnet.html" />
+    <link rel="canonical" href="https://spdlearn.org/generated/auto_examples/applied_examples/plot_eegspdnet.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -243,7 +243,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -383,7 +383,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -431,7 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_radar.html">Radar Image Classification with SPD Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
@@ -526,7 +526,7 @@ with SPD matrix learning for robust EEG decoding.</p>
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>EEGSPDNet <span id="id1">[<a class="reference internal" href="../../../references.html#id60" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> is a deep Riemannian network designed
+<p>EEGSPDNet <span id="id1">[<a class="reference internal" href="../../../references.html#id67" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> is a deep Riemannian network designed
 specifically for
 EEG decoding. It extends the SPDNet architecture with:</p>
 <ul class="simple">
@@ -768,113 +768,113 @@ Training samples: 288
 Test samples: 288
   epoch    train_acc    train_loss    valid_acc    valid_loss     dur
 -------  -----------  ------------  -----------  ------------  ------
-      1       0.2773        1.4301       0.4138        1.3847  0.7163
-      2       0.2500        1.4212       0.3793        1.3597  0.7374
-      3       0.2461        1.4303       0.4138        1.3448  0.8717
-      4       0.2539        1.4141       0.5862        1.3332  0.9438
-      5       0.2578        1.4287       0.5517        1.3236  0.8620
-      6       0.3047        1.3583       0.6552        1.3150  0.9209
-      7       0.2891        1.3854       0.6552        1.3067  0.8881
-      8       0.3047        1.3865       0.7241        1.3000  0.8174
-      9       0.2812        1.3762       0.6897        1.2924  0.7643
-     10       0.3125        1.3661       0.5862        1.2867  0.7432
-     11       0.3281        1.3398       0.6207        1.2817  0.7297
-     12       0.3828        1.3229       0.7241        1.2749  0.6927
-     13       0.3477        1.3366       0.7586        1.2667  0.7405
-     14       0.3477        1.3343       0.6897        1.2603  0.6810
-     15       0.3945        1.2963       0.6552        1.2547  0.8053
-     16       0.4375        1.2870       0.6897        1.2516  0.7374
-     17       0.3945        1.3053       0.6552        1.2448  0.6959
-     18       0.4102        1.2799       0.6207        1.2396  0.6916
-     19       0.4375        1.2851       0.6207        1.2342  0.6974
-     20       0.3711        1.3006       0.6552        1.2280  0.6951
-     21       0.4492        1.2472       0.6207        1.2245  0.7538
-     22       0.4492        1.2469       0.6552        1.2205  0.6595
-     23       0.4414        1.2631       0.6897        1.2156  0.7523
-     24       0.4297        1.2726       0.6552        1.2110  0.7397
-     25       0.4180        1.2671       0.6897        1.2041  0.7187
-     26       0.4570        1.2543       0.6207        1.1994  0.6843
-     27       0.5156        1.2114       0.6552        1.1948  0.6425
-     28       0.4844        1.2295       0.5862        1.1906  0.6274
-     29       0.4375        1.2252       0.6207        1.1856  0.7475
-     30       0.4844        1.2146       0.5862        1.1806  0.7608
-     31       0.4844        1.2323       0.5517        1.1759  0.7971
-     32       0.4531        1.2189       0.5862        1.1720  0.6586
-     33       0.5156        1.2022       0.4828        1.1672  0.6993
-     34       0.4805        1.2076       0.5862        1.1616  0.7575
-     35       0.5117        1.1961       0.6552        1.1576  0.7749
-     36       0.5117        1.1702       0.5517        1.1536  0.7718
-     37       0.5312        1.1757       0.6207        1.1504  0.6922
-     38       0.5078        1.1981       0.5172        1.1464  0.7735
-     39       0.5000        1.1898       0.5862        1.1421  0.7445
-     40       0.5508        1.1545       0.5517        1.1387  0.6632
-     41       0.5938        1.1302       0.4828        1.1351  0.7628
-     42       0.4922        1.1720       0.5172        1.1269  0.6971
-     43       0.5391        1.1578       0.5172        1.1212  0.7603
-     44       0.5977        1.1394       0.5172        1.1164  0.7354
-     45       0.5391        1.1500       0.5172        1.1123  0.8654
-     46       0.5781        1.1106       0.5517        1.1074  0.8120
-     47       0.5508        1.1541       0.5517        1.1031  0.7179
-     48       0.5430        1.1393       0.5172        1.0993  0.6769
-     49       0.5586        1.1176       0.5172        1.0964  0.7406
-     50       0.5469        1.1264       0.4828        1.0929  0.7884
-     51       0.5586        1.1067       0.4828        1.0889  0.7813
-     52       0.5391        1.1134       0.5517        1.0843  0.6787
-     53       0.5234        1.1233       0.5517        1.0807  0.6125
-     54       0.5625        1.0996       0.5862        1.0763  0.6736
-     55       0.5742        1.0936       0.5172        1.0720  0.5999
-     56       0.5234        1.0997       0.5172        1.0664  0.6929
-     57       0.5508        1.0918       0.5172        1.0626  0.7526
-     58       0.5742        1.0982       0.4828        1.0587  0.6678
-     59       0.6055        1.0626       0.5172        1.0545  0.6792
-     60       0.6133        1.0778       0.4828        1.0527  0.6399
-     61       0.5547        1.0723       0.5172        1.0496  0.7868
-     62       0.5938        1.0720       0.5517        1.0465  0.7536
-     63       0.5430        1.0659       0.5172        1.0413  0.8380
-     64       0.5508        1.0525       0.4828        1.0352  0.7636
-     65       0.6289        1.0505       0.4828        1.0299  0.6873
-     66       0.5469        1.0799       0.5517        1.0284  0.6197
-     67       0.6680        1.0229       0.5172        1.0255  0.6323
-     68       0.6406        1.0555       0.5862        1.0229  0.5991
-     69       0.5547        1.0627       0.5517        1.0203  0.6256
-     70       0.6172        1.0347       0.5862        1.0184  0.6793
-     71       0.5742        1.0485       0.4828        1.0149  0.7664
-     72       0.6094        1.0395       0.5172        1.0103  0.8357
-     73       0.5703        1.0471       0.5517        1.0065  0.7137
-     74       0.6602        1.0119       0.5172        1.0023  0.6114
-     75       0.6562        1.0067       0.5517        0.9972  0.6851
-     76       0.5898        1.0377       0.4828        0.9933  0.6652
-     77       0.6758        0.9968       0.5517        0.9913  0.6073
-     78       0.6484        1.0083       0.5172        0.9911  0.6003
-     79       0.6055        1.0130       0.5862        0.9864  0.6311
-     80       0.6836        0.9962       0.5517        0.9820  0.6089
-     81       0.6836        0.9869       0.5172        0.9802  0.6982
-     82       0.6602        0.9852       0.5172        0.9790  0.6909
-     83       0.5898        0.9974       0.5172        0.9779  0.7104
-     84       0.5898        1.0079       0.5172        0.9747  0.7106
-     85       0.6484        0.9866       0.5517        0.9706  0.5949
-     86       0.6484        0.9817       0.5862        0.9672  0.5777
-     87       0.6914        0.9610       0.5862        0.9645  0.5874
-     88       0.6641        0.9799       0.5172        0.9606  0.6796
-     89       0.6797        0.9549       0.5172        0.9563  0.6653
-     90       0.6602        0.9544       0.5172        0.9529  0.6413
-     91       0.6602        0.9752       0.5172        0.9500  0.6368
-     92       0.6250        0.9471       0.5517        0.9471  0.6776
-     93       0.6641        0.9584       0.5517        0.9441  0.5993
-     94       0.6250        0.9516       0.5172        0.9419  0.6083
-     95       0.6367        0.9593       0.5172        0.9419  0.6908
-     96       0.6406        0.9565       0.5862        0.9365  0.6208
-     97       0.6797        0.9521       0.5862        0.9341  0.6645
-     98       0.6406        0.9444       0.6552        0.9332  0.6683
-     99       0.6758        0.9446       0.5862        0.9334  0.5732
-    100       0.6875        0.9227       0.6552        0.9296  0.6459
+      1       0.2188        1.4913       0.2414        1.4427  0.3471
+      2       0.2148        1.4517       0.2414        1.4144  0.3347
+      3       0.2188        1.4602       0.2069        1.3968  0.3189
+      4       0.2422        1.4539       0.3793        1.3868  0.3730
+      5       0.1992        1.4740       0.4483        1.3770  0.3959
+      6       0.2578        1.3970       0.4138        1.3689  0.3862
+      7       0.2383        1.4163       0.4483        1.3603  0.4055
+      8       0.2734        1.3928       0.4483        1.3519  0.3979
+      9       0.2891        1.4012       0.5172        1.3432  0.3995
+     10       0.2812        1.3850       0.5517        1.3346  0.3889
+     11       0.3555        1.3617       0.5172        1.3278  0.3928
+     12       0.2539        1.3899       0.5172        1.3208  0.3929
+     13       0.2734        1.3732       0.5172        1.3135  0.3951
+     14       0.3281        1.3842       0.5172        1.3077  0.3788
+     15       0.2930        1.3544       0.5517        1.3014  0.3905
+     16       0.3359        1.3467       0.5862        1.2932  0.3858
+     17       0.3477        1.3363       0.6207        1.2871  0.4037
+     18       0.3828        1.3248       0.5517        1.2818  0.3742
+     19       0.4219        1.3029       0.5172        1.2760  0.4001
+     20       0.4375        1.2930       0.6207        1.2707  0.3918
+     21       0.3906        1.2911       0.5862        1.2650  0.3955
+     22       0.4258        1.2925       0.5517        1.2587  0.3898
+     23       0.4492        1.2749       0.6207        1.2549  0.3836
+     24       0.3594        1.2976       0.5517        1.2506  0.3878
+     25       0.4258        1.2729       0.5517        1.2459  0.3872
+     26       0.3750        1.2740       0.5517        1.2409  0.3943
+     27       0.4570        1.2570       0.6207        1.2359  0.3970
+     28       0.4180        1.2454       0.5517        1.2294  0.3778
+     29       0.4961        1.2388       0.6207        1.2247  0.3966
+     30       0.4648        1.2532       0.5862        1.2202  0.3790
+     31       0.4180        1.2547       0.5517        1.2157  0.3883
+     32       0.4805        1.2340       0.5862        1.2109  0.3855
+     33       0.4688        1.2478       0.6207        1.2053  0.3891
+     34       0.5000        1.2285       0.6207        1.2007  0.3924
+     35       0.4648        1.2241       0.6207        1.1955  0.3744
+     36       0.5234        1.2037       0.6552        1.1922  0.3921
+     37       0.4609        1.2202       0.5862        1.1877  0.3864
+     38       0.4531        1.2387       0.5862        1.1842  0.5010
+     39       0.4688        1.2106       0.5862        1.1802  0.3905
+     40       0.4883        1.2060       0.5517        1.1747  0.3869
+     41       0.4609        1.1921       0.6897        1.1693  0.3805
+     42       0.5430        1.1692       0.5862        1.1650  0.3737
+     43       0.5078        1.1986       0.5862        1.1615  0.3873
+     44       0.5195        1.1715       0.6207        1.1574  0.3792
+     45       0.5195        1.1766       0.5862        1.1553  0.3790
+     46       0.5078        1.1810       0.6207        1.1515  0.3941
+     47       0.5391        1.1573       0.6552        1.1468  0.3824
+     48       0.4844        1.1719       0.6552        1.1407  0.4104
+     49       0.5508        1.1595       0.6207        1.1344  0.4488
+     50       0.5508        1.1556       0.6207        1.1304  0.3788
+     51       0.4648        1.1849       0.6207        1.1276  0.3828
+     52       0.5234        1.1500       0.6207        1.1244  0.3919
+     53       0.5195        1.1591       0.6207        1.1212  0.3901
+     54       0.5312        1.1294       0.6552        1.1178  0.3749
+     55       0.5469        1.1254       0.6207        1.1145  0.3883
+     56       0.4883        1.1575       0.6207        1.1093  0.3878
+     57       0.5703        1.1175       0.6207        1.1057  0.3884
+     58       0.6016        1.0944       0.6552        1.1021  0.3889
+     59       0.5781        1.1248       0.6207        1.0998  0.3965
+     60       0.5742        1.0983       0.6552        1.0975  0.3910
+     61       0.5742        1.0982       0.6897        1.0927  0.3887
+     62       0.6094        1.0933       0.6552        1.0883  0.3912
+     63       0.6289        1.0695       0.6552        1.0849  0.3888
+     64       0.5820        1.1121       0.6207        1.0821  0.3838
+     65       0.5078        1.1223       0.6207        1.0799  0.3885
+     66       0.5508        1.1196       0.5517        1.0769  0.3994
+     67       0.5547        1.1094       0.6552        1.0761  0.3866
+     68       0.5664        1.1100       0.6552        1.0721  0.3957
+     69       0.6055        1.0795       0.5862        1.0672  0.3841
+     70       0.5898        1.0902       0.6552        1.0642  0.3969
+     71       0.5664        1.0746       0.6207        1.0614  0.3911
+     72       0.5859        1.0844       0.5862        1.0598  0.3903
+     73       0.5859        1.0572       0.5862        1.0582  0.3927
+     74       0.6328        1.0556       0.5862        1.0552  0.3935
+     75       0.6016        1.0811       0.5862        1.0507  0.3895
+     76       0.6289        1.0512       0.6207        1.0477  0.3936
+     77       0.5625        1.0562       0.6207        1.0432  0.3918
+     78       0.6250        1.0642       0.6207        1.0402  0.3893
+     79       0.6016        1.0524       0.6207        1.0384  0.4011
+     80       0.6211        1.0390       0.5862        1.0332  0.3911
+     81       0.5977        1.0421       0.5862        1.0286  0.5484
+     82       0.6680        1.0248       0.6552        1.0238  0.4009
+     83       0.6055        1.0370       0.6552        1.0216  0.4089
+     84       0.6094        1.0298       0.6552        1.0188  0.4046
+     85       0.6289        1.0302       0.6552        1.0174  0.4123
+     86       0.5742        1.0401       0.6897        1.0138  0.3966
+     87       0.6367        1.0164       0.6552        1.0104  0.4046
+     88       0.5781        1.0349       0.6207        1.0082  0.3970
+     89       0.6172        1.0261       0.6552        1.0082  0.3940
+     90       0.5781        1.0502       0.6207        1.0061  0.3942
+     91       0.6484        1.0016       0.6207        1.0010  0.4055
+     92       0.6367        0.9985       0.6897        0.9980  0.3855
+     93       0.6289        1.0044       0.6897        0.9962  0.3955
+     94       0.6289        0.9942       0.6207        0.9954  0.3933
+     95       0.6484        0.9866       0.6207        0.9896  0.3722
+     96       0.6836        0.9891       0.6207        0.9869  0.3965
+     97       0.6641        0.9839       0.5862        0.9843  0.4025
+     98       0.6250        0.9952       0.6207        0.9837  0.4135
+     99       0.6719        0.9844       0.5862        0.9806  0.3951
+    100       0.6602        0.9866       0.6207        0.9784  0.3875
 
 ==================================================
 Results for Subject 1
 ==================================================
-Train Accuracy:    75.00%
-Test Accuracy:     72.22%
-Test Balanced Acc: 72.22%
+Train Accuracy:    73.61%
+Test Accuracy:     69.44%
+Test Balanced Acc: 69.44%
 </pre></div>
 </div>
 </section>
@@ -917,7 +917,7 @@ Test Balanced Acc: 72.22%
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_eegspdnet_001.png" srcset="../../../_images/sphx_glr_plot_eegspdnet_001.png" alt="Training and Validation Loss, Training and Validation Accuracy, Test Confusion Matrix Accuracy: 72.2%" class = "sphx-glr-single-img"/></section>
+<img src="../../../_images/sphx_glr_plot_eegspdnet_001.png" srcset="../../../_images/sphx_glr_plot_eegspdnet_001.png" alt="Training and Validation Loss, Training and Validation Accuracy, Test Confusion Matrix Accuracy: 69.4%" class = "sphx-glr-single-img"/></section>
 <section id="comparing-with-different-configurations">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Comparing with Different Configurations</a><a class="headerlink" href="#comparing-with-different-configurations" title="Link to this heading">#</a></h2>
 <p>Let’s compare different EEGSPDNet configurations to understand
@@ -956,7 +956,7 @@ Large (k=2, depth=3): 15,398 parameters
 <p>EEGSPDNet’s channel-specific convolution allows it to learn
 independent temporal features for each electrode, which is
 particularly useful for spatially distributed brain signals.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 16.461 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 41.850 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-applied-examples-plot-eegspdnet-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/4cfc0884a36a2c69a91f9a9d947322f7/plot_eegspdnet.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_eegspdnet.ipynb</span></code></a></p>
@@ -1086,7 +1086,7 @@ particularly useful for spatially distributed brain signals.</p>
   <div class="sd-card-body spdlearn-colab-card-body">
     <p class="sd-card-text sd-fs-5 sd-font-weight-bold sd-mb-2">Run this example in Google Colab</p>
     <p class="sd-card-text sd-text-muted sd-mb-3">No installation required - runs directly in your browser with GPU support.</p>
-    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spd-learn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/plot_eegspdnet.ipynb" target="_blank" rel="noopener">
+    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spdlearn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/plot_eegspdnet.ipynb" target="_blank" rel="noopener">
       <img class="spdlearn-colab-badge" alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg">
     </a>
   </div>

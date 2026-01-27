@@ -54,7 +54,7 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/contributing.html" />
+    <link rel="canonical" href="https://spdlearn.org/contributing.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -241,7 +241,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -377,7 +377,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -774,10 +774,10 @@ flexibility, composability, and ease of extension.</p>
 </div>
 <section id="design-principles">
 <h4>Design Principles<a class="headerlink" href="#design-principles" title="Link to this heading">#</a></h4>
-<p>SPD Learn follows PyTorch’s design philosophy <span id="id2">[<a class="reference internal" href="references.html#id67" title="Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban Desmaison, Andreas Kopf, Edward Yang, Zachary DeVito, Martin Raison, Alykhan Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu Fang, Junjie Bai, and Soumith Chintala. Pytorch: an imperative style, high-performance deep learning library. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d'Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems, volume 32. Curran Associates, Inc., 2019. URL: https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Paper.pdf.">Paszke <em>et al.</em>, 2019</a>]</span> with a
+<p>SPD Learn follows PyTorch’s design philosophy <span id="id2">[<a class="reference internal" href="references.html#id74" title="Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban Desmaison, Andreas Kopf, Edward Yang, Zachary DeVito, Martin Raison, Alykhan Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu Fang, Junjie Bai, and Soumith Chintala. Pytorch: an imperative style, high-performance deep learning library. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d'Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems, volume 32. Curran Associates, Inc., 2019. URL: https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Paper.pdf.">Paszke <em>et al.</em>, 2019</a>]</span> with a
 clear separation between stateless operations and stateful modules. This pattern,
-also adopted by JAX <span id="id3">[<a class="reference internal" href="references.html#id68" title="Roy Frostig, Matthew James Johnson, and Chris Leary. Compiling machine learning programs via high-level tracing. In Systems for Machine Learning (SysML). 2018. URL: https://mlsys.org/Conferences/doc/2018/146.pdf.">Frostig <em>et al.</em>, 2018</a>]</span>, reflects classical systems
-design principles <span id="id4">[<a class="reference internal" href="references.html#id70" title="Jerome H. Saltzer, David P. Reed, and David D. Clark. End-to-end arguments in system design. ACM Transactions on Computer Systems, 2(4):277–288, November 1984. doi:10.1145/357401.357402.">Saltzer <em>et al.</em>, 1984</a>]</span>, <span id="id5">[<a class="reference internal" href="references.html#id69" title="Jim Waldo, Geoff Wyant, Ann Wollrath, and Samuel C. Kendall. A note on distributed computing. Technical Report TR-94-29, Sun Microsystems Laboratories Inc., Mountain View, CA, November 1994. URL: https://scholar.harvard.edu/files/waldo/files/waldo-94.pdf.">Waldo <em>et al.</em>, 1994</a>]</span>.</p>
+also adopted by JAX <span id="id3">[<a class="reference internal" href="references.html#id75" title="Roy Frostig, Matthew James Johnson, and Chris Leary. Compiling machine learning programs via high-level tracing. In Systems for Machine Learning (SysML). 2018. URL: https://mlsys.org/Conferences/doc/2018/146.pdf.">Frostig <em>et al.</em>, 2018</a>]</span>, reflects classical systems
+design principles <span id="id4">[<a class="reference internal" href="references.html#id77" title="Jerome H. Saltzer, David P. Reed, and David D. Clark. End-to-end arguments in system design. ACM Transactions on Computer Systems, 2(4):277–288, November 1984. doi:10.1145/357401.357402.">Saltzer <em>et al.</em>, 1984</a>]</span>, <span id="id5">[<a class="reference internal" href="references.html#id76" title="Jim Waldo, Geoff Wyant, Ann Wollrath, and Samuel C. Kendall. A note on distributed computing. Technical Report TR-94-29, Sun Microsystems Laboratories Inc., Mountain View, CA, November 1994. URL: https://scholar.harvard.edu/files/waldo/files/waldo-94.pdf.">Waldo <em>et al.</em>, 1994</a>]</span>.</p>
 <ol class="arabic simple">
 <li><p><strong>Functional First</strong>: Mathematical operations are implemented as pure functions
 in <code class="docutils literal notranslate"><span class="pre">spd_learn.functional</span></code>. No internal state, usable outside neural networks.</p></li>
@@ -786,7 +786,7 @@ wrap functional operations, adding learnable parameters and state management.</p
 <li><p><strong>Models Compose Modules</strong>: Complete architectures in <code class="docutils literal notranslate"><span class="pre">spd_learn.models</span></code>
 compose modules into end-to-end trainable networks.</p></li>
 <li><p><strong>Trivialization for Constraints</strong>: Manifold-valued parameters (Stiefel, SPD)
-use trivialization <span id="id6">[<a class="reference internal" href="references.html#id19" title="Mario Lezcano-Casado. Trivializations for gradient-based optimization on manifolds. In Advances in Neural Information Processing Systems, volume 32, 9154–9164. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html.">Lezcano-Casado, 2019</a>]</span>—mappings from
+use trivialization <span id="id6">[<a class="reference internal" href="references.html#id25" title="Mario Lezcano-Casado. Trivializations for gradient-based optimization on manifolds. In Advances in Neural Information Processing Systems, volume 32, 9154–9164. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html.">Lezcano-Casado, 2019</a>]</span>—mappings from
 unconstrained space to the manifold—enabling standard optimizers.</p></li>
 </ol>
 </section>
@@ -801,12 +801,15 @@ unconstrained space to the manifold—enabling standard optimizers.</p></li>
 ├── functional/          # Pure functions (no learnable parameters)
 │   ├── __init__.py      # Public functional API
 │   ├── autograd.py      # Custom autograd: modeig_forward/backward
-│   ├── functional.py    # Core spectral operations (matrix_log, matrix_exp, etc.)
+│   ├── core.py          # Core spectral operations (matrix_log, matrix_exp, etc.)
 │   ├── covariance.py    # Covariance estimators
-│   ├── manifolds.py     # Riemannian operations (Fréchet mean, geodesics)
-│   ├── bures_wasserstein.py  # Bures-Wasserstein metric
-│   ├── log_cholesky.py  # Log-Cholesky metric
-│   ├── parallel_transport.py # Parallel transport operations
+│   ├── metrics/         # Riemannian metrics subpackage
+│   │   ├── __init__.py  # Metrics API aggregation
+│   │   ├── airm.py      # Affine-Invariant Riemannian Metric
+│   │   ├── log_euclidean.py  # Log-Euclidean Metric
+│   │   ├── bures_wasserstein.py  # Bures-Wasserstein Metric
+│   │   └── log_cholesky.py  # Log-Cholesky Metric
+│   ├── transport.py     # Parallel transport operations
 │   ├── numerical.py     # Numerical stability configuration
 │   ├── regularize.py    # Shrinkage estimators
 │   ├── dropout.py       # SPD-aware dropout
@@ -854,9 +857,9 @@ custom backward passes using the Loewner matrix formulation.</p></li>
 <li><p><strong>Autograd</strong> (<code class="docutils literal notranslate"><span class="pre">autograd.py</span></code>): <code class="docutils literal notranslate"><span class="pre">modeig_forward</span></code> and <code class="docutils literal notranslate"><span class="pre">modeig_backward</span></code>
 implement the forward and backward passes for spectral matrix functions,
 caching eigendecompositions for efficient gradient computation.</p></li>
-<li><p><strong>Riemannian operations</strong> (<code class="docutils literal notranslate"><span class="pre">manifolds.py</span></code>): <code class="docutils literal notranslate"><span class="pre">frechet_mean</span></code>,
-<code class="docutils literal notranslate"><span class="pre">geodesic_distance_spdairm</span></code>, <code class="docutils literal notranslate"><span class="pre">geodesic_interpolation_spdairm</span></code> for
-operations under the Affine-Invariant Riemannian Metric (AIRM).</p></li>
+<li><p><strong>Riemannian operations</strong> (<code class="docutils literal notranslate"><span class="pre">metrics/</span></code>): <code class="docutils literal notranslate"><span class="pre">airm_distance</span></code>,
+<code class="docutils literal notranslate"><span class="pre">airm_geodesic</span></code>, <code class="docutils literal notranslate"><span class="pre">log_euclidean_distance</span></code>, <code class="docutils literal notranslate"><span class="pre">log_euclidean_mean</span></code> for
+operations under various Riemannian metrics (AIRM, Log-Euclidean, etc.).</p></li>
 </ul>
 <p>Example usage:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>

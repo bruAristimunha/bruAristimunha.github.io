@@ -54,11 +54,11 @@
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/applied_examples/plot_benchmark_filterbank';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/applied_examples/plot_benchmark_filterbank.html" />
+    <link rel="canonical" href="https://spdlearn.org/generated/auto_examples/applied_examples/plot_benchmark_filterbank.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Radar Image Classification with SPD Learn" href="plot_radar.html" />
+    <link rel="next" title="Radar Image Classification with SPD Learn" href="radar.html" />
     <link rel="prev" title="Phase-Space Embedding with PhaseSPDNet" href="plot_phase_spdnet.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -242,7 +242,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -382,7 +382,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -430,7 +430,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Filter Bank Motor Imagery with TensorCSPNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_radar.html">Radar Image Classification with SPD Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
@@ -533,7 +533,7 @@ a motor action without actually executing it. EEG-based brain-computer
 interfaces (BCIs) can decode these imagined movements to control devices.</p>
 <p>Filter bank approaches decompose the EEG signal into multiple frequency
 bands, allowing the model to capture frequency-specific spatial patterns.
-TensorCSPNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> leverages this by creating SPD (Symmetric
+TensorCSPNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id32" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> leverages this by creating SPD (Symmetric
 Positive
 Definite) covariance matrices for each frequency band and processing
 them through a geometry-aware neural network.</p>
@@ -575,7 +575,7 @@ them through a geometry-aware neural network.</p>
 <section id="loading-the-dataset">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Loading the Dataset</a><a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
 <p>We use the BCI Competition IV Dataset 2a (BNCI2014_001)
-<span id="id2">[<a class="reference internal" href="../../../references.html#id52" title="Michael Tangermann, Klaus-Robert Müller, Ad Aertsen, Niels Birbaumer, Christoph Braun, Clemens Brunner, Robert Leeb, Carsten Mehring, Kai J Miller, Gernot R Müller-Putz, and others. Review of the bci competition iv. Frontiers in Neuroscience, 6:55, 2012. doi:10.3389/fnins.2012.00055.">Tangermann <em>et al.</em>, 2012</a>]</span>, which
+<span id="id2">[<a class="reference internal" href="../../../references.html#id59" title="Michael Tangermann, Klaus-Robert Müller, Ad Aertsen, Niels Birbaumer, Christoph Braun, Clemens Brunner, Robert Leeb, Carsten Mehring, Kai J Miller, Gernot R Müller-Putz, and others. Review of the bci competition iv. Frontiers in Neuroscience, 6:55, 2012. doi:10.3389/fnins.2012.00055.">Tangermann <em>et al.</em>, 2012</a>]</span>, which
 contains EEG recordings from 9 subjects performing 4 different motor
 imagery tasks:</p>
 <ul class="simple">
@@ -601,7 +601,7 @@ Number of sessions per subject: 2 (train + test)
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Defining the Filter Bank</a><a class="headerlink" href="#defining-the-filter-bank" title="Link to this heading">#</a></h2>
 <p>We define a filter bank covering the mu (8-12 Hz) and beta (12-30 Hz)
 rhythms, which are known to be modulated during motor imagery
-<span id="id3">[<a class="reference internal" href="../../../references.html#id25" title="Gert Pfurtscheller and Fernando H Lopes da Silva. Event-related eeg/meg synchronization and desynchronization: basic principles. Clinical Neurophysiology, 110(11):1842–1857, 1999. doi:10.1016/S1388-2457(99)00141-8.">Pfurtscheller and Lopes da Silva, 1999</a>]</span>.
+<span id="id3">[<a class="reference internal" href="../../../references.html#id31" title="Gert Pfurtscheller and Fernando H Lopes da Silva. Event-related eeg/meg synchronization and desynchronization: basic principles. Clinical Neurophysiology, 110(11):1842–1857, 1999. doi:10.1016/S1388-2457(99)00141-8.">Pfurtscheller and Lopes da Silva, 1999</a>]</span>.
 Each filter extracts a specific frequency band from the EEG signal.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filters</span></a> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>  <span class="c1"># Theta band</span>
@@ -648,16 +648,16 @@ Frequency bands (Hz):
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of classes: 4 (left hand, right hand, feet, tongue)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2026-01-25 15:49:40,901 WARNING MainThread moabb.paradigms.motor_imagery Choosing from all possible events
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2026-01-28 00:03:26,209 WARNING MainThread moabb.paradigms.motor_imagery Choosing from all possible events
 
-Paradigm: &lt;moabb.paradigms.motor_imagery.FilterBankMotorImagery object at 0x16cd33950&gt;
+Paradigm: &lt;moabb.paradigms.motor_imagery.FilterBankMotorImagery object at 0x32981fdd0&gt;
 Number of classes: 4 (left hand, right hand, feet, tongue)
 </pre></div>
 </div>
 </section>
 <section id="creating-the-tensorcspnet-model">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Creating the TensorCSPNet Model</a><a class="headerlink" href="#creating-the-tensorcspnet-model" title="Link to this heading">#</a></h2>
-<p>TensorCSPNet <span id="id4">[<a class="reference internal" href="../../../user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> is a deep learning architecture designed
+<p>TensorCSPNet <span id="id4">[<a class="reference internal" href="../../../user_guide.html#id32" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span> is a deep learning architecture designed
 for filter
 bank EEG classification. The architecture consists of:</p>
 <ol class="arabic simple">
@@ -718,7 +718,7 @@ Sequential(
       (4): ParametrizedBrooksBatchNorm(
         (parametrizations): ModuleDict(
           (bias): ParametrizationList(
-            (0): SymmetricPositiveDefine()
+            (0): SymmetricPositiveDefinite()
           )
         )
       )
@@ -862,52 +862,52 @@ per subject, depending on your hardware.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================
 Evaluating Subject 1
 ==================================================
-2026-01-25 15:49:40,933 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7...
-2026-01-25 15:49:41,186 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7
-2026-01-25 15:49:41,218 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c...
-2026-01-25 15:49:41,461 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c
-2026-01-25 15:49:41,491 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f...
-2026-01-25 15:49:41,750 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f
-2026-01-25 15:49:41,786 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179...
-2026-01-25 15:49:42,063 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179
-2026-01-25 15:49:42,097 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb...
-2026-01-25 15:49:42,343 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb
-2026-01-25 15:49:42,375 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a...
-2026-01-25 15:49:42,660 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a
-2026-01-25 15:49:42,698 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a...
-2026-01-25 15:49:42,970 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a
-2026-01-25 15:49:43,005 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610...
-2026-01-25 15:49:43,267 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610
-2026-01-25 15:49:43,300 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87...
-2026-01-25 15:49:43,695 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87
+2026-01-28 00:03:26,232 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7...
+2026-01-28 00:03:26,388 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-11ac0f7
+2026-01-28 00:03:26,406 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c...
+2026-01-28 00:03:26,567 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0b96c0c
+2026-01-28 00:03:26,587 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f...
+2026-01-28 00:03:26,744 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-0bd889f
+2026-01-28 00:03:26,762 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179...
+2026-01-28 00:03:26,913 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-9bef179
+2026-01-28 00:03:26,931 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb...
+2026-01-28 00:03:27,080 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-d026adb
+2026-01-28 00:03:27,100 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a...
+2026-01-28 00:03:27,250 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-6d7261a
+2026-01-28 00:03:27,269 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a...
+2026-01-28 00:03:27,417 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-df3bb6a
+2026-01-28 00:03:27,435 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610...
+2026-01-28 00:03:27,584 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-ea8f610
+2026-01-28 00:03:27,602 INFO MainThread moabb.datasets.bids_interface Attempting to retrieve cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87...
+2026-01-28 00:03:27,752 INFO MainThread moabb.datasets.bids_interface Finished reading cache of &#39;BNCI2014-001&#39; sub-1 suffix-array desc-e39cb87
 Data shape: (576, 22, 1001, 9)
 Labels: [&#39;feet&#39; &#39;left_hand&#39; &#39;right_hand&#39; &#39;tongue&#39;]
 Training samples: 288
 Test samples: 288
-2026-01-25 15:49:44,440 INFO MainThread braindecode.eegneuralnet.EEGClassifier The module passed is already initialized which is not recommended. Instead, you can pass the module class and its parameters separately.
+2026-01-28 00:03:27,975 INFO MainThread braindecode.eegneuralnet.EEGClassifier The module passed is already initialized which is not recommended. Instead, you can pass the module class and its parameters separately.
 For more details, see https://skorch.readthedocs.io/en/stable/user/neuralnet.html#module
 Skipping setting signal-related parameters from data.
   epoch    train_acc    train_loss    valid_acc    valid_loss     dur
 -------  -----------  ------------  -----------  ------------  ------
-      1       0.2891        3.1579       0.2759        2.5562  5.1896
-      2       0.4219        1.5282       0.2414        1.5387  4.5482
-      3       0.6172        0.8249       0.4483        0.9347  4.3030
-      4       0.8203        0.5412       0.6552        0.8104  4.1906
-      5       0.9648        0.3640       0.6207        0.7524  4.3163
-      6       0.9609        0.2975       0.6207        0.7656  4.2533
-      7       0.9961        0.1817       0.6897        0.6523  4.3601
-      8       1.0000        0.1263       0.6897        0.6330  4.4205
-      9       1.0000        0.0935       0.6897        0.6398  4.0795
-     10       1.0000        0.0689       0.7241        0.5934  4.4066
-     11       1.0000        0.0558       0.6207        0.6713  4.1120
-     12       1.0000        0.0458       0.6897        0.6072  4.4094
-     13       1.0000        0.0381       0.6552        0.6591  4.0681
-     14       1.0000        0.0316       0.7241        0.6446  4.0810
-     15       1.0000        0.0254       0.7241        0.5836  4.0759
+      1       0.2969        2.3878       0.3448        1.2509  2.3664
+      2       0.4102        1.3254       0.6552        1.0870  2.3712
+      3       0.6445        0.8340       0.3793        1.2032  2.3859
+      4       0.7500        0.6835       0.4138        1.0876  2.3718
+      5       0.9062        0.4108       0.5517        0.8418  2.3830
+      6       0.9570        0.2619       0.8276        0.6816  2.3863
+      7       0.9961        0.1541       0.7931        0.6595  2.3961
+      8       1.0000        0.0994       0.6552        0.7011  2.3853
+      9       1.0000        0.0767       0.6897        0.6355  2.4152
+     10       1.0000        0.0593       0.7931        0.6506  2.4347
+     11       1.0000        0.0382       0.7586        0.5908  2.4074
+     12       1.0000        0.0280       0.7931        0.6148  2.4295
+     13       1.0000        0.0248       0.7586        0.5872  2.4704
+     14       1.0000        0.0194       0.7586        0.5803  2.4251
+     15       1.0000        0.0169       0.7931        0.5702  2.4513
 
 Results for Subject 1:
-  Train Accuracy: 97.22%
-  Test Accuracy:  73.61%
+  Train Accuracy: 97.92%
+  Test Accuracy:  74.31%
 </pre></div>
 </div>
 </section>
@@ -971,7 +971,7 @@ different motor imagery classes.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" srcset="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" alt="Confusion Matrix - Subject 1 Test Accuracy: 73.61%" class = "sphx-glr-single-img"/></section>
+<img src="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" srcset="../../../_images/sphx_glr_plot_benchmark_filterbank_002.png" alt="Confusion Matrix - Subject 1 Test Accuracy: 74.31%" class = "sphx-glr-single-img"/></section>
 <section id="summary">
 <h2><a class="toc-backref" href="#id16" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we demonstrated how to:</p>
@@ -984,7 +984,7 @@ different motor imagery classes.</p>
 <p>TensorCSPNet leverages the geometry of SPD matrices to learn
 discriminative spatial filters across multiple frequency bands,
 making it well-suited for motor imagery classification.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 18.075 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 44.097 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-applied-examples-plot-benchmark-filterbank-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d95aa9689f6fb3dd21fcdcf4b54e7853/plot_benchmark_filterbank.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_benchmark_filterbank.ipynb</span></code></a></p>
@@ -1019,7 +1019,7 @@ making it well-suited for motor imagery classification.</p>
       </div>
     </a>
     <a class="right-next"
-       href="plot_radar.html"
+       href="radar.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -1116,7 +1116,7 @@ making it well-suited for motor imagery classification.</p>
   <div class="sd-card-body spdlearn-colab-card-body">
     <p class="sd-card-text sd-fs-5 sd-font-weight-bold sd-mb-2">Run this example in Google Colab</p>
     <p class="sd-card-text sd-text-muted sd-mb-3">No installation required - runs directly in your browser with GPU support.</p>
-    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spd-learn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/plot_benchmark_filterbank.ipynb" target="_blank" rel="noopener">
+    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spdlearn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/plot_benchmark_filterbank.ipynb" target="_blank" rel="noopener">
       <img class="spdlearn-colab-badge" alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg">
     </a>
   </div>

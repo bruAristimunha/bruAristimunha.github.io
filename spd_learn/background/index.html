@@ -54,11 +54,11 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'background/index';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/background/index.html" />
+    <link rel="canonical" href="https://spdlearn.org/background/index.html" />
     <link rel="icon" href="../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SPD Geometry: Motivation and Core Properties" href="1_spd_motivation.html" />
+    <link rel="next" title="Scope and Data Representations" href="1_scope_and_data.html" />
     <link rel="prev" title="Theory" href="../theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -242,7 +242,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -378,7 +378,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -406,14 +406,9 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Background</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html">SPD Geometry: Motivation and Core Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html">Inherent Properties and Their Exploitation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html">Different Types of Covariance and Computation Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html">Limitations and When Not to Use SPD Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html">Computational Methods for SPD Manifolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html">Deep Learning Integration: Autograd and Trivialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html">SPD Neural Network Layers: A Complete Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html">Historical Context: SPD Methods in Neuroscience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_scope_and_data.html">Scope and Data Representations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_geometry_essentials.html">Geometry Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html">SPD Learn Pipeline and Trivialization</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../geometric_concepts.html">Geometric Concepts</a></li>
@@ -482,122 +477,27 @@
                   
   <section id="background">
 <span id="id1"></span><h1>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h1>
-<p>This section provides a comprehensive introduction to Symmetric Positive Definite (SPD) geometry
-and its applications in deep learning. Understanding these fundamental concepts will help you
-make the most of the SPD Learn library.</p>
-<p>At a high level, SPD matrices offer a rich geometric structure that captures second-order statistics
-and correlations in data. By working directly in the manifold of SPD matrices rather than treating
-them as elements of Euclidean space, we can leverage their inherent geometric properties to build
-more effective machine learning models.</p>
-<p>The following tutorials detail the key concepts, computational approaches, and deep learning
-integration strategies for working with SPD matrices.</p>
+<p>This section is intentionally concise. It covers only the concepts needed to use
+SPD Learn effectively and points you to deeper references when appropriate.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1_spd_motivation.html">SPD Geometry: Motivation and Core Properties</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#why-covariance-matrices-and-spd-geometry">Why Covariance Matrices and SPD Geometry?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#core-geometric-properties">Core Geometric Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#example-computing-a-geodesic">Example: Computing a Geodesic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#what-advantages-does-this-provide">What Advantages Does This Provide?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#key-takeaways">Key Takeaways</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_spd_motivation.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_scope_and_data.html">Scope and Data Representations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_scope_and_data.html#what-spd-learn-targets">What SPD Learn Targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_scope_and_data.html#spd-data-in-practice">SPD Data in Practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_scope_and_data.html#estimation-essentials">Estimation Essentials</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="2_inherent_properties.html">Inherent Properties and Their Exploitation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#geodesic-completeness-and-boundary-avoidance">Geodesic Completeness and Boundary Avoidance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#example-geodesic-completeness">Example: Geodesic Completeness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#affine-invariance-and-robustness">Affine Invariance and Robustness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#example-affine-invariance">Example: Affine Invariance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#outlier-resistance-of-geometric-mean">Outlier Resistance of Geometric Mean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#example-outlier-resistance">Example: Outlier Resistance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#from-neuroimaging-signals-to-spd-matrices">From Neuroimaging Signals to SPD Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#example-covariance-construction-from-eeg">Example: Covariance Construction from EEG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#summary-of-advantages">Summary of Advantages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#application-context-why-these-properties-matter">Application Context: Why These Properties Matter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#key-takeaways">Key Takeaways</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_inherent_properties.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_geometry_essentials.html">Geometry Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_geometry_essentials.html#why-geometry-matters">Why Geometry Matters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_geometry_essentials.html#metric-choices-in-spd-learn">Metric Choices in SPD Learn</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="3_different_types_of_covariance.html">Different Types of Covariance and Computation Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#symmetric-positive-definite-matrices-formal-definition">Symmetric Positive Definite Matrices: Formal Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-checking-spd-property">Example: Checking SPD Property</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#types-of-covariance-matrices">Types of Covariance Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-spatial-covariance">Example: Spatial Covariance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-cross-spectral-density">Example: Cross-Spectral Density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-regularized-covariance">Example: Regularized Covariance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#covariance-estimation-methods">Covariance Estimation Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-comparing-estimators">Example: Comparing Estimators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#parallel-transport-of-covariance-matrices">Parallel Transport of Covariance Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-parallel-transport">Example: Parallel Transport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#practical-considerations">Practical Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#example-ensuring-numerical-stability">Example: Ensuring Numerical Stability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#key-takeaways">Key Takeaways</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_different_types_of_covariance.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="4_limitations.html">Limitations and When Not to Use SPD Approaches</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#understanding-the-limitations">Understanding the Limitations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#computational-complexity">Computational Complexity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#example-computational-trade-offs">Example: Computational Trade-offs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#when-the-data-doesn-t-match-the-geometry">When the Data Doesn’t Match the Geometry</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#example-regularization">Example: Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#first-order-statistics-may-be-sufficient">First-Order Statistics May Be Sufficient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#when-not-to-recommend-spd-approaches">When Not to Recommend SPD Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#alternative-approaches">Alternative Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#example-log-euclidean-alternative">Example: Log-Euclidean Alternative</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#key-takeaways">Key Takeaways</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_limitations.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="5_computation_methods.html">Computational Methods for SPD Manifolds</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#how-to-compute-on-spd-manifolds">How to Compute on SPD Manifolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#the-exponential-and-logarithmic-maps">The Exponential and Logarithmic Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#example-exponential-and-logarithmic-maps">Example: Exponential and Logarithmic Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#parallel-transport">Parallel Transport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#example-parallel-transport">Example: Parallel Transport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#riemannian-mean-frechet-mean">Riemannian Mean (Fréchet Mean)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#example-computing-the-riemannian-mean">Example: Computing the Riemannian Mean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#primary-references-and-implementations">Primary References and Implementations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#computational-considerations">Computational Considerations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_computation_methods.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="6_deep_learning_integration.html">Deep Learning Integration: Autograd and Trivialization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#incorporating-spd-geometry-into-deep-learning">Incorporating SPD Geometry into Deep Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#the-challenge-gradients-on-manifolds">The Challenge: Gradients on Manifolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#automatic-differentiation-for-spd-layers">Automatic Differentiation for SPD Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#example-custom-spd-layer-with-autograd">Example: Custom SPD Layer with Autograd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#trivialization-the-unified-approach">Trivialization: The Unified Approach</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#why-we-follow-the-trivialization-approach">Why We Follow the Trivialization Approach</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#common-trivialization-strategies">Common Trivialization Strategies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#example-end-to-end-spd-network-with-trivialization">Example: End-to-End SPD Network with Trivialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#differences-from-other-approaches">Differences from Other Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#key-takeaways">Key Takeaways</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_deep_learning_integration.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="7_spd_layers.html">SPD Neural Network Layers: A Complete Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#overview-the-spd-layer-zoo">Overview: The SPD Layer Zoo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#covariance-layer">Covariance Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#bilinear-mapping-layers">Bilinear Mapping Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#nonlinearity-layers">Nonlinearity Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#projection-layers">Projection Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#batch-normalization-layers">Batch Normalization Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#regularization-layers">Regularization Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#utility-layers">Utility Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#typical-network-architecture">Typical Network Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#layer-selection-guide">Layer Selection Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_spd_layers.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="8_historical_context.html">Historical Context: SPD Methods in Neuroscience</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#the-origins-covariance-in-signal-processing">The Origins: Covariance in Signal Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#the-riemannian-revolution-2010-2015">The Riemannian Revolution (2010-2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#the-deep-learning-era-2017-2020">The Deep Learning Era (2017-2020)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#modern-architectures-2020-present">Modern Architectures (2020-Present)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#spd-learn-design-and-implementation">SPD Learn: Design and Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#timeline-of-key-developments">Timeline of Key Developments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#future-directions">Future Directions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_historical_context.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_spdlearn_pipeline.html">SPD Learn Pipeline and Trivialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html#spdnet-building-blocks">SPDNet Building Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html#trivialization-in-spd-learn">Trivialization in SPD Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html#batch-normalization">Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html#example-building-an-spdnet">Example: Building an SPDNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_spdlearn_pipeline.html#where-to-go-next">Where to Go Next</a></li>
 </ul>
 </li>
 </ul>
@@ -605,14 +505,9 @@ integration strategies for working with SPD matrices.</p>
 <section id="quick-navigation">
 <h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="1_spd_motivation.html"><span class="doc">SPD Geometry: Motivation and Core Properties</span></a> - Why SPD geometry matters and its core properties</p></li>
-<li><p><a class="reference internal" href="2_inherent_properties.html"><span class="doc">Inherent Properties and Their Exploitation</span></a> - Inherent properties of SPD manifolds and how to exploit them</p></li>
-<li><p><a class="reference internal" href="3_different_types_of_covariance.html"><span class="doc">Different Types of Covariance and Computation Methods</span></a> - Types of covariance matrices and computation methods</p></li>
-<li><p><a class="reference internal" href="4_limitations.html"><span class="doc">Limitations and When Not to Use SPD Approaches</span></a> - When to use (and when not to use) SPD approaches</p></li>
-<li><p><a class="reference internal" href="5_computation_methods.html"><span class="doc">Computational Methods for SPD Manifolds</span></a> - How to compute on SPD manifolds and key references</p></li>
-<li><p><a class="reference internal" href="6_deep_learning_integration.html"><span class="doc">Deep Learning Integration: Autograd and Trivialization</span></a> - Incorporating SPD geometry into deep learning with autograd and trivialization</p></li>
-<li><p><a class="reference internal" href="7_spd_layers.html"><span class="doc">SPD Neural Network Layers: A Complete Guide</span></a> - Complete guide to all SPD neural network layers</p></li>
-<li><p><a class="reference internal" href="8_historical_context.html"><span class="doc">Historical Context: SPD Methods in Neuroscience</span></a> - Historical evolution of SPD methods in neuroscience</p></li>
+<li><p><a class="reference internal" href="1_scope_and_data.html"><span class="doc">Scope and Data Representations</span></a> - What SPD Learn targets and how data is represented</p></li>
+<li><p><a class="reference internal" href="2_geometry_essentials.html"><span class="doc">Geometry Essentials</span></a> - Minimal geometry needed for users</p></li>
+<li><p><a class="reference internal" href="3_spdlearn_pipeline.html"><span class="doc">SPD Learn Pipeline and Trivialization</span></a> - How SPD Learn implements SPDNet + trivialization</p></li>
 </ul>
 </section>
 </section>
@@ -637,11 +532,11 @@ integration strategies for working with SPD matrices.</p>
       </div>
     </a>
     <a class="right-next"
-       href="1_spd_motivation.html"
+       href="1_scope_and_data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SPD Geometry: Motivation and Core Properties</p>
+        <p class="prev-next-title">Scope and Data Representations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

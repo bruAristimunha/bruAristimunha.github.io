@@ -55,7 +55,7 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/tutorials/tutorial_02_building_blocks';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/tutorials/tutorial_02_building_blocks.html" />
+    <link rel="canonical" href="https://spdlearn.org/generated/auto_examples/tutorials/tutorial_02_building_blocks.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -243,7 +243,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -383,7 +383,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -431,7 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_radar.html">Radar Image Classification with SPD Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applied_examples/radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applied_examples/moabb_hydra_benchmark.html">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
@@ -550,7 +550,7 @@ the mathematical foundations and geometric intuitions behind each layer.</p>
 <p>Traditional neural networks operate on vectors in Euclidean space.
 However, many real-world signals (EEG, fMRI, radar) are better represented
 as covariance matrices, which lie on a curved Riemannian manifold.</p>
-<p>The SPDNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> pipeline transforms raw signals
+<p>The SPDNet <span id="id1">[<a class="reference internal" href="../../../user_guide.html#id22" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span> pipeline transforms raw signals
 through a series of geometry-aware operations:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw Signal --&gt; Covariance --&gt; BiMap --&gt; ReEig --&gt; LogEig --&gt; Linear
 (n_chans, n_times)   (n, n)    (m, m)    (m, m)   (m*(m+1)/2)   (n_classes)
@@ -736,7 +736,7 @@ Output (covariance matrices):
 <p>Sample covariance matrices can be ill-conditioned, especially when
 the number of samples is small relative to the number of channels.
 Regularization improves numerical stability.</p>
-<p><strong>Shrinkage (Ledoit-Wolf)</strong> <span id="id2">[<a class="reference internal" href="../../../references.html#id27" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span>:</p>
+<p><strong>Shrinkage (Ledoit-Wolf)</strong> <span id="id2">[<a class="reference internal" href="../../../references.html#id33" title="Olivier Ledoit and Michael Wolf. A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2):365–411, 2004. doi:10.1016/S0047-259X(03)00096-4.">Ledoit and Wolf, 2004</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\Sigma_{reg} = (1 - \alpha) \Sigma + \alpha \cdot \mu \cdot I\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the shrinkage coefficient and <span class="math notranslate nohighlight">\(\mu\)</span> is
@@ -1339,12 +1339,12 @@ operations apply, enabling standard linear classification</p></li>
 <ul class="simple">
 <li><p>All operations preserve SPD structure until LogEig</p></li>
 <li><p>BiMap uses Stiefel manifold constraints for stable training
-<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
+<span id="id3">[<a class="reference internal" href="../../../user_guide.html#id23" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
 <li><p>The pipeline gradually reduces dimensionality while preserving information</p></li>
 <li><p>LogEig “flattens” the manifold for classification</p></li>
 </ul>
 <p>For more advanced architectures, see the EEGSPDNet and TSMNet tutorials.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.616 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.924 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-auto-examples-tutorials-tutorial-02-building-blocks-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/fd7ab92ec6d780bfe36ceab2c9f1aad9/tutorial_02_building_blocks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tutorial_02_building_blocks.ipynb</span></code></a></p>
@@ -1490,7 +1490,7 @@ operations apply, enabling standard linear classification</p></li>
   <div class="sd-card-body spdlearn-colab-card-body">
     <p class="sd-card-text sd-fs-5 sd-font-weight-bold sd-mb-2">Run this example in Google Colab</p>
     <p class="sd-card-text sd-text-muted sd-mb-3">No installation required - runs directly in your browser with GPU support.</p>
-    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spd-learn/spd_learn/blob/gh-pages/auto_examples/_notebooks/tutorials/tutorial_02_building_blocks.ipynb" target="_blank" rel="noopener">
+    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spdlearn/spd_learn/blob/gh-pages/auto_examples/_notebooks/tutorials/tutorial_02_building_blocks.ipynb" target="_blank" rel="noopener">
       <img class="spdlearn-colab-badge" alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg">
     </a>
   </div>

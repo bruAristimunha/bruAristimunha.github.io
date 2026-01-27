@@ -1,5 +1,5 @@
 # SPD Learn Documentation - robots.txt
-# https://spd-learn.github.io/spd_learn/
+# https://spdlearn.org/
 
 User-agent: *
 Allow: /
@@ -19,4 +19,4 @@ Allow: /api.html
 Allow: /generated/auto_examples/
 
 # Sitemap location
-Sitemap: https://spd-learn.github.io/spd_learn/sitemap.xml
+Sitemap: https://spdlearn.org/sitemap.xml

@@ -55,7 +55,7 @@
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numerical_stability';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/numerical_stability.html" />
+    <link rel="canonical" href="https://spdlearn.org/numerical_stability.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -243,7 +243,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -379,7 +379,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -407,14 +407,9 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="background/index.html">Background</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="background/1_spd_motivation.html">SPD Geometry: Motivation and Core Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/2_inherent_properties.html">Inherent Properties and Their Exploitation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/3_different_types_of_covariance.html">Different Types of Covariance and Computation Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/4_limitations.html">Limitations and When Not to Use SPD Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/5_computation_methods.html">Computational Methods for SPD Manifolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/6_deep_learning_integration.html">Deep Learning Integration: Autograd and Trivialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/7_spd_layers.html">SPD Neural Network Layers: A Complete Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/8_historical_context.html">Historical Context: SPD Methods in Neuroscience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/1_scope_and_data.html">Scope and Data Representations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/2_geometry_essentials.html">Geometry Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/3_spdlearn_pipeline.html">SPD Learn Pipeline and Trivialization</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="geometric_concepts.html">Geometric Concepts</a></li>
@@ -490,83 +485,69 @@ comprehensive configuration system for managing numerical stability.</p>
 techniques for working with Symmetric Positive Definite (SPD) matrices
 in Riemannian geometry-based learning frameworks. The theoretical approaches
 are based on established methods in the field, including those described
-in the MENDR framework <span id="id2">[<a class="reference internal" href="references.html#id22" title="Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. arXiv:2508.04956.">Chen <em>et al.</em>, 2025</a>]</span>.</p>
+in the MENDR framework <span id="id2">[<a class="reference internal" href="references.html#id28" title="Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. arXiv:2508.04956.">Chen <em>et al.</em>, 2025</a>]</span>.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id77">Overview</a></p></li>
-<li><p><a class="reference internal" href="#mathematical-background" id="id78">Mathematical Background</a></p>
+<li><p><a class="reference internal" href="#overview" id="id92">Overview</a></p></li>
+<li><p><a class="reference internal" href="#covariance-matrix-rank-deficiency" id="id93">Covariance Matrix Rank Deficiency</a></p></li>
+<li><p><a class="reference internal" href="#numerical-stability-techniques" id="id94">Numerical Stability Techniques</a></p>
 <ul>
-<li><p><a class="reference internal" href="#spd-matrix-definition" id="id79">SPD Matrix Definition</a></p></li>
-<li><p><a class="reference internal" href="#eigendecomposition" id="id80">Eigendecomposition</a></p></li>
-<li><p><a class="reference internal" href="#matrix-logarithm-and-exponential" id="id81">Matrix Logarithm and Exponential</a></p></li>
-<li><p><a class="reference internal" href="#covariance-matrix-computation" id="id82">Covariance Matrix Computation</a></p></li>
+<li><p><a class="reference internal" href="#trace-normalization-with-epsilon-regularization" id="id95">Trace Normalization with Epsilon Regularization</a></p></li>
+<li><p><a class="reference internal" href="#symmetrization" id="id96">Symmetrization</a></p></li>
+<li><p><a class="reference internal" href="#cholesky-decomposition-for-gradient-flow" id="id97">Cholesky Decomposition for Gradient Flow</a></p></li>
+<li><p><a class="reference internal" href="#svd-based-stable-differentiation" id="id98">SVD-Based Stable Differentiation</a></p></li>
+<li><p><a class="reference internal" href="#logarithmic-loss-functions" id="id99">Logarithmic Loss Functions</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#riemannian-geometry-on-spd-manifolds" id="id83">Riemannian Geometry on SPD Manifolds</a></p>
+<li><p><a class="reference internal" href="#condition-number-analysis" id="id100">Condition Number Analysis</a></p>
 <ul>
-<li><p><a class="reference internal" href="#log-euclidean-metric" id="id84">Log-Euclidean Metric</a></p></li>
-<li><p><a class="reference internal" href="#riemannian-residual-connections" id="id85">Riemannian Residual Connections</a></p></li>
-<li><p><a class="reference internal" href="#similarity-on-spd-manifold" id="id86">Similarity on SPD Manifold</a></p></li>
+<li><p><a class="reference internal" href="#definition-and-significance" id="id101">Definition and Significance</a></p></li>
+<li><p><a class="reference internal" href="#condition-number-bounds" id="id102">Condition Number Bounds</a></p></li>
+<li><p><a class="reference internal" href="#eigenvalue-perturbation-bounds" id="id103">Eigenvalue Perturbation Bounds</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#numerical-stability-techniques" id="id87">Numerical Stability Techniques</a></p>
+<li><p><a class="reference internal" href="#configuration-system" id="id104">Configuration System</a></p>
 <ul>
-<li><p><a class="reference internal" href="#trace-normalization-with-epsilon-regularization" id="id88">Trace Normalization with Epsilon Regularization</a></p></li>
-<li><p><a class="reference internal" href="#symmetrization" id="id89">Symmetrization</a></p></li>
-<li><p><a class="reference internal" href="#cholesky-decomposition-for-gradient-flow" id="id90">Cholesky Decomposition for Gradient Flow</a></p></li>
-<li><p><a class="reference internal" href="#svd-based-stable-differentiation" id="id91">SVD-Based Stable Differentiation</a></p></li>
-<li><p><a class="reference internal" href="#logarithmic-loss-functions" id="id92">Logarithmic Loss Functions</a></p></li>
+<li><p><a class="reference internal" href="#the-global-configuration" id="id105">The Global Configuration</a></p></li>
+<li><p><a class="reference internal" href="#configuration-parameters" id="id106">Configuration Parameters</a></p></li>
+<li><p><a class="reference internal" href="#getting-epsilon-values" id="id107">Getting Epsilon Values</a></p></li>
+<li><p><a class="reference internal" href="#temporary-configuration" id="id108">Temporary Configuration</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#condition-number-analysis" id="id93">Condition Number Analysis</a></p>
+<li><p><a class="reference internal" href="#checking-spd-validity" id="id109">Checking SPD Validity</a></p>
 <ul>
-<li><p><a class="reference internal" href="#definition-and-significance" id="id94">Definition and Significance</a></p></li>
-<li><p><a class="reference internal" href="#condition-number-bounds" id="id95">Condition Number Bounds</a></p></li>
-<li><p><a class="reference internal" href="#eigenvalue-perturbation-bounds" id="id96">Eigenvalue Perturbation Bounds</a></p></li>
+<li><p><a class="reference internal" href="#safe-eigenvalue-clamping" id="id110">Safe Eigenvalue Clamping</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#configuration-system" id="id97">Configuration System</a></p>
+<li><p><a class="reference internal" href="#implementation-guidelines" id="id111">Implementation Guidelines</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-global-configuration" id="id98">The Global Configuration</a></p></li>
-<li><p><a class="reference internal" href="#configuration-parameters" id="id99">Configuration Parameters</a></p></li>
-<li><p><a class="reference internal" href="#getting-epsilon-values" id="id100">Getting Epsilon Values</a></p></li>
-<li><p><a class="reference internal" href="#temporary-configuration" id="id101">Temporary Configuration</a></p></li>
+<li><p><a class="reference internal" href="#recommended-numerical-thresholds" id="id112">Recommended Numerical Thresholds</a></p></li>
+<li><p><a class="reference internal" href="#stability-checklist" id="id113">Stability Checklist</a></p></li>
+<li><p><a class="reference internal" href="#code-example" id="id114">Code Example</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#checking-spd-validity" id="id102">Checking SPD Validity</a></p>
+<li><p><a class="reference internal" href="#recommendations-for-different-scenarios" id="id115">Recommendations for Different Scenarios</a></p>
 <ul>
-<li><p><a class="reference internal" href="#safe-eigenvalue-clamping" id="id103">Safe Eigenvalue Clamping</a></p></li>
+<li><p><a class="reference internal" href="#standard-training-float32" id="id116">Standard Training (float32)</a></p></li>
+<li><p><a class="reference internal" href="#ill-conditioned-matrices" id="id117">Ill-Conditioned Matrices</a></p></li>
+<li><p><a class="reference internal" href="#mixed-precision-training" id="id118">Mixed Precision Training</a></p></li>
+<li><p><a class="reference internal" href="#high-precision-requirements" id="id119">High Precision Requirements</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#implementation-guidelines" id="id104">Implementation Guidelines</a></p>
+<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id120">Common Issues and Solutions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#recommended-numerical-thresholds" id="id105">Recommended Numerical Thresholds</a></p></li>
-<li><p><a class="reference internal" href="#stability-checklist" id="id106">Stability Checklist</a></p></li>
-<li><p><a class="reference internal" href="#code-example" id="id107">Code Example</a></p></li>
+<li><p><a class="reference internal" href="#nan-values-during-training" id="id121">NaN Values During Training</a></p></li>
+<li><p><a class="reference internal" href="#slow-convergence" id="id122">Slow Convergence</a></p></li>
+<li><p><a class="reference internal" href="#warnings-about-eigenvalue-clamping" id="id123">Warnings About Eigenvalue Clamping</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#recommendations-for-different-scenarios" id="id108">Recommendations for Different Scenarios</a></p>
-<ul>
-<li><p><a class="reference internal" href="#standard-training-float32" id="id109">Standard Training (float32)</a></p></li>
-<li><p><a class="reference internal" href="#ill-conditioned-matrices" id="id110">Ill-Conditioned Matrices</a></p></li>
-<li><p><a class="reference internal" href="#mixed-precision-training" id="id111">Mixed Precision Training</a></p></li>
-<li><p><a class="reference internal" href="#high-precision-requirements" id="id112">High Precision Requirements</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id113">Common Issues and Solutions</a></p>
-<ul>
-<li><p><a class="reference internal" href="#nan-values-during-training" id="id114">NaN Values During Training</a></p></li>
-<li><p><a class="reference internal" href="#slow-convergence" id="id115">Slow Convergence</a></p></li>
-<li><p><a class="reference internal" href="#warnings-about-eigenvalue-clamping" id="id116">Warnings About Eigenvalue Clamping</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#api-reference" id="id117">API Reference</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id118">References</a></p></li>
+<li><p><a class="reference internal" href="#api-reference" id="id124">API Reference</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id125">References</a></p></li>
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id77" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id92" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Working with SPD matrices presents numerical challenges:</p>
 <ol class="arabic simple">
 <li><p><strong>Small eigenvalues</strong>: Operations like <span class="math notranslate nohighlight">\(\log(\lambda)\)</span> become undefined or
@@ -580,92 +561,27 @@ stability margins.</p></li>
 </ol>
 <p>SPD Learn addresses these challenges with <strong>dtype-aware numerical thresholds</strong>
 that automatically adjust based on the precision of your computations.</p>
-</section>
-<section id="mathematical-background">
-<h2><a class="toc-backref" href="#id78" role="doc-backlink">Mathematical Background</a><a class="headerlink" href="#mathematical-background" title="Link to this heading">#</a></h2>
-<section id="spd-matrix-definition">
-<h3><a class="toc-backref" href="#id79" role="doc-backlink">SPD Matrix Definition</a><a class="headerlink" href="#spd-matrix-definition" title="Link to this heading">#</a></h3>
-<p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> is symmetric positive definite if:</p>
-<ol class="arabic simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{A}^\top\)</span> (symmetry)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x} \neq \mathbf{0}\)</span> (positive definiteness)</p></li>
-</ol>
-<p>Equivalently, all eigenvalues <span class="math notranslate nohighlight">\(\lambda_1, \ldots, \lambda_n &gt; 0\)</span>.</p>
-<p>The set of all <span class="math notranslate nohighlight">\(n \times n\)</span> SPD matrices forms a Riemannian manifold
-<span class="math notranslate nohighlight">\(\mathcal{S}^{++}_n\)</span>, which is an open cone in the space of symmetric matrices.</p>
-</section>
-<section id="eigendecomposition">
-<h3><a class="toc-backref" href="#id80" role="doc-backlink">Eigendecomposition</a><a class="headerlink" href="#eigendecomposition" title="Link to this heading">#</a></h3>
-<p>For any SPD matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, there exists an orthogonal matrix
-<span class="math notranslate nohighlight">\(\mathbf{U}\)</span> such that:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{A} = \mathbf{U} \, \text{diag}(\lambda_1, \ldots, \lambda_n) \, \mathbf{U}^\top\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda_i &gt; 0\)</span> are the eigenvalues.</p>
-</section>
-<section id="matrix-logarithm-and-exponential">
-<h3><a class="toc-backref" href="#id81" role="doc-backlink">Matrix Logarithm and Exponential</a><a class="headerlink" href="#matrix-logarithm-and-exponential" title="Link to this heading">#</a></h3>
-<p>The matrix logarithm and exponential are fundamental operations on SPD manifolds.
-Given the eigendecomposition above:</p>
-<p><strong>Matrix Exponential:</strong></p>
-<div class="math notranslate nohighlight">
-\[\exp(\mathbf{A}) = \mathbf{U} \, \text{diag}(\exp(\lambda_1), \ldots, \exp(\lambda_n)) \, \mathbf{U}^\top\]</div>
-<p><strong>Matrix Logarithm:</strong></p>
-<div class="math notranslate nohighlight">
-\[\log(\mathbf{A}) = \mathbf{U} \, \text{diag}(\log(\lambda_1), \ldots, \log(\lambda_n)) \, \mathbf{U}^\top\]</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The matrix logarithm is only defined for SPD matrices. If any eigenvalue
-<span class="math notranslate nohighlight">\(\lambda_i \leq 0\)</span>, the logarithm is undefined or complex-valued.
-This is a primary source of numerical instability.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="geometric_concepts.html"><span class="doc">Geometric Concepts</span></a> for the mathematical foundations of SPD matrices,
+eigendecomposition, Riemannian metrics, and geometric operations.</p>
 </div>
 </section>
-<section id="covariance-matrix-computation">
-<h3><a class="toc-backref" href="#id82" role="doc-backlink">Covariance Matrix Computation</a><a class="headerlink" href="#covariance-matrix-computation" title="Link to this heading">#</a></h3>
+<section id="covariance-matrix-rank-deficiency">
+<h2><a class="toc-backref" href="#id93" role="doc-backlink">Covariance Matrix Rank Deficiency</a><a class="headerlink" href="#covariance-matrix-rank-deficiency" title="Link to this heading">#</a></h2>
 <p>The sample covariance matrix (SCM) from a data matrix <span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{C \times T}\)</span>
 (C channels, T time samples) is computed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{SCM} = \frac{1}{T-1} \mathbf{X} \mathbf{X}^\top\]</div>
 <p>This matrix is guaranteed to be symmetric positive semi-definite, but may have
-zero eigenvalues if <span class="math notranslate nohighlight">\(T &lt; C\)</span>.</p>
-</section>
-</section>
-<section id="riemannian-geometry-on-spd-manifolds">
-<h2><a class="toc-backref" href="#id83" role="doc-backlink">Riemannian Geometry on SPD Manifolds</a><a class="headerlink" href="#riemannian-geometry-on-spd-manifolds" title="Link to this heading">#</a></h2>
-<section id="log-euclidean-metric">
-<h3><a class="toc-backref" href="#id84" role="doc-backlink">Log-Euclidean Metric</a><a class="headerlink" href="#log-euclidean-metric" title="Link to this heading">#</a></h3>
-<p>The Log-Euclidean framework provides computationally efficient Riemannian operations
-by working in the tangent space via the matrix logarithm.</p>
-<p><strong>Log-Euclidean Distance:</strong></p>
-<div class="math notranslate nohighlight">
-\[\delta_{\text{LE}}(\mathbf{A}, \mathbf{B}) = \| \log(\mathbf{A}) - \log(\mathbf{B}) \|_F\]</div>
-<p>where <span class="math notranslate nohighlight">\(\| \cdot \|_F\)</span> denotes the Frobenius norm.</p>
-<p><strong>Log-Euclidean Mean (Fréchet Mean):</strong></p>
-<div class="math notranslate nohighlight">
-\[\mathcal{G} = \exp\left( \frac{1}{K} \sum_{k=1}^{K} \log(\mathbf{A}_k) \right)\]</div>
-<p>This closed-form solution is computationally more efficient than the iterative
-algorithms required for the affine-invariant mean.</p>
-</section>
-<section id="riemannian-residual-connections">
-<h3><a class="toc-backref" href="#id85" role="doc-backlink">Riemannian Residual Connections</a><a class="headerlink" href="#riemannian-residual-connections" title="Link to this heading">#</a></h3>
-<p>In deep learning on SPD manifolds, residual connections must respect the
-manifold structure. The Log-Euclidean residual connection combines two SPD
-matrices as:</p>
-<div class="math notranslate nohighlight">
-\[\hat{\mathbf{A}} = \exp\left( \log(\mathbf{A}) + \log(\mathbf{B}) \right)\]</div>
-<p>This ensures the output remains on the SPD manifold while providing the
-gradient flow benefits of residual connections.</p>
-</section>
-<section id="similarity-on-spd-manifold">
-<h3><a class="toc-backref" href="#id86" role="doc-backlink">Similarity on SPD Manifold</a><a class="headerlink" href="#similarity-on-spd-manifold" title="Link to this heading">#</a></h3>
-<p>A bounded similarity function mapping the unbounded distance to <span class="math notranslate nohighlight">\([0, 1]\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\text{sim}(\mathbf{X}, \mathbf{Y}) = \frac{1}{1 + \log(1 + \delta_{\text{LE}}(\mathbf{X}, \mathbf{Y}))}\]</div>
-</section>
+zero eigenvalues if <span class="math notranslate nohighlight">\(T &lt; C\)</span>. This rank deficiency is a common source of
+numerical instability when applying SPD operations that require strictly positive
+eigenvalues.</p>
 </section>
 <section id="numerical-stability-techniques">
-<h2><a class="toc-backref" href="#id87" role="doc-backlink">Numerical Stability Techniques</a><a class="headerlink" href="#numerical-stability-techniques" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id94" role="doc-backlink">Numerical Stability Techniques</a><a class="headerlink" href="#numerical-stability-techniques" title="Link to this heading">#</a></h2>
 <section id="trace-normalization-with-epsilon-regularization">
-<h3><a class="toc-backref" href="#id88" role="doc-backlink">Trace Normalization with Epsilon Regularization</a><a class="headerlink" href="#trace-normalization-with-epsilon-regularization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id95" role="doc-backlink">Trace Normalization with Epsilon Regularization</a><a class="headerlink" href="#trace-normalization-with-epsilon-regularization" title="Link to this heading">#</a></h3>
 <p>To ensure numerical stability during forward and backward passes, a two-stage
 regularization is applied:</p>
 <p><strong>Stage 1 - Pre-normalization regularization:</strong></p>
@@ -683,7 +599,7 @@ regularization is applied:</p>
 </ul>
 </section>
 <section id="symmetrization">
-<h3><a class="toc-backref" href="#id89" role="doc-backlink">Symmetrization</a><a class="headerlink" href="#symmetrization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id96" role="doc-backlink">Symmetrization</a><a class="headerlink" href="#symmetrization" title="Link to this heading">#</a></h3>
 <p>Floating-point operations can introduce small asymmetries. Explicit symmetrization
 ensures the SPD property:</p>
 <div class="math notranslate nohighlight">
@@ -691,7 +607,7 @@ ensures the SPD property:</p>
 <p>This should be applied after any operation that might introduce asymmetry.</p>
 </section>
 <section id="cholesky-decomposition-for-gradient-flow">
-<h3><a class="toc-backref" href="#id90" role="doc-backlink">Cholesky Decomposition for Gradient Flow</a><a class="headerlink" href="#cholesky-decomposition-for-gradient-flow" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id97" role="doc-backlink">Cholesky Decomposition for Gradient Flow</a><a class="headerlink" href="#cholesky-decomposition-for-gradient-flow" title="Link to this heading">#</a></h3>
 <p>Instead of directly optimizing over the SPD manifold, a numerically stable
 approach is to parameterize SPD matrices via Cholesky decomposition:</p>
 <div class="math notranslate nohighlight">
@@ -709,7 +625,7 @@ matrix with positive diagonal elements.</p>
 </ul>
 </section>
 <section id="svd-based-stable-differentiation">
-<h3><a class="toc-backref" href="#id91" role="doc-backlink">SVD-Based Stable Differentiation</a><a class="headerlink" href="#svd-based-stable-differentiation" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id98" role="doc-backlink">SVD-Based Stable Differentiation</a><a class="headerlink" href="#svd-based-stable-differentiation" title="Link to this heading">#</a></h3>
 <p>For operations requiring eigendecomposition (log, exp, power), using SVD provides
 numerical stability:</p>
 <div class="math notranslate nohighlight">
@@ -726,7 +642,7 @@ equal the absolute eigenvalues.</p>
 natural regularization and prevent gradient explosion.</p>
 </section>
 <section id="logarithmic-loss-functions">
-<h3><a class="toc-backref" href="#id92" role="doc-backlink">Logarithmic Loss Functions</a><a class="headerlink" href="#logarithmic-loss-functions" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id99" role="doc-backlink">Logarithmic Loss Functions</a><a class="headerlink" href="#logarithmic-loss-functions" title="Link to this heading">#</a></h3>
 <p>Operating on log-eigenvalues rather than raw eigenvalues prevents underflow/overflow:</p>
 <p><strong>Masked Autoencoding Loss:</strong></p>
 <div class="math notranslate nohighlight">
@@ -741,9 +657,9 @@ natural regularization and prevent gradient explosion.</p>
 </section>
 </section>
 <section id="condition-number-analysis">
-<h2><a class="toc-backref" href="#id93" role="doc-backlink">Condition Number Analysis</a><a class="headerlink" href="#condition-number-analysis" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id100" role="doc-backlink">Condition Number Analysis</a><a class="headerlink" href="#condition-number-analysis" title="Link to this heading">#</a></h2>
 <section id="definition-and-significance">
-<h3><a class="toc-backref" href="#id94" role="doc-backlink">Definition and Significance</a><a class="headerlink" href="#definition-and-significance" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id101" role="doc-backlink">Definition and Significance</a><a class="headerlink" href="#definition-and-significance" title="Link to this heading">#</a></h3>
 <p>The condition number of an SPD matrix is:</p>
 <div class="math notranslate nohighlight">
 \[\kappa(\mathbf{A}) = \frac{\lambda_{\max}}{\lambda_{\min}}\]</div>
@@ -755,7 +671,7 @@ natural regularization and prevent gradient explosion.</p>
 </ul>
 </section>
 <section id="condition-number-bounds">
-<h3><a class="toc-backref" href="#id95" role="doc-backlink">Condition Number Bounds</a><a class="headerlink" href="#condition-number-bounds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id102" role="doc-backlink">Condition Number Bounds</a><a class="headerlink" href="#condition-number-bounds" title="Link to this heading">#</a></h3>
 <p>After trace normalization with <span class="math notranslate nohighlight">\(\epsilon\)</span>-regularization:</p>
 <div class="math notranslate nohighlight">
 \[\kappa(\mathbf{A}_{\text{norm}}) \leq \frac{1}{\epsilon}\]</div>
@@ -767,7 +683,7 @@ natural regularization and prevent gradient explosion.</p>
 </ul>
 </section>
 <section id="eigenvalue-perturbation-bounds">
-<h3><a class="toc-backref" href="#id96" role="doc-backlink">Eigenvalue Perturbation Bounds</a><a class="headerlink" href="#eigenvalue-perturbation-bounds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id103" role="doc-backlink">Eigenvalue Perturbation Bounds</a><a class="headerlink" href="#eigenvalue-perturbation-bounds" title="Link to this heading">#</a></h3>
 <p>For a symmetric matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with perturbation <span class="math notranslate nohighlight">\(\mathbf{E}\)</span>:</p>
 <p><strong>Weyl’s Theorem:</strong></p>
 <div class="math notranslate nohighlight">
@@ -777,9 +693,9 @@ natural regularization and prevent gradient explosion.</p>
 </section>
 </section>
 <section id="configuration-system">
-<h2><a class="toc-backref" href="#id97" role="doc-backlink">Configuration System</a><a class="headerlink" href="#configuration-system" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id104" role="doc-backlink">Configuration System</a><a class="headerlink" href="#configuration-system" title="Link to this heading">#</a></h2>
 <section id="the-global-configuration">
-<h3><a class="toc-backref" href="#id98" role="doc-backlink">The Global Configuration</a><a class="headerlink" href="#the-global-configuration" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id105" role="doc-backlink">The Global Configuration</a><a class="headerlink" href="#the-global-configuration" title="Link to this heading">#</a></h3>
 <p>SPD Learn provides a global <code class="docutils literal notranslate"><span class="pre">numerical_config</span></code> object that controls all
 numerical stability thresholds:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
@@ -796,7 +712,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="configuration-parameters">
-<h3><a class="toc-backref" href="#id99" role="doc-backlink">Configuration Parameters</a><a class="headerlink" href="#configuration-parameters" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id106" role="doc-backlink">Configuration Parameters</a><a class="headerlink" href="#configuration-parameters" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 25.0%" />
@@ -859,7 +775,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="getting-epsilon-values">
-<h3><a class="toc-backref" href="#id100" role="doc-backlink">Getting Epsilon Values</a><a class="headerlink" href="#getting-epsilon-values" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id107" role="doc-backlink">Getting Epsilon Values</a><a class="headerlink" href="#getting-epsilon-values" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">get_epsilon()</span></code> to retrieve the appropriate threshold for an operation:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_epsilon</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -879,7 +795,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="temporary-configuration">
-<h3><a class="toc-backref" href="#id101" role="doc-backlink">Temporary Configuration</a><a class="headerlink" href="#temporary-configuration" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id108" role="doc-backlink">Temporary Configuration</a><a class="headerlink" href="#temporary-configuration" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">NumericalContext</span></code> to temporarily modify settings:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumericalContext</span><span class="p">,</span> <span class="n">get_epsilon</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -898,7 +814,7 @@ numerical stability thresholds:</p>
 </section>
 </section>
 <section id="checking-spd-validity">
-<h2><a class="toc-backref" href="#id102" role="doc-backlink">Checking SPD Validity</a><a class="headerlink" href="#checking-spd-validity" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id109" role="doc-backlink">Checking SPD Validity</a><a class="headerlink" href="#checking-spd-validity" title="Link to this heading">#</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">check_spd_eigenvalues()</span></code> to validate matrices:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_spd_eigenvalues</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -916,7 +832,7 @@ numerical stability thresholds:</p>
 </pre></div>
 </div>
 <section id="safe-eigenvalue-clamping">
-<h3><a class="toc-backref" href="#id103" role="doc-backlink">Safe Eigenvalue Clamping</a><a class="headerlink" href="#safe-eigenvalue-clamping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id110" role="doc-backlink">Safe Eigenvalue Clamping</a><a class="headerlink" href="#safe-eigenvalue-clamping" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">safe_clamp_eigenvalues()</span></code> for consistent clamping, important for
 activation functions like <a class="reference internal" href="generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_clamp_eigenvalues</span>
@@ -936,9 +852,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="implementation-guidelines">
-<h2><a class="toc-backref" href="#id104" role="doc-backlink">Implementation Guidelines</a><a class="headerlink" href="#implementation-guidelines" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id111" role="doc-backlink">Implementation Guidelines</a><a class="headerlink" href="#implementation-guidelines" title="Link to this heading">#</a></h2>
 <section id="recommended-numerical-thresholds">
-<h3><a class="toc-backref" href="#id105" role="doc-backlink">Recommended Numerical Thresholds</a><a class="headerlink" href="#recommended-numerical-thresholds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id112" role="doc-backlink">Recommended Numerical Thresholds</a><a class="headerlink" href="#recommended-numerical-thresholds" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 30.0%" />
@@ -973,7 +889,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="stability-checklist">
-<h3><a class="toc-backref" href="#id106" role="doc-backlink">Stability Checklist</a><a class="headerlink" href="#stability-checklist" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id113" role="doc-backlink">Stability Checklist</a><a class="headerlink" href="#stability-checklist" title="Link to this heading">#</a></h3>
 <p>When implementing SPD matrix operations:</p>
 <ol class="arabic simple">
 <li><p><strong>Always regularize</strong> before computing logarithms</p></li>
@@ -985,7 +901,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </ol>
 </section>
 <section id="code-example">
-<h3><a class="toc-backref" href="#id107" role="doc-backlink">Code Example</a><a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id114" role="doc-backlink">Code Example</a><a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
 <p>Pseudocode for stable SPD operations:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">stable_log_euclidean_mean</span><span class="p">(</span><span class="n">matrices</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Log-Euclidean mean with numerical stability.&quot;&quot;&quot;</span>
@@ -1014,9 +930,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="recommendations-for-different-scenarios">
-<h2><a class="toc-backref" href="#id108" role="doc-backlink">Recommendations for Different Scenarios</a><a class="headerlink" href="#recommendations-for-different-scenarios" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id115" role="doc-backlink">Recommendations for Different Scenarios</a><a class="headerlink" href="#recommendations-for-different-scenarios" title="Link to this heading">#</a></h2>
 <section id="standard-training-float32">
-<h3><a class="toc-backref" href="#id109" role="doc-backlink">Standard Training (float32)</a><a class="headerlink" href="#standard-training-float32" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id116" role="doc-backlink">Standard Training (float32)</a><a class="headerlink" href="#standard-training-float32" title="Link to this heading">#</a></h3>
 <p>The default settings are well-tuned for float32 training:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No changes needed for most cases</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPDNet</span>
@@ -1026,7 +942,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="ill-conditioned-matrices">
-<h3><a class="toc-backref" href="#id110" role="doc-backlink">Ill-Conditioned Matrices</a><a class="headerlink" href="#ill-conditioned-matrices" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id117" role="doc-backlink">Ill-Conditioned Matrices</a><a class="headerlink" href="#ill-conditioned-matrices" title="Link to this heading">#</a></h3>
 <p>For matrices with high condition numbers (common in EEG/fMRI):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
 
@@ -1040,7 +956,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="mixed-precision-training">
-<h3><a class="toc-backref" href="#id111" role="doc-backlink">Mixed Precision Training</a><a class="headerlink" href="#mixed-precision-training" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id118" role="doc-backlink">Mixed Precision Training</a><a class="headerlink" href="#mixed-precision-training" title="Link to this heading">#</a></h3>
 <p>For float16/bfloat16 training, be more conservative:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span><span class="p">,</span> <span class="n">recommend_dtype_for_spd</span>
 
@@ -1056,7 +972,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="high-precision-requirements">
-<h3><a class="toc-backref" href="#id112" role="doc-backlink">High Precision Requirements</a><a class="headerlink" href="#high-precision-requirements" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id119" role="doc-backlink">High Precision Requirements</a><a class="headerlink" href="#high-precision-requirements" title="Link to this heading">#</a></h3>
 <p>For research or when maximum precision is needed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
@@ -1072,9 +988,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="common-issues-and-solutions">
-<h2><a class="toc-backref" href="#id113" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id120" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading">#</a></h2>
 <section id="nan-values-during-training">
-<h3><a class="toc-backref" href="#id114" role="doc-backlink">NaN Values During Training</a><a class="headerlink" href="#nan-values-during-training" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id121" role="doc-backlink">NaN Values During Training</a><a class="headerlink" href="#nan-values-during-training" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Loss becomes NaN after some epochs.</p>
 <p><strong>Cause</strong>: Usually due to eigenvalues becoming too small or negative.</p>
 <p><strong>Solution</strong>:</p>
@@ -1094,7 +1010,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="slow-convergence">
-<h3><a class="toc-backref" href="#id115" role="doc-backlink">Slow Convergence</a><a class="headerlink" href="#slow-convergence" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id122" role="doc-backlink">Slow Convergence</a><a class="headerlink" href="#slow-convergence" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Model trains but converges slowly or gets stuck.</p>
 <p><strong>Cause</strong>: Overly conservative thresholds may clip important information.</p>
 <p><strong>Solution</strong>:</p>
@@ -1115,7 +1031,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="warnings-about-eigenvalue-clamping">
-<h3><a class="toc-backref" href="#id116" role="doc-backlink">Warnings About Eigenvalue Clamping</a><a class="headerlink" href="#warnings-about-eigenvalue-clamping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id123" role="doc-backlink">Warnings About Eigenvalue Clamping</a><a class="headerlink" href="#warnings-about-eigenvalue-clamping" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Many warnings about eigenvalue clamping.</p>
 <p><strong>Cause</strong>: Your data has small eigenvalues being modified.</p>
 <p><strong>Options</strong>:</p>
@@ -1134,10 +1050,10 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="api-reference">
-<h2><a class="toc-backref" href="#id117" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id124" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_epsilon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_epsilon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Get a dtype-aware epsilon value for numerical stability.</p>
 <p>This function returns an appropriate epsilon value based on the data type
 and the intended use case. It scales the machine epsilon by a factor that
@@ -1201,7 +1117,7 @@ ensures numerical stability for the specific operation.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_epsilon_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.device" title="(in PyTorch v2.10)"><span class="pre">device</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_epsilon_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.device" title="(in PyTorch v2.10)"><span class="pre">device</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Get a dtype-aware epsilon value as a tensor.</p>
 <p>Similar to <a class="reference internal" href="generated/numerical/spd_learn.functional.get_epsilon.html#spd_learn.functional.get_epsilon" title="spd_learn.functional.get_epsilon"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_epsilon()</span></code></a>, but returns a tensor on the specified
 device. This is useful when the epsilon needs to be used in tensor
@@ -1234,7 +1150,7 @@ operations that require matching devices.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">safe_clamp_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">safe_clamp_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Safely clamp eigenvalues with dtype-aware threshold.</p>
 <p>This function clamps eigenvalues to ensure they are positive and
 numerically stable. It uses a dtype-aware threshold to balance
@@ -1270,7 +1186,7 @@ of (clamped_eigenvalues, clamped_mask).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">check_spd_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_on_failure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">check_spd_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_on_failure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Check if eigenvalues satisfy SPD requirements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1304,7 +1220,7 @@ of (clamped_eigenvalues, clamped_mask).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_loewner_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_loewner_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvalues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Get threshold for detecting equal eigenvalues in Loewner matrix.</p>
 <p>The Loewner matrix computation requires special handling when eigenvalues
 are equal or nearly equal. This function returns an appropriate threshold
@@ -1334,7 +1250,7 @@ providing better numerical stability for matrices with large eigenvalues.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">is_half_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">is_half_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Check if dtype is half precision (float16 or bfloat16).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1351,7 +1267,7 @@ providing better numerical stability for matrices with large eigenvalues.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">recommend_dtype_for_spd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefer_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">recommend_dtype_for_spd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefer_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Recommend a dtype based on expected matrix condition number.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1381,7 +1297,7 @@ providing better numerical stability for matrices with large eigenvalues.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">NumericalConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigval_clamp_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">10000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_log_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_sqrt_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_inv_sqrt_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_power_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loewner_equal_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stiefel_init_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">division_safe_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchnorm_var_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_norm_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn_on_clamp:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_spd_check:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_threshold_cache:</span> <span class="pre">~typing.Dict[tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">NumericalConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigval_clamp_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">10000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_log_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_sqrt_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_inv_sqrt_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigval_power_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loewner_equal_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stiefel_init_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">division_safe_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">100000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchnorm_var_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_norm_eps:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn_on_clamp:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_spd_check:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_threshold_cache:</span> <span class="pre">~typing.Dict[tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Global configuration for numerical stability thresholds.</p>
 <p>This class provides centralized control over numerical stability parameters
@@ -1429,60 +1345,60 @@ Default: False.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The default scale factors are chosen to balance numerical stability with
-accuracy <span id="id3">[<a class="reference internal" href="references.html#id43" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
+accuracy <span id="id3">[<a class="reference internal" href="references.html#id50" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
 provide better stability but may reduce precision. Less conservative
 (smaller) values preserve more information but risk numerical issues.</p>
 <p>For mixed-precision training (fp16), consider using larger scale factors
 as the machine epsilon for fp16 is much larger (~9.77e-4).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">batchnorm_var_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">batchnorm_var_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Clear the threshold cache after configuration changes.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">division_safe_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100000.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">division_safe_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100000.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">dropout_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">dropout_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">eigval_clamp_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10000.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">eigval_clamp_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10000.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">eigval_inv_sqrt_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">eigval_inv_sqrt_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">eigval_log_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">eigval_log_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">eigval_power_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">eigval_power_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">eigval_sqrt_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">eigval_sqrt_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">get_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">get_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Get the scale factor for a given threshold name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1499,7 +1415,7 @@ as the machine epsilon for fp16 is much larger (~9.77e-4).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">is_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">is_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Check if a threshold uses absolute values (not scaled by eps).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1516,34 +1432,34 @@ as the machine epsilon for fp16 is much larger (~9.77e-4).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">loewner_equal_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">loewner_equal_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">stiefel_init_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">stiefel_init_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000.0</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">strict_spd_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">strict_spd_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">trace_norm_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">trace_norm_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">warn_on_clamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-name descname"><span class="pre">warn_on_clamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">NumericalContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spd-learn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">NumericalContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Context manager for temporarily modifying numerical configuration.</p>
 <p>This context manager allows temporary modification of the global
@@ -1575,16 +1491,16 @@ when exiting the context.</p>
 
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id118" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id125" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <div role="list" class="citation-list">
-<div class="citation" id="id24" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
-<p>Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. <a class="reference external" href="https://arxiv.org/abs/2508.04956">arXiv:2508.04956</a>.</p>
-</div>
-<div class="citation" id="id45" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id52" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
 <p>Nicholas J Higham. <em>Accuracy and Stability of Numerical Algorithms</em>. SIAM, 2nd edition, 2002. <a class="reference external" href="https://doi.org/10.1137/1.9780898718027">doi:10.1137/1.9780898718027</a>.</p>
+</div>
+<div class="citation" id="id30" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. <a class="reference external" href="https://arxiv.org/abs/2508.04956">arXiv:2508.04956</a>.</p>
 </div>
 </div>
 </div>

@@ -55,7 +55,7 @@
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/user_guide.html" />
+    <link rel="canonical" href="https://spdlearn.org/user_guide.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -243,7 +243,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -379,7 +379,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -468,63 +468,64 @@ behind deep learning on Symmetric Positive Definite (SPD) matrices.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id84">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#what-are-spd-matrices" id="id85">What are SPD Matrices?</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id99">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#what-are-spd-matrices" id="id100">What are SPD Matrices?</a></p>
 <ul>
-<li><p><a class="reference internal" href="#why-riemannian-geometry" id="id86">Why Riemannian Geometry?</a></p></li>
-<li><p><a class="reference internal" href="#visualizing-spd-matrices-as-ellipses" id="id87">Visualizing SPD Matrices as Ellipses</a></p></li>
+<li><p><a class="reference internal" href="#why-riemannian-geometry" id="id101">Why Riemannian Geometry?</a></p></li>
+<li><p><a class="reference internal" href="#visualizing-spd-matrices-as-ellipses" id="id102">Visualizing SPD Matrices as Ellipses</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id8" id="id88">Why Riemannian Geometry?</a></p>
+<li><p><a class="reference internal" href="#id8" id="id103">Why Riemannian Geometry?</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-swelling-effect" id="id89">The Swelling Effect</a></p></li>
-<li><p><a class="reference internal" href="#the-spd-manifold-structure" id="id90">The SPD Manifold Structure</a></p></li>
+<li><p><a class="reference internal" href="#the-swelling-effect" id="id104">The Swelling Effect</a></p></li>
+<li><p><a class="reference internal" href="#the-spd-manifold-structure" id="id105">The SPD Manifold Structure</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#package-architecture" id="id91">Package Architecture</a></p></li>
-<li><p><a class="reference internal" href="#neural-network-modules" id="id92">Neural Network Modules</a></p>
+<li><p><a class="reference internal" href="#package-architecture" id="id106">Package Architecture</a></p></li>
+<li><p><a class="reference internal" href="#neural-network-modules" id="id107">Neural Network Modules</a></p>
 <ul>
-<li><p><a class="reference internal" href="#covlayer-computing-covariances" id="id93">CovLayer: Computing Covariances</a></p></li>
-<li><p><a class="reference internal" href="#bimap-layer-bilinear-mapping" id="id94">BiMap Layer: Bilinear Mapping</a></p></li>
-<li><p><a class="reference internal" href="#reeig-layer-rectified-eigenvalues" id="id95">ReEig Layer: Rectified Eigenvalues</a></p></li>
-<li><p><a class="reference internal" href="#logeig-layer-tangent-space-projection" id="id96">LogEig Layer: Tangent Space Projection</a></p></li>
-<li><p><a class="reference internal" href="#batch-normalization" id="id97">Batch Normalization</a></p></li>
+<li><p><a class="reference internal" href="#covlayer-computing-covariances" id="id108">CovLayer: Computing Covariances</a></p></li>
+<li><p><a class="reference internal" href="#bimap-layer-bilinear-mapping" id="id109">BiMap Layer: Bilinear Mapping</a></p></li>
+<li><p><a class="reference internal" href="#reeig-layer-rectified-eigenvalues" id="id110">ReEig Layer: Rectified Eigenvalues</a></p></li>
+<li><p><a class="reference internal" href="#logeig-layer-tangent-space-projection" id="id111">LogEig Layer: Tangent Space Projection</a></p></li>
+<li><p><a class="reference internal" href="#batch-normalization" id="id112">Batch Normalization</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#typical-spdnet-pipeline" id="id98">Typical SPDNet Pipeline</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-operations" id="id99">Log-Euclidean Operations</a></p>
+<li><p><a class="reference internal" href="#typical-spdnet-pipeline" id="id113">Typical SPDNet Pipeline</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-operations" id="id114">Log-Euclidean Operations</a></p>
 <ul>
-<li><p><a class="reference internal" href="#matrix-logarithm-and-exponential" id="id100">Matrix Logarithm and Exponential</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-distance" id="id101">Log-Euclidean Distance</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-mean" id="id102">Log-Euclidean Mean</a></p></li>
+<li><p><a class="reference internal" href="#matrix-logarithm-and-exponential" id="id115">Matrix Logarithm and Exponential</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-distance" id="id116">Log-Euclidean Distance</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-mean" id="id117">Log-Euclidean Mean</a></p></li>
+<li><p><a class="reference internal" href="#airm-geodesics-on-the-spd-manifold" id="id118">AIRM Geodesics on the SPD Manifold</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#available-models" id="id103">Available Models</a></p></li>
-<li><p><a class="reference internal" href="#integration-with-ecosystems" id="id104">Integration with Ecosystems</a></p>
+<li><p><a class="reference internal" href="#available-models" id="id119">Available Models</a></p></li>
+<li><p><a class="reference internal" href="#integration-with-ecosystems" id="id120">Integration with Ecosystems</a></p>
 <ul>
-<li><p><a class="reference internal" href="#moabb-eeg" id="id105">MOABB (EEG)</a></p></li>
-<li><p><a class="reference internal" href="#nilearn-fmri" id="id106">Nilearn (fMRI)</a></p></li>
+<li><p><a class="reference internal" href="#moabb-eeg" id="id121">MOABB (EEG)</a></p></li>
+<li><p><a class="reference internal" href="#nilearn-fmri" id="id122">Nilearn (fMRI)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#next-steps" id="id107">Next Steps</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id108">References</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id123">Next Steps</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id124">References</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id84" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id99" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides a principled neural network framework for learning from
 covariance representations by exploiting the geometry of the space of
-Symmetric Positive Definite (SPD) matrices <span id="id2">[<a class="reference internal" href="#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. By capturing
+Symmetric Positive Definite (SPD) matrices <span id="id2">[<a class="reference internal" href="#id22" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>. By capturing
 second-order statistics while preserving geometric structure, SPDNet
 architectures have been successfully applied to:</p>
 <ul class="simple">
-<li><p><strong>EEG-based brain-computer interfaces</strong> <span id="id3">[<a class="reference internal" href="#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span>, <span id="id4">[<a class="reference internal" href="#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, <span id="id5">[<a class="reference internal" href="#id24" title="Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara* <em>et al.</em>, 2024</a>]</span></p></li>
-<li><p><strong>Neuroimaging analysis</strong> (fMRI functional connectivity) <span id="id6">[<a class="reference internal" href="#id25" title="Antoine Collas, Ce Ju, Nicolas Salvy, and Bertrand Thirion. Riemannian flow matching for brain connectivity matrices via pullback geometry. In The Thirty-ninth Annual Conference on Neural Information Processing Systems. 2025. URL: https://openreview.net/forum?id=NY3LzmUXl7.">Collas <em>et al.</em>, 2025</a>]</span></p></li>
-<li><p><strong>Signal processing tasks</strong> <span id="id7">[<a class="reference internal" href="#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
+<li><p><strong>EEG-based brain-computer interfaces</strong> <span id="id3">[<a class="reference internal" href="#id32" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span>, <span id="id4">[<a class="reference internal" href="#id24" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, <span id="id5">[<a class="reference internal" href="#id26" title="Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. Journal of Neural Engineering, 21(6):016049, 2024. doi:10.1088/1741-2552/ad88a2.">Carrara* <em>et al.</em>, 2024</a>]</span></p></li>
+<li><p><strong>Neuroimaging analysis</strong> (fMRI functional connectivity) <span id="id6">[<a class="reference internal" href="#id27" title="Antoine Collas, Ce Ju, Nicolas Salvy, and Bertrand Thirion. Riemannian flow matching for brain connectivity matrices via pullback geometry. In The Thirty-ninth Annual Conference on Neural Information Processing Systems. 2025. URL: https://openreview.net/forum?id=NY3LzmUXl7.">Collas <em>et al.</em>, 2025</a>]</span></p></li>
+<li><p><strong>Signal processing tasks</strong> <span id="id7">[<a class="reference internal" href="#id23" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></p></li>
 </ul>
 </section>
 <section id="what-are-spd-matrices">
-<h2><a class="toc-backref" href="#id85" role="doc-backlink">What are SPD Matrices?</a><a class="headerlink" href="#what-are-spd-matrices" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id100" role="doc-backlink">What are SPD Matrices?</a><a class="headerlink" href="#what-are-spd-matrices" title="Link to this heading">#</a></h2>
 <p>A Symmetric Positive Definite (SPD) matrix is a square matrix <span class="math notranslate nohighlight">\(X\)</span> that is:</p>
 <ol class="arabic simple">
 <li><p><strong>Symmetric</strong>: <span class="math notranslate nohighlight">\(X = X^\top\)</span></p></li>
@@ -539,7 +540,7 @@ different brain regions (fMRI) or electrode channels (EEG).</p>
 \[\Sigma = \frac{1}{T-1} \sum_{t=1}^{T} (x_t - \bar{x})(x_t - \bar{x})^\top\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_t \in \mathbb{R}^n\)</span> are the observations and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is their mean.</p>
 <section id="why-riemannian-geometry">
-<h3><a class="toc-backref" href="#id86" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#why-riemannian-geometry" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id101" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#why-riemannian-geometry" title="Link to this heading">#</a></h3>
 <p>Mathematically, the set of SPD matrices does not constitute a vector space under
 standard matrix operations. In particular, simple addition or the use of Euclidean
 distances may yield results that are not positive definite, thereby violating the
@@ -556,7 +557,7 @@ manifold enable algorithms to:</p>
 <p>See <a class="reference internal" href="geometric_concepts.html"><span class="doc">Geometric Concepts</span></a> for a deeper dive into the mathematical foundations.</p>
 </section>
 <section id="visualizing-spd-matrices-as-ellipses">
-<h3><a class="toc-backref" href="#id87" role="doc-backlink">Visualizing SPD Matrices as Ellipses</a><a class="headerlink" href="#visualizing-spd-matrices-as-ellipses" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id102" role="doc-backlink">Visualizing SPD Matrices as Ellipses</a><a class="headerlink" href="#visualizing-spd-matrices-as-ellipses" title="Link to this heading">#</a></h3>
 <p>A 2x2 SPD matrix can be visualized as an ellipse. The eigenvectors define the
 principal axes, and the square roots of eigenvalues define the semi-axis lengths.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -615,7 +616,7 @@ principal axes, and the square roots of eigenvalues define the semi-axis lengths
 </section>
 </section>
 <section id="id8">
-<h2><a class="toc-backref" href="#id88" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id103" role="doc-backlink">Why Riemannian Geometry?</a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>SPD matrices do not form a vector space - they form a <strong>Riemannian manifold</strong>.
 This has important implications:</p>
 <ul class="simple">
@@ -624,7 +625,7 @@ This has important implications:</p>
 <li><p>Distance metrics like Euclidean distance are not appropriate</p></li>
 </ul>
 <section id="the-swelling-effect">
-<h3><a class="toc-backref" href="#id89" role="doc-backlink">The Swelling Effect</a><a class="headerlink" href="#the-swelling-effect" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id104" role="doc-backlink">The Swelling Effect</a><a class="headerlink" href="#the-swelling-effect" title="Link to this heading">#</a></h3>
 <p>When computing the arithmetic (Euclidean) mean of SPD matrices, the determinant
 of the mean is often larger than expected. This “swelling effect” violates the
 intuition that an average should be “in the middle.”</p>
@@ -690,7 +691,7 @@ intuition that an average should be “in the middle.”</p>
 </figure>
 </section>
 <section id="the-spd-manifold-structure">
-<h3><a class="toc-backref" href="#id90" role="doc-backlink">The SPD Manifold Structure</a><a class="headerlink" href="#the-spd-manifold-structure" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id105" role="doc-backlink">The SPD Manifold Structure</a><a class="headerlink" href="#the-spd-manifold-structure" title="Link to this heading">#</a></h3>
 <p>The set of SPD matrices forms an open convex cone. For 2x2 matrices, this can
 be visualized in 3D where the boundary represents singular matrices.</p>
 <p>A 2x2 symmetric matrix <span class="math notranslate nohighlight">\(\begin{bmatrix} a &amp; b \\ b &amp; c \end{bmatrix}\)</span> is SPD when
@@ -698,7 +699,7 @@ be visualized in 3D where the boundary represents singular matrices.</p>
 <iframe src="_static/spd_manifold_eeg.html" width="100%" height="700px" style="border:none; border-radius: 8px; margin: 1rem 0;"></iframe></section>
 </section>
 <section id="package-architecture">
-<h2><a class="toc-backref" href="#id91" role="doc-backlink">Package Architecture</a><a class="headerlink" href="#package-architecture" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id106" role="doc-backlink">Package Architecture</a><a class="headerlink" href="#package-architecture" title="Link to this heading">#</a></h2>
 <p>SPD Learn is organized into three main components:</p>
 <ol class="arabic simple">
 <li><p><strong>functional</strong> - Low-level operations for symmetric and SPD matrices</p></li>
@@ -713,12 +714,12 @@ be visualized in 3D where the boundary represents singular matrices.</p>
 </div>
 </section>
 <section id="neural-network-modules">
-<h2><a class="toc-backref" href="#id92" role="doc-backlink">Neural Network Modules</a><a class="headerlink" href="#neural-network-modules" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id107" role="doc-backlink">Neural Network Modules</a><a class="headerlink" href="#neural-network-modules" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides specialized neural network layers that respect the geometry
 of the SPD manifold. Each layer is designed to transform SPD matrices while
 preserving their positive definiteness.</p>
 <section id="covlayer-computing-covariances">
-<h3><a class="toc-backref" href="#id93" role="doc-backlink">CovLayer: Computing Covariances</a><a class="headerlink" href="#covlayer-computing-covariances" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id108" role="doc-backlink">CovLayer: Computing Covariances</a><a class="headerlink" href="#covlayer-computing-covariances" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/covariance/spd_learn.modules.CovLayer.html#spd_learn.modules.CovLayer" title="spd_learn.modules.CovLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CovLayer</span></code></a> transforms raw multivariate time series into SPD covariance
 matrices:</p>
 <div class="math notranslate nohighlight">
@@ -790,7 +791,7 @@ matrices:</p>
 </div>
 </section>
 <section id="bimap-layer-bilinear-mapping">
-<h3><a class="toc-backref" href="#id94" role="doc-backlink">BiMap Layer: Bilinear Mapping</a><a class="headerlink" href="#bimap-layer-bilinear-mapping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id109" role="doc-backlink">BiMap Layer: Bilinear Mapping</a><a class="headerlink" href="#bimap-layer-bilinear-mapping" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/bilinear/spd_learn.modules.BiMap.html#spd_learn.modules.BiMap" title="spd_learn.modules.BiMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiMap</span></code></a> layer performs dimensionality reduction while preserving the SPD
 structure through a bilinear congruence transformation:</p>
 <div class="math notranslate nohighlight">
@@ -867,7 +868,7 @@ the <strong>Stiefel manifold</strong> (<span class="math notranslate nohighlight
 </div>
 </section>
 <section id="reeig-layer-rectified-eigenvalues">
-<h3><a class="toc-backref" href="#id95" role="doc-backlink">ReEig Layer: Rectified Eigenvalues</a><a class="headerlink" href="#reeig-layer-rectified-eigenvalues" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id110" role="doc-backlink">ReEig Layer: Rectified Eigenvalues</a><a class="headerlink" href="#reeig-layer-rectified-eigenvalues" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a> layer introduces non-linearity by applying a ReLU-like function
 to eigenvalues:</p>
 <div class="math notranslate nohighlight">
@@ -971,7 +972,7 @@ is a small threshold.</p>
 </div>
 </section>
 <section id="logeig-layer-tangent-space-projection">
-<h3><a class="toc-backref" href="#id96" role="doc-backlink">LogEig Layer: Tangent Space Projection</a><a class="headerlink" href="#logeig-layer-tangent-space-projection" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id111" role="doc-backlink">LogEig Layer: Tangent Space Projection</a><a class="headerlink" href="#logeig-layer-tangent-space-projection" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a> layer maps SPD matrices to the tangent space at the identity by
 applying the matrix logarithm:</p>
 <div class="math notranslate nohighlight">
@@ -1042,14 +1043,14 @@ applying the matrix logarithm:</p>
 </div>
 </section>
 <section id="batch-normalization">
-<h3><a class="toc-backref" href="#id97" role="doc-backlink">Batch Normalization</a><a class="headerlink" href="#batch-normalization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id112" role="doc-backlink">Batch Normalization</a><a class="headerlink" href="#batch-normalization" title="Link to this heading">#</a></h3>
 <p>SPD Learn provides Riemannian batch normalization layers:</p>
 <dl>
-<dt><a class="reference internal" href="generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> <span id="id9">[<a class="reference internal" href="#id21" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></dt><dd><p>Estimates the batch Fréchet mean <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and centers inputs:</p>
+<dt><a class="reference internal" href="generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> <span id="id9">[<a class="reference internal" href="#id23" title="Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In Advances in Neural Information Processing Systems, volume 32. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html.">Brooks <em>et al.</em>, 2019</a>]</span></dt><dd><p>Estimates the batch Fréchet mean <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> and centers inputs:</p>
 <div class="math notranslate nohighlight">
 \[\tilde{P}_i = \mathcal{G}^{-1/2} P_i \mathcal{G}^{-1/2}\]</div>
 </dd>
-<dt><a class="reference internal" href="generated/batchnorm/spd_learn.modules.SPDBatchNorm.html#spd_learn.modules.SPDBatchNorm" title="spd_learn.modules.SPDBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code></a> <span id="id10">[<a class="reference internal" href="#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span></dt><dd><p>Extends <a class="reference internal" href="generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> with dispersion normalization.</p>
+<dt><a class="reference internal" href="generated/batchnorm/spd_learn.modules.SPDBatchNorm.html#spd_learn.modules.SPDBatchNorm" title="spd_learn.modules.SPDBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNorm</span></code></a> <span id="id10">[<a class="reference internal" href="#id24" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span></dt><dd><p>Extends <a class="reference internal" href="generated/batchnorm/spd_learn.modules.BrooksBatchNorm.html#spd_learn.modules.BrooksBatchNorm" title="spd_learn.modules.BrooksBatchNorm"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrooksBatchNorm</span></code></a> with dispersion normalization.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPDBatchNorm</span>
@@ -1060,7 +1061,7 @@ applying the matrix logarithm:</p>
 </section>
 </section>
 <section id="typical-spdnet-pipeline">
-<h2><a class="toc-backref" href="#id98" role="doc-backlink">Typical SPDNet Pipeline</a><a class="headerlink" href="#typical-spdnet-pipeline" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id113" role="doc-backlink">Typical SPDNet Pipeline</a><a class="headerlink" href="#typical-spdnet-pipeline" title="Link to this heading">#</a></h2>
 <p>Most SPD Learn models follow this general pipeline:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Raw Data --&gt; Covariance --&gt; BiMap --&gt; ReEig --&gt; BiMap --&gt; ReEig --&gt; LogEig --&gt; Linear
 </pre></div>
@@ -1193,21 +1194,21 @@ applying the matrix logarithm:</p>
 </div>
 </section>
 <section id="log-euclidean-operations">
-<h2><a class="toc-backref" href="#id99" role="doc-backlink">Log-Euclidean Operations</a><a class="headerlink" href="#log-euclidean-operations" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id114" role="doc-backlink">Log-Euclidean Operations</a><a class="headerlink" href="#log-euclidean-operations" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides operations based on the Log-Euclidean metric, which respects
 the manifold structure while being computationally efficient.</p>
 <section id="matrix-logarithm-and-exponential">
-<h3><a class="toc-backref" href="#id100" role="doc-backlink">Matrix Logarithm and Exponential</a><a class="headerlink" href="#matrix-logarithm-and-exponential" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id115" role="doc-backlink">Matrix Logarithm and Exponential</a><a class="headerlink" href="#matrix-logarithm-and-exponential" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\log(S) = U \log(\Lambda) U^\top, \quad \exp(X) = U \exp(\Lambda) U^\top\]</div>
 </section>
 <section id="log-euclidean-distance">
-<h3><a class="toc-backref" href="#id101" role="doc-backlink">Log-Euclidean Distance</a><a class="headerlink" href="#log-euclidean-distance" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id116" role="doc-backlink">Log-Euclidean Distance</a><a class="headerlink" href="#log-euclidean-distance" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[d_{LE}(A, B) = \|\log(A) - \log(B)\|_F\]</div>
 </section>
 <section id="log-euclidean-mean">
-<h3><a class="toc-backref" href="#id102" role="doc-backlink">Log-Euclidean Mean</a><a class="headerlink" href="#log-euclidean-mean" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id117" role="doc-backlink">Log-Euclidean Mean</a><a class="headerlink" href="#log-euclidean-mean" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\bar{S}_{LE} = \exp\left(\frac{1}{n}\sum_{i=1}^n \log(S_i)\right)\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -1280,9 +1281,168 @@ the manifold structure while being computationally efficient.</p>
 <img alt="_images/user_guide-8.png" class="plot-directive" src="_images/user_guide-8.png" />
 </figure>
 </section>
+<section id="airm-geodesics-on-the-spd-manifold">
+<h3><a class="toc-backref" href="#id118" role="doc-backlink">AIRM Geodesics on the SPD Manifold</a><a class="headerlink" href="#airm-geodesics-on-the-spd-manifold" title="Link to this heading">#</a></h3>
+<p>The Affine-Invariant Riemannian Metric (AIRM) provides geodesics that stay
+within the SPD cone. The geodesic between SPD matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>
+is given by:</p>
+<div class="math notranslate nohighlight">
+\[\gamma(t) = A^{1/2} (A^{-1/2} B A^{-1/2})^t A^{1/2}\]</div>
+<p>This ensures all intermediate points remain positive definite.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_gaussian_blobs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">airm_geodesic</span><span class="p">,</span> <span class="n">airm_distance</span><span class="p">,</span> <span class="n">frechet_mean</span>
+
+<span class="c1"># Helper: map 2x2 SPD [[a,b],[b,c]] to 3D coords (a, b, c)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spd_to_3d_coords</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Helper: convert SPD to ellipse for 2D visualization</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spd_to_ellipse</span><span class="p">(</span><span class="n">spd_matrix</span><span class="p">,</span> <span class="n">n_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spd_matrix</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="n">spd_matrix</span> <span class="o">=</span> <span class="n">spd_matrix</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">spd_matrix</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">eigvecs</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">))</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">transform</span> <span class="o">@</span> <span class="n">circle</span>
+    <span class="k">return</span> <span class="n">ellipse</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ellipse</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Generate synthetic 2x2 SPD matrices using pyriemann</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_spd</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_gaussian_blobs</span><span class="p">(</span>
+    <span class="n">n_matrices</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_sep</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">class_disp</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">X_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_spd</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="c1"># Separate by class</span>
+<span class="n">class0_mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">class1_mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">X_class0</span> <span class="o">=</span> <span class="n">X_tensor</span><span class="p">[</span><span class="n">class0_mask</span><span class="p">]</span>
+<span class="n">X_class1</span> <span class="o">=</span> <span class="n">X_tensor</span><span class="p">[</span><span class="n">class1_mask</span><span class="p">]</span>
+
+<span class="c1"># Compute class means using Log-Euclidean Frechet mean</span>
+<span class="n">mean0</span> <span class="o">=</span> <span class="n">frechet_mean</span><span class="p">(</span><span class="n">X_class0</span><span class="p">)</span>
+<span class="n">mean1</span> <span class="o">=</span> <span class="n">frechet_mean</span><span class="p">(</span><span class="n">X_class1</span><span class="p">)</span>
+
+<span class="c1"># Use class means as start/end of geodesic</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">mean0</span><span class="p">,</span> <span class="n">mean1</span>
+
+<span class="c1"># Compute geodesic points and verify eigenvalues stay positive</span>
+<span class="n">t_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">geodesic_points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues along AIRM geodesic (all positive = stays in SPD cone):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_values</span><span class="p">:</span>
+    <span class="n">G_t</span> <span class="o">=</span> <span class="n">airm_geodesic</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">geodesic_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">G_t</span><span class="p">)</span>
+    <span class="n">eigvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">G_t</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  t=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">: eigenvalues = [</span><span class="si">{</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute AIRM distance</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">airm_distance</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">B</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">AIRM distance between class means: </span><span class="si">{</span><span class="n">dist</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create figure with 3D cone (left) and 2D ellipses (right)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># === Left panel: 3D SPD cone visualization ===</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw cone boundary surface: det = ac - b^2 = 0</span>
+<span class="n">a_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">c_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">A_grid</span><span class="p">,</span> <span class="n">C_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">a_range</span><span class="p">,</span> <span class="n">c_range</span><span class="p">)</span>
+<span class="n">B_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A_grid</span> <span class="o">*</span> <span class="n">C_grid</span><span class="p">)</span>  <span class="c1"># b = sqrt(ac) for det=0</span>
+<span class="n">B_neg</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A_grid</span> <span class="o">*</span> <span class="n">C_grid</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">A_grid</span><span class="p">,</span> <span class="n">B_pos</span><span class="p">,</span> <span class="n">C_grid</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">A_grid</span><span class="p">,</span> <span class="n">B_neg</span><span class="p">,</span> <span class="n">C_grid</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot data points by class</span>
+<span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">X_class0</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">X_class1</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Plot class means as stars</span>
+<span class="n">a0</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">c0</span> <span class="o">=</span> <span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">mean0</span><span class="p">)</span>
+<span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">mean1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">c0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Class 0 mean&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Class 1 mean&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Plot geodesic curve with many points for smoothness</span>
+<span class="n">t_fine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">geo_coords</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_fine</span><span class="p">:</span>
+    <span class="n">G_t</span> <span class="o">=</span> <span class="n">airm_geodesic</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">geo_coords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">G_t</span><span class="p">))</span>
+<span class="n">geo_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">geo_coords</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">geo_coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">geo_coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">geo_coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
+         <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AIRM geodesic&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Mark midpoint</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="n">airm_geodesic</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">am</span><span class="p">,</span> <span class="n">bm</span><span class="p">,</span> <span class="n">cm</span> <span class="o">=</span> <span class="n">spd_to_3d_coords</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">am</span><span class="p">,</span> <span class="n">bm</span><span class="p">,</span> <span class="n">cm</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Midpoint (t=0.5)&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;a (S[0,0])&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;b (S[0,1])&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;c (S[1,1])&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;3D SPD Cone with AIRM Geodesic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># === Right panel: 2D ellipse interpolation ===</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+
+<span class="c1"># Plot start and end ellipses (filled)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spd_to_ellipse</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Start (Class 0 mean)&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spd_to_ellipse</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;End (Class 1 mean)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot intermediate geodesic ellipses</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]:</span>
+    <span class="n">G_t</span> <span class="o">=</span> <span class="n">airm_geodesic</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spd_to_ellipse</span><span class="p">(</span><span class="n">G_t</span><span class="p">)</span>
+    <span class="n">alpha_val</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mf">0.25</span>
+    <span class="n">lw</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="mf">1.5</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s1">&#39;orange&#39;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1"> (midpoint)&#39;</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ellipse Interpolation Along Geodesic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;AIRM Geodesics: Shortest Paths on the SPD Manifold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="_downloads/7c2ae098186a0446f9e26ec9af8da011/user_guide-9.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="_images/user_guide-9.png" class="plot-directive" src="_images/user_guide-9.png" />
+</figure>
+</section>
 </section>
 <section id="available-models">
-<h2><a class="toc-backref" href="#id103" role="doc-backlink">Available Models</a><a class="headerlink" href="#available-models" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id119" role="doc-backlink">Available Models</a><a class="headerlink" href="#available-models" title="Link to this heading">#</a></h2>
 <p>SPD Learn provides several pre-built architectures:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
@@ -1321,9 +1481,24 @@ the manifold structure while being computationally efficient.</p>
 </div>
 </section>
 <section id="integration-with-ecosystems">
-<h2><a class="toc-backref" href="#id104" role="doc-backlink">Integration with Ecosystems</a><a class="headerlink" href="#integration-with-ecosystems" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id120" role="doc-backlink">Integration with Ecosystems</a><a class="headerlink" href="#integration-with-ecosystems" title="Link to this heading">#</a></h2>
+<p>SPD Learn is designed as a natural extension of the established Python ecosystem for
+brain signal analysis. The library builds upon and integrates with tools developed by
+the same research community over the past decade:</p>
+<ul class="simple">
+<li><p><strong>pyRiemann</strong> (2015): Classical Riemannian methods for BCI, co-developed by members of
+this research community, laid the foundation for geometric approaches to EEG classification.</p></li>
+<li><p><strong>MOABB</strong> (2018): The benchmarking standard for BCI algorithms, enabling reproducible
+comparisons across methods and datasets.</p></li>
+<li><p><strong>Braindecode</strong> (2017): Deep learning for EEG, providing the <code class="docutils literal notranslate"><span class="pre">EEGClassifier</span></code> wrapper
+that SPD Learn models use for scikit-learn compatibility.</p></li>
+<li><p><strong>Nilearn</strong>: Machine learning for neuroimaging, particularly fMRI connectivity analysis.</p></li>
+</ul>
+<p>This integration reflects the long-term collaborative research effort at institutions
+including INRIA, CNRS, CEA, Université Paris-Saclay, and RIKEN, bridging classical
+Riemannian geometry with modern deep learning for neural decoding.</p>
 <section id="moabb-eeg">
-<h3><a class="toc-backref" href="#id105" role="doc-backlink">MOABB (EEG)</a><a class="headerlink" href="#moabb-eeg" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id121" role="doc-backlink">MOABB (EEG)</a><a class="headerlink" href="#moabb-eeg" title="Link to this heading">#</a></h3>
 <p>SPD Learn integrates with <a class="reference external" href="https://moabb.neurotechx.com/">MOABB</a> for EEG
 benchmarking:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">BNCI2014_001</span>
@@ -1349,7 +1524,7 @@ benchmarking:</p>
 </div>
 </section>
 <section id="nilearn-fmri">
-<h3><a class="toc-backref" href="#id106" role="doc-backlink">Nilearn (fMRI)</a><a class="headerlink" href="#nilearn-fmri" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id122" role="doc-backlink">Nilearn (fMRI)</a><a class="headerlink" href="#nilearn-fmri" title="Link to this heading">#</a></h3>
 <p>SPD Learn works with <a class="reference external" href="https://nilearn.github.io/">Nilearn</a> for fMRI analysis:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.connectome</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectivityMeasure</span>
@@ -1364,7 +1539,7 @@ benchmarking:</p>
 </section>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id107" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id123" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Tutorials</strong>: See the <a class="reference internal" href="generated/auto_examples/tutorials/index.html#sphx-glr-generated-auto-examples-tutorials"><span class="std std-ref">tutorials</span></a> for hands-on examples</p></li>
 <li><p><strong>Visualizations</strong>: Explore <a class="reference internal" href="generated/auto_examples/visualizations/index.html#sphx-glr-generated-auto-examples-visualizations"><span class="std std-ref">layer animations</span></a> to build intuition</p></li>
@@ -1372,31 +1547,31 @@ benchmarking:</p>
 </ul>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id108" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id124" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id11">
 <div role="list" class="citation-list">
-<div class="citation" id="id20" role="doc-biblioentry">
+<div class="citation" id="id22" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p>Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 31, 2036–2042. 2017. URL: <a class="reference external" href="https://ojs.aaai.org/index.php/AAAI/article/view/10866">https://ojs.aaai.org/index.php/AAAI/article/view/10866</a>.</p>
 </div>
-<div class="citation" id="id26" role="doc-biblioentry">
+<div class="citation" id="id32" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 34(12):10955–10969, 2022. URL: <a class="reference external" href="https://ieeexplore.ieee.org/document/9805775">https://ieeexplore.ieee.org/document/9805775</a>.</p>
 </div>
-<div class="citation" id="id22" role="doc-biblioentry">
+<div class="citation" id="id24" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id10">2</a>)</span>
 <p>Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In <em>Advances in Neural Information Processing Systems</em>, volume 35, 6219–6235. 2022. URL: <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html">https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html</a>.</p>
 </div>
-<div class="citation" id="id24" role="doc-biblioentry">
+<div class="citation" id="id26" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
 <p>Igor Carrara*, Bruno Aristimunha*, Marie-Constance Corsi, Raphael Y. de Camargo, Sylvain Chevallier, and Théodore Papadopoulo. Geometric neural network based on phase space for bci-eeg decoding. <em>Journal of Neural Engineering</em>, 21(6):016049, 2024. <a class="reference external" href="https://doi.org/10.1088/1741-2552/ad88a2">doi:10.1088/1741-2552/ad88a2</a>.</p>
 </div>
-<div class="citation" id="id25" role="doc-biblioentry">
+<div class="citation" id="id27" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">5</a><span class="fn-bracket">]</span></span>
 <p>Antoine Collas, Ce Ju, Nicolas Salvy, and Bertrand Thirion. Riemannian flow matching for brain connectivity matrices via pullback geometry. In <em>The Thirty-ninth Annual Conference on Neural Information Processing Systems</em>. 2025. URL: <a class="reference external" href="https://openreview.net/forum?id=NY3LzmUXl7">https://openreview.net/forum?id=NY3LzmUXl7</a>.</p>
 </div>
-<div class="citation" id="id21" role="doc-biblioentry">
+<div class="citation" id="id23" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id9">2</a>)</span>
 <p>Daniel Brooks, Olivier Schwander, Frédéric Barbaresco, Jean-Yves Schneider, and Matthieu Cord. Riemannian batch normalization for spd neural networks. In <em>Advances in Neural Information Processing Systems</em>, volume 32. 2019. URL: <a class="reference external" href="https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html">https://proceedings.neurips.cc/paper/2019/hash/6e69ebbfad976d4637bb4b39de261bf7-Abstract.html</a>.</p>

@@ -55,7 +55,7 @@
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'glossary';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/glossary.html" />
+    <link rel="canonical" href="https://spdlearn.org/glossary.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -243,7 +243,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -379,7 +379,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -407,14 +407,9 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="background/index.html">Background</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="background/1_spd_motivation.html">SPD Geometry: Motivation and Core Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/2_inherent_properties.html">Inherent Properties and Their Exploitation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/3_different_types_of_covariance.html">Different Types of Covariance and Computation Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/4_limitations.html">Limitations and When Not to Use SPD Approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/5_computation_methods.html">Computational Methods for SPD Manifolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/6_deep_learning_integration.html">Deep Learning Integration: Autograd and Trivialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/7_spd_layers.html">SPD Neural Network Layers: A Complete Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="background/8_historical_context.html">Historical Context: SPD Methods in Neuroscience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/1_scope_and_data.html">Scope and Data Representations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/2_geometry_essentials.html">Geometry Essentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/3_spdlearn_pipeline.html">SPD Learn Pipeline and Trivialization</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="geometric_concepts.html">Geometric Concepts</a></li>
@@ -507,7 +502,7 @@ learns CSP-like filters through <a class="reference internal" href="#term-BiMap"
 </dd>
 <dt id="term-Domain-Adaptation">Domain Adaptation<a class="headerlink" href="#term-Domain-Adaptation" title="Link to this term">#</a></dt><dd><p>Techniques for adapting a model trained on one domain (e.g., one
 recording session) to perform well on a different domain (e.g., another
-session) <span id="id3">[<a class="reference internal" href="references.html#id74" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span>. <a class="reference internal" href="#term-TSMNet"><span class="xref std std-term">TSMNet</span></a> with <a class="reference internal" href="#term-SPDBatchNorm"><span class="xref std std-term">SPDBatchNorm</span></a> enables source-free
+session) <span id="id3">[<a class="reference internal" href="references.html#id88" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span>. <a class="reference internal" href="#term-TSMNet"><span class="xref std std-term">TSMNet</span></a> with <a class="reference internal" href="#term-SPDBatchNorm"><span class="xref std std-term">SPDBatchNorm</span></a> enables source-free
 unsupervised domain adaptation.</p>
 </dd>
 <dt id="term-EEGSPDNet">EEGSPDNet<a class="headerlink" href="#term-EEGSPDNet" title="Link to this term">#</a></dt><dd><p>A model using channel-specific (grouped) convolutions before covariance
@@ -524,7 +519,7 @@ symmetric matrices back to the SPD manifold via matrix exponential:
 </dd>
 <dt id="term-Filter-Bank">Filter Bank<a class="headerlink" href="#term-Filter-Bank" title="Link to this term">#</a></dt><dd><p>Decomposition of a signal into multiple frequency bands using bandpass
 filters. <a class="reference internal" href="#term-TensorCSPNet"><span class="xref std std-term">TensorCSPNet</span></a> processes filter bank representations
-to capture frequency-specific patterns <span id="id2">[<a class="reference internal" href="user_guide.html#id26" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span>.</p>
+to capture frequency-specific patterns <span id="id2">[<a class="reference internal" href="user_guide.html#id32" title="Ce Ju and Cuntai Guan. Tensor-cspnet: a novel geometric deep learning framework for motor imagery classification. IEEE Transactions on Neural Networks and Learning Systems, 34(12):10955–10969, 2022. URL: https://ieeexplore.ieee.org/document/9805775.">Ju and Guan, 2022</a>]</span>.</p>
 </dd>
 <dt id="term-Frechet-Mean">Fréchet Mean<a class="headerlink" href="#term-Frechet-Mean" title="Link to this term">#</a></dt><dd><p>The generalization of the arithmetic mean to Riemannian manifolds. For
 SPD matrices, it minimizes the sum of squared geodesic distances. Used

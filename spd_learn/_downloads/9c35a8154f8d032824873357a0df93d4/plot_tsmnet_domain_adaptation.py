@@ -110,7 +110,7 @@ n_outputs = 4
 model = TSMNet(
     n_chans=n_chans,
     n_outputs=n_outputs,
-    n_temp_filters=8,  # Temporal filters (increased)
+    n_temp_filters=8,  # Temporal filters
     temp_kernel_length=50,  # ~200ms at 250Hz
     n_spatiotemp_filters=32,  # Spatiotemporal features
     n_bimap_filters=16,  # BiMap output dimension
@@ -131,7 +131,8 @@ source_subject = 1
 target_subject = 1  # Same subject, different session
 batch_size = 32
 max_epochs = 300
-learning_rate = 1e-4  # Low learning rate for stable SPD learning
+learning_rate = 1e-4  # Optimal learning rate from grid search
+weight_decay = 1e-4  # L2 regularization for better generalization
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"\nUsing device: {device}")
@@ -176,8 +177,9 @@ print(f"Target domain (Session 2): {len(target_idx)} samples")
 clf = EEGClassifier(
     model,
     criterion=torch.nn.CrossEntropyLoss,
-    optimizer=torch.optim.Adam,
+    optimizer=torch.optim.AdamW,
     optimizer__lr=learning_rate,
+    optimizer__weight_decay=weight_decay,
     train_split=ValidSplit(0.1, stratified=True, random_state=42),
     batch_size=batch_size,
     max_epochs=max_epochs,

@@ -54,7 +54,7 @@
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/auto_examples/applied_examples/moabb_hydra_benchmark';</script>
-    <link rel="canonical" href="https://spdlearn.github.io/spd_learn/generated/auto_examples/applied_examples/moabb_hydra_benchmark.html" />
+    <link rel="canonical" href="https://spdlearn.org/generated/auto_examples/applied_examples/moabb_hydra_benchmark.html" />
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -242,7 +242,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -382,7 +382,7 @@
           
           
           
-          <a href="https://github.com/spd-learn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/spdlearn/spd_learn" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -430,7 +430,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_green_wavelets.html">Learnable Wavelets with GREEN for EEG Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_phase_spdnet.html">Phase-Space Embedding with PhaseSPDNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_filterbank.html">Filter Bank Motor Imagery with TensorCSPNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_radar.html">Radar Image Classification with SPD Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radar.html">Radar Image Classification with SPD Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_tsmnet_domain_adaptation.html">Cross-Session Transfer with TSMNet</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Benchmarking SPD Learn Models with MOABB and Hydra</a></li>
 </ul>
@@ -535,10 +535,10 @@ architectures on motor imagery EEG classification.</p>
 <p>Reproducible machine learning experiments require systematic
 configuration management. This tutorial shows how to:</p>
 <ol class="arabic simple">
-<li><p><strong>Use Hydra</strong> <span id="id1">[<a class="reference internal" href="../../../references.html#id54" title="Omry Yadan. Hydra - a framework for elegantly configuring complex applications. GitHub, 2019. URL: https://github.com/facebookresearch/hydra.">Yadan, 2019</a>]</span> for declarative experiment configuration</p></li>
+<li><p><strong>Use Hydra</strong> <span id="id1">[<a class="reference internal" href="../../../references.html#id61" title="Omry Yadan. Hydra - a framework for elegantly configuring complex applications. GitHub, 2019. URL: https://github.com/facebookresearch/hydra.">Yadan, 2019</a>]</span> for declarative experiment configuration</p></li>
 <li><p><strong>Benchmark multiple models</strong> from SPD Learn (SPDNet
-<span id="id2">[<a class="reference internal" href="../../../user_guide.html#id20" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, TSMNet, etc.)</p></li>
-<li><p><strong>Leverage MOABB</strong> <span id="id3">[<a class="reference internal" href="../../../references.html#id55" title="Vinay Jayaram and Alexandre Barachant. Moabb: trustworthy algorithm benchmarking for bcis. Journal of Neural Engineering, 15(6):066011, 2018. doi:10.1088/1741-2552/aadea0.">Jayaram and Barachant, 2018</a>]</span> for standardized EEG dataset access</p></li>
+<span id="id2">[<a class="reference internal" href="../../../user_guide.html#id22" title="Zhiwu Huang and Luc Van Gool. A riemannian network for spd matrix learning. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 31, 2036–2042. 2017. URL: https://ojs.aaai.org/index.php/AAAI/article/view/10866.">Huang and Van Gool, 2017</a>]</span>, TSMNet, etc.)</p></li>
+<li><p><strong>Leverage MOABB</strong> <span id="id3">[<a class="reference internal" href="../../../references.html#id62" title="Vinay Jayaram and Alexandre Barachant. Moabb: trustworthy algorithm benchmarking for bcis. Journal of Neural Engineering, 15(6):066011, 2018. doi:10.1088/1741-2552/aadea0.">Jayaram and Barachant, 2018</a>]</span> for standardized EEG dataset access</p></li>
 <li><p><strong>Implement proper cross-validation</strong> for reliable performance estimates</p></li>
 <li><p><strong>Visualize and compare results</strong> across models</p></li>
 </ol>
@@ -555,7 +555,7 @@ in practice you would use YAML files for better organization.</p>
 <ul class="simple">
 <li><p><strong>SPDNet</strong>: Works on covariance matrices, can use higher learning rates (1e-3)</p></li>
 <li><p><strong>TSMNet</strong>: Works on raw signals with SPDBatchNorm
-<span id="id4">[<a class="reference internal" href="../../../user_guide.html#id22" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, requires lower learning rate (1e-4) and more
+<span id="id4">[<a class="reference internal" href="../../../user_guide.html#id24" title="Reinmar J Kobler, Jun-ichiro Hirayama, Qibin Zhao, and Motoaki Kawanabe. Spd domain-specific batch normalization to crack interpretable unsupervised domain adaptation in eeg. In Advances in Neural Information Processing Systems, volume 35, 6219–6235. 2022. URL: https://proceedings.neurips.cc/paper_files/paper/2022/hash/28ef7ee7cd3e03093acc39e1272411b7-Abstract-Conference.html.">Kobler <em>et al.</em>, 2022</a>]</span>, requires lower learning rate (1e-4) and more
 epochs (100+) for stable SPD learning</p></li>
 <li><p><strong>EEGSPDNet</strong>: Works on raw signals, also requires lower learning rate (1e-4)
 and more epochs for the channel-specific convolutions to converge</p></li>
@@ -2211,7 +2211,7 @@ FilterBankMotorImagery paradigm. Here’s how to configure this:</p>
 <li><p><strong>Model-specific training</strong> is essential - TSMNet/EEGSPDNet need
 lower learning rates (1e-4) and more epochs than SPDNet</p></li>
 <li><p><strong>Proper cross-validation</strong> is essential for reliable benchmarks</p></li>
-<li><p><strong>SPD Learn models</strong> <span id="id5">[<a class="reference internal" href="../../../references.html#id60" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> offer different trade-offs for EEG classification</p></li>
+<li><p><strong>SPD Learn models</strong> <span id="id5">[<a class="reference internal" href="../../../references.html#id67" title="Daniel Wilson, Robin Tibor Schirrmeister, Lukas AW Gemein, and Tonio Ball. Deep riemannian networks for eeg decoding. Imaging Neuroscience, 2025. doi:10.1162/imag_a_00511.">Wilson <em>et al.</em>, 2025</a>]</span> offer different trade-offs for EEG classification</p></li>
 </ul>
 <p>For production benchmarks, consider:</p>
 <ul class="simple">
@@ -2356,7 +2356,7 @@ lower learning rates (1e-4) and more epochs than SPDNet</p></li>
   <div class="sd-card-body spdlearn-colab-card-body">
     <p class="sd-card-text sd-fs-5 sd-font-weight-bold sd-mb-2">Run this example in Google Colab</p>
     <p class="sd-card-text sd-text-muted sd-mb-3">No installation required - runs directly in your browser with GPU support.</p>
-    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spd-learn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/moabb_hydra_benchmark.ipynb" target="_blank" rel="noopener">
+    <a class="sd-btn sd-btn-primary spdlearn-colab-btn" href="https://colab.research.google.com/github/spdlearn/spd_learn/blob/gh-pages/auto_examples/_notebooks/applied_examples/moabb_hydra_benchmark.ipynb" target="_blank" rel="noopener">
       <img class="spdlearn-colab-badge" alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg">
     </a>
   </div>
