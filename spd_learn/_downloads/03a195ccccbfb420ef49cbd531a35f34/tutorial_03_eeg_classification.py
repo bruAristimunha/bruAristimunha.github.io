@@ -197,7 +197,7 @@ print(f"  Testing (Session 2): {len(test_idx)} trials")
 # **TSMNet** :cite:p:`kobler2022spd` - Best for Session Transfer
 #
 # - Best for: Cross-session/cross-subject scenarios
-# - Pros: SPDBatchNorm enables domain adaptation without labels
+# - Pros: SPDBatchNormMeanVar enables domain adaptation without labels
 # - Cons: More parameters, requires more data
 # - Use when: You need to transfer to new sessions/subjects
 #
@@ -251,7 +251,7 @@ tsmnet = TSMNet(
 print("\nTSMNet:")
 print(f"  Parameters: {sum(p.numel() for p in tsmnet.parameters()):,}")
 print(
-    "  Architecture: TempConv -> SpatialConv -> CovLayer -> BiMap -> SPDBatchNorm -> LogEig"
+    "  Architecture: TempConv -> SpatialConv -> CovLayer -> BiMap -> SPDBatchNormMeanVar -> LogEig"
 )
 
 # EEGSPDNet: Channel-specific convolution
@@ -759,7 +759,7 @@ If your model isn't working:
 
 3. Model Selection
    [ ] SPDNet: For simple baselines
-   [ ] TSMNet: For session transfer (has SPDBatchNorm)
+   [ ] TSMNet: For session transfer (has SPDBatchNormMeanVar)
    [ ] EEGSPDNet: For channel-specific processing
    [ ] TensorCSPNet: For multi-frequency (filter bank)
 
@@ -791,6 +791,6 @@ If your model isn't working:
 # **Next Steps**:
 #
 # - Try TensorCSPNet with FilterBankMotorImagery for multi-frequency analysis
-# - Explore domain adaptation with TSMNet's SPDBatchNorm
+# - Explore domain adaptation with TSMNet's SPDBatchNormMeanVar
 # - Implement your own preprocessing pipeline for specific needs
 #

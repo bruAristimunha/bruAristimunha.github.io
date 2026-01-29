@@ -5,7 +5,7 @@ Cross-Session Transfer with TSMNet
 ==================================
 
 This tutorial demonstrates how to use TSMNet for cross-session motor imagery
-classification with domain adaptation. TSMNet's SPDBatchNorm layer enables
+classification with domain adaptation. TSMNet's SPDBatchNormMeanVar layer enables
 adaptation to new sessions without labeled data from the target session.
 
 .. contents:: This example covers:
@@ -22,7 +22,7 @@ adaptation to new sessions without labeled data from the target session.
 # models trained on one day often perform poorly on another day
 # due to changes in electrode impedance, mental state, and environment.
 #
-# TSMNet :cite:p:`kobler2022spd` addresses this through **SPDBatchNorm**,
+# TSMNet :cite:p:`kobler2022spd` addresses this through **SPDBatchNormMeanVar**,
 # which:
 #
 # 1. Normalizes SPD matrices using the Fréchet mean
@@ -99,7 +99,7 @@ print("Cross-subject transfer: Subject 1 (source) -> Subject 2 (target)")
 # 2. **Spatial Conv**: Learns spatial combinations
 # 3. **CovLayer**: Computes covariance matrices
 # 4. **BiMap + ReEig**: SPD dimensionality reduction
-# 5. **SPDBatchNorm**: Riemannian batch normalization (key for adaptation)
+# 5. **SPDBatchNormMeanVar**: Riemannian batch normalization (key for adaptation)
 # 6. **LogEig**: Projects to tangent space
 # 7. **Linear**: Classification head
 #
@@ -226,13 +226,13 @@ print(f"Target Domain Accuracy: {target_acc_no_adapt*100:.2f}%")
 print(f"Performance Drop: {(source_acc - target_acc_no_adapt)*100:.2f}%")
 
 ######################################################################
-# Domain Adaptation via SPDBatchNorm
-# ----------------------------------
+# Domain Adaptation via SPDBatchNormMeanVar
+# -----------------------------------------
 #
 # Now we perform **Source-Free Unsupervised Domain Adaptation (SFUDA)**:
 #
 # 1. Put the model in eval mode (freeze all parameters)
-# 2. Put SPDBatchNorm in train mode (update running statistics)
+# 2. Put SPDBatchNormMeanVar in train mode (update running statistics)
 # 3. Pass target domain data through the model (no labels needed!)
 # 4. The running mean adapts to the target domain distribution
 #
@@ -246,12 +246,12 @@ def adapt_spdbn(
     adapt_momentum=0.8,
     batch_size=64,
 ):
-    """Adapt SPDBatchNorm statistics to target domain.
+    """Adapt SPDBatchNormMeanVar statistics to target domain.
 
     Parameters
     ----------
     model : nn.Module
-        TSMNet model with SPDBatchNorm layer.
+        TSMNet model with SPDBatchNormMeanVar layer.
     X_target : array
         Target domain data (unlabeled).
     n_passes : int
@@ -267,16 +267,16 @@ def adapt_spdbn(
     Returns
     -------
     model : nn.Module
-        The adapted model with updated SPDBatchNorm statistics.
+        The adapted model with updated SPDBatchNormMeanVar statistics.
     """
     model.eval()  # Freeze other layers
 
-    # Find SPDBatchNorm layers and configure for adaptation
+    # Find SPDBatchNormMeanVar layers and configure for adaptation
     spdbn_modules = []
     original_momentums = []
     for module in model.modules():
         class_name = module.__class__.__name__
-        if "SPDBatchNorm" in class_name:
+        if "SPDBatchNormMeanVar" in class_name:
             spdbn_modules.append(module)
             original_momentums.append(module.momentum)
 
@@ -286,7 +286,7 @@ def adapt_spdbn(
 
             module.train()  # Enable running stats update
 
-    print(f"Found {len(spdbn_modules)} SPDBatchNorm layer(s) to adapt")
+    print(f"Found {len(spdbn_modules)} SPDBatchNormMeanVar layer(s) to adapt")
 
     # Convert to tensor
     X_tensor = torch.tensor(X_target, dtype=torch.float32)
@@ -331,7 +331,7 @@ def predict_with_domain_specific_bn(model, X_data):
     Parameters
     ----------
     model : nn.Module
-        TSMNet model with SPDBatchNorm layer.
+        TSMNet model with SPDBatchNormMeanVar layer.
     X_data : array
         Target domain data to predict on.
 
@@ -340,11 +340,11 @@ def predict_with_domain_specific_bn(model, X_data):
     predictions : array
         Predicted class labels.
     """
-    # Find SPDBatchNorm layers
+    # Find SPDBatchNormMeanVar layers
     spdbn_modules = []
     for module in model.modules():
         class_name = module.__class__.__name__
-        if "SPDBatchNorm" in class_name:
+        if "SPDBatchNormMeanVar" in class_name:
             spdbn_modules.append(module)
 
     model.eval()
@@ -618,7 +618,7 @@ print("Computing target domain statistics (Fréchet mean and variance)")
 # .. note::
 #
 #    Cross-session transfer typically shows distribution shifts
-#    that SPDBatchNorm can correct.
+#    that SPDBatchNormMeanVar can correct.
 #    The improvement depends on:
 #
 #    - Non-stationarity between sessions
@@ -649,7 +649,7 @@ else:
 # Domain Adaptation with SKADA
 # ----------------------------
 #
-# Now we compare SPDBatchNorm/TTBN with domain adaptation methods from
+# Now we compare SPDBatchNormMeanVar/TTBN with domain adaptation methods from
 # `skada <https://scikit-adaptation.github.io/>`_ (scikit-learn domain
 # adaptation). These methods operate on the Euclidean tangent space
 # features extracted from TSMNet.
@@ -704,7 +704,7 @@ sample_domain = np.concatenate(
 # Initialize results dictionary
 results = {
     "No Adaptation": target_acc_no_adapt,
-    "SPDBatchNorm (TTBN)": target_acc_adapted,
+    "SPDBatchNormMeanVar (TTBN)": target_acc_adapted,
 }
 
 ######################################################################
@@ -895,11 +895,11 @@ plt.tight_layout()
 plt.show()
 
 ######################################################################
-# Understanding SPDBatchNorm Adaptation
-# -------------------------------------
+# Understanding SPDBatchNormMeanVar Adaptation
+# --------------------------------------------
 #
 # The key insight is that **session variability manifests as a shift in
-# the distribution of SPD matrices**. SPDBatchNorm counters this by:
+# the distribution of SPD matrices**. SPDBatchNormMeanVar counters this by:
 #
 # 1. **Centering**: Removes the batch mean (Fréchet mean on SPD manifold)
 #
@@ -926,7 +926,7 @@ plt.show()
 #
 # 1. Training TSMNet on source session
 # 2. Observing performance drop on target session
-# 3. Adapting using SPDBatchNorm (Test-Time Batch Normalization)
+# 3. Adapting using SPDBatchNormMeanVar (Test-Time Batch Normalization)
 # 4. Comparing with SKADA domain adaptation methods:
 #
 #    - **CORAL**: Correlation Alignment
@@ -935,10 +935,10 @@ plt.show()
 #
 # **Key insights:**
 #
-# - SPDBatchNorm provides a native Riemannian approach that operates
+# - SPDBatchNormMeanVar provides a native Riemannian approach that operates
 #   directly on SPD matrices
 # - SKADA methods operate on Euclidean tangent space features and can
-#   complement or outperform SPDBatchNorm depending on the domain shift
+#   complement or outperform SPDBatchNormMeanVar depending on the domain shift
 # - Combining multiple approaches allows practitioners to select the best
 #   method for their specific use case
 #

@@ -1,8 +1,7 @@
-import matplotlib.pyplot as plt
 import torch
-
-from spd_learn.modules import CovLayer, Shrinkage
-
+import numpy as np
+import matplotlib.pyplot as plt
+from spd_learn.modules import Shrinkage, CovLayer
 
 torch.manual_seed(42)
 
@@ -10,7 +9,7 @@ torch.manual_seed(42)
 n_channels = 8
 raw_signals = torch.randn(1, n_channels, 100)
 mixing = torch.randn(n_channels, n_channels)
-raw_signals = torch.einsum("ij,bjt->bit", mixing, raw_signals)
+raw_signals = torch.einsum('ij,bjt->bit', mixing, raw_signals)
 
 cov_layer = CovLayer()
 covariances = cov_layer(raw_signals)
@@ -32,32 +31,20 @@ eigvals_high = torch.linalg.eigvalsh(cov_high[0].detach()).numpy()
 for ax, eigv, title, color in zip(
     axes,
     [eigvals_orig, eigvals_low, eigvals_high],
-    [
-        "Original",
-        r"Shrinkage $\alpha \approx 0.12$",
-        r"Shrinkage $\alpha \approx 0.88$",
-    ],
-    ["#3498db", "#e74c3c", "#2ecc71"],
+    ['Original', r'Shrinkage $\alpha \approx 0.12$', r'Shrinkage $\alpha \approx 0.88$'],
+    ['#3498db', '#e74c3c', '#2ecc71']
 ):
     ax.bar(range(n_channels), sorted(eigv, reverse=True), color=color, alpha=0.8)
-    ax.set_xlabel("Eigenvalue index")
-    ax.set_ylabel("Eigenvalue")
-    ax.set_title(title, fontweight="bold")
-    ax.set_yscale("log")
+    ax.set_xlabel('Eigenvalue index')
+    ax.set_ylabel('Eigenvalue')
+    ax.set_title(title, fontweight='bold')
+    ax.set_yscale('log')
     ax.grid(True, alpha=0.3)
-    ax.axhline(y=min(eigv), color="red", linestyle="--", alpha=0.5)
+    ax.axhline(y=min(eigv), color='red', linestyle='--', alpha=0.5)
     cond = max(eigv) / min(eigv)
-    ax.text(
-        0.95,
-        0.95,
-        f"Cond: {cond:.1f}",
-        transform=ax.transAxes,
-        ha="right",
-        va="top",
-        fontsize=10,
-        bbox=dict(boxstyle="round", facecolor="wheat"),
-    )
+    ax.text(0.95, 0.95, f'Cond: {cond:.1f}', transform=ax.transAxes,
+            ha='right', va='top', fontsize=10, bbox=dict(boxstyle='round', facecolor='wheat'))
 
-plt.suptitle("Shrinkage: Eigenvalue Regularization", fontweight="bold")
+plt.suptitle('Shrinkage: Eigenvalue Regularization', fontweight='bold')
 plt.tight_layout()
 plt.show()

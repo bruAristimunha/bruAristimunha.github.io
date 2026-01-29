@@ -42,7 +42,7 @@ architectures on motor imagery EEG classification.
 #    Different SPD models have different training requirements:
 #
 #    - **SPDNet**: Works on covariance matrices, can use higher learning rates (1e-3)
-#    - **TSMNet**: Works on raw signals with SPDBatchNorm
+#    - **TSMNet**: Works on raw signals with SPDBatchNormMeanVar
 #      :cite:p:`kobler2022spd`, requires lower learning rate (1e-4) and more
 #      epochs (100+) for stable SPD learning
 #    - **EEGSPDNet**: Works on raw signals, also requires lower learning rate (1e-4)
@@ -175,7 +175,7 @@ class TSMNetConfig(ModelConfig):
     """Configuration for TSMNet model.
 
     TSMNet (Tangent Space Mapping Network) combines convolutional feature
-    extraction with SPD processing and SPDBatchNorm :cite:p:`kobler2022spd` for
+    extraction with SPD processing and SPDBatchNormMeanVar :cite:p:`kobler2022spd` for
     domain adaptation.
 
     .. note::
@@ -522,7 +522,7 @@ def get_default_model_training_overrides() -> Dict[str, Dict[str, Any]]:
     Different SPD models require different training configurations:
 
     - **SPDNet**: Works on covariances, can use higher learning rates
-    - **TSMNet**: Needs lower learning rate and more epochs for SPDBatchNorm
+    - **TSMNet**: Needs lower learning rate and more epochs for SPDBatchNormMeanVar
     - **EEGSPDNet**: Needs lower learning rate for channel-specific convolutions
 
     Returns
