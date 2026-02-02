@@ -233,14 +233,26 @@ html[data-theme="dark"] .eegdash-hero {
    3. "Institutions" Logo Grid (Flexbox/Grid)
    -------------------------------------------------------------------------- */
 .logos-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  /* Increased gap */
-  margin: 2rem auto;
+  gap: 2.5rem;
+  /* Reduced gap for better grouping */
+  margin: 1.5rem auto;
   padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .logos-container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 480px) {
+  .logos-container {
+    grid-template-columns: repeat(1, auto);
+  }
 }
 
 .logo-item {
@@ -2973,7 +2985,7 @@ html[data-theme="dark"] .hf-step {
   margin: 0;
 }
 
-.hf-dataset-card .sd-card-body > p {
+.hf-dataset-card .sd-card-body>p {
   order: 3;
   padding: 0 1.5rem;
   margin: 0 0 0.75rem;
@@ -3113,8 +3125,8 @@ html[data-theme="dark"] article .highlight-bibtex pre {
 }
 
 /* Section Separators with Gradient */
-.bd-article > hr + .raw-html-m2r + .sd-container-fluid,
-.bd-article > hr + * {
+.bd-article>hr+.raw-html-m2r+.sd-container-fluid,
+.bd-article>hr+* {
   margin-top: 2rem;
 }
 
@@ -3147,7 +3159,7 @@ html[data-theme="dark"] article .highlight-bibtex pre {
 
 /* Feature Card Icon Containers */
 /* Feature Card Icon Styling */
-.hf-stat-card .sd-card-body > div:first-child {
+.hf-stat-card .sd-card-body>div:first-child {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3159,11 +3171,11 @@ html[data-theme="dark"] article .highlight-bibtex pre {
   box-shadow: 0 8px 24px rgba(238, 76, 44, 0.15);
 }
 
-.hf-stat-card .sd-card-body > div:first-child i {
+.hf-stat-card .sd-card-body>div:first-child i {
   font-size: 2.2rem !important;
 }
 
-html[data-theme="dark"] .hf-stat-card .sd-card-body > div:first-child {
+html[data-theme="dark"] .hf-stat-card .sd-card-body>div:first-child {
   background: linear-gradient(135deg, rgba(238, 76, 44, 0.2), rgba(79, 140, 255, 0.15));
   box-shadow: 0 8px 24px rgba(79, 140, 255, 0.2);
 }
@@ -3358,15 +3370,20 @@ html[data-theme="dark"] .spd-cone-dark {
 }
 
 @keyframes cone-drift-right {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateX(0) rotate(0deg);
   }
+
   25% {
     transform: translateY(1.5%) translateX(-0.8%) rotate(0.4deg);
   }
+
   50% {
     transform: translateY(-0.8%) translateX(-0.4%) rotate(-0.2deg);
   }
+
   75% {
     transform: translateY(0.8%) translateX(0.4%) rotate(0.15deg);
   }
@@ -3389,12 +3406,16 @@ html[data-theme="dark"] .spd-cone-dark {
 }
 
 @keyframes cone-drift-left {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   33% {
     transform: translateY(-2%) rotate(-0.6deg);
   }
+
   66% {
     transform: translateY(1.5%) rotate(0.4deg);
   }
@@ -3463,6 +3484,7 @@ html[data-theme="dark"] .spd-cone-bg-left {
 
 /* Reduced motion - stop animations */
 @media (prefers-reduced-motion: reduce) {
+
   .spd-cone-bg-right,
   .spd-cone-bg-left {
     animation: none;
@@ -3472,7 +3494,7 @@ html[data-theme="dark"] .spd-cone-bg-left {
 /* Navbar Logo Animation on Hover */
 .navbar-brand img {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-              filter 0.3s ease;
+    filter 0.3s ease;
 }
 
 .navbar-brand:hover img {
@@ -3622,10 +3644,13 @@ html[data-theme="dark"] .spd-loading-cone {
 }
 
 @keyframes pulse-cone {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 0.8;
@@ -3819,6 +3844,7 @@ html[data-theme="dark"] .bd-article dl.citation .admonition.note {
 
 /* Print styles - hide animations */
 @media print {
+
   .hf-hero::before,
   .hf-hero::after,
   .hf-callout::before,
@@ -3830,6 +3856,7 @@ html[data-theme="dark"] .bd-article dl.citation .admonition.note {
 
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   .hf-hero::before,
   .hf-hero::after,
   .spd-loading-cone {
@@ -3844,6 +3871,7 @@ html[data-theme="dark"] .bd-article dl.citation .admonition.note {
     transform: none;
   }
 }
+
 /* ******************************************************* Colab Launcher Card */
 .spdlearn-colab-card {
   border: 1px solid var(--pst-color-border);
@@ -3889,12 +3917,12 @@ html[data-theme="dark"] .spdlearn-colab-card {
 }
 
 /* Sidebar Colab badge */
-.sphx-glr-download-jupyter + .spdlearn-colab-card {
+.sphx-glr-download-jupyter+.spdlearn-colab-card {
   margin-top: 1rem;
 }
 
 /* Gallery example page adjustments */
-.sphx-glr-example-title + .spdlearn-colab-card {
+.sphx-glr-example-title+.spdlearn-colab-card {
   margin-top: -0.5rem;
   margin-bottom: 2rem;
 }
@@ -3957,6 +3985,7 @@ img[loading="lazy"]:not(.loaded) {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }

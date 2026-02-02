@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,7 +53,8 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'background/1_scope_and_data';</script>
     <link rel="canonical" href="https://spdlearn.org/background/1_scope_and_data.html" />
     <link rel="icon" href="../_static/spd_learn.png"/>
@@ -414,6 +415,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../geometric_concepts.html">Geometric Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../numerical_stability.html">Numerical Stability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
 </ul>
@@ -495,7 +497,7 @@ SPDNet-based models.</p>
 </section>
 <section id="spd-data-in-practice">
 <h2>SPD Data in Practice<a class="headerlink" href="#spd-data-in-practice" title="Link to this heading">#</a></h2>
-<p>Given a multichannel signal matrix <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{C \times T}\)</span>
+<p>Given a multichannel signal matrix <span class="math notranslate nohighlight">\(X \in \reals^{C \times T}\)</span>
 (channels x time), a sample covariance matrix is:</p>
 <div class="math notranslate nohighlight">
 \[C = \frac{1}{T - 1} (X - \bar{X})(X - \bar{X})^\top\]</div>
@@ -522,7 +524,7 @@ covariance estimates when samples are limited.</p></li>
 rank-deficient matrices) is critical for Riemannian stability. SPD Learn
 enforces positive definiteness through small diagonal jitter or eigenvalue
 clipping, ensuring that downstream operations like matrix logarithms and
-inversions remain well-conditioned <span id="id1">[<a class="reference internal" href="../references.html#id50" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>.</p></li>
+inversions remain well-conditioned <span id="id1">[<a class="reference internal" href="../numerical_stability.html#id52" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>.</p></li>
 <li><p><strong>Precision considerations</strong>: numerical precision (e.g., <code class="docutils literal notranslate"><span class="pre">float32</span></code> vs <code class="docutils literal notranslate"><span class="pre">float64</span></code>)
 directly impacts the accuracy of geometric computations. While <code class="docutils literal notranslate"><span class="pre">float32</span></code> is
 often sufficient for deep learning, double precision (<code class="docutils literal notranslate"><span class="pre">float64</span></code>) is recommended

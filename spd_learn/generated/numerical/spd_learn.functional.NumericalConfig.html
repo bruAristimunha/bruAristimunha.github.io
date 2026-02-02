@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -419,7 +419,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.abs_eigvals.html">spd_learn.functional.abs_eigvals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.ensure_sym.html">spd_learn.functional.ensure_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.orthogonal_polar_factor.html">spd_learn.functional.orthogonal_polar_factor</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -474,7 +474,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.unvec_batch.html">spd_learn.functional.unvec_batch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dropout_functional/spd_learn.functional.dropout_spd.html">spd_learn.functional.dropout_spd</a></li>
@@ -652,8 +651,9 @@ Default: 1e3 (yields ~1e-4 for float32).</p></li>
 Default: 1e3 (yields ~1e-4 for float32).</p></li>
 <li><p><strong>loewner_equal_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale factor for detecting equal eigenvalues in Loewner matrix.
 Default: 1e2 (yields ~1e-5 for float32).</p></li>
-<li><p><strong>batchnorm_var_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for batch normalization variance.
-Default: 1e-5.</p></li>
+<li><p><strong>batchnorm_var_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for batch normalization scalar dispersion.
+This is a scalar value (mean squared Frobenius norm in tangent space),
+not a variance matrix. Default: 1e-5.</p></li>
 <li><p><strong>dropout_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for dropout diagonal entries.
 Default: 1e-5.</p></li>
 <li><p><strong>trace_norm_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for trace normalization.
@@ -671,7 +671,7 @@ Default: False.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The default scale factors are chosen to balance numerical stability with
-accuracy <span id="id1">[<a class="reference internal" href="../../references.html#id50" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
+accuracy <span id="id1">[<a class="reference internal" href="../../numerical_stability.html#id52" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
 provide better stability but may reduce precision. Less conservative
 (smaller) values preserve more information but risk numerical issues.</p>
 <p>For mixed-precision training (fp16), consider using larger scale factors
@@ -770,6 +770,31 @@ as the machine epsilon for fp16 is much larger (~9.77e-4).</p>
 <dt class="sig sig-object py" id="spd_learn.functional.NumericalConfig.strict_spd_check">
 <span class="sig-name descname"><span class="pre">strict_spd_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.NumericalConfig.strict_spd_check" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spd_learn.functional.NumericalConfig.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.float32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.NumericalConfig.summary" title="Link to this definition">#</a></dt>
+<dd><p>Return formatted string showing all thresholds for a given dtype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dtype</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><em>torch.dtype</em></a><em>, </em><em>default=torch.float32</em>) – The dtype to compute thresholds for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formatted summary of all threshold values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional.numerical</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">numerical_config</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+<span class="go">Numerical Configuration Summary (dtype=torch.float32)</span>
+<span class="go">==================================================</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="spd_learn.functional.NumericalConfig.trace_norm_eps">

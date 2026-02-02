@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,7 +53,8 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/batchnorm_functional/spd_learn.functional.tangent_space_variance';</script>
     <link rel="canonical" href="https://spdlearn.org/generated/batchnorm_functional/spd_learn.functional.tangent_space_variance.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
@@ -420,7 +421,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.abs_eigvals.html">spd_learn.functional.abs_eigvals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.ensure_sym.html">spd_learn.functional.ensure_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.orthogonal_polar_factor.html">spd_learn.functional.orthogonal_polar_factor</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -475,7 +476,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.unvec_batch.html">spd_learn.functional.unvec_batch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dropout_functional/spd_learn.functional.dropout_spd.html">spd_learn.functional.dropout_spd</a></li>
@@ -625,7 +625,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="spd_learn.functional.tangent_space_variance">
 <span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">tangent_space_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_tangent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_tangent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)"><span class="pre">Tensor</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#spd_learn.functional.tangent_space_variance" title="Link to this definition">#</a></dt>
-<dd><p>Compute variance in the tangent space.</p>
+<dd><p>Compute scalar dispersion in the tangent space.</p>
 <p>Computes the mean squared Frobenius distance from the tangent space mean:</p>
 <div class="math notranslate nohighlight">
 \[\sigma^2 = \frac{1}{N} \sum_{i=1}^N \|V_i - \bar{V}\|_F^2\]</div>
@@ -639,14 +639,15 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Scalar variance value.</p>
+<dd class="field-even"><p>Scalar dispersion value (single number, not a variance matrix).
+This is the mean squared Frobenius distance from the tangent mean.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.10)">torch.Tensor</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>This variance is used for dispersion normalization in SPD batch
+<p>This scalar dispersion is used for dispersion normalization in SPD batch
 normalization.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>

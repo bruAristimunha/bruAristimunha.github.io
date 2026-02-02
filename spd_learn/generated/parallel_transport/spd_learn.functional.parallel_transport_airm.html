@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,7 +53,8 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/parallel_transport/spd_learn.functional.parallel_transport_airm';</script>
     <link rel="canonical" href="https://spdlearn.org/generated/parallel_transport/spd_learn.functional.parallel_transport_airm.html" />
     <link rel="icon" href="../../_static/spd_learn.png"/>
@@ -420,7 +421,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.abs_eigvals.html">spd_learn.functional.abs_eigvals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.ensure_sym.html">spd_learn.functional.ensure_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/spd_learn.functional.orthogonal_polar_factor.html">spd_learn.functional.orthogonal_polar_factor</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -475,7 +476,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.unvec_batch.html">spd_learn.functional.unvec_batch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.sym_to_upper.html">spd_learn.functional.sym_to_upper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.vec_to_sym.html">spd_learn.functional.vec_to_sym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vectorization/spd_learn.functional.upper_to_sym.html">spd_learn.functional.upper_to_sym</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dropout_functional/spd_learn.functional.dropout_spd.html">spd_learn.functional.dropout_spd</a></li>
@@ -630,10 +630,33 @@
 space at <span class="math notranslate nohighlight">\(P\)</span> to the tangent space at <span class="math notranslate nohighlight">\(Q\)</span> along the geodesic
 connecting them, using the Affine-Invariant Riemannian Metric (AIRM)
 <span id="id1">[<a class="reference internal" href="../../references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span>.</p>
-<p>The transport formula is:</p>
+<p><strong>Transport Formula</strong></p>
+<p>The transport is given by:</p>
 <div class="math notranslate nohighlight">
 \[\Gamma_{P \rightarrow Q}(V) = E V E^T\]</div>
-<p>where <span class="math notranslate nohighlight">\(E = (Q P^{-1})^{1/2}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(E = (Q P^{-1})^{1/2}\)</span> is the <strong>principal square root</strong> of
+<span class="math notranslate nohighlight">\(Q P^{-1}\)</span>.</p>
+<p><strong>Mathematical Derivation</strong></p>
+<p>The matrix <span class="math notranslate nohighlight">\(Q P^{-1}\)</span> is generally <strong>non-symmetric</strong> (even when
+<span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are SPD), so computing its principal square root
+requires care. The principal square root is defined as the unique matrix
+<span class="math notranslate nohighlight">\(E\)</span> such that:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(E^2 = Q P^{-1}\)</span></p></li>
+<li><p>All eigenvalues of <span class="math notranslate nohighlight">\(E\)</span> have positive real parts</p></li>
+</ol>
+<p><strong>Numerically Stable Formula</strong></p>
+<p>We compute <span class="math notranslate nohighlight">\(E\)</span> using the equivalent stable formula:</p>
+<div class="math notranslate nohighlight">
+\[E = Q^{1/2} (Q^{-1/2} P Q^{-1/2})^{-1/2} Q^{-1/2}\]</div>
+<p>This formula avoids computing <span class="math notranslate nohighlight">\(P^{-1}\)</span> directly and uses only
+symmetric matrix square roots. To verify this is correct:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E^2 &amp;= Q^{1/2} (Q^{-1/2} P Q^{-1/2})^{-1/2} Q^{-1/2}
+       \cdot Q^{1/2} (Q^{-1/2} P Q^{-1/2})^{-1/2} Q^{-1/2} \\
+    &amp;= Q^{1/2} (Q^{-1/2} P Q^{-1/2})^{-1} Q^{-1/2} \\
+    &amp;= Q^{1/2} Q^{1/2} P^{-1} Q^{1/2} Q^{-1/2} \\
+    &amp;= Q P^{-1}\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -661,14 +684,25 @@ connecting them, using the Affine-Invariant Riemannian Metric (AIRM)
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a tangent vector at p (symmetric matrix)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Transport v from T_pM to T_qM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Transport v from T_P to T_Q</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v_transported</span> <span class="o">=</span> <span class="n">parallel_transport_airm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
+<p><strong>Isometry Property</strong></p>
+<p>Parallel transport preserves the AIRM inner product:</p>
+<div class="math notranslate nohighlight">
+\[\langle \Gamma(U), \Gamma(V) \rangle_Q = \langle U, V \rangle_P\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle U, V \rangle_P = \text{tr}(P^{-1} U P^{-1} V)\)</span>.</p>
+<p><strong>Gradient Support</strong></p>
 <p>This function supports full gradient computation through all inputs (v, p, q).
 Gradients flow correctly for use in optimization when learning reference points.</p>
-<p>See <span id="id2">[<a class="reference internal" href="../../references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span> for more details on Riemannian framework.</p>
+<p><strong>References</strong></p>
+<ul class="simple">
+<li><p><span id="id2">[<a class="reference internal" href="../../references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span> for the Riemannian framework on SPD manifolds</p></li>
+<li><p><span id="id3">[]</span> for the original derivation of AIRM transport</p></li>
+<li><p><span id="id4">[]</span> for applications in domain adaptation</p></li>
+</ul>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">

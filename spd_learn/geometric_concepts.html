@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,7 +53,8 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'geometric_concepts';</script>
     <link rel="canonical" href="https://spdlearn.org/geometric_concepts.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
@@ -414,6 +415,7 @@
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Geometric Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="numerical_stability.html">Numerical Stability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -484,52 +486,56 @@ covariance matrices on the SPD (Symmetric Positive Definite) manifold.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-spd-manifold" id="id98">The SPD Manifold</a></p>
+<li><p><a class="reference internal" href="#the-spd-manifold" id="id108">The SPD Manifold</a></p>
 <ul>
-<li><p><a class="reference internal" href="#what-is-an-spd-matrix" id="id99">What is an SPD Matrix?</a></p></li>
-<li><p><a class="reference internal" href="#why-spd-matrices-form-a-manifold-or-why-not-a-vector-space" id="id100">Why SPD Matrices Form a Manifold, or why not a Vector Space?</a></p></li>
-<li><p><a class="reference internal" href="#the-spd-cone-2x2-example" id="id101">The SPD Cone (2x2 Example)</a></p></li>
+<li><p><a class="reference internal" href="#what-is-an-spd-matrix" id="id109">What is an SPD Matrix?</a></p></li>
+<li><p><a class="reference internal" href="#why-spd-matrices-form-a-manifold-or-why-not-a-vector-space" id="id110">Why SPD Matrices Form a Manifold, or why not a Vector Space?</a></p></li>
+<li><p><a class="reference internal" href="#the-spd-cone-2x2-example" id="id111">The SPD Cone (2x2 Example)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tangent-spaces-and-exponential-maps" id="id102">Tangent Spaces and Exponential Maps</a></p>
+<li><p><a class="reference internal" href="#tangent-spaces-and-exponential-maps" id="id112">Tangent Spaces and Exponential Maps</a></p>
 <ul>
-<li><p><a class="reference internal" href="#tangent-space-at-a-point" id="id103">Tangent Space at a Point</a></p></li>
-<li><p><a class="reference internal" href="#the-exponential-map" id="id104">The Exponential Map</a></p></li>
-<li><p><a class="reference internal" href="#the-logarithmic-map" id="id105">The Logarithmic Map</a></p></li>
+<li><p><a class="reference internal" href="#tangent-space-at-a-point" id="id113">Tangent Space at a Point</a></p></li>
+<li><p><a class="reference internal" href="#the-exponential-map" id="id114">The Exponential Map</a></p></li>
+<li><p><a class="reference internal" href="#the-logarithmic-map" id="id115">The Logarithmic Map</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#riemannian-metrics-on-spd-manifolds" id="id106">Riemannian Metrics on SPD Manifolds</a></p>
+<li><p><a class="reference internal" href="#riemannian-metrics-on-spd-manifolds" id="id116">Riemannian Metrics on SPD Manifolds</a></p>
 <ul>
-<li><p><a class="reference internal" href="#affine-invariant-riemannian-metric-airm" id="id107">Affine-Invariant Riemannian Metric (AIRM)</a></p></li>
-<li><p><a class="reference internal" href="#log-euclidean-metric-lem" id="id108">Log-Euclidean Metric (LEM)</a></p></li>
-<li><p><a class="reference internal" href="#bures-wasserstein-metric-bwm" id="id109">Bures-Wasserstein Metric (BWM)</a></p></li>
-<li><p><a class="reference internal" href="#log-cholesky-metric-lcm" id="id110">Log-Cholesky Metric (LCM)</a></p></li>
-<li><p><a class="reference internal" href="#metric-comparison-summary" id="id111">Metric Comparison Summary</a></p></li>
+<li><p><a class="reference internal" href="#affine-invariant-riemannian-metric-airm" id="id117">Affine-Invariant Riemannian Metric (AIRM)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#properties-of-the-geometric-mean" id="id118">Properties of the Geometric Mean</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#parallel-transport" id="id112">Parallel Transport</a></p></li>
-<li><p><a class="reference internal" href="#dynamic-trivialization" id="id113">Dynamic Trivialization</a></p>
-<ul>
-<li><p><a class="reference internal" href="#practical-implications" id="id114">Practical Implications</a></p></li>
+<li><p><a class="reference internal" href="#log-euclidean-metric-lem" id="id119">Log-Euclidean Metric (LEM)</a></p></li>
+<li><p><a class="reference internal" href="#bures-wasserstein-metric-bwm" id="id120">Bures-Wasserstein Metric (BWM)</a></p></li>
+<li><p><a class="reference internal" href="#log-cholesky-metric-lcm" id="id121">Log-Cholesky Metric (LCM)</a></p></li>
+<li><p><a class="reference internal" href="#metric-comparison-summary" id="id122">Metric Comparison Summary</a></p></li>
+<li><p><a class="reference internal" href="#invariance-properties" id="id123">Invariance Properties</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#spd-layer-visualizations" id="id115">SPD Layer Visualizations</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id116">References</a></p></li>
+<li><p><a class="reference internal" href="#parallel-transport" id="id124">Parallel Transport</a></p></li>
+<li><p><a class="reference internal" href="#trivialization" id="id125">Trivialization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#practical-implications" id="id126">Practical Implications</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#spd-layer-visualizations" id="id127">SPD Layer Visualizations</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id128">References</a></p></li>
 </ul>
 </nav>
 <section id="the-spd-manifold">
-<h2><a class="toc-backref" href="#id98" role="doc-backlink">The SPD Manifold</a><a class="headerlink" href="#the-spd-manifold" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id108" role="doc-backlink">The SPD Manifold</a><a class="headerlink" href="#the-spd-manifold" title="Link to this heading">#</a></h2>
 <section id="what-is-an-spd-matrix">
-<h3><a class="toc-backref" href="#id99" role="doc-backlink">What is an SPD Matrix?</a><a class="headerlink" href="#what-is-an-spd-matrix" title="Link to this heading">#</a></h3>
-<p>A <strong>Symmetric Positive Definite (SPD)</strong> matrix <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times n}\)</span>
+<h3><a class="toc-backref" href="#id109" role="doc-backlink">What is an SPD Matrix?</a><a class="headerlink" href="#what-is-an-spd-matrix" title="Link to this heading">#</a></h3>
+<p>A <strong>Symmetric Positive Definite (SPD)</strong> matrix <span class="math notranslate nohighlight">\(X \in \reals^{n \times n}\)</span>
 satisfies two conditions:</p>
 <ol class="arabic simple">
 <li><p><strong>Symmetry</strong>: <span class="math notranslate nohighlight">\(X = X^\top\)</span></p></li>
-<li><p><strong>Positive Definiteness</strong>: <span class="math notranslate nohighlight">\(z^\top X z &gt; 0\)</span> for all non-zero vectors <span class="math notranslate nohighlight">\(z \in \mathbb{R}^n\)</span></p></li>
+<li><p><strong>Positive Definiteness</strong>: <span class="math notranslate nohighlight">\(z^\top X z &gt; 0\)</span> for all non-zero vectors <span class="math notranslate nohighlight">\(z \in \reals^n\)</span></p></li>
 </ol>
-<p>Equivalently, an SPD matrix has all positive eigenvalues <span id="id2">[<a class="reference internal" href="references.html#id6" title="Rajendra Bhatia. Positive Definite Matrices. Princeton University Press, 2007. doi:10.1515/9781400827787.">Bhatia, 2007</a>]</span>. The set of all
-<span class="math notranslate nohighlight">\(n \times n\)</span> SPD matrices is denoted <span class="math notranslate nohighlight">\(\mathcal{S}^n_{++}\)</span> or
-<span class="math notranslate nohighlight">\(\text{Sym}^+_n\)</span>.</p>
+<p>Equivalently, an SPD matrix has all positive eigenvalues <span id="id2">[<a class="reference internal" href="#id17" title="Rajendra Bhatia. Positive Definite Matrices. Princeton University Press, 2007. doi:10.1515/9781400827787.">Bhatia, 2007</a>]</span>. The set of all
+<span class="math notranslate nohighlight">\(n \times n\)</span> SPD matrices is denoted <span class="math notranslate nohighlight">\(\spd\)</span> <span id="id3">[<a class="reference internal" href="notation.html#id33" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">Congedo <em>et al.</em>, 2017</a>]</span>.</p>
 <p><strong>Eigendecomposition:</strong></p>
 <p>For any SPD matrix <span class="math notranslate nohighlight">\(X\)</span>, there exists an orthogonal matrix <span class="math notranslate nohighlight">\(U\)</span> such that:</p>
 <div class="math notranslate nohighlight">
@@ -538,7 +544,7 @@ satisfies two conditions:</p>
 fundamental to computing matrix functions on SPD matrices.</p>
 </section>
 <section id="why-spd-matrices-form-a-manifold-or-why-not-a-vector-space">
-<h3><a class="toc-backref" href="#id100" role="doc-backlink">Why SPD Matrices Form a Manifold, or why not a Vector Space?</a><a class="headerlink" href="#why-spd-matrices-form-a-manifold-or-why-not-a-vector-space" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id110" role="doc-backlink">Why SPD Matrices Form a Manifold, or why not a Vector Space?</a><a class="headerlink" href="#why-spd-matrices-form-a-manifold-or-why-not-a-vector-space" title="Link to this heading">#</a></h3>
 <p>SPD matrices do <strong>not</strong> form a vector space because:</p>
 <ol class="arabic simple">
 <li><p><strong>Not closed under subtraction</strong>: If <span class="math notranslate nohighlight">\(A, B\)</span> are SPD, <span class="math notranslate nohighlight">\(A - B\)</span>
@@ -555,7 +561,7 @@ notions of distance, geodesics, and curvature. These geometric properties requir
 specialized tools to work with, which is the focus of SPD Learn!</p>
 </section>
 <section id="the-spd-cone-2x2-example">
-<h3><a class="toc-backref" href="#id101" role="doc-backlink">The SPD Cone (2x2 Example)</a><a class="headerlink" href="#the-spd-cone-2x2-example" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id111" role="doc-backlink">The SPD Cone (2x2 Example)</a><a class="headerlink" href="#the-spd-cone-2x2-example" title="Link to this heading">#</a></h3>
 <p>For <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices, we can visualize the SPD cone. A symmetric
 <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix has three free parameters:</p>
 <div class="math notranslate nohighlight">
@@ -579,23 +585,23 @@ points to see their details.</p>
 </section>
 </section>
 <section id="tangent-spaces-and-exponential-maps">
-<h2><a class="toc-backref" href="#id102" role="doc-backlink">Tangent Spaces and Exponential Maps</a><a class="headerlink" href="#tangent-spaces-and-exponential-maps" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id112" role="doc-backlink">Tangent Spaces and Exponential Maps</a><a class="headerlink" href="#tangent-spaces-and-exponential-maps" title="Link to this heading">#</a></h2>
 <section id="tangent-space-at-a-point">
-<h3><a class="toc-backref" href="#id103" role="doc-backlink">Tangent Space at a Point</a><a class="headerlink" href="#tangent-space-at-a-point" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id113" role="doc-backlink">Tangent Space at a Point</a><a class="headerlink" href="#tangent-space-at-a-point" title="Link to this heading">#</a></h3>
 <p>At any point <span class="math notranslate nohighlight">\(P\)</span> on the SPD manifold, the <strong>tangent space</strong>
-<span class="math notranslate nohighlight">\(T_P \mathcal{M}\)</span> can be identified with symmetric matrices. This is a vector
+<span class="math notranslate nohighlight">\(\tangent{P}\)</span> can be identified with symmetric matrices <span id="id4">[<a class="reference internal" href="notation.html#id33" title="Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. Brain-Computer Interfaces, 4(3):155–174, 2017. doi:10.1080/2326263X.2017.1297192.">Congedo <em>et al.</em>, 2017</a>]</span>. This is a vector
 space where we can perform standard linear algebra operations.</p>
 <div class="math notranslate nohighlight">
-\[T_P \mathcal{S}^n_{++} ≡ \text{Sym}_n = \{ S \in \mathbb{R}^{n \times n} : S = S^\top \}\]</div>
-<p>The tangent space at the identity <span class="math notranslate nohighlight">\(I\)</span> is particularly important because
+\[\tangentspd{P} \cong \sym = \{ S \in \reals^{n \times n} : S = S^\top \}\]</div>
+<p>The tangent space at the identity <span class="math notranslate nohighlight">\(\I\)</span> is particularly important because
 many operations are simplified there.</p>
 </section>
 <section id="the-exponential-map">
-<h3><a class="toc-backref" href="#id104" role="doc-backlink">The Exponential Map</a><a class="headerlink" href="#the-exponential-map" title="Link to this heading">#</a></h3>
-<p>The <strong>exponential map</strong> <span class="math notranslate nohighlight">\(\text{Exp}_P: T_P\mathcal{M} \to \mathcal{M}\)</span>
+<h3><a class="toc-backref" href="#id114" role="doc-backlink">The Exponential Map</a><a class="headerlink" href="#the-exponential-map" title="Link to this heading">#</a></h3>
+<p>The <strong>exponential map</strong> <span class="math notranslate nohighlight">\(\Exp{P}: \tangent{P} \to \manifold\)</span>
 projects tangent vectors back onto the manifold. At the identity:</p>
 <div class="math notranslate nohighlight">
-\[\text{Exp}_I(S) = \exp(S)\]</div>
+\[\Exp{\I}(S) = \exp(S)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\exp\)</span> is the matrix exponential. This maps any symmetric matrix
 to an SPD matrix, ensuring we stay on the manifold.</p>
 <p>For a symmetric matrix <span class="math notranslate nohighlight">\(S\)</span> with eigendecomposition <span class="math notranslate nohighlight">\(S = U \Lambda U^\top\)</span>:</p>
@@ -605,11 +611,11 @@ to an SPD matrix, ensuring we stay on the manifold.</p>
 always SPD.</p>
 </section>
 <section id="the-logarithmic-map">
-<h3><a class="toc-backref" href="#id105" role="doc-backlink">The Logarithmic Map</a><a class="headerlink" href="#the-logarithmic-map" title="Link to this heading">#</a></h3>
-<p>The <strong>logarithmic map</strong> <span class="math notranslate nohighlight">\(\text{Log}_P: \mathcal{M} \to T_P\mathcal{M}\)</span>
+<h3><a class="toc-backref" href="#id115" role="doc-backlink">The Logarithmic Map</a><a class="headerlink" href="#the-logarithmic-map" title="Link to this heading">#</a></h3>
+<p>The <strong>logarithmic map</strong> <span class="math notranslate nohighlight">\(\Log{P}: \manifold \to \tangent{P}\)</span>
 is the inverse, projecting from the manifold to the tangent space:</p>
 <div class="math notranslate nohighlight">
-\[\text{Log}_I(X) = \log(X)\]</div>
+\[\Log{\I}(X) = \log(X)\]</div>
 <p>For an SPD matrix <span class="math notranslate nohighlight">\(X\)</span> with eigendecomposition <span class="math notranslate nohighlight">\(X = U \Lambda U^\top\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\log(X) = U \, \text{diag}(\log(\lambda_1), \ldots, \log(\lambda_n)) \, U^\top\]</div>
@@ -623,29 +629,38 @@ matrices to a vector space for classification.</p>
 </section>
 </section>
 <section id="riemannian-metrics-on-spd-manifolds">
-<h2><a class="toc-backref" href="#id106" role="doc-backlink">Riemannian Metrics on SPD Manifolds</a><a class="headerlink" href="#riemannian-metrics-on-spd-manifolds" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id116" role="doc-backlink">Riemannian Metrics on SPD Manifolds</a><a class="headerlink" href="#riemannian-metrics-on-spd-manifolds" title="Link to this heading">#</a></h2>
 <p>A <strong>Riemannian metric</strong> defines inner products on tangent spaces, enabling
 us to measure distances and angles on the manifold. The space of SPD matrices
 can be equipped with various Riemannian metrics, each leading to distinct
 geometric structures. This section reviews four principal Riemannian metrics
 that are widely used in the analysis and learning of SPD matrices.</p>
 <section id="affine-invariant-riemannian-metric-airm">
-<h3><a class="toc-backref" href="#id107" role="doc-backlink">Affine-Invariant Riemannian Metric (AIRM)</a><a class="headerlink" href="#affine-invariant-riemannian-metric-airm" title="Link to this heading">#</a></h3>
-<p>The <strong>Affine-Invariant Riemannian Metric</strong> <span id="id3">[<a class="reference internal" href="references.html#id3" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span> endows the SPD manifold
+<h3><a class="toc-backref" href="#id117" role="doc-backlink">Affine-Invariant Riemannian Metric (AIRM)</a><a class="headerlink" href="#affine-invariant-riemannian-metric-airm" title="Link to this heading">#</a></h3>
+<p>The <strong>Affine-Invariant Riemannian Metric</strong> <span id="id5">[<a class="reference internal" href="notation.html#id6" title="Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. International Journal of Computer Vision, 66(1):41–66, 2006. doi:10.1007/s11263-005-3222-z.">Pennec <em>et al.</em>, 2006</a>]</span> endows the SPD manifold
 with a geometry that is invariant under congruence transformations. Specifically,
-for any non-singular matrix <span class="math notranslate nohighlight">\(W \in GL(n)\)</span> and SPD matrices <span class="math notranslate nohighlight">\(P, Q \in \mathcal{S}_{++}^n\)</span>:</p>
+for any non-singular matrix <span class="math notranslate nohighlight">\(W \in \gl\)</span> and SPD matrices <span class="math notranslate nohighlight">\(P, Q \in \spd\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[d_{\text{AIRM}}(WPW^\top, WQW^\top) = d_{\text{AIRM}}(P, Q)\]</div>
-<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P \in \mathcal{S}_{++}^n\)</span>, for tangent vectors
-<span class="math notranslate nohighlight">\(v, w \in T_P\mathcal{S}_{++}^n\)</span>:</p>
+\[\dairm{WPW^\top}{WQW^\top} = \dairm{P}{Q}\]</div>
+<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P \in \spd\)</span>, for tangent vectors
+<span class="math notranslate nohighlight">\(v, w \in \tangentspd{P}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[g^{\text{AIRM}}_P(v, w) = \langle P^{-1/2} v P^{-1/2}, P^{-1/2} w P^{-1/2} \rangle_F\]</div>
+\[\gairm{P}(v, w) = \frobinner{P^{-1/2} v P^{-1/2}}{P^{-1/2} w P^{-1/2}}\]</div>
 <p><strong>Geodesic distance:</strong></p>
 <div class="math notranslate nohighlight">
-\[d_{\text{AIRM}}(A, B) = \| \log(A^{-1/2} B A^{-1/2}) \|_F\]</div>
+\[\dairm{A}{B} = \frob{\log(A^{-1/2} B A^{-1/2})}\]</div>
 <p><strong>Geodesic (shortest path):</strong></p>
 <div class="math notranslate nohighlight">
 \[\gamma(t) = A^{1/2} (A^{-1/2} B A^{-1/2})^t A^{1/2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Extrapolation property:</strong> Unlike many metrics, the AIRM geodesic
+<span class="math notranslate nohighlight">\(\gamma(t) = A^{1/2} (A^{-1/2} B A^{-1/2})^t A^{1/2}\)</span> remains SPD
+for all <span class="math notranslate nohighlight">\(t \in \reals\)</span>, not just <span class="math notranslate nohighlight">\(t \in [0, 1]\)</span>. This allows
+extrapolation beyond the endpoints, which can be useful for data augmentation
+or exploring the manifold structure.</p>
+</div>
+<p><strong>Distance to identity:</strong> <span class="math notranslate nohighlight">\(\dairm{P}{\I} = \frob{\log(P)}\)</span></p>
 <p><strong>Key Properties:</strong></p>
 <ul class="simple">
 <li><p><strong>Geodesically complete</strong>: The SPD manifold with AIRM forms a Hadamard manifold
@@ -676,23 +691,48 @@ Fréchet mean requires iterative solvers such as the Karcher flow.</p></li>
 <p><a class="reference internal" href="generated/airm/spd_learn.functional.airm_distance.html#spd_learn.functional.airm_distance" title="spd_learn.functional.airm_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">airm_distance()</span></code></a>,
 <a class="reference internal" href="generated/airm/spd_learn.functional.airm_geodesic.html#spd_learn.functional.airm_geodesic" title="spd_learn.functional.airm_geodesic"><code class="xref py py-func docutils literal notranslate"><span class="pre">airm_geodesic()</span></code></a></p>
 </div>
+<section id="properties-of-the-geometric-mean">
+<h4><a class="toc-backref" href="#id118" role="doc-backlink">Properties of the Geometric Mean</a><a class="headerlink" href="#properties-of-the-geometric-mean" title="Link to this heading">#</a></h4>
+<p>The Riemannian (geometric) mean under AIRM satisfies all 10 axiomatic properties
+established by <span id="id6">Ando <em>et al.</em> [<a class="reference internal" href="#id90" title="Tsuyoshi Ando, Chi-Kwong Li, and Roy Mathias. Geometric means. Linear Algebra and its Applications, 385:305–334, 2004. doi:10.1016/j.laa.2003.11.019.">2004</a>]</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Consistency with scalars:</strong> Reduces to ordinary geometric mean for 1×1 matrices</p></li>
+<li><p><strong>Joint homogeneity:</strong> <span class="math notranslate nohighlight">\(\geomean(\alpha P_1, \ldots, \alpha P_k) = \alpha \geomean(P_1, \ldots, P_k)\)</span></p></li>
+<li><p><strong>Permutation invariance:</strong> Independent of matrix ordering</p></li>
+<li><p><strong>Monotonicity:</strong> If <span class="math notranslate nohighlight">\(P_i \leq Q_i\)</span>, then <span class="math notranslate nohighlight">\(\geomean(P_1, \ldots) \leq \geomean(Q_1, \ldots)\)</span></p></li>
+<li><p><strong>Continuity from above:</strong> Continuous under decreasing sequences</p></li>
+<li><p><strong>Congruence invariance:</strong> <span class="math notranslate nohighlight">\(\geomean(B^\top P_1 B, \ldots) = B^\top \geomean(P_1, \ldots) B\)</span></p></li>
+<li><p><strong>Joint concavity:</strong> The mean function is jointly concave</p></li>
+<li><p><strong>Self-duality:</strong> <span class="math notranslate nohighlight">\(\geomean(P_1^{-1}, \ldots, P_k^{-1}) = \geomean(P_1, \ldots, P_k)^{-1}\)</span></p></li>
+<li><p><strong>AGH inequality:</strong> Harmonic mean <span class="math notranslate nohighlight">\(\leq\)</span> Geometric mean <span class="math notranslate nohighlight">\(\leq\)</span> Arithmetic mean</p></li>
+<li><p><strong>Determinant identity:</strong> <span class="math notranslate nohighlight">\(\det \geomean = (\prod_i \det P_i)^{1/k}\)</span> (unweighted case)</p></li>
+</ol>
+<p><strong>Riccati Equation Characterization:</strong></p>
+<p>The geometric mean <span class="math notranslate nohighlight">\(\geomean\)</span> of two SPD matrices <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is the unique
+positive definite solution to the <strong>Riccati equation</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\geomean \, Q^{-1} \, \geomean = P\]</div>
+<p>This characterization provides an algebraic interpretation of the geometric mean
+and connects it to control theory.</p>
+</section>
 </section>
 <section id="log-euclidean-metric-lem">
-<h3><a class="toc-backref" href="#id108" role="doc-backlink">Log-Euclidean Metric (LEM)</a><a class="headerlink" href="#log-euclidean-metric-lem" title="Link to this heading">#</a></h3>
-<p>The <strong>Log-Euclidean Metric</strong> <span id="id4">[<a class="reference internal" href="references.html#id4" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> simplifies computations by exploiting
+<h3><a class="toc-backref" href="#id119" role="doc-backlink">Log-Euclidean Metric (LEM)</a><a class="headerlink" href="#log-euclidean-metric-lem" title="Link to this heading">#</a></h3>
+<p>The <strong>Log-Euclidean Metric</strong> <span id="id7">[<a class="reference internal" href="#id15" title="Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. SIAM Journal on Matrix Analysis and Applications, 29(1):328–347, 2007. doi:10.1137/050637996.">Arsigny <em>et al.</em>, 2007</a>]</span> simplifies computations by exploiting
 the matrix logarithm to map the SPD manifold diffeomorphically to the Euclidean
-vector space of symmetric matrices <span class="math notranslate nohighlight">\(\mathcal{S}^n\)</span>. The mapping
-<span class="math notranslate nohighlight">\(\log: \mathcal{S}_{++}^n \to \mathcal{S}^n\)</span> is a global diffeomorphism
+vector space of symmetric matrices <span class="math notranslate nohighlight">\(\syms\)</span>. The mapping
+<span class="math notranslate nohighlight">\(\log: \spd \to \syms\)</span> is a global diffeomorphism
 (a smooth, invertible map with smooth inverse).</p>
 <p><strong>Riemannian inner product:</strong> The LEM is defined as the pullback of the Euclidean
-metric through the logarithm. For any <span class="math notranslate nohighlight">\(P \in \mathcal{S}_{++}^n\)</span> and tangent
+metric through the logarithm. For any <span class="math notranslate nohighlight">\(P \in \spd\)</span> and tangent
 vectors <span class="math notranslate nohighlight">\(v, w\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[g^{\text{LEM}}_P(v, w) = \langle D_P \log(v), D_P \log(w) \rangle_F\]</div>
+\[\glem{P}(v, w) = \frobinner{D_P \log(v)}{D_P \log(w)}\]</div>
 <p>where <span class="math notranslate nohighlight">\(D_P \log\)</span> denotes the differential of the logarithm at <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p><strong>Distance:</strong></p>
 <div class="math notranslate nohighlight">
-\[d_{\text{LEM}}(A, B) = \| \log(A) - \log(B) \|_F\]</div>
+\[\dlem{A}{B} = \frob{\log(A) - \log(B)}\]</div>
+<p><strong>Distance to identity:</strong> <span class="math notranslate nohighlight">\(\dlem{P}{\I} = \frob{\log(P)}\)</span> (same as AIRM at identity)</p>
 <p><strong>Fréchet mean (closed-form):</strong></p>
 <div class="math notranslate nohighlight">
 \[\bar{X} = \exp\left( \frac{1}{n} \sum_{i=1}^n \log(X_i) \right)\]</div>
@@ -725,21 +765,22 @@ transformations (rotations), not general affine transformations.</p></li>
 </div>
 </section>
 <section id="bures-wasserstein-metric-bwm">
-<h3><a class="toc-backref" href="#id109" role="doc-backlink">Bures-Wasserstein Metric (BWM)</a><a class="headerlink" href="#bures-wasserstein-metric-bwm" title="Link to this heading">#</a></h3>
-<p>The <strong>Bures-Wasserstein Metric</strong> <span id="id5">[<a class="reference internal" href="references.html#id37" title="Rajendra Bhatia, Tanvi Jain, and Yongdo Lim. On the bures-wasserstein distance between positive definite matrices. Expositiones Mathematicae, 37(2):165–191, 2019. doi:10.1016/j.exmath.2018.01.002.">Bhatia <em>et al.</em>, 2019</a>]</span> originates from quantum information
+<h3><a class="toc-backref" href="#id120" role="doc-backlink">Bures-Wasserstein Metric (BWM)</a><a class="headerlink" href="#bures-wasserstein-metric-bwm" title="Link to this heading">#</a></h3>
+<p>The <strong>Bures-Wasserstein Metric</strong> <span id="id8">[<a class="reference internal" href="#id48" title="Rajendra Bhatia, Tanvi Jain, and Yongdo Lim. On the bures-wasserstein distance between positive definite matrices. Expositiones Mathematicae, 37(2):165–191, 2019. doi:10.1016/j.exmath.2018.01.002.">Bhatia <em>et al.</em>, 2019</a>]</span> originates from quantum information
 theory and optimal transport. It corresponds to the 2-Wasserstein distance between
 centered Gaussian distributions.</p>
-<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P \in \mathcal{S}_{++}^n\)</span>, for tangent matrices
+<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P \in \spd\)</span>, for tangent matrices
 <span class="math notranslate nohighlight">\(V, W\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[g^{\text{BW}}_P(V, W) = \text{tr}(\mathcal{L}_P[V] W)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{L}_P\)</span> is the <strong>Lyapunov operator</strong> that assigns to each
-<span class="math notranslate nohighlight">\(V \in \mathcal{S}^n\)</span> the unique solution <span class="math notranslate nohighlight">\(X\)</span> of the Lyapunov equation:</p>
+\[\gbw{P}(V, W) = \tr(\lyap{P}[V] W)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lyap{P}\)</span> is the <strong>Lyapunov operator</strong> that assigns to each
+<span class="math notranslate nohighlight">\(V \in \syms\)</span> the unique solution <span class="math notranslate nohighlight">\(X\)</span> of the Lyapunov equation:</p>
 <div class="math notranslate nohighlight">
 \[PX + XP = V\]</div>
 <p><strong>Distance:</strong></p>
 <div class="math notranslate nohighlight">
-\[d_{\text{BW}}(A, B)^2 = \text{tr}(A) + \text{tr}(B) - 2\text{tr}\left((A^{1/2} B A^{1/2})^{1/2}\right)\]</div>
+\[\dbw{A}{B}^2 = \tr(A) + \tr(B) - 2\tr\left((A^{1/2} B A^{1/2})^{1/2}\right)\]</div>
+<p><strong>Distance to identity:</strong> <span class="math notranslate nohighlight">\(\dbw{P}{\I}^2 = \tr(P) + n - 2\tr(P^{1/2})\)</span></p>
 <p><strong>Geodesic:</strong></p>
 <div class="math notranslate nohighlight">
 \[\gamma(t) = (1-t)^2 A + t^2 B + t(1-t)(M + M^\top)\]</div>
@@ -747,7 +788,7 @@ centered Gaussian distributions.</p>
 <p><strong>Key Properties:</strong></p>
 <ul class="simple">
 <li><p><strong>Positively curved</strong>: Unlike AIRM (non-positive curvature), BWM endows
-<span class="math notranslate nohighlight">\(\mathcal{S}_{++}^n\)</span> with a positively curved Riemannian structure.</p></li>
+<span class="math notranslate nohighlight">\(\spd\)</span> with a positively curved Riemannian structure.</p></li>
 <li><p><strong>Optimal transport interpretation</strong>: The distance equals the 2-Wasserstein distance
 between <span class="math notranslate nohighlight">\(\mathcal{N}(0, A)\)</span> and <span class="math notranslate nohighlight">\(\mathcal{N}(0, B)\)</span>.</p></li>
 <li><p><strong>Closed-form expressions</strong>: Distances, geodesics, and Fréchet means have closed-form
@@ -773,23 +814,23 @@ solutions (Fréchet means via fixed-point iteration).</p></li>
 </div>
 </section>
 <section id="log-cholesky-metric-lcm">
-<h3><a class="toc-backref" href="#id110" role="doc-backlink">Log-Cholesky Metric (LCM)</a><a class="headerlink" href="#log-cholesky-metric-lcm" title="Link to this heading">#</a></h3>
-<p>The <strong>Log-Cholesky Metric</strong> <span id="id6">[<a class="reference internal" href="references.html#id53" title="Zhenhua Lin. Riemannian geometry of symmetric positive definite matrices via cholesky decomposition. SIAM Journal on Matrix Analysis and Applications, 40(4):1353–1370, 2019. doi:10.1137/18M1221084.">Lin, 2019</a>]</span> builds upon the Cholesky decomposition
+<h3><a class="toc-backref" href="#id121" role="doc-backlink">Log-Cholesky Metric (LCM)</a><a class="headerlink" href="#log-cholesky-metric-lcm" title="Link to this heading">#</a></h3>
+<p>The <strong>Log-Cholesky Metric</strong> <span id="id9">[<a class="reference internal" href="#id64" title="Zhenhua Lin. Riemannian geometry of symmetric positive definite matrices via cholesky decomposition. SIAM Journal on Matrix Analysis and Applications, 40(4):1353–1370, 2019. doi:10.1137/18M1221084.">Lin, 2019</a>]</span> builds upon the Cholesky decomposition
 <span class="math notranslate nohighlight">\(P = LL^\top\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is a lower-triangular matrix with positive
 diagonal entries. There exists a smooth bijection (diffeomorphism)
-<span class="math notranslate nohighlight">\(\varphi: \mathcal{L}_+ \to \mathcal{S}_{++}^n\)</span>, where <span class="math notranslate nohighlight">\(\mathcal{L}_+\)</span>
+<span class="math notranslate nohighlight">\(\varphi: \choleskyspace \to \spd\)</span>, where <span class="math notranslate nohighlight">\(\choleskyspace\)</span>
 denotes the <strong>Cholesky space</strong> of lower-triangular matrices with positive diagonals.</p>
-<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P = LL^\top \in \mathcal{S}_{++}^n\)</span>:</p>
+<p><strong>Riemannian inner product:</strong> At <span class="math notranslate nohighlight">\(P = LL^\top \in \spd\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[g^{\text{LCM}}_P(v, w) = \bar{g}_L\left(L(L^{-1}vL^{-\top})_\triangle, L(L^{-1}wL^{-\top})_\triangle\right)\]</div>
+\[\glcm{P}(v, w) = \bar{g}_L\left(L(L^{-1}vL^{-\top})_\triangle, L(L^{-1}wL^{-\top})_\triangle\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\((\cdot)_\triangle\)</span> extracts the lower-triangular part and scales diagonal
-elements by <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. The metric <span class="math notranslate nohighlight">\(\bar{g}_L\)</span> on <span class="math notranslate nohighlight">\(\mathcal{L}_+\)</span> is:</p>
+elements by <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. The metric <span class="math notranslate nohighlight">\(\bar{g}_L\)</span> on <span class="math notranslate nohighlight">\(\choleskyspace\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[\bar{g}_L(X, Y) = \sum_{i&gt;j} X_{ij}Y_{ij} + \sum_{j=1}^{n} X_{jj}Y_{jj}L_{jj}^{-2}\]</div>
 <p><strong>Distance:</strong></p>
 <div class="math notranslate nohighlight">
-\[d_{\text{LCM}}(A, B) = \| \text{logchol}(L_A) - \text{logchol}(L_B) \|_F\]</div>
-<p>where <span class="math notranslate nohighlight">\(\text{logchol}(L) = \text{tril}(L, -1) + \text{diag}(\log(\text{diag}(L)))\)</span>.</p>
+\[\dlcm{A}{B} = \frob{\logchol(L_A) - \logchol(L_B)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\logchol(L) = \tril{L, -1} + \diag(\log(\diag(L)))\)</span>.</p>
 <p><strong>Key Properties:</strong></p>
 <ul class="simple">
 <li><p><strong>Fastest computation</strong>: Complexity <span class="math notranslate nohighlight">\(O(n^3/3)\)</span> vs <span class="math notranslate nohighlight">\(O(n^3)\)</span> for eigendecomposition.</p></li>
@@ -820,8 +861,8 @@ yielding improved differentiability for deep learning.</p></li>
 </div>
 </section>
 <section id="metric-comparison-summary">
-<h3><a class="toc-backref" href="#id111" role="doc-backlink">Metric Comparison Summary</a><a class="headerlink" href="#metric-comparison-summary" title="Link to this heading">#</a></h3>
-<p>These four metrics capture distinct geometric perspectives on <span class="math notranslate nohighlight">\(\mathcal{S}_{++}^n\)</span>
+<h3><a class="toc-backref" href="#id122" role="doc-backlink">Metric Comparison Summary</a><a class="headerlink" href="#metric-comparison-summary" title="Link to this heading">#</a></h3>
+<p>These four metrics capture distinct geometric perspectives on <span class="math notranslate nohighlight">\(\spd\)</span>
 and serve different computational and modeling goals:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
@@ -844,7 +885,7 @@ and serve different computational and modeling goals:</p>
 <td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span></p></td>
 <td><p>Full affine</p></td>
 <td><p>Non-positive</p></td>
-<td><p>Theoretical analysis, domain adaptation <span id="id7">[<a class="reference internal" href="references.html#id88" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span></p></td>
+<td><p>Theoretical analysis, domain adaptation <span id="id10">[<a class="reference internal" href="#id104" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Log-Euclidean</strong></p></td>
 <td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span></p></td>
@@ -879,16 +920,71 @@ interpretation is meaningful.</p></li>
 gradient stability is important</p></li>
 </ul>
 </section>
+<section id="invariance-properties">
+<h3><a class="toc-backref" href="#id123" role="doc-backlink">Invariance Properties</a><a class="headerlink" href="#invariance-properties" title="Link to this heading">#</a></h3>
+<p>Different metrics satisfy different invariance properties, which determine
+their behavior under geometric transformations:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Rotation</p></th>
+<th class="head"><p>Affinity</p></th>
+<th class="head"><p>Inversion</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>AIRM</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Full invariance</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Log-Euclidean</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Orthogonal only; inversion invariant</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Bures-Wasserstein</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Unitary only</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Log-Cholesky</strong></p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Lower-triangular only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Definitions:</strong></p>
+<ul class="simple">
+<li><p><strong>Rotation invariance:</strong> <span class="math notranslate nohighlight">\(d(U^\top P U, U^\top Q U) = d(P, Q)\)</span> for orthogonal <span class="math notranslate nohighlight">\(U\)</span></p></li>
+<li><p><strong>Affinity (congruence) invariance:</strong> <span class="math notranslate nohighlight">\(d(B^\top P B, B^\top Q B) = d(P, Q)\)</span> for invertible <span class="math notranslate nohighlight">\(B\)</span></p></li>
+<li><p><strong>Inversion invariance:</strong> <span class="math notranslate nohighlight">\(d(P^{-1}, Q^{-1}) = d(P, Q)\)</span></p></li>
+</ul>
+</section>
 </section>
 <section id="parallel-transport">
-<h2><a class="toc-backref" href="#id112" role="doc-backlink">Parallel Transport</a><a class="headerlink" href="#parallel-transport" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id124" role="doc-backlink">Parallel Transport</a><a class="headerlink" href="#parallel-transport" title="Link to this heading">#</a></h2>
 <p><strong>Parallel transport</strong> moves tangent vectors between different tangent spaces
-while preserving their geometric properties <span id="id8">[<a class="reference internal" href="references.html#id88" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span>. This is essential for:</p>
+while preserving their geometric properties <span id="id11">[<a class="reference internal" href="#id104" title="Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. IEEE Transactions on Biomedical Engineering, 65(5):1107–1116, 2017.">Zanini <em>et al.</em>, 2017</a>]</span>. This is essential for:</p>
 <ul class="simple">
 <li><p>Domain adaptation (transferring learned representations)</p></li>
 <li><p>Comparing tangent vectors at different reference points</p></li>
 </ul>
-<p>Under the AIRM, parallel transport from <span class="math notranslate nohighlight">\(T_P\mathcal{M}\)</span> to <span class="math notranslate nohighlight">\(T_Q\mathcal{M}\)</span>:</p>
+<p>Under the AIRM, parallel transport from <span class="math notranslate nohighlight">\(\tangent{P}\)</span> to <span class="math notranslate nohighlight">\(\tangent{Q}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\Gamma_{P \to Q}(V) = E \cdot V \cdot E^\top\]</div>
 <p>where <span class="math notranslate nohighlight">\(E = (Q P^{-1})^{1/2}\)</span>.</p>
@@ -903,23 +999,23 @@ while preserving their geometric properties <span id="id8">[<a class="reference 
 <p><a class="reference internal" href="generated/parallel_transport/spd_learn.functional.parallel_transport_airm.html#spd_learn.functional.parallel_transport_airm" title="spd_learn.functional.parallel_transport_airm"><code class="xref py py-func docutils literal notranslate"><span class="pre">parallel_transport_airm()</span></code></a></p>
 </div>
 </section>
-<section id="dynamic-trivialization">
-<h2><a class="toc-backref" href="#id113" role="doc-backlink">Dynamic Trivialization</a><a class="headerlink" href="#dynamic-trivialization" title="Link to this heading">#</a></h2>
+<section id="trivialization">
+<h2><a class="toc-backref" href="#id125" role="doc-backlink">Trivialization</a><a class="headerlink" href="#trivialization" title="Link to this heading">#</a></h2>
 <p>When optimizing functions on manifolds (like the SPD manifold of covariance
 matrices), we face a fundamental challenge: manifolds are curved spaces where
 standard Euclidean gradient descent doesn’t directly apply.</p>
 <p><strong>Trivialization</strong> is a technique that transforms manifold-constrained
 optimization into unconstrained optimization by parametrizing the manifold
 through its tangent space.</p>
-<p>The animation below illustrates the concept of <strong>Dynamic Trivialization</strong>
-from <span id="id9">Lezcano-Casado [<a class="reference internal" href="references.html#id25" title="Mario Lezcano-Casado. Trivializations for gradient-based optimization on manifolds. In Advances in Neural Information Processing Systems, volume 32, 9154–9164. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html.">2019</a>]</span>:</p>
-<a class="reference internal image-reference" href="_images/dynamic_trivialization.gif"><img alt="Dynamic Trivialization Animation" class="align-center" src="_images/dynamic_trivialization.gif" style="width: 100%;" />
+<p>The animation below illustrates the concept of <strong>Trivialization</strong>
+from <span id="id12">Lezcano-Casado [<a class="reference internal" href="#id36" title="Mario Lezcano-Casado. Trivializations for gradient-based optimization on manifolds. In Advances in Neural Information Processing Systems, volume 32, 9154–9164. 2019. URL: https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html.">2019</a>]</span>:</p>
+<a class="reference internal image-reference" href="_images/dynamic_trivialization.gif"><img alt="Trivialization Animation" class="align-center" src="_images/dynamic_trivialization.gif" style="width: 100%;" />
 </a>
 <p><strong>Key concepts illustrated:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>Manifold</strong> <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> — The curved space where our data lives
+<li><p><strong>Manifold</strong> <span class="math notranslate nohighlight">\(\manifold\)</span> — The curved space where our data lives
 (e.g., SPD matrices representing EEG spatial covariance)</p></li>
-<li><p><strong>Tangent Space</strong> <span class="math notranslate nohighlight">\(T_p\mathcal{M} \cong \mathbb{R}^n\)</span> — A flat
+<li><p><strong>Tangent Space</strong> <span class="math notranslate nohighlight">\(\tangent{p} \cong \reals^n\)</span> — A flat
 Euclidean approximation at point <span class="math notranslate nohighlight">\(p\)</span>, where standard optimization
 algorithms can be applied</p></li>
 <li><p><strong>Exponential Map</strong> <span class="math notranslate nohighlight">\(\phi_p\)</span> — Projects points from the tangent space
@@ -929,7 +1025,7 @@ we update: <span class="math notranslate nohighlight">\(p_{i+1} := \phi_{p_i}(y_
 in the new tangent space</p></li>
 </ol>
 <section id="practical-implications">
-<h3><a class="toc-backref" href="#id114" role="doc-backlink">Practical Implications</a><a class="headerlink" href="#practical-implications" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id126" role="doc-backlink">Practical Implications</a><a class="headerlink" href="#practical-implications" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Distance computation</strong>: Use <a class="reference internal" href="generated/log_euclidean/spd_learn.functional.log_euclidean_distance.html#spd_learn.functional.log_euclidean_distance" title="spd_learn.functional.log_euclidean_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">log_euclidean_distance()</span></code></a>
 for speed, <a class="reference internal" href="generated/airm/spd_learn.functional.airm_distance.html#spd_learn.functional.airm_distance" title="spd_learn.functional.airm_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">airm_distance()</span></code></a> for affine
@@ -947,7 +1043,7 @@ across subjects or sessions.</p></li>
 </section>
 </section>
 <section id="spd-layer-visualizations">
-<h2><a class="toc-backref" href="#id115" role="doc-backlink">SPD Layer Visualizations</a><a class="headerlink" href="#spd-layer-visualizations" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id127" role="doc-backlink">SPD Layer Visualizations</a><a class="headerlink" href="#spd-layer-visualizations" title="Link to this heading">#</a></h2>
 <p>Understanding how SPD network layers transform data on the manifold is crucial
 for building intuition about geometric deep learning. The visualizations below
 show each layer’s operation using 2x2 SPD matrices represented as ellipsoids.</p>
@@ -962,49 +1058,58 @@ show each layer’s operation using 2x2 SPD matrices represented as ellipsoids.<
 See <a class="reference internal" href="generated/auto_examples/visualizations/plot_bimap_animation.html#sphx-glr-generated-auto-examples-visualizations-plot-bimap-animation-py"><span class="std std-ref">BiMap Layer Animation</span></a></p>
 <p><a class="reference internal" href="generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a> — Eigenvalue rectification (ReLU for SPD matrices):</p>
 <div class="math notranslate nohighlight">
-\[\text{ReEig}(X) = U \max(\Lambda, \epsilon) U^T\]</div>
+\[\reeig(X) = U \max(\Lambda, \epsilon) U^\top\]</div>
 <p>See <a class="reference internal" href="generated/auto_examples/visualizations/plot_reeig_animation.html#sphx-glr-generated-auto-examples-visualizations-plot-reeig-animation-py"><span class="std std-ref">ReEig Layer Animation</span></a></p>
 <p><a class="reference internal" href="generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a> — Projects SPD matrices to the tangent space:</p>
 <div class="math notranslate nohighlight">
-\[\text{LogEig}(X) = U \log(\Lambda) U^T\]</div>
+\[\logeig(X) = U \log(\Lambda) U^\top\]</div>
 <p>See <a class="reference internal" href="generated/auto_examples/visualizations/plot_logeig_animation.html#sphx-glr-generated-auto-examples-visualizations-plot-logeig-animation-py"><span class="std std-ref">LogEig: Linearization and the Swelling Effect</span></a></p>
 <p><a class="reference internal" href="generated/batchnorm/spd_learn.modules.SPDBatchNormMeanVar.html#spd_learn.modules.SPDBatchNormMeanVar" title="spd_learn.modules.SPDBatchNormMeanVar"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNormMeanVar</span></code></a> — Riemannian batch normalization:</p>
 <div class="math notranslate nohighlight">
-\[\tilde{X}_i = \mathcal{G}^{-1/2} X_i \mathcal{G}^{-1/2}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the Fréchet mean of the batch.
+\[\tilde{X}_i = \frechet^{-1/2} X_i \frechet^{-1/2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\frechet\)</span> is the Fréchet mean of the batch.
 See <a class="reference internal" href="generated/auto_examples/visualizations/plot_batchnorm_animation.html#sphx-glr-generated-auto-examples-visualizations-plot-batchnorm-animation-py"><span class="std std-ref">SPD Batch Normalization Animation</span></a></p>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id116" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
-<div class="docutils container" id="id10">
+<h2><a class="toc-backref" href="#id128" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id13">
 <div role="list" class="citation-list">
-<div class="citation" id="id61" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">1</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id64" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">1</a><span class="fn-bracket">]</span></span>
 <p>Zhenhua Lin. Riemannian geometry of symmetric positive definite matrices via cholesky decomposition. <em>SIAM Journal on Matrix Analysis and Applications</em>, 40(4):1353–1370, 2019. <a class="reference external" href="https://doi.org/10.1137/18M1221084">doi:10.1137/18M1221084</a>.</p>
 </div>
-<div class="citation" id="id33" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">2</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id36" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">2</a><span class="fn-bracket">]</span></span>
 <p>Mario Lezcano-Casado. Trivializations for gradient-based optimization on manifolds. In <em>Advances in Neural Information Processing Systems</em>, volume 32, 9154–9164. 2019. URL: <a class="reference external" href="https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html">https://proceedings.neurips.cc/paper/2019/hash/1b33d16fc562464579b7199ca3114982-Abstract.html</a>.</p>
 </div>
-<div class="citation" id="id14" role="doc-biblioentry">
+<div class="citation" id="id17" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
 <p>Rajendra Bhatia. <em>Positive Definite Matrices</em>. Princeton University Press, 2007. <a class="reference external" href="https://doi.org/10.1515/9781400827787">doi:10.1515/9781400827787</a>.</p>
 </div>
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id41" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p>Marco Congedo, Alexandre Barachant, and Rajendra Bhatia. Riemannian geometry for eeg-based brain-computer interfaces; a primer and a review. <em>Brain-Computer Interfaces</em>, 4(3):155–174, 2017. <a class="reference external" href="https://doi.org/10.1080/2326263X.2017.1297192">doi:10.1080/2326263X.2017.1297192</a>.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
 <p>Xavier Pennec, Pierre Fillard, and Nicholas Ayache. A riemannian framework for tensor computing. <em>International Journal of Computer Vision</em>, 66(1):41–66, 2006. <a class="reference external" href="https://doi.org/10.1007/s11263-005-3222-z">doi:10.1007/s11263-005-3222-z</a>.</p>
 </div>
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">5</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id90" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">6</a><span class="fn-bracket">]</span></span>
+<p>Tsuyoshi Ando, Chi-Kwong Li, and Roy Mathias. Geometric means. <em>Linear Algebra and its Applications</em>, 385:305–334, 2004. <a class="reference external" href="https://doi.org/10.1016/j.laa.2003.11.019">doi:10.1016/j.laa.2003.11.019</a>.</p>
+</div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">7</a><span class="fn-bracket">]</span></span>
 <p>Vincent Arsigny, Pierre Fillard, Xavier Pennec, and Nicholas Ayache. Geometric means in a novel vector space structure on symmetric positive-definite matrices. <em>SIAM Journal on Matrix Analysis and Applications</em>, 29(1):328–347, 2007. <a class="reference external" href="https://doi.org/10.1137/050637996">doi:10.1137/050637996</a>.</p>
 </div>
-<div class="citation" id="id45" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">6</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id48" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">8</a><span class="fn-bracket">]</span></span>
 <p>Rajendra Bhatia, Tanvi Jain, and Yongdo Lim. On the bures-wasserstein distance between positive definite matrices. <em>Expositiones Mathematicae</em>, 37(2):165–191, 2019. <a class="reference external" href="https://doi.org/10.1016/j.exmath.2018.01.002">doi:10.1016/j.exmath.2018.01.002</a>.</p>
 </div>
-<div class="citation" id="id96" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id8">2</a>)</span>
+<div class="citation" id="id104" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id10">1</a>,<a role="doc-backlink" href="#id11">2</a>)</span>
 <p>Paolo Zanini, Marco Congedo, Christian Jutten, Salem Said, and Yannick Berthoumieu. Transfer learning: a riemannian geometry framework with applications to brain–computer interfaces. <em>IEEE Transactions on Biomedical Engineering</em>, 65(5):1107–1116, 2017.</p>
 </div>
 </div>

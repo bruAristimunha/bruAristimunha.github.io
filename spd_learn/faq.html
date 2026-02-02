@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,7 +53,8 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'faq';</script>
     <link rel="canonical" href="https://spdlearn.org/faq.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
@@ -646,14 +647,14 @@ SPD Learn for deep learning.</p>
 <p><strong>LogEig</strong> (matrix logarithm):</p>
 <ul class="simple">
 <li><p>Maps to the space of symmetric matrices</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathrm{Log}(X) = U \log(\Lambda) U^\top\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\logeig(X) = U \log(\Lambda) U^\top\)</span></p></li>
 <li><p>Preserves more structure, but requires eigendecomposition</p></li>
 </ul>
 <p><strong>Tangent space projection</strong> (at identity or reference):</p>
 <ul class="simple">
 <li><p>Projects to tangent space at a reference point</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathrm{Log}_I(X) = \log(X)\)</span> (at identity)</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathrm{Log}_G(X) = G^{-1/2} \log(G^{-1/2} X G^{-1/2}) G^{-1/2}\)</span> (at G)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Log{\I}(X) = \log(X)\)</span> (at identity)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Log{\frechet}(X) = \frechet^{-1/2} \log(\frechet^{-1/2} X \frechet^{-1/2}) \frechet^{-1/2}\)</span> (at <span class="math notranslate nohighlight">\(\frechet\)</span>)</p></li>
 </ul>
 <p>In SPD Learn, <a class="reference internal" href="generated/modeig/spd_learn.modules.LogEig.html#spd_learn.modules.LogEig" title="spd_learn.modules.LogEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogEig</span></code></a> implements the matrix logarithm. For tangent space
 at a reference (like batch mean), use <a class="reference internal" href="generated/batchnorm/spd_learn.modules.SPDBatchNormMeanVar.html#spd_learn.modules.SPDBatchNormMeanVar" title="spd_learn.modules.SPDBatchNormMeanVar"><code class="xref py py-class docutils literal notranslate"><span class="pre">SPDBatchNormMeanVar</span></code></a> first.</p>

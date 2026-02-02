@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -58,7 +58,7 @@
     <link rel="icon" href="../../../_static/spd_learn.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="End-to-End EEG Classification Tutorial" href="tutorial_03_eeg_classification.html" />
+    <link rel="next" title="Parallel Transport on SPD Manifolds" href="tutorial_04_parallel_transport.html" />
     <link rel="prev" title="Applied Examples" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -406,9 +406,11 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_04_parallel_transport.html">Parallel Transport on SPD Manifolds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_03_eeg_classification.html">End-to-End EEG Classification Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_01_spd_concepts.html">Understanding Symmetric Positive Definite (SPD) Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_02_building_blocks.html">Building Blocks of SPD Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_05_numerical_precision.html">Numerical Precision and Stability for SPD Networks</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../visualizations/index.html">SPD Layer Visualizations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -496,7 +498,10 @@
 <p>Step-by-step tutorials for getting started with SPD Learn. Start here to learn
 the fundamentals of SPD matrices, neural network building blocks, and complete
 classification pipelines.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This comprehensive tutorial demonstrates how to build an end-to-end EEG classification pipeline for motor imagery using SPD Learn. We cover everything from data loading to model selection, training, and evaluation."><img alt="" src="../../../_images/sphx_glr_tutorial_03_eeg_classification_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This tutorial explains parallel transport, why it matters for domain adaptation, and how different Riemannian metrics affect transport behavior."><img alt="" src="../../../_images/sphx_glr_tutorial_04_parallel_transport_thumb.png" />
+<p><a class="reference internal" href="tutorial_04_parallel_transport.html"><span class="doc">Parallel Transport on SPD Manifolds</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Parallel Transport on SPD Manifolds</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This comprehensive tutorial demonstrates how to build an end-to-end EEG classification pipeline for motor imagery using SPD Learn. We cover everything from data loading to model selection, training, and evaluation."><img alt="" src="../../../_images/sphx_glr_tutorial_03_eeg_classification_thumb.png" />
 <p><a class="reference internal" href="tutorial_03_eeg_classification.html"><span class="doc">End-to-End EEG Classification Tutorial</span></a></p>
   <div class="sphx-glr-thumbnail-title">End-to-End EEG Classification Tutorial</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This tutorial provides a comprehensive introduction to Symmetric Positive Definite (SPD) matrices and explains why Riemannian geometry is essential for working with them in machine learning."><img alt="" src="../../../_images/sphx_glr_tutorial_01_spd_concepts_thumb.png" />
@@ -505,6 +510,9 @@ classification pipelines.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This tutorial provides a comprehensive walkthrough of the fundamental building blocks used in SPD (Symmetric Positive Definite) neural networks. We explore the mathematical foundations and geometric intuitions behind each layer."><img alt="" src="../../../_images/sphx_glr_tutorial_02_building_blocks_thumb.png" />
 <p><a class="reference internal" href="tutorial_02_building_blocks.html"><span class="doc">Building Blocks of SPD Neural Networks</span></a></p>
   <div class="sphx-glr-thumbnail-title">Building Blocks of SPD Neural Networks</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This tutorial demonstrates how SPD Learn&#x27;s numerical stability system works and why it&#x27;s essential for reliable training. We compare models with different eigenvalue threshold configurations to show the impact on training stability."><img alt="" src="../../../_images/sphx_glr_tutorial_05_numerical_precision_thumb.png" />
+<p><a class="reference internal" href="tutorial_05_numerical_precision.html"><span class="doc">Numerical Precision and Stability for SPD Networks</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Numerical Precision and Stability for SPD Networks</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 </section>
@@ -529,11 +537,11 @@ classification pipelines.</p>
       </div>
     </a>
     <a class="right-next"
-       href="tutorial_03_eeg_classification.html"
+       href="tutorial_04_parallel_transport.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">End-to-End EEG Classification Tutorial</p>
+        <p class="prev-next-title">Parallel Transport on SPD Manifolds</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

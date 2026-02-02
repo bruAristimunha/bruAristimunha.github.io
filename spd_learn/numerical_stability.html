@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,13 +53,14 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numerical_stability';</script>
     <link rel="canonical" href="https://spdlearn.org/numerical_stability.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="next" title="Notation" href="notation.html" />
     <link rel="prev" title="Geometric Concepts" href="geometric_concepts.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -414,6 +415,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="geometric_concepts.html">Geometric Concepts</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Numerical Stability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -485,69 +487,69 @@ comprehensive configuration system for managing numerical stability.</p>
 techniques for working with Symmetric Positive Definite (SPD) matrices
 in Riemannian geometry-based learning frameworks. The theoretical approaches
 are based on established methods in the field, including those described
-in the MENDR framework <span id="id2">[<a class="reference internal" href="references.html#id28" title="Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. arXiv:2508.04956.">Chen <em>et al.</em>, 2025</a>]</span>.</p>
+in the MENDR framework <span id="id2">[<a class="reference internal" href="#id30" title="Matthew Chen, Micky Nnamdi, Justin Shao, Andrew Hornback, Hongyun Huang, Ben Tamo, Yishan Zhong, Benoit Marteau, Wenqi Shi, and May Dongmei Wang. Mendr: manifold explainable neural data representations. 2025. arXiv:2508.04956.">Chen <em>et al.</em>, 2025</a>]</span>.</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id92">Overview</a></p></li>
-<li><p><a class="reference internal" href="#covariance-matrix-rank-deficiency" id="id93">Covariance Matrix Rank Deficiency</a></p></li>
-<li><p><a class="reference internal" href="#numerical-stability-techniques" id="id94">Numerical Stability Techniques</a></p>
+<li><p><a class="reference internal" href="#overview" id="id99">Overview</a></p></li>
+<li><p><a class="reference internal" href="#covariance-matrix-rank-deficiency" id="id100">Covariance Matrix Rank Deficiency</a></p></li>
+<li><p><a class="reference internal" href="#numerical-stability-techniques" id="id101">Numerical Stability Techniques</a></p>
 <ul>
-<li><p><a class="reference internal" href="#trace-normalization-with-epsilon-regularization" id="id95">Trace Normalization with Epsilon Regularization</a></p></li>
-<li><p><a class="reference internal" href="#symmetrization" id="id96">Symmetrization</a></p></li>
-<li><p><a class="reference internal" href="#cholesky-decomposition-for-gradient-flow" id="id97">Cholesky Decomposition for Gradient Flow</a></p></li>
-<li><p><a class="reference internal" href="#svd-based-stable-differentiation" id="id98">SVD-Based Stable Differentiation</a></p></li>
-<li><p><a class="reference internal" href="#logarithmic-loss-functions" id="id99">Logarithmic Loss Functions</a></p></li>
+<li><p><a class="reference internal" href="#trace-normalization-with-epsilon-regularization" id="id102">Trace Normalization with Epsilon Regularization</a></p></li>
+<li><p><a class="reference internal" href="#symmetrization" id="id103">Symmetrization</a></p></li>
+<li><p><a class="reference internal" href="#cholesky-decomposition-for-gradient-flow" id="id104">Cholesky Decomposition for Gradient Flow</a></p></li>
+<li><p><a class="reference internal" href="#svd-based-stable-differentiation" id="id105">SVD-Based Stable Differentiation</a></p></li>
+<li><p><a class="reference internal" href="#logarithmic-loss-functions" id="id106">Logarithmic Loss Functions</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#condition-number-analysis" id="id100">Condition Number Analysis</a></p>
+<li><p><a class="reference internal" href="#condition-number-analysis" id="id107">Condition Number Analysis</a></p>
 <ul>
-<li><p><a class="reference internal" href="#definition-and-significance" id="id101">Definition and Significance</a></p></li>
-<li><p><a class="reference internal" href="#condition-number-bounds" id="id102">Condition Number Bounds</a></p></li>
-<li><p><a class="reference internal" href="#eigenvalue-perturbation-bounds" id="id103">Eigenvalue Perturbation Bounds</a></p></li>
+<li><p><a class="reference internal" href="#definition-and-significance" id="id108">Definition and Significance</a></p></li>
+<li><p><a class="reference internal" href="#condition-number-bounds" id="id109">Condition Number Bounds</a></p></li>
+<li><p><a class="reference internal" href="#eigenvalue-perturbation-bounds" id="id110">Eigenvalue Perturbation Bounds</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#configuration-system" id="id104">Configuration System</a></p>
+<li><p><a class="reference internal" href="#configuration-system" id="id111">Configuration System</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-global-configuration" id="id105">The Global Configuration</a></p></li>
-<li><p><a class="reference internal" href="#configuration-parameters" id="id106">Configuration Parameters</a></p></li>
-<li><p><a class="reference internal" href="#getting-epsilon-values" id="id107">Getting Epsilon Values</a></p></li>
-<li><p><a class="reference internal" href="#temporary-configuration" id="id108">Temporary Configuration</a></p></li>
+<li><p><a class="reference internal" href="#the-global-configuration" id="id112">The Global Configuration</a></p></li>
+<li><p><a class="reference internal" href="#configuration-parameters" id="id113">Configuration Parameters</a></p></li>
+<li><p><a class="reference internal" href="#getting-epsilon-values" id="id114">Getting Epsilon Values</a></p></li>
+<li><p><a class="reference internal" href="#temporary-configuration" id="id115">Temporary Configuration</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#checking-spd-validity" id="id109">Checking SPD Validity</a></p>
+<li><p><a class="reference internal" href="#checking-spd-validity" id="id116">Checking SPD Validity</a></p>
 <ul>
-<li><p><a class="reference internal" href="#safe-eigenvalue-clamping" id="id110">Safe Eigenvalue Clamping</a></p></li>
+<li><p><a class="reference internal" href="#safe-eigenvalue-clamping" id="id117">Safe Eigenvalue Clamping</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#implementation-guidelines" id="id111">Implementation Guidelines</a></p>
+<li><p><a class="reference internal" href="#implementation-guidelines" id="id118">Implementation Guidelines</a></p>
 <ul>
-<li><p><a class="reference internal" href="#recommended-numerical-thresholds" id="id112">Recommended Numerical Thresholds</a></p></li>
-<li><p><a class="reference internal" href="#stability-checklist" id="id113">Stability Checklist</a></p></li>
-<li><p><a class="reference internal" href="#code-example" id="id114">Code Example</a></p></li>
+<li><p><a class="reference internal" href="#recommended-numerical-thresholds" id="id119">Recommended Numerical Thresholds</a></p></li>
+<li><p><a class="reference internal" href="#stability-checklist" id="id120">Stability Checklist</a></p></li>
+<li><p><a class="reference internal" href="#code-example" id="id121">Code Example</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#recommendations-for-different-scenarios" id="id115">Recommendations for Different Scenarios</a></p>
+<li><p><a class="reference internal" href="#recommendations-for-different-scenarios" id="id122">Recommendations for Different Scenarios</a></p>
 <ul>
-<li><p><a class="reference internal" href="#standard-training-float32" id="id116">Standard Training (float32)</a></p></li>
-<li><p><a class="reference internal" href="#ill-conditioned-matrices" id="id117">Ill-Conditioned Matrices</a></p></li>
-<li><p><a class="reference internal" href="#mixed-precision-training" id="id118">Mixed Precision Training</a></p></li>
-<li><p><a class="reference internal" href="#high-precision-requirements" id="id119">High Precision Requirements</a></p></li>
+<li><p><a class="reference internal" href="#standard-training-float32" id="id123">Standard Training (float32)</a></p></li>
+<li><p><a class="reference internal" href="#ill-conditioned-matrices" id="id124">Ill-Conditioned Matrices</a></p></li>
+<li><p><a class="reference internal" href="#mixed-precision-training" id="id125">Mixed Precision Training</a></p></li>
+<li><p><a class="reference internal" href="#high-precision-requirements" id="id126">High Precision Requirements</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id120">Common Issues and Solutions</a></p>
+<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id127">Common Issues and Solutions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#nan-values-during-training" id="id121">NaN Values During Training</a></p></li>
-<li><p><a class="reference internal" href="#slow-convergence" id="id122">Slow Convergence</a></p></li>
-<li><p><a class="reference internal" href="#warnings-about-eigenvalue-clamping" id="id123">Warnings About Eigenvalue Clamping</a></p></li>
+<li><p><a class="reference internal" href="#nan-values-during-training" id="id128">NaN Values During Training</a></p></li>
+<li><p><a class="reference internal" href="#slow-convergence" id="id129">Slow Convergence</a></p></li>
+<li><p><a class="reference internal" href="#warnings-about-eigenvalue-clamping" id="id130">Warnings About Eigenvalue Clamping</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#api-reference" id="id124">API Reference</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id125">References</a></p></li>
+<li><p><a class="reference internal" href="#api-reference" id="id131">API Reference</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id132">References</a></p></li>
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id92" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id99" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Working with SPD matrices presents numerical challenges:</p>
 <ol class="arabic simple">
 <li><p><strong>Small eigenvalues</strong>: Operations like <span class="math notranslate nohighlight">\(\log(\lambda)\)</span> become undefined or
@@ -568,8 +570,8 @@ eigendecomposition, Riemannian metrics, and geometric operations.</p>
 </div>
 </section>
 <section id="covariance-matrix-rank-deficiency">
-<h2><a class="toc-backref" href="#id93" role="doc-backlink">Covariance Matrix Rank Deficiency</a><a class="headerlink" href="#covariance-matrix-rank-deficiency" title="Link to this heading">#</a></h2>
-<p>The sample covariance matrix (SCM) from a data matrix <span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{C \times T}\)</span>
+<h2><a class="toc-backref" href="#id100" role="doc-backlink">Covariance Matrix Rank Deficiency</a><a class="headerlink" href="#covariance-matrix-rank-deficiency" title="Link to this heading">#</a></h2>
+<p>The sample covariance matrix (SCM) from a data matrix <span class="math notranslate nohighlight">\(\mathbf{X} \in \reals^{C \times T}\)</span>
 (C channels, T time samples) is computed as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{SCM} = \frac{1}{T-1} \mathbf{X} \mathbf{X}^\top\]</div>
@@ -579,9 +581,9 @@ numerical instability when applying SPD operations that require strictly positiv
 eigenvalues.</p>
 </section>
 <section id="numerical-stability-techniques">
-<h2><a class="toc-backref" href="#id94" role="doc-backlink">Numerical Stability Techniques</a><a class="headerlink" href="#numerical-stability-techniques" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id101" role="doc-backlink">Numerical Stability Techniques</a><a class="headerlink" href="#numerical-stability-techniques" title="Link to this heading">#</a></h2>
 <section id="trace-normalization-with-epsilon-regularization">
-<h3><a class="toc-backref" href="#id95" role="doc-backlink">Trace Normalization with Epsilon Regularization</a><a class="headerlink" href="#trace-normalization-with-epsilon-regularization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id102" role="doc-backlink">Trace Normalization with Epsilon Regularization</a><a class="headerlink" href="#trace-normalization-with-epsilon-regularization" title="Link to this heading">#</a></h3>
 <p>To ensure numerical stability during forward and backward passes, a two-stage
 regularization is applied:</p>
 <p><strong>Stage 1 - Pre-normalization regularization:</strong></p>
@@ -590,7 +592,7 @@ regularization is applied:</p>
 <p><strong>Stage 2 - Trace normalization with post-regularization:</strong></p>
 <div class="math notranslate nohighlight">
 \[\mathbf{SCM}_{\text{norm}} = \frac{\mathbf{SCM}_{\text{reg}}}{\text{tr}(\mathbf{SCM}_{\text{reg}})} + \epsilon \mathbf{I}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span> is a typical choice and <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the identity matrix.</p>
+<p>where <span class="math notranslate nohighlight">\(\epsilon = 10^{-5}\)</span> is a typical choice and <span class="math notranslate nohighlight">\(\I\)</span> is the identity matrix.</p>
 <p><strong>Rationale:</strong></p>
 <ul class="simple">
 <li><p>Pre-normalization <span class="math notranslate nohighlight">\(\epsilon\)</span> prevents division by near-zero traces</p></li>
@@ -599,7 +601,7 @@ regularization is applied:</p>
 </ul>
 </section>
 <section id="symmetrization">
-<h3><a class="toc-backref" href="#id96" role="doc-backlink">Symmetrization</a><a class="headerlink" href="#symmetrization" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id103" role="doc-backlink">Symmetrization</a><a class="headerlink" href="#symmetrization" title="Link to this heading">#</a></h3>
 <p>Floating-point operations can introduce small asymmetries. Explicit symmetrization
 ensures the SPD property:</p>
 <div class="math notranslate nohighlight">
@@ -607,12 +609,12 @@ ensures the SPD property:</p>
 <p>This should be applied after any operation that might introduce asymmetry.</p>
 </section>
 <section id="cholesky-decomposition-for-gradient-flow">
-<h3><a class="toc-backref" href="#id97" role="doc-backlink">Cholesky Decomposition for Gradient Flow</a><a class="headerlink" href="#cholesky-decomposition-for-gradient-flow" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id104" role="doc-backlink">Cholesky Decomposition for Gradient Flow</a><a class="headerlink" href="#cholesky-decomposition-for-gradient-flow" title="Link to this heading">#</a></h3>
 <p>Instead of directly optimizing over the SPD manifold, a numerically stable
 approach is to parameterize SPD matrices via Cholesky decomposition:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{M} = \mathbf{L} \mathbf{L}^\top\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{L} \in \mathbb{R}^{n \times n}\)</span> is a learnable lower triangular
+<p>where <span class="math notranslate nohighlight">\(\mathbf{L} \in \reals^{n \times n}\)</span> is a learnable lower triangular
 matrix with positive diagonal elements.</p>
 <p><strong>Gradient computation via the product rule:</strong></p>
 <div class="math notranslate nohighlight">
@@ -625,7 +627,7 @@ matrix with positive diagonal elements.</p>
 </ul>
 </section>
 <section id="svd-based-stable-differentiation">
-<h3><a class="toc-backref" href="#id98" role="doc-backlink">SVD-Based Stable Differentiation</a><a class="headerlink" href="#svd-based-stable-differentiation" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id105" role="doc-backlink">SVD-Based Stable Differentiation</a><a class="headerlink" href="#svd-based-stable-differentiation" title="Link to this heading">#</a></h3>
 <p>For operations requiring eigendecomposition (log, exp, power), using SVD provides
 numerical stability:</p>
 <div class="math notranslate nohighlight">
@@ -642,7 +644,7 @@ equal the absolute eigenvalues.</p>
 natural regularization and prevent gradient explosion.</p>
 </section>
 <section id="logarithmic-loss-functions">
-<h3><a class="toc-backref" href="#id99" role="doc-backlink">Logarithmic Loss Functions</a><a class="headerlink" href="#logarithmic-loss-functions" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id106" role="doc-backlink">Logarithmic Loss Functions</a><a class="headerlink" href="#logarithmic-loss-functions" title="Link to this heading">#</a></h3>
 <p>Operating on log-eigenvalues rather than raw eigenvalues prevents underflow/overflow:</p>
 <p><strong>Masked Autoencoding Loss:</strong></p>
 <div class="math notranslate nohighlight">
@@ -657,9 +659,9 @@ natural regularization and prevent gradient explosion.</p>
 </section>
 </section>
 <section id="condition-number-analysis">
-<h2><a class="toc-backref" href="#id100" role="doc-backlink">Condition Number Analysis</a><a class="headerlink" href="#condition-number-analysis" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id107" role="doc-backlink">Condition Number Analysis</a><a class="headerlink" href="#condition-number-analysis" title="Link to this heading">#</a></h2>
 <section id="definition-and-significance">
-<h3><a class="toc-backref" href="#id101" role="doc-backlink">Definition and Significance</a><a class="headerlink" href="#definition-and-significance" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id108" role="doc-backlink">Definition and Significance</a><a class="headerlink" href="#definition-and-significance" title="Link to this heading">#</a></h3>
 <p>The condition number of an SPD matrix is:</p>
 <div class="math notranslate nohighlight">
 \[\kappa(\mathbf{A}) = \frac{\lambda_{\max}}{\lambda_{\min}}\]</div>
@@ -671,7 +673,7 @@ natural regularization and prevent gradient explosion.</p>
 </ul>
 </section>
 <section id="condition-number-bounds">
-<h3><a class="toc-backref" href="#id102" role="doc-backlink">Condition Number Bounds</a><a class="headerlink" href="#condition-number-bounds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id109" role="doc-backlink">Condition Number Bounds</a><a class="headerlink" href="#condition-number-bounds" title="Link to this heading">#</a></h3>
 <p>After trace normalization with <span class="math notranslate nohighlight">\(\epsilon\)</span>-regularization:</p>
 <div class="math notranslate nohighlight">
 \[\kappa(\mathbf{A}_{\text{norm}}) \leq \frac{1}{\epsilon}\]</div>
@@ -683,7 +685,7 @@ natural regularization and prevent gradient explosion.</p>
 </ul>
 </section>
 <section id="eigenvalue-perturbation-bounds">
-<h3><a class="toc-backref" href="#id103" role="doc-backlink">Eigenvalue Perturbation Bounds</a><a class="headerlink" href="#eigenvalue-perturbation-bounds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id110" role="doc-backlink">Eigenvalue Perturbation Bounds</a><a class="headerlink" href="#eigenvalue-perturbation-bounds" title="Link to this heading">#</a></h3>
 <p>For a symmetric matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with perturbation <span class="math notranslate nohighlight">\(\mathbf{E}\)</span>:</p>
 <p><strong>Weyl’s Theorem:</strong></p>
 <div class="math notranslate nohighlight">
@@ -693,9 +695,9 @@ natural regularization and prevent gradient explosion.</p>
 </section>
 </section>
 <section id="configuration-system">
-<h2><a class="toc-backref" href="#id104" role="doc-backlink">Configuration System</a><a class="headerlink" href="#configuration-system" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id111" role="doc-backlink">Configuration System</a><a class="headerlink" href="#configuration-system" title="Link to this heading">#</a></h2>
 <section id="the-global-configuration">
-<h3><a class="toc-backref" href="#id105" role="doc-backlink">The Global Configuration</a><a class="headerlink" href="#the-global-configuration" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id112" role="doc-backlink">The Global Configuration</a><a class="headerlink" href="#the-global-configuration" title="Link to this heading">#</a></h3>
 <p>SPD Learn provides a global <code class="docutils literal notranslate"><span class="pre">numerical_config</span></code> object that controls all
 numerical stability thresholds:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
@@ -712,7 +714,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="configuration-parameters">
-<h3><a class="toc-backref" href="#id106" role="doc-backlink">Configuration Parameters</a><a class="headerlink" href="#configuration-parameters" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id113" role="doc-backlink">Configuration Parameters</a><a class="headerlink" href="#configuration-parameters" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 25.0%" />
@@ -752,7 +754,7 @@ numerical stability thresholds:</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig.batchnorm_var_eps" title="spd_learn.functional.NumericalConfig.batchnorm_var_eps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">batchnorm_var_eps</span></code></a></p></td>
 <td><p>1e-5</p></td>
-<td><p>Epsilon for batch normalization variance (absolute)</p></td>
+<td><p>Epsilon for batch normalization scalar dispersion (absolute)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig.dropout_eps" title="spd_learn.functional.NumericalConfig.dropout_eps"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dropout_eps</span></code></a></p></td>
 <td><p>1e-5</p></td>
@@ -775,7 +777,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="getting-epsilon-values">
-<h3><a class="toc-backref" href="#id107" role="doc-backlink">Getting Epsilon Values</a><a class="headerlink" href="#getting-epsilon-values" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id114" role="doc-backlink">Getting Epsilon Values</a><a class="headerlink" href="#getting-epsilon-values" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">get_epsilon()</span></code> to retrieve the appropriate threshold for an operation:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_epsilon</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -795,7 +797,7 @@ numerical stability thresholds:</p>
 </div>
 </section>
 <section id="temporary-configuration">
-<h3><a class="toc-backref" href="#id108" role="doc-backlink">Temporary Configuration</a><a class="headerlink" href="#temporary-configuration" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id115" role="doc-backlink">Temporary Configuration</a><a class="headerlink" href="#temporary-configuration" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">NumericalContext</span></code> to temporarily modify settings:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumericalContext</span><span class="p">,</span> <span class="n">get_epsilon</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -814,7 +816,7 @@ numerical stability thresholds:</p>
 </section>
 </section>
 <section id="checking-spd-validity">
-<h2><a class="toc-backref" href="#id109" role="doc-backlink">Checking SPD Validity</a><a class="headerlink" href="#checking-spd-validity" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id116" role="doc-backlink">Checking SPD Validity</a><a class="headerlink" href="#checking-spd-validity" title="Link to this heading">#</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">check_spd_eigenvalues()</span></code> to validate matrices:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_spd_eigenvalues</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -832,7 +834,7 @@ numerical stability thresholds:</p>
 </pre></div>
 </div>
 <section id="safe-eigenvalue-clamping">
-<h3><a class="toc-backref" href="#id110" role="doc-backlink">Safe Eigenvalue Clamping</a><a class="headerlink" href="#safe-eigenvalue-clamping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id117" role="doc-backlink">Safe Eigenvalue Clamping</a><a class="headerlink" href="#safe-eigenvalue-clamping" title="Link to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">safe_clamp_eigenvalues()</span></code> for consistent clamping, important for
 activation functions like <a class="reference internal" href="generated/modeig/spd_learn.modules.ReEig.html#spd_learn.modules.ReEig" title="spd_learn.modules.ReEig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReEig</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_clamp_eigenvalues</span>
@@ -852,9 +854,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="implementation-guidelines">
-<h2><a class="toc-backref" href="#id111" role="doc-backlink">Implementation Guidelines</a><a class="headerlink" href="#implementation-guidelines" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id118" role="doc-backlink">Implementation Guidelines</a><a class="headerlink" href="#implementation-guidelines" title="Link to this heading">#</a></h2>
 <section id="recommended-numerical-thresholds">
-<h3><a class="toc-backref" href="#id112" role="doc-backlink">Recommended Numerical Thresholds</a><a class="headerlink" href="#recommended-numerical-thresholds" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id119" role="doc-backlink">Recommended Numerical Thresholds</a><a class="headerlink" href="#recommended-numerical-thresholds" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
 <col style="width: 30.0%" />
@@ -889,7 +891,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="stability-checklist">
-<h3><a class="toc-backref" href="#id113" role="doc-backlink">Stability Checklist</a><a class="headerlink" href="#stability-checklist" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id120" role="doc-backlink">Stability Checklist</a><a class="headerlink" href="#stability-checklist" title="Link to this heading">#</a></h3>
 <p>When implementing SPD matrix operations:</p>
 <ol class="arabic simple">
 <li><p><strong>Always regularize</strong> before computing logarithms</p></li>
@@ -901,7 +903,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </ol>
 </section>
 <section id="code-example">
-<h3><a class="toc-backref" href="#id114" role="doc-backlink">Code Example</a><a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id121" role="doc-backlink">Code Example</a><a class="headerlink" href="#code-example" title="Link to this heading">#</a></h3>
 <p>Pseudocode for stable SPD operations:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">stable_log_euclidean_mean</span><span class="p">(</span><span class="n">matrices</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Log-Euclidean mean with numerical stability.&quot;&quot;&quot;</span>
@@ -930,9 +932,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="recommendations-for-different-scenarios">
-<h2><a class="toc-backref" href="#id115" role="doc-backlink">Recommendations for Different Scenarios</a><a class="headerlink" href="#recommendations-for-different-scenarios" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id122" role="doc-backlink">Recommendations for Different Scenarios</a><a class="headerlink" href="#recommendations-for-different-scenarios" title="Link to this heading">#</a></h2>
 <section id="standard-training-float32">
-<h3><a class="toc-backref" href="#id116" role="doc-backlink">Standard Training (float32)</a><a class="headerlink" href="#standard-training-float32" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id123" role="doc-backlink">Standard Training (float32)</a><a class="headerlink" href="#standard-training-float32" title="Link to this heading">#</a></h3>
 <p>The default settings are well-tuned for float32 training:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No changes needed for most cases</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPDNet</span>
@@ -942,7 +944,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="ill-conditioned-matrices">
-<h3><a class="toc-backref" href="#id117" role="doc-backlink">Ill-Conditioned Matrices</a><a class="headerlink" href="#ill-conditioned-matrices" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id124" role="doc-backlink">Ill-Conditioned Matrices</a><a class="headerlink" href="#ill-conditioned-matrices" title="Link to this heading">#</a></h3>
 <p>For matrices with high condition numbers (common in EEG/fMRI):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
 
@@ -956,7 +958,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="mixed-precision-training">
-<h3><a class="toc-backref" href="#id118" role="doc-backlink">Mixed Precision Training</a><a class="headerlink" href="#mixed-precision-training" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id125" role="doc-backlink">Mixed Precision Training</a><a class="headerlink" href="#mixed-precision-training" title="Link to this heading">#</a></h3>
 <p>For float16/bfloat16 training, be more conservative:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span><span class="p">,</span> <span class="n">recommend_dtype_for_spd</span>
 
@@ -972,7 +974,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="high-precision-requirements">
-<h3><a class="toc-backref" href="#id119" role="doc-backlink">High Precision Requirements</a><a class="headerlink" href="#high-precision-requirements" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id126" role="doc-backlink">High Precision Requirements</a><a class="headerlink" href="#high-precision-requirements" title="Link to this heading">#</a></h3>
 <p>For research or when maximum precision is needed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
@@ -988,9 +990,9 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="common-issues-and-solutions">
-<h2><a class="toc-backref" href="#id120" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id127" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading">#</a></h2>
 <section id="nan-values-during-training">
-<h3><a class="toc-backref" href="#id121" role="doc-backlink">NaN Values During Training</a><a class="headerlink" href="#nan-values-during-training" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id128" role="doc-backlink">NaN Values During Training</a><a class="headerlink" href="#nan-values-during-training" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Loss becomes NaN after some epochs.</p>
 <p><strong>Cause</strong>: Usually due to eigenvalues becoming too small or negative.</p>
 <p><strong>Solution</strong>:</p>
@@ -1010,7 +1012,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="slow-convergence">
-<h3><a class="toc-backref" href="#id122" role="doc-backlink">Slow Convergence</a><a class="headerlink" href="#slow-convergence" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id129" role="doc-backlink">Slow Convergence</a><a class="headerlink" href="#slow-convergence" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Model trains but converges slowly or gets stuck.</p>
 <p><strong>Cause</strong>: Overly conservative thresholds may clip important information.</p>
 <p><strong>Solution</strong>:</p>
@@ -1031,7 +1033,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </div>
 </section>
 <section id="warnings-about-eigenvalue-clamping">
-<h3><a class="toc-backref" href="#id123" role="doc-backlink">Warnings About Eigenvalue Clamping</a><a class="headerlink" href="#warnings-about-eigenvalue-clamping" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id130" role="doc-backlink">Warnings About Eigenvalue Clamping</a><a class="headerlink" href="#warnings-about-eigenvalue-clamping" title="Link to this heading">#</a></h3>
 <p><strong>Symptom</strong>: Many warnings about eigenvalue clamping.</p>
 <p><strong>Cause</strong>: Your data has small eigenvalues being modified.</p>
 <p><strong>Options</strong>:</p>
@@ -1050,7 +1052,7 @@ activation functions like <a class="reference internal" href="generated/modeig/s
 </section>
 </section>
 <section id="api-reference">
-<h2><a class="toc-backref" href="#id124" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id131" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py">
 <span class="sig-prename descclassname"><span class="pre">spd_learn.functional.</span></span><span class="sig-name descname"><span class="pre">get_epsilon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.14)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'eigval_clamp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_log'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_inv_sqrt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'eigval_power'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'loewner_equal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'batchnorm_var'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'dropout'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'trace_norm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'stiefel_init'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'division_safe'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'eigval_clamp'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="generated/numerical/spd_learn.functional.NumericalConfig.html#spd_learn.functional.NumericalConfig" title="spd_learn.functional.numerical.NumericalConfig"><span class="pre">NumericalConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
@@ -1326,8 +1328,9 @@ Default: 1e3 (yields ~1e-4 for float32).</p></li>
 Default: 1e3 (yields ~1e-4 for float32).</p></li>
 <li><p><strong>loewner_equal_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale factor for detecting equal eigenvalues in Loewner matrix.
 Default: 1e2 (yields ~1e-5 for float32).</p></li>
-<li><p><strong>batchnorm_var_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for batch normalization variance.
-Default: 1e-5.</p></li>
+<li><p><strong>batchnorm_var_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for batch normalization scalar dispersion.
+This is a scalar value (mean squared Frobenius norm in tangent space),
+not a variance matrix. Default: 1e-5.</p></li>
 <li><p><strong>dropout_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for dropout diagonal entries.
 Default: 1e-5.</p></li>
 <li><p><strong>trace_norm_eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Absolute epsilon for trace normalization.
@@ -1345,7 +1348,7 @@ Default: False.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The default scale factors are chosen to balance numerical stability with
-accuracy <span id="id3">[<a class="reference internal" href="references.html#id50" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
+accuracy <span id="id3">[<a class="reference internal" href="#id52" title="Nicholas J Higham. Accuracy and Stability of Numerical Algorithms. SIAM, 2nd edition, 2002. doi:10.1137/1.9780898718027.">Higham, 2002</a>]</span>. More conservative (larger) values
 provide better stability but may reduce precision. Less conservative
 (smaller) values preserve more information but risk numerical issues.</p>
 <p>For mixed-precision training (fp16), consider using larger scale factors
@@ -1445,6 +1448,31 @@ as the machine epsilon for fp16 is much larger (~9.77e-4).</p>
 <span class="sig-name descname"><span class="pre">strict_spd_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><span class="pre">dtype</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.float32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Return formatted string showing all thresholds for a given dtype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dtype</strong> (<a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.10)"><em>torch.dtype</em></a><em>, </em><em>default=torch.float32</em>) – The dtype to compute thresholds for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formatted summary of all threshold values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spd_learn.functional.numerical</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_config</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">numerical_config</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+<span class="go">Numerical Configuration Summary (dtype=torch.float32)</span>
+<span class="go">==================================================</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">trace_norm_eps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="reference external" href="https://github.com/spdlearn/spd_learn/blob/main/src/spd_learn/functional.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
@@ -1491,7 +1519,7 @@ when exiting the context.</p>
 
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id125" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id132" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <div role="list" class="citation-list">
 <div class="citation" id="id52" role="doc-biblioentry">
@@ -1536,11 +1564,11 @@ when exiting the context.</p>
       </div>
     </a>
     <a class="right-next"
-       href="glossary.html"
+       href="notation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Glossary</p>
+        <p class="prev-next-title">Notation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

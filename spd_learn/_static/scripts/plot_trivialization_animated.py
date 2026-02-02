@@ -1,5 +1,5 @@
 """
-Animated Dynamic Trivialization Visualization - Improved Version.
+Animated Trivialization Visualization - Improved Version.
 
 Key improvements:
 1. Better manifold representation (smooth blob like in the paper)
@@ -757,7 +757,7 @@ def main():
     """Main function to create the animation."""
     import os
 
-    print("Creating improved dynamic trivialization animation (larger version)...")
+    print("Creating improved trivialization animation (larger version)...")
 
     # Output to _static/images relative to this script's location
     script_dir = os.path.dirname(os.path.abspath(__file__))

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -53,6 +53,8 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"tex": {"macros": {"spd": "\\mathcal{S}^n_{++}", "sym": "\\text{Sym}(n)", "syms": "\\mathcal{S}^n", "reals": "\\mathbb{R}", "choleskyspace": "\\mathcal{L}_+", "manifold": "\\mathcal{M}", "gl": "\\text{GL}(n)", "stiefel": ["\\text{St}(#1, #2)", 2], "tangent": ["T_{#1} \\mathcal{M}", 1], "tangentspd": ["T_{#1} \\mathcal{S}^n_{++}", 1], "Exp": ["\\text{Exp}_{#1}", 1], "Log": ["\\text{Log}_{#1}", 1], "logchol": "\\log_{\\text{chol}}", "expchol": "\\exp_{\\text{chol}}", "tril": ["\\text{tril}(#1)", 1], "dairm": ["d_{\\text{AIRM}}(#1, #2)", 2], "dlem": ["d_{\\text{LEM}}(#1, #2)", 2], "dbw": ["d_{\\text{BW}}(#1, #2)", 2], "dlcm": ["d_{\\text{LCM}}(#1, #2)", 2], "gairm": ["g^{\\text{AIRM}}_{#1}", 1], "glem": ["g^{\\text{LEM}}_{#1}", 1], "gbw": ["g^{\\text{BW}}_{#1}", 1], "glcm": ["g^{\\text{LCM}}_{#1}", 1], "tr": "\\text{tr}", "diag": "\\text{diag}", "frob": ["\\| #1 \\|_F", 1], "frobinner": ["\\langle #1, #2 \\rangle_F", 2], "lyap": ["\\mathcal{L}_{#1}", 1], "reeig": "\\text{ReEig}", "logeig": "\\text{LogEig}", "expeig": "\\text{ExpEig}", "frechet": "\\mathcal{G}", "geomean": "G", "In": "I_n", "I": "I", "transpose": "^\\top", "lemult": "\\odot", "lescalar": "\\circledast"}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'theory';</script>
     <link rel="canonical" href="https://spdlearn.org/theory.html" />
     <link rel="icon" href="_static/spd_learn.png"/>
@@ -413,6 +415,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="geometric_concepts.html">Geometric Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="numerical_stability.html">Numerical Stability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -513,6 +516,16 @@ eigenvalue clamping, and troubleshooting common issues.</p>
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
+Notation</div>
+<p class="sd-card-text">Standard mathematical notation conventions used throughout SPD Learn,
+including symbols for manifolds, metrics, and operations.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="notation.html"><span class="doc">Notation</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
 Glossary</div>
 <p class="sd-card-text">Quick reference for key terms and definitions used throughout SPD Learn,
 from SPD matrices to domain adaptation.</p>
@@ -534,7 +547,7 @@ works implemented in SPD Learn.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Understanding the geometry of Symmetric Positive Definite (SPD) matrices is
-essential for effective use of SPD Learn. The pages below provide five
+essential for effective use of SPD Learn. The pages below provide six
 complementary perspectives:</p>
 <p><strong>Background</strong> provides the minimal context needed to use SPD Learn:</p>
 <ul class="simple">
@@ -549,7 +562,7 @@ complementary perspectives:</p>
 <li><p>Riemannian metrics (Affine-Invariant, Log-Euclidean, Bures-Wasserstein, Log-Cholesky)</p></li>
 <li><p>Tangent spaces, exponential and logarithmic maps</p></li>
 <li><p>Parallel transport for domain adaptation</p></li>
-<li><p>Dynamic trivialization for optimization</p></li>
+<li><p>trivialization for optimization</p></li>
 <li><p>Visualizations of SPD network layers</p></li>
 </ul>
 <p><strong>Numerical Stability</strong> covers practical considerations:</p>
@@ -559,6 +572,13 @@ complementary perspectives:</p>
 <li><p>Safe eigenvalue clamping and validation</p></li>
 <li><p>Recommendations for different training scenarios</p></li>
 <li><p>Troubleshooting NaN values and convergence issues</p></li>
+</ul>
+<p><strong>Notation</strong> establishes consistent mathematical conventions:</p>
+<ul class="simple">
+<li><p>Spaces and manifolds (<span class="math notranslate nohighlight">\(\spd\)</span>, <span class="math notranslate nohighlight">\(\sym\)</span>, etc.)</p></li>
+<li><p>Tangent space notation (<span class="math notranslate nohighlight">\(\tangent{P}\)</span>)</p></li>
+<li><p>Distance and metric symbols</p></li>
+<li><p>Layer operations and special symbols</p></li>
 </ul>
 <p><strong>Glossary</strong> provides concise definitions for:</p>
 <ul class="simple">

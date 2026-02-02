@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -573,7 +573,7 @@ or clamping eigenvalues.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/vectorization/spd_learn.functional.sym_to_upper.html#spd_learn.functional.sym_to_upper" title="spd_learn.functional.sym_to_upper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sym_to_upper</span></code></a>(X[, preserve_norm, upper])</p></td>
 <td><p>Vectorizes symmetric matrices by extracting triangular elements.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/vectorization/spd_learn.functional.upper_to_sym.html#spd_learn.functional.upper_to_sym" title="spd_learn.functional.upper_to_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upper_to_sym</span></code></a>(x_vec[, preserve_norm, upper])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/vectorization/spd_learn.functional.vec_to_sym.html#spd_learn.functional.vec_to_sym" title="spd_learn.functional.vec_to_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vec_to_sym</span></code></a>(x_vec[, preserve_norm, upper])</p></td>
 <td><p>Reconstructs symmetric matrices from vectorization.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/functional/spd_learn.functional.orthogonal_polar_factor.html#spd_learn.functional.orthogonal_polar_factor" title="spd_learn.functional.orthogonal_polar_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orthogonal_polar_factor</span></code></a>(W)</p></td>
@@ -808,9 +808,6 @@ encodings.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/vectorization/spd_learn.functional.vec_to_sym.html#spd_learn.functional.vec_to_sym" title="spd_learn.functional.vec_to_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vec_to_sym</span></code></a>(x_vec[, preserve_norm, upper])</p></td>
 <td><p>Reconstructs symmetric matrices from vectorization.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/vectorization/spd_learn.functional.upper_to_sym.html#spd_learn.functional.upper_to_sym" title="spd_learn.functional.upper_to_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upper_to_sym</span></code></a>(x_vec[, preserve_norm, upper])</p></td>
-<td><p>Reconstructs symmetric matrices from vectorization.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -858,7 +855,7 @@ enabling gradient computation through these potentially complex steps.</p>
 <td><p>Apply learnable rebiasing to centered SPD matrices.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/batchnorm_functional/spd_learn.functional.tangent_space_variance.html#spd_learn.functional.tangent_space_variance" title="spd_learn.functional.tangent_space_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tangent_space_variance</span></code></a>(X_tangent, mean_tangent)</p></td>
-<td><p>Compute variance in the tangent space.</p></td>
+<td><p>Compute scalar dispersion in the tangent space.</p></td>
 </tr>
 </tbody>
 </table>
