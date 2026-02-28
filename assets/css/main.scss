@@ -165,6 +165,38 @@ h1:before, .anchor:before {
     bottom: calc(100% - 0.9em);
 }
 
+.research-overview.js-animate .research-tree li {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.research-overview.js-animate .research-tree li::before {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+.research-overview.js-animate .research-tree li::after {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+}
+
+.research-overview.js-animate.is-visible .research-tree li {
+    animation: tree-item-reveal 0.55s cubic-bezier(0.18, 0.85, 0.25, 1) forwards;
+    animation-delay: calc(40ms + var(--tree-idx, 0) * 36ms);
+}
+
+.research-overview.js-animate.is-visible .research-tree li::before {
+    animation: tree-line-x 0.28s ease-out forwards;
+    animation-delay: calc(var(--tree-idx, 0) * 36ms);
+}
+
+.research-overview.js-animate.is-visible .research-tree li::after {
+    animation: tree-line-y 0.35s ease-out forwards;
+    animation-delay: calc(var(--tree-idx, 0) * 36ms + 40ms);
+}
+
 .research-tree__branch {
     display: inline-block;
     padding: 0.16rem 0.55rem;
@@ -185,6 +217,49 @@ h1:before, .anchor:before {
 
 .research-tree__leaf strong {
     color: #0f3557;
+}
+
+@keyframes tree-item-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tree-line-x {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes tree-line-y {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .research-overview.js-animate .research-tree li,
+    .research-overview.js-animate .research-tree li::before,
+    .research-overview.js-animate .research-tree li::after {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
 
 @include breakpoint(max-width $small) {
