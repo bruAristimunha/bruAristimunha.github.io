@@ -1,0 +1,21 @@
+{% for node in include.nodes %}
+  <li>
+    {% if node.children %}
+      <span class="research-tree__branch">{{ node.label }}</span>
+      <ul>
+        {% include research_tree_node.html nodes=node.children %}
+      </ul>
+    {% else %}
+      <span class="research-tree__leaf">
+        {% if node.paper_id %}<strong>[{{ node.paper_id }}]</strong> {% endif %}
+        {% if node.url %}
+          <a href="{{ node.url }}">{{ node.label }}</a>
+        {% else %}
+          {{ node.label }}
+        {% endif %}
+        {% if node.note %} ({{ node.note }}){% endif %}
+        {% if node.ref_url %} (<a href="{{ node.ref_url }}">{{ node.ref_label | default: "link" }}</a>){% endif %}
+      </span>
+    {% endif %}
+  </li>
+{% endfor %}
