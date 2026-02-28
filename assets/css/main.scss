@@ -107,3 +107,101 @@ h1:before, .anchor:before {
     background-color: #00369f;
     font-size: .8em;
 }
+
+.research-overview {
+    --tree-line: #d4dde8;
+    --tree-branch-bg: #f2f7fc;
+    --tree-leaf-bg: #fafcfe;
+    --tree-branch-text: #0f3557;
+    --tree-leaf-text: #29445b;
+    margin: 1.5rem 0 2rem 0;
+    padding: 1.25rem 1.1rem 1rem 1.1rem;
+    border: 1px solid #dde8f2;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+}
+
+.research-tree,
+.research-tree ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+}
+
+.research-tree > li {
+    padding-left: 0;
+}
+
+.research-tree > li::before,
+.research-tree > li::after {
+    display: none;
+}
+
+.research-tree li {
+    position: relative;
+    margin: 0.4rem 0;
+    padding-left: 0.9rem;
+}
+
+.research-tree li::before {
+    content: "";
+    position: absolute;
+    top: 0.9em;
+    left: 0;
+    width: 0.65rem;
+    border-top: 1px solid var(--tree-line);
+}
+
+.research-tree li::after {
+    content: "";
+    position: absolute;
+    top: -0.45rem;
+    bottom: -0.45rem;
+    left: 0;
+    border-left: 1px solid var(--tree-line);
+}
+
+.research-tree li:last-child::after {
+    bottom: calc(100% - 0.9em);
+}
+
+.research-tree__branch {
+    display: inline-block;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid #c5d9eb;
+    background: var(--tree-branch-bg);
+    color: var(--tree-branch-text);
+    font-size: 0.93em;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.research-tree__leaf {
+    display: inline;
+    color: var(--tree-leaf-text);
+    line-height: 1.45;
+}
+
+.research-tree__leaf strong {
+    color: #0f3557;
+}
+
+@include breakpoint(max-width $small) {
+    .research-overview {
+        padding: 1rem 0.7rem 0.8rem 0.7rem;
+    }
+
+    .research-tree,
+    .research-tree ul {
+        padding-left: 0.95rem;
+    }
+
+    .research-tree li {
+        padding-left: 0.7rem;
+    }
+
+    .research-tree li::before {
+        width: 0.5rem;
+    }
+}
