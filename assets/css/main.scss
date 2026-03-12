@@ -132,6 +132,34 @@ h1:before, .anchor:before {
     scrollbar-color: rgba(100, 106, 118, 0.45) transparent;
 }
 
+.research-overview__actions {
+    margin: 0.35rem 0 0.8rem 0;
+}
+
+.research-overview__action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(83, 88, 98, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--overview-text);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.research-overview__action-link:hover,
+.research-overview__action-link:focus {
+    border-color: rgba(83, 88, 98, 0.32);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--overview-link);
+    text-decoration: none;
+}
+
 .research-overview__scroll::-webkit-scrollbar {
     height: 8px;
 }

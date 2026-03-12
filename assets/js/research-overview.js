@@ -62,9 +62,6 @@
     measureNodes(section, nodes, settings);
     setGlobalYearRange(nodes, settings);
 
-    var maxDepth = nodes.reduce(function (depth, node) {
-      return Math.max(depth, node.depth);
-    }, 0);
     var maxLeafHeight = nodes.reduce(function (maxHeight, node) {
       return node.isLeaf ? Math.max(maxHeight, node.labelHeight || 0) : maxHeight;
     }, 0);
@@ -72,33 +69,36 @@
       return !node.isLeaf ? Math.max(maxHeight, node.labelHeight || 0) : maxHeight;
     }, 0);
 
-    settings.depthGap = Math.max(
-      settings.depthGap,
-      maxBranchHeight + settings.branchLabelOffset + settings.dotRadius + 42
+    settings.branchGap = Math.max(
+      settings.branchGap,
+      maxBranchHeight + settings.branchLabelOffset + settings.dotRadius + 28
+    );
+    settings.leafGap = Math.max(
+      settings.leafGap,
+      Math.max(maxLeafHeight * 0.52, 24) + settings.leafLabelOffset + settings.dotRadius
     );
     settings.topPadding = Math.max(
       settings.topPadding,
-      (root.labelHeight || 0) + settings.rootLabelOffset + settings.rootDotRadius + settings.maxBranchOffset + 22
-    );
-    settings.bottomPadding = Math.max(
-      settings.bottomPadding,
-      maxLeafHeight + settings.leafLabelOffset + settings.dotRadius + settings.maxBranchOffset + 22
+      (root.labelHeight || 0) + settings.rootLabelOffset + settings.rootDotRadius + settings.canvasPadding
     );
 
     computeSubtreeWidths(root, settings);
 
     var treeWidth = root.subtreeWidth + settings.leftPadding + settings.rightPadding;
-    var treeHeight =
-      settings.topPadding +
-      settings.bottomPadding +
-      maxDepth * settings.depthGap +
-      settings.maxBranchOffset * 2;
     var stageWidth = Math.max(availableWidth, settings.minWidth, treeWidth);
-    var stageHeight = Math.max(settings.minHeight, treeHeight);
     var offsetX = Math.max((stageWidth - treeWidth) / 2, 0);
-    var offsetY = Math.max((stageHeight - treeHeight) / 2, 0) + settings.maxBranchOffset;
+    assignPositions(root, settings.leftPadding + offsetX, settings.topPadding, settings);
 
-    assignPositions(root, settings.leftPadding + offsetX, settings.topPadding + offsetY, settings, 0);
+    var bounds = getTreeBounds(nodes, root, settings);
+    shiftNodePositions(nodes, settings.canvasPadding - bounds.top);
+    bounds = getTreeBounds(nodes, root, settings);
+
+    var naturalStageHeight = bounds.bottom - bounds.top + settings.canvasPadding * 2;
+    var stageHeight = Math.max(settings.minHeight, Math.ceil(naturalStageHeight));
+    var centerShift = Math.max((stageHeight - naturalStageHeight) / 2, 0);
+    if (centerShift > 0) {
+      shiftNodePositions(nodes, centerShift);
+    }
 
     stageEl.style.width = Math.ceil(stageWidth) + "px";
     stageEl.style.height = Math.ceil(stageHeight) + "px";
@@ -156,24 +156,28 @@
       node.yearCount = typeof node.year === "number" ? 1 : 0;
       node.yearTotal = typeof node.year === "number" ? node.year : 0;
       node.avgYear = typeof node.year === "number" ? node.year : null;
+      node.branchDepth = 0;
       return node;
     }
 
     var leafCount = 0;
     var yearCount = 0;
     var yearTotal = 0;
+    var branchDepth = 0;
 
     node.children.forEach(function (child) {
       computeNodeMetrics(child);
       leafCount += child.leafCount || 0;
       yearCount += child.yearCount || 0;
       yearTotal += child.yearTotal || 0;
+      branchDepth = Math.max(branchDepth, child.branchDepth || 0);
     });
 
     node.leafCount = leafCount;
     node.yearCount = yearCount;
     node.yearTotal = yearTotal;
     node.avgYear = yearCount ? yearTotal / yearCount : null;
+    node.branchDepth = branchDepth + 1;
     return node;
   }
 
@@ -214,11 +218,14 @@
         rootLabelOffset: 16,
         branchLabelOffset: 12,
         leafLabelOffset: 20,
-        siblingYOffset: isCompact ? 10 : 12,
-        densityYOffset: isCompact ? 12 : 14,
-        yearYOffset: isCompact ? 8 : 10,
-        offsetCarry: 0.48,
-        maxBranchOffset: isCompact ? 24 : 28,
+        branchGap: isCompact ? 134 : 144,
+        leafGap: isCompact ? 120 : 128,
+        sizeGapBoost: isCompact ? 54 : 60,
+        structureGapBoost: isCompact ? 28 : 30,
+        centralGapBoost: isCompact ? 18 : 20,
+        yearGapAdjust: isCompact ? 10 : 12,
+        canvasPadding: 18,
+        leafAngle: isCompact ? 34 : 38,
       };
     }
 
@@ -239,11 +246,14 @@
         rootLabelOffset: 18,
         branchLabelOffset: 14,
         leafLabelOffset: 22,
-        siblingYOffset: isCompact ? 12 : 14,
-        densityYOffset: isCompact ? 14 : 16,
-        yearYOffset: isCompact ? 10 : 12,
-        offsetCarry: 0.5,
-        maxBranchOffset: isCompact ? 28 : 32,
+        branchGap: isCompact ? 144 : 166,
+        leafGap: isCompact ? 126 : 140,
+        sizeGapBoost: isCompact ? 62 : 72,
+        structureGapBoost: isCompact ? 30 : 36,
+        centralGapBoost: isCompact ? 20 : 24,
+        yearGapAdjust: isCompact ? 12 : 14,
+        canvasPadding: 20,
+        leafAngle: isCompact ? 34 : 38,
       };
     }
 
@@ -263,11 +273,14 @@
       rootLabelOffset: 20,
       branchLabelOffset: 16,
       leafLabelOffset: 24,
-      siblingYOffset: isCompact ? 14 : 16,
-      densityYOffset: isCompact ? 16 : 18,
-      yearYOffset: isCompact ? 12 : 14,
-      offsetCarry: 0.52,
-      maxBranchOffset: isCompact ? 32 : 36,
+      branchGap: isCompact ? 154 : 184,
+      leafGap: isCompact ? 136 : 154,
+      sizeGapBoost: isCompact ? 70 : 88,
+      structureGapBoost: isCompact ? 34 : 42,
+      centralGapBoost: isCompact ? 22 : 28,
+      yearGapAdjust: isCompact ? 12 : 16,
+      canvasPadding: 22,
+      leafAngle: isCompact ? 34 : 38,
     };
   }
 
@@ -319,9 +332,9 @@
     return node.subtreeWidth;
   }
 
-  function assignPositions(node, left, baseY, settings, branchOffset) {
+  function assignPositions(node, left, currentY, settings) {
     node.x = left + node.subtreeWidth / 2;
-    node.y = baseY + node.depth * settings.depthGap + (branchOffset || 0);
+    node.y = currentY;
 
     if (node.isLeaf) return;
 
@@ -333,32 +346,31 @@
       }
     });
 
-    var avgLeafCount = node.children.length ? (node.leafCount || 0) / node.children.length : 0;
-    var siblingYears = node.children
-      .map(function (child) {
-        return child.avgYear;
-      })
-      .filter(function (year) {
-        return typeof year === "number";
-      });
-    var minSiblingYear = siblingYears.length ? Math.min.apply(Math, siblingYears) : settings.globalMinYear;
-    var maxSiblingYear = siblingYears.length ? Math.max.apply(Math, siblingYears) : settings.globalMaxYear;
-
     var childLeft = left + (node.subtreeWidth - childrenWidth) / 2;
     node.children.forEach(function (child, index) {
-      var siblingFactor = getCenteredFactor(index, node.children.length);
-      var densityFactor = avgLeafCount ? (child.leafCount - avgLeafCount) / avgLeafCount : 0;
-      var yearFactor = getYearFactor(child.avgYear, minSiblingYear, maxSiblingYear);
-      var childOffset =
-        (branchOffset || 0) * settings.offsetCarry +
-        siblingFactor * settings.siblingYOffset +
-        clamp(densityFactor, -1.1, 1.1) * settings.densityYOffset -
-        yearFactor * settings.yearYOffset;
-
-      childOffset = clamp(childOffset, -settings.maxBranchOffset, settings.maxBranchOffset);
-      assignPositions(child, childLeft, baseY, settings, childOffset);
+      var childGap = getChildVerticalGap(node, child, index, settings);
+      assignPositions(child, childLeft, currentY + childGap, settings);
       childLeft += child.subtreeWidth + settings.gap;
     });
+  }
+
+  function getChildVerticalGap(parent, child, index, settings) {
+    var baseGap = child.isLeaf ? settings.leafGap : settings.branchGap;
+    var centeredFactor = 1 - Math.abs(getCenteredFactor(index, parent.children.length));
+    var sizeFactor =
+      parent.leafCount && parent.leafCount > 1 ? (child.leafCount - 1) / (parent.leafCount - 1) : 0;
+    var structureFactor =
+      parent.branchDepth && parent.branchDepth > 1 ? (child.branchDepth || 0) / (parent.branchDepth - 1) : 0;
+    var yearFactor = getYearFactor(child.avgYear, settings.globalMinYear, settings.globalMaxYear);
+
+    return Math.max(
+      baseGap * 0.88,
+      baseGap +
+        sizeFactor * settings.sizeGapBoost +
+        structureFactor * settings.structureGapBoost +
+        centeredFactor * settings.centralGapBoost -
+        yearFactor * settings.yearGapAdjust
+    );
   }
 
   function getCenteredFactor(index, length) {
@@ -375,8 +387,43 @@
     return ((year - minYear) / (maxYear - minYear)) * 2 - 1;
   }
 
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
+  function getTreeBounds(nodes, root, settings) {
+    var bounds = {
+      top: Infinity,
+      bottom: -Infinity,
+    };
+    var leafAngle = (settings.leafAngle || 38) * (Math.PI / 180);
+
+    nodes.forEach(function (node) {
+      var radius = node === root ? settings.rootDotRadius : settings.dotRadius;
+      bounds.top = Math.min(bounds.top, node.y - radius);
+      bounds.bottom = Math.max(bounds.bottom, node.y + radius);
+
+      if (node.isLeaf) {
+        var leafTop = node.y + settings.leafLabelOffset;
+        var rotatedHeight =
+          Math.abs(Math.sin(leafAngle)) * (node.labelWidth || 0) +
+          Math.abs(Math.cos(leafAngle)) * (node.labelHeight || 0);
+        bounds.bottom = Math.max(bounds.bottom, leafTop + rotatedHeight);
+      } else {
+        var labelOffset = node.depth === 0 ? settings.rootLabelOffset : settings.branchLabelOffset;
+        bounds.top = Math.min(bounds.top, node.y - labelOffset - (node.labelHeight || 0));
+      }
+    });
+
+    if (!isFinite(bounds.top) || !isFinite(bounds.bottom)) {
+      bounds.top = 0;
+      bounds.bottom = 0;
+    }
+
+    return bounds;
+  }
+
+  function shiftNodePositions(nodes, deltaY) {
+    if (!deltaY) return;
+    nodes.forEach(function (node) {
+      node.y += deltaY;
+    });
   }
 
   function renderSvg(svgEl, nodes, root, settings) {

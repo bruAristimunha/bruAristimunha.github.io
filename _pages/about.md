@@ -26,6 +26,17 @@ redirect_from:
 
 Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV numbering.
 
+<p class="research-overview__actions">
+  <a
+    class="research-overview__action-link"
+    href="{{ '/research-overview-figure.html' | relative_url }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Open standalone figure
+  </a>
+</p>
+
 <div class="research-overview">
   <div class="research-overview__scroll">
     <div class="research-overview__stage">
