@@ -1,59 +1,26 @@
 ---
-layout: null
+layout: figure
+title: Brain Decoding Figure
 permalink: /research-overview-figure.html
 sitemap: false
+author_profile: false
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Decoding Figure</title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <style>
-      body {
-        margin: 0;
-        padding: 12px;
-        background: #ffffff;
-      }
-
-      .figure-export {
-        max-width: 1600px;
-        margin: 0 auto;
-      }
-
-      .figure-export .research-overview {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        box-shadow: none;
-      }
-
-      .figure-export .research-overview__scroll {
-        padding-bottom: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="figure-export">
-      <div class="research-overview research-overview--compact">
-        <div class="research-overview__scroll">
-          <div class="research-overview__stage">
-            <svg
-              class="research-overview__svg"
-              aria-hidden="true"
-              focusable="false"
-            ></svg>
-            <div class="research-overview__labels" aria-label="Brain Decoding contribution tree"></div>
-          </div>
-        </div>
-        <script type="application/json" class="research-overview__data">
-          {{ site.data.research_overview | jsonify }}
-        </script>
+<main class="figure-export">
+  <div class="research-overview research-overview--compact">
+    <div class="research-overview__scroll">
+      <div class="research-overview__stage">
+        <svg
+          class="research-overview__svg"
+          aria-hidden="true"
+          focusable="false"
+        ></svg>
+        <div class="research-overview__labels" aria-label="Brain Decoding contribution tree"></div>
       </div>
-    </main>
+    </div>
+    <script type="application/json" class="research-overview__data">
+      {{ site.data.research_overview | jsonify }}
+    </script>
+  </div>
+</main>
 
-    <script src="{{ '/assets/js/research-overview.js' | relative_url }}"></script>
-  </body>
-</html>
+<script src="{{ '/assets/js/research-overview.js' | relative_url }}"></script>

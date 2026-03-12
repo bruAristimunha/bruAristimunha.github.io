@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: "Figure" }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <style>
+      body.figure-export-page {
+        margin: 0;
+        padding: 12px;
+        background: #ffffff;
+      }
+
+      .figure-export {
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+
+      .figure-export .research-overview {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .figure-export .research-overview__scroll {
+        padding-bottom: 0;
+      }
+    </style>
+  </head>
+  <body class="figure-export-page">
+    {{ content }}
+  </body>
+</html>
