@@ -1,54 +1,5 @@
 <script src="assets/js/main.min.js"></script>
-<script>
-  (function () {
-    function initResearchTreeAnimation() {
-      var sections = document.querySelectorAll(".research-overview");
-      if (!sections.length) return;
-
-      sections.forEach(function (section) {
-        section.classList.add("js-animate");
-
-        var items = section.querySelectorAll(".research-tree li");
-        items.forEach(function (item, idx) {
-          item.style.setProperty("--tree-idx", idx);
-        });
-
-        if (
-          window.matchMedia &&
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ) {
-          section.classList.add("is-visible");
-          return;
-        }
-
-        if (!("IntersectionObserver" in window)) {
-          section.classList.add("is-visible");
-          return;
-        }
-
-        var observer = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                section.classList.add("is-visible");
-                observer.unobserve(section);
-              }
-            });
-          },
-          { threshold: 0.15 }
-        );
-
-        observer.observe(section);
-      });
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initResearchTreeAnimation);
-    } else {
-      initResearchTreeAnimation();
-    }
-  })();
-</script>
+<script src="assets/js/research-overview.js"></script>
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
