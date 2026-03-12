@@ -63,7 +63,6 @@ include:
   - _pages
   - files
 exclude:
-  - spd_learn
   - docs
   - google_scholar_crawler
   - "*.sublime-project"

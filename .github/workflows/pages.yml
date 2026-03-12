@@ -35,36 +35,6 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Copy Sphinx docs (spd_learn)
-        run: cp -r spd_learn _site/spd_learn
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install StatiCrypt
-        run: npm install -g staticrypt
-
-      - name: Encrypt spd_learn pages
-        run: |
-          echo "Finding HTML files..."
-          HTML_FILES=$(find _site/spd_learn -name "*.html" -type f)
-          echo "Found $(echo "$HTML_FILES" | wc -l) HTML files"
-          for file in $HTML_FILES; do
-            dir=$(dirname "$file")
-            echo "Encrypting: $file -> $dir"
-            staticrypt "$file" \
-              -p "${{ secrets.SPD_LEARN_PASSWORD }}" \
-              --short \
-              -d "$dir" \
-              --remember 7 \
-              --template-title "SPD Learn Documentation" \
-              --template-instructions "Enter the password to access the documentation." \
-              --template-button "Access Documentation"
-          done
-          echo "Encryption complete"
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
