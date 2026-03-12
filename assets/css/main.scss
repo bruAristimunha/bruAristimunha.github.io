@@ -209,8 +209,10 @@ h1:before, .anchor:before {
 }
 
 .research-overview__label--leaf {
-    transform: translate(-50%, 0);
-    font-size: 0.98rem;
+    transform: translate(-50%, 0) rotate(-38deg);
+    transform-origin: top center;
+    white-space: nowrap;
+    font-size: 0.92rem;
     font-weight: 500;
     color: var(--overview-link);
 }
@@ -265,7 +267,7 @@ h1:before, .anchor:before {
 
 .research-overview.is-rendered .research-overview__label--leaf {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0) rotate(-38deg);
 }
 
 .research-overview.is-rendered .research-overview__label--root,
@@ -346,7 +348,7 @@ h1:before, .anchor:before {
     }
 
     .research-overview .research-overview__label--leaf {
-        transform: translate(-50%, 0) !important;
+        transform: translate(-50%, 0) rotate(-38deg) !important;
     }
 }
 

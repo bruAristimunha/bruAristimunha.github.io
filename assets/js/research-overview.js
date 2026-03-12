@@ -165,15 +165,15 @@
         rightPadding: 30,
         depthGap: 156,
         branchWidth: 128,
-        leafWidth: 122,
-        gap: 18,
-        minWidth: 820,
+        leafWidth: 146,
+        gap: 26,
+        minWidth: 980,
         minHeight: 380,
         dotRadius: 5,
         rootDotRadius: 6,
         rootLabelOffset: 16,
         branchLabelOffset: 12,
-        leafLabelOffset: 16,
+        leafLabelOffset: 20,
       };
     }
 
@@ -185,15 +185,15 @@
         rightPadding: 40,
         depthGap: 182,
         branchWidth: 150,
-        leafWidth: 140,
-        gap: 22,
-        minWidth: 1120,
+        leafWidth: 176,
+        gap: 34,
+        minWidth: 1360,
         minHeight: 420,
         dotRadius: 5.5,
         rootDotRadius: 6.5,
         rootLabelOffset: 18,
         branchLabelOffset: 14,
-        leafLabelOffset: 18,
+        leafLabelOffset: 22,
       };
     }
 
@@ -204,15 +204,15 @@
       rightPadding: 54,
       depthGap: 208,
       branchWidth: 182,
-      leafWidth: 168,
-      gap: 24,
-      minWidth: 1480,
+      leafWidth: 220,
+      gap: 42,
+      minWidth: 1960,
       minHeight: 620,
       dotRadius: 6,
       rootDotRadius: 7,
       rootLabelOffset: 20,
       branchLabelOffset: 16,
-      leafLabelOffset: 20,
+      leafLabelOffset: 24,
     };
   }
 
