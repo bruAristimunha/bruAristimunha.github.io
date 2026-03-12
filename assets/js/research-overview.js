@@ -46,8 +46,17 @@
   function renderSection(section, rawRoot, scrollEl, stageEl, svgEl, labelsEl) {
     var root = normalizeTree(rawRoot);
     var nodes = flattenTree(root);
+    var disableLocalLinks = !!section.closest(".figure-export");
     var availableWidth = Math.max(scrollEl.clientWidth || 0, section.clientWidth || 0, 320);
     var settings = getLayoutSettings(availableWidth);
+
+    if (disableLocalLinks) {
+      nodes.forEach(function (node) {
+        if (node.anchorUrl && node.primaryUrl === node.anchorUrl) {
+          node.primaryUrl = null;
+        }
+      });
+    }
 
     measureNodes(section, nodes, settings);
 
@@ -130,8 +139,7 @@
   }
 
   function buildPrimaryLeafText(node) {
-    var text = node.label || "";
-    if (node.note) text += " (" + node.note + ")";
+    var text = node.note || node.label || "";
     if (node.refUrl && !node.url && node.refLabel) text += " (" + node.refLabel + ")";
     return text;
   }
