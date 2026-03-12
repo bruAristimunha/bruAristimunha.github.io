@@ -19,11 +19,6 @@
             - paper_id: P10
               label: Alljoined EEG-to-Image Dataset
               note: CVPR Workshop 2024
-            - paper_id: P20
-              label: MOABB
-              note: Zenodo 2024
-              ref_url: https://doi.org/10.5281/zenodo.11545401
-              ref_label: DOI
             - paper_id: P23
               label: EEG-DaSh
               note: Journal of Database 2026
@@ -60,12 +55,6 @@
             - paper_id: P7
               label: Geometric Neural Network on Phase Space
               note: JNE 2024
-            - paper_id: P15
-              label: CONCERTO
-              note: Journee CORTICO 2023
-            - paper_id: P16
-              label: Holographic EEG
-              note: Journee CORTICO 2023
             - paper_id: P17
               label: Sleep-Energy
               note: IEEE Access 2023
@@ -83,9 +72,6 @@
             - paper_id: P13
               label: Cognitive Task Structure with Transfer Learning
               note: NeurIPS Workshop 2023
-            - paper_id: P19
-              label: Uncovering/Improving Cognitive Task Structure
-              note: under review
 
     - label: Benchmark and Evaluation
       children:
@@ -104,11 +90,16 @@
 
     - label: Software
       children:
-        - paper_id: P21
-          label: Braindecode
-          note: Zenodo 2023
-          url: https://braindecode.org
         - paper_id: P22
           label: SPD Learn
           note: JMLR OST 2026
           url: https://spdlearn.org
+        - paper_id: P20
+          label: MOABB
+          note: Zenodo 2024
+          ref_url: https://doi.org/10.5281/zenodo.11545401
+          ref_label: DOI
+        - paper_id: P21
+          label: Braindecode
+          note: Zenodo 2023
+          url: https://braindecode.org

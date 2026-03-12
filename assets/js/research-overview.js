@@ -45,10 +45,11 @@
 
   function renderSection(section, rawRoot, scrollEl, stageEl, svgEl, labelsEl) {
     var root = normalizeTree(rawRoot);
+    computeNodeMetrics(root);
     var nodes = flattenTree(root);
     var disableLocalLinks = !!section.closest(".figure-export");
     var availableWidth = Math.max(scrollEl.clientWidth || 0, section.clientWidth || 0, 320);
-    var settings = getLayoutSettings(availableWidth);
+    var settings = getLayoutSettings(availableWidth, section);
 
     if (disableLocalLinks) {
       nodes.forEach(function (node) {
@@ -59,6 +60,7 @@
     }
 
     measureNodes(section, nodes, settings);
+    setGlobalYearRange(nodes, settings);
 
     var maxDepth = nodes.reduce(function (depth, node) {
       return Math.max(depth, node.depth);
@@ -76,23 +78,27 @@
     );
     settings.topPadding = Math.max(
       settings.topPadding,
-      (root.labelHeight || 0) + settings.rootLabelOffset + settings.rootDotRadius + 22
+      (root.labelHeight || 0) + settings.rootLabelOffset + settings.rootDotRadius + settings.maxBranchOffset + 22
     );
     settings.bottomPadding = Math.max(
       settings.bottomPadding,
-      maxLeafHeight + settings.leafLabelOffset + settings.dotRadius + 22
+      maxLeafHeight + settings.leafLabelOffset + settings.dotRadius + settings.maxBranchOffset + 22
     );
 
     computeSubtreeWidths(root, settings);
 
     var treeWidth = root.subtreeWidth + settings.leftPadding + settings.rightPadding;
-    var treeHeight = settings.topPadding + settings.bottomPadding + maxDepth * settings.depthGap;
+    var treeHeight =
+      settings.topPadding +
+      settings.bottomPadding +
+      maxDepth * settings.depthGap +
+      settings.maxBranchOffset * 2;
     var stageWidth = Math.max(availableWidth, settings.minWidth, treeWidth);
     var stageHeight = Math.max(settings.minHeight, treeHeight);
     var offsetX = Math.max((stageWidth - treeWidth) / 2, 0);
-    var offsetY = Math.max((stageHeight - treeHeight) / 2, 0);
+    var offsetY = Math.max((stageHeight - treeHeight) / 2, 0) + settings.maxBranchOffset;
 
-    assignPositions(root, settings.leftPadding + offsetX, settings.topPadding + offsetY, settings);
+    assignPositions(root, settings.leftPadding + offsetX, settings.topPadding + offsetY, settings, 0);
 
     stageEl.style.width = Math.ceil(stageWidth) + "px";
     stageEl.style.height = Math.ceil(stageHeight) + "px";
@@ -124,6 +130,7 @@
       url: node.url || null,
       refUrl: node.ref_url || null,
       refLabel: node.ref_label || null,
+      year: extractYear(node.note || ""),
       children: [],
     };
 
@@ -136,6 +143,38 @@
     normalized.primaryText = buildPrimaryLeafText(normalized);
 
     return normalized;
+  }
+
+  function extractYear(text) {
+    var match = String(text || "").match(/\b(19|20)\d{2}\b/);
+    return match ? parseInt(match[0], 10) : null;
+  }
+
+  function computeNodeMetrics(node) {
+    if (node.isLeaf) {
+      node.leafCount = 1;
+      node.yearCount = typeof node.year === "number" ? 1 : 0;
+      node.yearTotal = typeof node.year === "number" ? node.year : 0;
+      node.avgYear = typeof node.year === "number" ? node.year : null;
+      return node;
+    }
+
+    var leafCount = 0;
+    var yearCount = 0;
+    var yearTotal = 0;
+
+    node.children.forEach(function (child) {
+      computeNodeMetrics(child);
+      leafCount += child.leafCount || 0;
+      yearCount += child.yearCount || 0;
+      yearTotal += child.yearTotal || 0;
+    });
+
+    node.leafCount = leafCount;
+    node.yearCount = yearCount;
+    node.yearTotal = yearTotal;
+    node.avgYear = yearCount ? yearTotal / yearCount : null;
+    return node;
   }
 
   function buildPrimaryLeafText(node) {
@@ -156,64 +195,93 @@
     return nodes;
   }
 
-  function getLayoutSettings(viewportWidth) {
+  function getLayoutSettings(viewportWidth, section) {
+    var isCompact = section.classList.contains("research-overview--compact");
     if (viewportWidth < 700) {
       return {
-        topPadding: 72,
-        bottomPadding: 44,
-        leftPadding: 30,
-        rightPadding: 30,
-        depthGap: 156,
-        branchWidth: 128,
-        leafWidth: 146,
-        gap: 26,
-        minWidth: 980,
-        minHeight: 380,
+        topPadding: isCompact ? 62 : 72,
+        bottomPadding: isCompact ? 38 : 44,
+        leftPadding: isCompact ? 24 : 30,
+        rightPadding: isCompact ? 24 : 30,
+        depthGap: isCompact ? 144 : 156,
+        branchWidth: isCompact ? 112 : 128,
+        leafWidth: isCompact ? 84 : 146,
+        gap: isCompact ? 10 : 26,
+        minWidth: isCompact ? 860 : 980,
+        minHeight: isCompact ? 360 : 380,
         dotRadius: 5,
         rootDotRadius: 6,
         rootLabelOffset: 16,
         branchLabelOffset: 12,
         leafLabelOffset: 20,
+        siblingYOffset: isCompact ? 10 : 12,
+        densityYOffset: isCompact ? 12 : 14,
+        yearYOffset: isCompact ? 8 : 10,
+        offsetCarry: 0.48,
+        maxBranchOffset: isCompact ? 24 : 28,
       };
     }
 
     if (viewportWidth < 1024) {
       return {
-        topPadding: 84,
-        bottomPadding: 48,
-        leftPadding: 40,
-        rightPadding: 40,
-        depthGap: 182,
-        branchWidth: 150,
-        leafWidth: 176,
-        gap: 34,
-        minWidth: 1360,
-        minHeight: 420,
+        topPadding: isCompact ? 72 : 84,
+        bottomPadding: isCompact ? 42 : 48,
+        leftPadding: isCompact ? 32 : 40,
+        rightPadding: isCompact ? 32 : 40,
+        depthGap: isCompact ? 166 : 182,
+        branchWidth: isCompact ? 118 : 150,
+        leafWidth: isCompact ? 74 : 176,
+        gap: isCompact ? 10 : 34,
+        minWidth: isCompact ? 940 : 1360,
+        minHeight: isCompact ? 420 : 420,
         dotRadius: 5.5,
         rootDotRadius: 6.5,
         rootLabelOffset: 18,
         branchLabelOffset: 14,
         leafLabelOffset: 22,
+        siblingYOffset: isCompact ? 12 : 14,
+        densityYOffset: isCompact ? 14 : 16,
+        yearYOffset: isCompact ? 10 : 12,
+        offsetCarry: 0.5,
+        maxBranchOffset: isCompact ? 28 : 32,
       };
     }
 
     return {
-      topPadding: 96,
-      bottomPadding: 56,
-      leftPadding: 54,
-      rightPadding: 54,
-      depthGap: 208,
-      branchWidth: 182,
-      leafWidth: 220,
-      gap: 42,
-      minWidth: 1960,
-      minHeight: 620,
+      topPadding: isCompact ? 76 : 96,
+      bottomPadding: isCompact ? 46 : 56,
+      leftPadding: isCompact ? 40 : 54,
+      rightPadding: isCompact ? 40 : 54,
+      depthGap: isCompact ? 176 : 208,
+      branchWidth: isCompact ? 120 : 182,
+      leafWidth: isCompact ? 64 : 220,
+      gap: isCompact ? 8 : 42,
+      minWidth: isCompact ? 1160 : 1960,
+      minHeight: isCompact ? 500 : 620,
       dotRadius: 6,
       rootDotRadius: 7,
       rootLabelOffset: 20,
       branchLabelOffset: 16,
       leafLabelOffset: 24,
+      siblingYOffset: isCompact ? 14 : 16,
+      densityYOffset: isCompact ? 16 : 18,
+      yearYOffset: isCompact ? 12 : 14,
+      offsetCarry: 0.52,
+      maxBranchOffset: isCompact ? 32 : 36,
     };
+  }
+
+  function setGlobalYearRange(nodes, settings) {
+    var years = nodes
+      .map(function (node) {
+        return node.year;
+      })
+      .filter(function (year) {
+        return typeof year === "number";
+      });
+
+    settings.globalMinYear = years.length ? Math.min.apply(Math, years) : null;
+    settings.globalMaxYear = years.length ? Math.max.apply(Math, years) : null;
   }
 
   function measureNodes(section, nodes, settings) {
@@ -251,9 +319,9 @@
     return node.subtreeWidth;
   }
 
-  function assignPositions(node, left, baseY, settings) {
+  function assignPositions(node, left, baseY, settings, branchOffset) {
     node.x = left + node.subtreeWidth / 2;
-    node.y = baseY + node.depth * settings.depthGap;
+    node.y = baseY + node.depth * settings.depthGap + (branchOffset || 0);
 
     if (node.isLeaf) return;
 
@@ -265,11 +333,50 @@
       }
     });
 
+    var avgLeafCount = node.children.length ? (node.leafCount || 0) / node.children.length : 0;
+    var siblingYears = node.children
+      .map(function (child) {
+        return child.avgYear;
+      })
+      .filter(function (year) {
+        return typeof year === "number";
+      });
+    var minSiblingYear = siblingYears.length ? Math.min.apply(Math, siblingYears) : settings.globalMinYear;
+    var maxSiblingYear = siblingYears.length ? Math.max.apply(Math, siblingYears) : settings.globalMaxYear;
+
     var childLeft = left + (node.subtreeWidth - childrenWidth) / 2;
-    node.children.forEach(function (child) {
-      assignPositions(child, childLeft, baseY, settings);
+    node.children.forEach(function (child, index) {
+      var siblingFactor = getCenteredFactor(index, node.children.length);
+      var densityFactor = avgLeafCount ? (child.leafCount - avgLeafCount) / avgLeafCount : 0;
+      var yearFactor = getYearFactor(child.avgYear, minSiblingYear, maxSiblingYear);
+      var childOffset =
+        (branchOffset || 0) * settings.offsetCarry +
+        siblingFactor * settings.siblingYOffset +
+        clamp(densityFactor, -1.1, 1.1) * settings.densityYOffset -
+        yearFactor * settings.yearYOffset;
+
+      childOffset = clamp(childOffset, -settings.maxBranchOffset, settings.maxBranchOffset);
+      assignPositions(child, childLeft, baseY, settings, childOffset);
       childLeft += child.subtreeWidth + settings.gap;
     });
+  }
+
+  function getCenteredFactor(index, length) {
+    if (length <= 1) return 0;
+    var midpoint = (length - 1) / 2;
+    return (index - midpoint) / Math.max(midpoint, 1);
+  }
+
+  function getYearFactor(year, minYear, maxYear) {
+    if (typeof year !== "number" || typeof minYear !== "number" || typeof maxYear !== "number") {
+      return 0;
+    }
+    if (minYear === maxYear) return 0;
+    return ((year - minYear) / (maxYear - minYear)) * 2 - 1;
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
   }
 
   function renderSvg(svgEl, nodes, root, settings) {
