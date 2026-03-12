@@ -51,32 +51,39 @@
 
     measureNodes(section, nodes, settings);
 
-    var leftPadding = Math.max(
-      settings.leftPadding,
-      (root.labelWidth || 0) + settings.rootLabelOffset + 12
-    );
-    var maxLeafWidth = nodes.reduce(function (maxWidth, node) {
-      return node.isLeaf ? Math.max(maxWidth, node.labelWidth || 0) : maxWidth;
-    }, 0);
     var maxDepth = nodes.reduce(function (depth, node) {
       return Math.max(depth, node.depth);
     }, 0);
+    var maxLeafHeight = nodes.reduce(function (maxHeight, node) {
+      return node.isLeaf ? Math.max(maxHeight, node.labelHeight || 0) : maxHeight;
+    }, 0);
+    var maxBranchHeight = nodes.reduce(function (maxHeight, node) {
+      return !node.isLeaf ? Math.max(maxHeight, node.labelHeight || 0) : maxHeight;
+    }, 0);
 
-    computeSubtreeHeights(root, settings);
+    settings.depthGap = Math.max(
+      settings.depthGap,
+      maxBranchHeight + settings.branchLabelOffset + settings.dotRadius + 42
+    );
+    settings.topPadding = Math.max(
+      settings.topPadding,
+      (root.labelHeight || 0) + settings.rootLabelOffset + settings.rootDotRadius + 22
+    );
+    settings.bottomPadding = Math.max(
+      settings.bottomPadding,
+      maxLeafHeight + settings.leafLabelOffset + settings.dotRadius + 22
+    );
 
-    var treeWidth =
-      leftPadding +
-      maxDepth * settings.depthGap +
-      settings.leafLabelOffset +
-      maxLeafWidth +
-      settings.rightPadding;
-    var treeHeight = root.subtreeHeight + settings.topPadding + settings.bottomPadding;
-    var stageWidth = Math.max(availableWidth, treeWidth);
+    computeSubtreeWidths(root, settings);
+
+    var treeWidth = root.subtreeWidth + settings.leftPadding + settings.rightPadding;
+    var treeHeight = settings.topPadding + settings.bottomPadding + maxDepth * settings.depthGap;
+    var stageWidth = Math.max(availableWidth, settings.minWidth, treeWidth);
     var stageHeight = Math.max(settings.minHeight, treeHeight);
     var offsetX = Math.max((stageWidth - treeWidth) / 2, 0);
     var offsetY = Math.max((stageHeight - treeHeight) / 2, 0);
 
-    assignPositions(root, settings.topPadding + offsetY, leftPadding + offsetX, settings);
+    assignPositions(root, settings.leftPadding + offsetX, settings.topPadding + offsetY, settings);
 
     stageEl.style.width = Math.ceil(stageWidth) + "px";
     stageEl.style.height = Math.ceil(stageHeight) + "px";
@@ -144,56 +151,59 @@
   function getLayoutSettings(viewportWidth) {
     if (viewportWidth < 700) {
       return {
-        topPadding: 28,
-        bottomPadding: 32,
-        leftPadding: 168,
-        rightPadding: 42,
-        depthGap: 164,
-        branchWidth: 168,
-        leafWidth: 250,
+        topPadding: 72,
+        bottomPadding: 44,
+        leftPadding: 30,
+        rightPadding: 30,
+        depthGap: 156,
+        branchWidth: 128,
+        leafWidth: 122,
         gap: 18,
+        minWidth: 820,
         minHeight: 380,
         dotRadius: 5,
         rootDotRadius: 6,
-        rootLabelOffset: 18,
-        branchLabelOffset: 14,
+        rootLabelOffset: 16,
+        branchLabelOffset: 12,
         leafLabelOffset: 16,
       };
     }
 
     if (viewportWidth < 1024) {
       return {
-        topPadding: 32,
-        bottomPadding: 36,
-        leftPadding: 196,
-        rightPadding: 52,
-        depthGap: 188,
-        branchWidth: 212,
-        leafWidth: 312,
+        topPadding: 84,
+        bottomPadding: 48,
+        leftPadding: 40,
+        rightPadding: 40,
+        depthGap: 182,
+        branchWidth: 150,
+        leafWidth: 140,
         gap: 22,
+        minWidth: 1120,
         minHeight: 420,
         dotRadius: 5.5,
         rootDotRadius: 6.5,
-        rootLabelOffset: 20,
-        branchLabelOffset: 16,
+        rootLabelOffset: 18,
+        branchLabelOffset: 14,
         leafLabelOffset: 18,
       };
     }
 
     return {
-      topPadding: 38,
-      bottomPadding: 44,
-      leftPadding: 232,
-      rightPadding: 76,
-      depthGap: 220,
-      branchWidth: 248,
-      leafWidth: 420,
+      topPadding: 96,
+      bottomPadding: 56,
+      leftPadding: 54,
+      rightPadding: 54,
+      depthGap: 208,
+      branchWidth: 182,
+      leafWidth: 168,
       gap: 24,
-      minHeight: 520,
+      minWidth: 1480,
+      minHeight: 620,
       dotRadius: 6,
       rootDotRadius: 7,
-      rootLabelOffset: 22,
-      branchLabelOffset: 18,
+      rootLabelOffset: 20,
+      branchLabelOffset: 16,
       leafLabelOffset: 20,
     };
   }
@@ -215,42 +225,42 @@
     section.removeChild(measureLayer);
   }
 
-  function computeSubtreeHeights(node, settings) {
+  function computeSubtreeWidths(node, settings) {
     if (node.isLeaf) {
-      node.subtreeHeight = node.labelHeight || 0;
-      return node.subtreeHeight;
+      node.subtreeWidth = node.labelWidth || 0;
+      return node.subtreeWidth;
     }
 
-    var childrenHeight = 0;
+    var childrenWidth = 0;
     node.children.forEach(function (child, index) {
-      childrenHeight += computeSubtreeHeights(child, settings);
+      childrenWidth += computeSubtreeWidths(child, settings);
       if (index < node.children.length - 1) {
-        childrenHeight += settings.gap;
+        childrenWidth += settings.gap;
       }
     });
 
-    node.subtreeHeight = Math.max(childrenHeight, node.labelHeight || 0);
-    return node.subtreeHeight;
+    node.subtreeWidth = Math.max(childrenWidth, node.labelWidth || 0);
+    return node.subtreeWidth;
   }
 
-  function assignPositions(node, top, baseX, settings) {
-    node.x = baseX + node.depth * settings.depthGap;
-    node.y = top + node.subtreeHeight / 2;
+  function assignPositions(node, left, baseY, settings) {
+    node.x = left + node.subtreeWidth / 2;
+    node.y = baseY + node.depth * settings.depthGap;
 
     if (node.isLeaf) return;
 
-    var childrenHeight = 0;
+    var childrenWidth = 0;
     node.children.forEach(function (child, index) {
-      childrenHeight += child.subtreeHeight;
+      childrenWidth += child.subtreeWidth;
       if (index < node.children.length - 1) {
-        childrenHeight += settings.gap;
+        childrenWidth += settings.gap;
       }
     });
 
-    var childTop = top + (node.subtreeHeight - childrenHeight) / 2;
+    var childLeft = left + (node.subtreeWidth - childrenWidth) / 2;
     node.children.forEach(function (child) {
-      assignPositions(child, childTop, baseX, settings);
-      childTop += child.subtreeHeight + settings.gap;
+      assignPositions(child, childLeft, baseY, settings);
+      childLeft += child.subtreeWidth + settings.gap;
     });
   }
 
@@ -304,15 +314,10 @@
     nodes.forEach(function (node) {
       var labelEl = createLabelElement(node);
       labelEl.style.maxWidth = (node.isLeaf ? settings.leafWidth : settings.branchWidth) + "px";
-      labelEl.style.top = node.y + "px";
-
-      if (node.isLeaf) {
-        labelEl.style.left = node.x + settings.leafLabelOffset + "px";
-      } else if (node.depth === 0) {
-        labelEl.style.left = node.x - settings.rootLabelOffset + "px";
-      } else {
-        labelEl.style.left = node.x - settings.branchLabelOffset + "px";
-      }
+      labelEl.style.left = node.x + "px";
+      labelEl.style.top =
+        (node.isLeaf ? node.y + settings.leafLabelOffset : node.y - (node.depth === 0 ? settings.rootLabelOffset : settings.branchLabelOffset)) +
+        "px";
 
       labelsEl.appendChild(labelEl);
     });
@@ -349,6 +354,8 @@
       if (isExternalUrl(node.primaryUrl)) {
         primaryEl.setAttribute("target", "_blank");
         primaryEl.setAttribute("rel", "noopener noreferrer");
+      } else {
+        primaryEl.setAttribute("target", "_self");
       }
     } else {
       primaryEl.classList.add("is-static");
@@ -372,16 +379,16 @@
   }
 
   function buildLinkPath(source, target) {
-    var bend = Math.max((target.x - source.x) * 0.55, 48);
+    var bend = Math.max((target.y - source.y) * 0.55, 48);
     return [
       "M",
       round(source.x),
       round(source.y),
       "C",
-      round(source.x + bend),
-      round(source.y),
-      round(target.x - bend),
-      round(target.y),
+      round(source.x),
+      round(source.y + bend),
+      round(target.x),
+      round(target.y - bend),
       round(target.x),
       round(target.y),
     ].join(" ");

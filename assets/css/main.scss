@@ -185,7 +185,7 @@ h1:before, .anchor:before {
 
 .research-overview__label {
     position: absolute;
-    transform: translateY(-50%);
+    text-align: center;
     line-height: 1.36;
     color: var(--overview-text);
     pointer-events: auto;
@@ -193,8 +193,7 @@ h1:before, .anchor:before {
 
 .research-overview__label--root,
 .research-overview__label--branch {
-    text-align: right;
-    transform: translate(-100%, -50%);
+    transform: translate(-50%, -100%);
 }
 
 .research-overview__label--root {
@@ -210,6 +209,7 @@ h1:before, .anchor:before {
 }
 
 .research-overview__label--leaf {
+    transform: translate(-50%, 0);
     font-size: 0.98rem;
     font-weight: 500;
     color: var(--overview-link);
@@ -265,13 +265,13 @@ h1:before, .anchor:before {
 
 .research-overview.is-rendered .research-overview__label--leaf {
     opacity: 1;
-    transform: translateY(-50%);
+    transform: translate(-50%, 0);
 }
 
 .research-overview.is-rendered .research-overview__label--root,
 .research-overview.is-rendered .research-overview__label--branch {
     opacity: 1;
-    transform: translate(-100%, -50%);
+    transform: translate(-50%, -100%);
 }
 
 .research-tree,
@@ -342,11 +342,11 @@ h1:before, .anchor:before {
 
     .research-overview .research-overview__label--root,
     .research-overview .research-overview__label--branch {
-        transform: translate(-100%, -50%) !important;
+        transform: translate(-50%, -100%) !important;
     }
 
     .research-overview .research-overview__label--leaf {
-        transform: translateY(-50%) !important;
+        transform: translate(-50%, 0) !important;
     }
 }
 
