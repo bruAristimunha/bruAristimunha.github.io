@@ -61,8 +61,8 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 
 # 📝 Publications (Full List)
 
-1. <span class="anchor" id="paper-p1"></span>Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H. From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs. In 2026 34nd European Signal Processing Conference (EUSIPCO). IEEE.
-2. <span class="anchor" id="paper-p2"></span>Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A. (2026). Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models. In EUSIPCO 2026.
+1. <span class="anchor" id="paper-p1"></span>Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H. From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs. In 2026 34nd European Signal Processing Conference (EUSIPCO). IEEE. ***SUBMITTED***
+2. <span class="anchor" id="paper-p2"></span>Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A. (2026). Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models. In EUSIPCO 2026. ***SUBMITTED***
 3. <span class="anchor" id="paper-p3"></span>Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A. EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding. NeurIPS 2025.
 4. <span class="anchor" id="paper-p4"></span>Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P. (2024). Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases. Heliyon Cells.
 5. <span class="anchor" id="paper-p5"></span>Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B. (2025). Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study. In EMBC 2025. IEEE.
@@ -82,14 +82,13 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 19. <span class="anchor" id="paper-p19"></span>Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C. Uncovering and improving the structure of cognitive tasks with transfer learning. Under review at Imaging Neuroscience.
 20. <span class="anchor" id="paper-p20"></span>Aristimunha, B., Carrara, I., Guetschel, P., Sedlar, S., Rodrigues, P., Sosulski, J., Narayanan, D., Bjareholt, E., Quentin, B., Schirrmeister, R. T., Kobler, R., Kalunga, E., Darmet, L., Gregoire, C., Abdul Hussain, A., Gatti, R., Goncharenko, V., Thielen, J., Moreau, T., ... Chevallier, S. (2024). Mother of all BCI Benchmarks. Zenodo. [https://doi.org/10.5281/zenodo.11545401](https://doi.org/10.5281/zenodo.11545401)
 21. <span class="anchor" id="paper-p21"></span>Aristimunha, B., Tibor, R., Gemein, L., Gramfort, A., Rommel, C., Banville, H., Sliwowskim, M., Wilson, D., Theo gnassou, P., Gtch, P., Lopes, B., Moreau, T., Sedlar, S., Zamboni, M., Paillard, J., Terris, M., Chevallier, S., ... Yao, E. (2023). Braindecode. Zenodo. [https://braindecode.org](https://braindecode.org)
-22. <span class="anchor" id="paper-p22"></span>Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R. (2026). SPD Learn: A geometric deep learning Python library for neural decoding through trivialization. Journal of Machine Learning - Open Source Track. [https://spdlearn.org](https://spdlearn.org)
-23. <span class="anchor" id="paper-p23"></span>Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A. (2026). EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data. Journal of Database. [https://eegdash.org](https://eegdash.org)
+22. <span class="anchor" id="paper-p22"></span>Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R. (2026). SPD Learn: A geometric deep learning Python library for neural decoding through trivialization. Journal of Machine Learning - Open Source Track. [https://spdlearn.org](https://spdlearn.org) ***SUBMITTED***
+23. <span class="anchor" id="paper-p23"></span>Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A. (2026). EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data. Journal of Database. [https://eegdash.org](https://eegdash.org) ***SUBMITTED***
 
 
-# 📖 Educations
-- *09/2020 – 02/2026*, Ph.D. IN COMPUTER SCIENCE @Université Paris-Saclay and UFABC. 
-
-- *2016-2020*, Double BSc COMPUTER SCIENCE and Science and Technology, at the Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil.
+# 📖 Education
+- *09/2020 – 02/2026*, PhD in Computer Science, Université Paris-Saclay and UFABC.
+- *2016-2020*, Double BSc in Computer Science and Science and Technology, at the Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil.
 
 <!-- # 💬 Invited Talks
 - Fill with all the talks... -->

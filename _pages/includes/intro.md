@@ -1,6 +1,6 @@
 ## Who is Bruno?
 
-I am the 4-th-year *Computer Science* Ph.D. student at the [Paris-Saclay University](https://www.universite-paris-saclay.fr/) (France 🇫🇷) and [Federal University of ABC](https://www.ufabc.edu.br/) (Brazil 🇧🇷), happily advised by Professors [Sylvain Chevallier](https://sylvchev.github.io/), [Marie-Constance Corsi](https://marieconstance-corsi.netlify.app/) and [Raphael Y. de Camargo](https://rycamargo.github.io).
+I am a Research Scientist at [Yneuro](https://yneuro.com/) (France 🇫🇷) and (Honorary) Research Associate at the [University of California, San Diego](https://inc.ucsd.edu/people/#Associate-Members) (USA 🇺🇸). I obtained my PhD in *Computer Science* from [Paris-Saclay University](https://www.universite-paris-saclay.fr/) (France 🇫🇷) and [Federal University of ABC](https://www.ufabc.edu.br/) (Brazil 🇧🇷), advised by Professors [Sylvain Chevallier](https://sylvchev.github.io/), [Marie-Constance Corsi](https://marieconstance-corsi.netlify.app/) and [Raphael Y. de Camargo](https://rycamargo.github.io).
 
 ### Research Interests
 
