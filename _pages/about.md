@@ -22,6 +22,36 @@ redirect_from:
 <!-- # 🔥 News
 - *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list... -->
 
+# 📄 Curriculum Vitae
+
+<div class="cv-embed">
+  <div class="cv-embed__header">
+    <div class="cv-embed__header-text">
+      <p class="cv-embed__subtitle">Last updated — April 2026</p>
+    </div>
+    <a
+      class="cv-embed__btn"
+      href="https://docs.google.com/document/d/1Pba371Sv7Epgjz5kMwT2t8i3PgueNhpE8hN1nAR98iU/edit?usp=sharing"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg class="cv-embed__btn-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+        <path d="M4.5 2A2.5 2.5 0 0 0 2 4.5v11A2.5 2.5 0 0 0 4.5 18h11a2.5 2.5 0 0 0 2.5-2.5v-4a.75.75 0 0 0-1.5 0v4a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1h4a.75.75 0 0 0 0-1.5h-4Zm7 0a.75.75 0 0 0 0 1.5h2.69L9.22 8.47a.75.75 0 0 0 1.06 1.06l4.97-4.97V7.25a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5Z"/>
+      </svg>
+      Open Full CV
+    </a>
+  </div>
+  <div class="cv-embed__frame-wrap">
+    <iframe
+      class="cv-embed__frame"
+      src="https://docs.google.com/document/d/1Pba371Sv7Epgjz5kMwT2t8i3PgueNhpE8hN1nAR98iU/preview"
+      title="Bruno Aristimunha — Curriculum Vitae"
+      loading="lazy"
+      sandbox="allow-scripts allow-same-origin"
+    ></iframe>
+  </div>
+</div>
+
 # 🧭 Research Overview
 
 Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV numbering.
