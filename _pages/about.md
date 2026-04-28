@@ -22,6 +22,287 @@ redirect_from:
 <!-- # 🔥 News
 - *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list... -->
 
+# 🗺️ Journey
+
+<div class="journey" data-journey>
+  <div class="journey__header">
+    <div class="journey__eyebrow">Three Acts</div>
+    <h2 class="journey__title">A research scientist, in motion</h2>
+    <p class="journey__lede">
+      Fourteen years, three countries, one through-line: building tools to decode signals from the brain. From a 2012 high-school science fair in Mato Grosso do Sul to a cotutelle PhD between Paris-Saclay and UFABC, and now a Research Scientist at Yneuro with an honorary affiliation at UC San Diego INC.
+    </p>
+  </div>
+
+  <div class="journey__rail" role="tablist" aria-label="Three acts">
+    <button type="button" role="tab" class="journey__rail-tab" aria-selected="false" data-journey-tab="now">
+      <span class="journey__rail-kicker">Act 01 — Now</span>
+      <span class="journey__rail-period">2026 →</span>
+    </button>
+    <button type="button" role="tab" class="journey__rail-tab is-active" aria-selected="true" data-journey-tab="before">
+      <span class="journey__rail-kicker">Act 02 — Before</span>
+      <span class="journey__rail-period">2020 — 2026</span>
+    </button>
+    <button type="button" role="tab" class="journey__rail-tab" aria-selected="false" data-journey-tab="origin">
+      <span class="journey__rail-kicker">Act 03 — Origin</span>
+      <span class="journey__rail-period">2012 — 2020</span>
+    </button>
+  </div>
+
+  <div class="journey__panels">
+    <section class="journey__panel" data-journey-panel="now" role="tabpanel" aria-hidden="true">
+      <header class="journey__panel-head">
+        <div class="journey__panel-kicker">Act 01 — Now</div>
+        <div class="journey__panel-period">2026 →</div>
+        <h3 class="journey__panel-title">Research Scientist</h3>
+        <div class="journey__panel-place">Yneuro 🇫🇷 · UC San Diego INC 🇺🇸 (Honorary)</div>
+        <p class="journey__panel-summary">Research Scientist at Yneuro and Honorary Research Associate at UC San Diego (INC). Lead maintainer of <strong>Braindecode</strong> and <strong>MOABB</strong>. Co-organizing the MLSP 2025 Special Session on Decoding the Brain Time Series.</p>
+      </header>
+      <ol class="journey__milestones">
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2026</span>
+            <span class="journey__ms-label">Yneuro — Research Scientist</span>
+          </div>
+          <div class="journey__ms-note">Joined post-PhD to continue work on EEG decoding and foundation models for neural signals.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2025</span>
+            <span class="journey__ms-label">MLSP 2025 Special Session</span>
+          </div>
+          <div class="journey__ms-note">Lead organizer — Decoding the Brain Time Series, IEEE MLSP.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024 →</span>
+            <span class="journey__ms-label">UC San Diego INC</span>
+          </div>
+          <div class="journey__ms-note">Honorary Research Associate at the Institute for Neural Computation.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023 →</span>
+            <span class="journey__ms-label">Reviewer for ML/neuro venues</span>
+          </div>
+          <div class="journey__ms-note">NeurIPS (×2), ICLR, ICML, JMLR, NeuroImage, Imaging Neuroscience, PeerJ CS, L4DC@ICLR.</div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="journey__panel journey__panel--wide is-active" data-journey-panel="before" role="tabpanel" aria-hidden="false">
+      <header class="journey__panel-head">
+        <div class="journey__panel-kicker">Act 02 — Before</div>
+        <div class="journey__panel-period">2020 — 2026</div>
+        <h3 class="journey__panel-title">PhD in Computer Science (cotutelle)</h3>
+        <div class="journey__panel-place">Université Paris-Saclay 🇫🇷 · UFABC 🇧🇷</div>
+        <p class="journey__panel-summary">Cotutelle PhD: <em>Learning Structure In Electroencephalogram Using Deep Learning</em> (Paris-Saclay) / <em>Geração de Representações Compactas de Sinais EEG</em> (UFABC). Advisors: Sylvain Chevallier, Marie-Constance Corsi, Raphael Y. de Camargo. Sandwich period at King's College London with Walter H. L. Pinaya. Funded by INRIA (FR) and CAPES (BR).</p>
+      </header>
+      <ol class="journey__milestones">
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2026</span>
+            <span class="journey__ms-label">PhD defense</span>
+          </div>
+          <div class="journey__ms-note">Cotutelle thesis defended February 2026 — Paris-Saclay & UFABC.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024</span>
+            <span class="journey__ms-label">Geometric Neural Network (JNE)</span>
+          </div>
+          <div class="journey__ms-note">Phase-space SPDNet for BCI-EEG decoding — <em>Journal of Neural Engineering</em>, with Carrara, Corsi, Papadopoulo.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024</span>
+            <span class="journey__ms-label">MOABB benchmark study</span>
+          </div>
+          <div class="journey__ms-note">Largest EEG-based BCI reproducibility study for open science. With Chevallier, Carrara, Guetschel, et al.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024</span>
+            <span class="journey__ms-label">Euclidean alignment (JNE)</span>
+          </div>
+          <div class="journey__ms-note">Systematic evaluation of Euclidean alignment with deep learning for EEG decoding. Junqueira, Aristimunha, Chevallier, de Camargo.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024</span>
+            <span class="journey__ms-label">Alljoined dataset (CVPR-W)</span>
+          </div>
+          <div class="journey__ms-note">EEG-to-Image decoding dataset — CVPR 2024 Workshop on Data Curation in Medical Imaging.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2024</span>
+            <span class="journey__ms-label">MOABB Zenodo release</span>
+          </div>
+          <div class="journey__ms-note">Mother of all BCI Benchmarks — software registry at INRIA, DOI 10.5281/zenodo.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">Synthetic Sleep EEG (NeurIPS DGM4H)</span>
+          </div>
+          <div class="journey__ms-note">Latent diffusion models for EEG generation — NeurIPS 2023 DGM4H Workshop (Spotlight).</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">Sleep-Energy (IEEE Access)</span>
+          </div>
+          <div class="journey__ms-note">Energy optimization for sleep stage scoring. With Bayerlein, Cardoso, Pinaya, de Camargo.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">IVA for Motor Imagery (ICASSP)</span>
+          </div>
+          <div class="journey__ms-note">Independent Vector Analysis on EEG-Based Motor Imagery Classification — ICASSP 2023.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">Braindecode registered</span>
+          </div>
+          <div class="journey__ms-note">Software registration with INRIA, V1.0 (01/08/2023).</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">Braindecode Code-Sprint</span>
+          </div>
+          <div class="journey__ms-note">Organized the European 2023 sprint.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">King's College London (sandwich)</span>
+          </div>
+          <div class="journey__ms-note">Visiting period under Walter H. L. Pinaya.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2023</span>
+            <span class="journey__ms-label">Started Paris-Saclay leg</span>
+          </div>
+          <div class="journey__ms-note">Cotutelle PhD enrollment at Paris-Saclay (in addition to UFABC). INRIA scholarship.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2022</span>
+            <span class="journey__ms-label">Glasgow / FGV intern</span>
+          </div>
+          <div class="journey__ms-note">Data Scientist intern — University of Glasgow & Fundação Getúlio Vargas.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2021</span>
+            <span class="journey__ms-label">FGV consultant</span>
+          </div>
+          <div class="journey__ms-note">Data Science consultant — IDB-funded urban-data project (Waze car-accident detection in São Paulo). Stack: AWS, SQL, Python, Dash.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2020</span>
+            <span class="journey__ms-label">PhD start (UFABC)</span>
+          </div>
+          <div class="journey__ms-note">Began PhD in Computer Science at UFABC under Raphael Y. de Camargo. CAPES scholarship.</div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="journey__panel" data-journey-panel="origin" role="tabpanel" aria-hidden="true">
+      <header class="journey__panel-head">
+        <div class="journey__panel-kicker">Act 03 — Origin</div>
+        <div class="journey__panel-period">2012 — 2020</div>
+        <h3 class="journey__panel-title">From science fairs to undergrad</h3>
+        <div class="journey__panel-place">IFMS · UCDB · UFMS · UFABC 🇧🇷</div>
+        <p class="journey__panel-summary">The spark: a 2012 high-school science fair in Mato Grosso do Sul. From a Junior Scientific Initiation scholarship at IFMS, to a computer-vision internship at UCDB INOVISÃO lab, to two undergrad degrees at UFABC — with prizes and first-author papers along the way.</p>
+      </header>
+      <ol class="journey__milestones">
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2020</span>
+            <span class="journey__ms-label">Double BSc graduation</span>
+          </div>
+          <div class="journey__ms-note">UFABC — BSc in Science & Technology (with parallel work toward Computer Science). 2nd best undergrad paper at ERAMIA-SP 2020.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2018</span>
+            <span class="journey__ms-label">Scientific Initiation — Neuroscience</span>
+          </div>
+          <div class="journey__ms-note">CNPq fellow — functional brain connectivity via causality in time series. UFABC.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2016</span>
+            <span class="journey__ms-label">Entered UFABC</span>
+          </div>
+          <div class="journey__ms-note">Bacharelado Interdisciplinar em Ciência e Tecnologia. Transferred from UFMS.</div>
+        </li>
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2015</span>
+            <span class="journey__ms-label">First conference papers</span>
+          </div>
+          <div class="journey__ms-note">Sibgrapi 2015 + Computer on the Beach — computer-vision work on bamboo-borer (<em>Dinoderus minutus</em>) detection from the UCDB INOVISÃO lab.</div>
+        </li>
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2014</span>
+            <span class="journey__ms-label">UCDB Computer Vision intern</span>
+          </div>
+          <div class="journey__ms-note">INOVISÃO lab under Prof. Hemerson Pistori — animal-behavior extraction from images. While still in high school.</div>
+        </li>
+        <li class="journey__ms">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2014</span>
+            <span class="journey__ms-label">FEBRACE + ABRITEC + ABRIC awards</span>
+          </div>
+          <div class="journey__ms-note">4th place Biological Sciences (FEBRACE national fair); ABRITEC Distinction in Science Incentive; ABRIC Excellence in Scientific Initiation. For the Wi-Fi pest-repellence project.</div>
+        </li>
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2012</span>
+            <span class="journey__ms-label">First science fair (IFMS)</span>
+          </div>
+          <div class="journey__ms-note">SESC Prize at FETEC/MS — the very first project: photography use among IFMS high-school students.</div>
+        </li>
+      </ol>
+    </section>
+  </div>
+</div>
+
 # 📄 Curriculum Vitae
 
 <div class="cv-embed">
@@ -117,23 +398,99 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 
 
 # 📖 Education
-- *09/2020 – 02/2026*, PhD in Computer Science, Université Paris-Saclay and UFABC.
-- *2016-2020*, Double BSc in Computer Science and Science and Technology, at the Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil.
+
+<div class="timeline-island">
+  <ol class="timeline-island__list">
+    <li class="timeline-island__item timeline-island__item--highlight">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">09/2020 – 02/2026</span>
+        <span class="timeline-island__title">PhD in Computer Science</span>
+      </div>
+      <p class="timeline-island__detail">Cotutelle between <a href="https://www.universite-paris-saclay.fr/">Université Paris-Saclay</a> 🇫🇷 and <a href="https://www.ufabc.edu.br/">UFABC</a> 🇧🇷. Advised by <a href="https://sylvchev.github.io/">Sylvain Chevallier</a>, <a href="https://marieconstance-corsi.netlify.app/">Marie-Constance Corsi</a>, and <a href="https://rycamargo.github.io">Raphael Y. de Camargo</a>.</p>
+    </li>
+    <li class="timeline-island__item">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">2016 – 2020</span>
+        <span class="timeline-island__title">Double BSc in Computer Science &amp; Science and Technology</span>
+      </div>
+      <p class="timeline-island__detail">Center for Mathematics, Computing, and Cognition, Federal University of ABC (UFABC), Brazil 🇧🇷.</p>
+    </li>
+  </ol>
+</div>
 
 <!-- # 💬 Invited Talks
 - Fill with all the talks... -->
 
 # 💻 Work Experience
-- *03/2022 – 06/2022*, Data Scientist Intern, University of Glasgow/FGV, Brazil.
-- *03/2021 – 08/2021*, Data Scientist internship, Getúlio Vargas Foundation - FGV, Brazil.
-- *07/2014 – 12/2015*, Research Intern during High school in Computer Vision, Dom Bosco Catholic University, Brazil. I published two papers :) 
 
-# Menthorship
+<div class="timeline-island">
+  <ol class="timeline-island__list">
+    <li class="timeline-island__item timeline-island__item--highlight">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">2026 →</span>
+        <span class="timeline-island__title">Research Scientist, <a href="https://yneuro.com/">Yneuro</a></span>
+      </div>
+      <p class="timeline-island__detail">France 🇫🇷 — building tools for EEG decoding and foundation models on neural signals.</p>
+    </li>
+    <li class="timeline-island__item">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">2024 →</span>
+        <span class="timeline-island__title">Honorary Research Associate, <a href="https://inc.ucsd.edu/people/#Associate-Members">UC San Diego (INC)</a></span>
+      </div>
+      <p class="timeline-island__detail">Institute for Neural Computation, USA 🇺🇸.</p>
+    </li>
+    <li class="timeline-island__item">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">03/2022 – 06/2022</span>
+        <span class="timeline-island__title">Data Scientist Intern, University of Glasgow / FGV</span>
+      </div>
+      <p class="timeline-island__detail">Brazil 🇧🇷.</p>
+    </li>
+    <li class="timeline-island__item">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">03/2021 – 08/2021</span>
+        <span class="timeline-island__title">Data Scientist Intern, Getúlio Vargas Foundation (FGV)</span>
+      </div>
+      <p class="timeline-island__detail">Brazil 🇧🇷.</p>
+    </li>
+    <li class="timeline-island__item">
+      <div class="timeline-island__row">
+        <span class="timeline-island__date">07/2014 – 12/2015</span>
+        <span class="timeline-island__title">Research Intern (Computer Vision), Dom Bosco Catholic University</span>
+      </div>
+      <p class="timeline-island__detail">Brazil 🇧🇷 — INOVISÃO lab during high school. I published two papers :)</p>
+    </li>
+  </ol>
+</div>
+
+# 👥 Mentorship
 
 I was privileged to work with and mentor a group of outstanding students:
 
-- [Jose Mauricio](https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/) Master Student at Federal University of ABC in Computer Science.
-- [Taha Habib](https://www.linkedin.com/in/taha-habib-a694a31b7/) Undergraduate student at Paris-Saclay University, now master student.
-- [Gustavo H Rodrigues](https://orcid.org/0000-0002-0922-126X) Undergraduate student at Universidade de Sao Paulo, now master student at Universidade de Sao Paulo.
-- [Bruna Juqueira](https://www.linkedin.com/in/brunajaflopes/) Undergraduate student at Universidade de Sao Paulo. Now Mathématiques, Vision, Apprentissage master student at Universite Paris-Saclay.
-- [Alexandre Janoni](https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/) Undergraduate student at Federal University of ABC, now working at Hospital Albert Einstein, the best hospital in Latin America.
+<ul class="mentorship">
+  <li class="mentorship__card">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h4>
+    <span class="mentorship__role">Master student</span>
+    <p class="mentorship__detail">Federal University of ABC, Computer Science.</p>
+  </li>
+  <li class="mentorship__card">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h4>
+    <span class="mentorship__role">Undergrad → Master</span>
+    <p class="mentorship__detail">Université Paris-Saclay, now a master student.</p>
+  </li>
+  <li class="mentorship__card">
+    <h4 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h4>
+    <span class="mentorship__role">Undergrad → Master</span>
+    <p class="mentorship__detail">Universidade de São Paulo (USP), now a master student at USP.</p>
+  </li>
+  <li class="mentorship__card">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h4>
+    <span class="mentorship__role">Undergrad → Master</span>
+    <p class="mentorship__detail">USP, now in the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay.</p>
+  </li>
+  <li class="mentorship__card">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h4>
+    <span class="mentorship__role">Undergrad → Industry</span>
+    <p class="mentorship__detail">Federal University of ABC, now at Hospital Albert Einstein.</p>
+  </li>
+</ul>

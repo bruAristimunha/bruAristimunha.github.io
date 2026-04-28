@@ -1,3 +1,7 @@
 _site/
 push.sh
 .DS_Store
+design-system-unzipped/
+Bruno Aristimunha Design System.zip
+.bundle/
+vendor/bundle/

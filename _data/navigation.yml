@@ -3,23 +3,26 @@ main:
   - title: "About Me"
     url: "/#about-me"
 
+  - title: "Journey"
+    url: "/#-journey"
+
   - title: "CV"
     url: "/#-curriculum-vitae"
 
-  - title: "News"
-    url: "/#-news"
+  - title: "Research"
+    url: "/#-research-overview"
 
   - title: "Publications"
-    url: "/#-publications"
+    url: "/#-publications-full-list"
 
   - title: "Education"
     url: "/#-education"
 
-  - title: "Invited Talks"
-    url: "/#-invited-talks"
+  - title: "Work Experience"
+    url: "/#-work-experience"
 
-  - title: "Internships"
-    url: "/#-internships"
+  - title: "Mentorship"
+    url: "/#-mentorship"
 
   - title: "Blog"
     url: "/blog/"
