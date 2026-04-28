@@ -29,7 +29,7 @@ redirect_from:
     <div class="journey__eyebrow">Three Acts</div>
     <h2 class="journey__title">A research scientist, in motion</h2>
     <p class="journey__lede">
-      Fourteen years, three countries, one through-line: building tools to decode signals from the brain. From a 2012 high-school science fair in Mato Grosso do Sul to a cotutelle PhD between Paris-Saclay and UFABC, and now a Research Scientist at Yneuro with an honorary affiliation at UC San Diego INC.
+      Three countries, one through-line: building tools to decode signals from the brain. The arc bends from a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen) to a cotutelle PhD between Paris-Saclay and UFABC, and now a Research Scientist at Yneuro with an honorary affiliation at UC San Diego INC.
     </p>
   </div>
 
@@ -77,7 +77,7 @@ redirect_from:
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
           <div class="journey__ms-row">
-            <span class="journey__ms-year">2024 →</span>
+            <span class="journey__ms-year">2026 →</span>
             <span class="journey__ms-label">UC San Diego INC</span>
           </div>
           <div class="journey__ms-note">Honorary Research Associate at the Institute for Neural Computation.</div>
@@ -434,7 +434,7 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
     </li>
     <li class="timeline-island__item">
       <div class="timeline-island__row">
-        <span class="timeline-island__date">2024 →</span>
+        <span class="timeline-island__date">2026 →</span>
         <span class="timeline-island__title">Honorary Research Associate, <a href="https://inc.ucsd.edu/people/#Associate-Members">UC San Diego (INC)</a></span>
       </div>
       <p class="timeline-island__detail">Institute for Neural Computation, USA 🇺🇸.</p>
