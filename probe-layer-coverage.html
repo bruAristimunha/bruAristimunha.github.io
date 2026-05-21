@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>probe_layer coverage · Bruno Aristimunha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Inherit site language */
+    --paper-1:      #f8f8f6;
+    --paper-2:      #f1f1ee;
+    --paper:        linear-gradient(180deg, var(--paper-1) 0%, var(--paper-2) 100%);
+    --ink:          #1f232b;
+    --ink-2:        #353a44;
+    --ink-3:        #6a7280;
+    --ink-4:        #9aa0a8;
+    --rule:         rgba(83, 88, 98, 0.18);
+    --rule-strong:  rgba(43, 48, 58, 0.55);
+
+    --accent:       #4d86f7;   /* site accent */
+    --accent-deep:  #224b8d;   /* site link */
+    --pass:         #066d54;   /* Okabe-Ito green, deeper */
+    --pass-soft:    rgba(6, 109, 84, 0.12);
+    --fail:         #c44a0e;   /* Okabe-Ito vermillion */
+    --fail-soft:    rgba(196, 74, 14, 0.10);
+    --skip:         #9aa0a8;
+
+    --f-display:    'DM Serif Display', 'Newsreader', Georgia, serif;
+    --f-body:       'DM Sans', 'Helvetica Neue', sans-serif;
+    --f-mono:       'IBM Plex Mono', 'JetBrains Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 15.5px;
+    line-height: 1.6;
+    padding: 40px clamp(20px, 4vw, 64px) 96px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  /* ---- Masthead (lighter than before) ---- */
+  .breadcrumb {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .breadcrumb a {
+    color: var(--ink-3);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.15s ease;
+  }
+  .breadcrumb a:hover { color: var(--accent-deep); border-color: var(--accent); }
+  .breadcrumb .slash { margin: 0 8px; color: var(--ink-4); }
+
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    margin: 12px 0 18px;
+    color: var(--ink);
+    max-width: 18ch;
+  }
+  h1 .it {
+    font-style: italic;
+    color: var(--ink-2);
+  }
+  .deck {
+    font-family: var(--f-body);
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 64ch;
+    margin-bottom: 56px;
+    line-height: 1.55;
+  }
+  .deck code {
+    font-family: var(--f-mono);
+    font-size: 14.5px;
+    background: rgba(77, 134, 247, 0.07);
+    color: var(--accent-deep);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  /* ---- KPI strip (cleaner, lighter rules) ---- */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 28px 0;
+    margin-bottom: 72px;
+  }
+  .kpi {
+    padding: 4px 24px;
+    border-right: 1px solid var(--rule);
+  }
+  .kpi:first-child { padding-left: 0; }
+  .kpi:last-child { border-right: 0; padding-right: 0; }
+  .kpi .num {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(46px, 5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    display: block;
+  }
+  .kpi .num small {
+    font-size: 0.42em;
+    color: var(--ink-4);
+    margin-left: 4px;
+    letter-spacing: -0.01em;
+  }
+  .kpi .lbl {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    margin-top: 14px;
+  }
+  .kpi.acc .num   { color: var(--accent-deep); }
+  .kpi.good .num  { color: var(--pass); }
+  .kpi.fail .num  { color: var(--fail); }
+
+  /* ---- Section heading ---- */
+  .section {
+    margin: 0 0 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 18px;
+  }
+  .section h2 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 32px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .section .rule { border-top: 1px solid var(--rule-strong); height: 1px; align-self: end; margin-bottom: 8px; }
+  .section .meta {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ---- Filters ---- */
+  .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .controls input[type="search"] {
+    flex: 1 1 280px;
+    max-width: 380px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .controls input[type="search"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(77, 134, 247, 0.12);
+  }
+  .controls input::placeholder { color: var(--ink-4); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    color: var(--ink-2);
+    transition: all 0.12s ease;
+    user-select: none;
+  }
+  .pill:hover { border-color: var(--ink-2); color: var(--ink); }
+  .pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pill[data-status="ok"] .dot { background: var(--pass); }
+  .pill[data-status="partial"] .dot { background: #b78406; }
+  .pill[data-status="build_failed"] .dot { background: var(--fail); }
+  .pill[data-status="skipped"] .dot { background: var(--skip); }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .controls .grow { flex: 1; }
+  .controls .right {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Model rows ---- */
+  #rows { margin-top: 4px; }
+  .model-row {
+    border-top: 1px solid var(--rule);
+    padding: 18px 0;
+    display: grid;
+    grid-template-columns: 232px 64px 1fr 102px;
+    gap: 20px;
+    align-items: center;
+    transition: background 0.12s ease;
+    cursor: pointer;
+  }
+  .model-row:last-child { border-bottom: 1px solid var(--rule-strong); }
+  .model-row:hover { background: rgba(77, 134, 247, 0.04); }
+  .model-row.open { background: rgba(77, 134, 247, 0.06); }
+
+  .model-row .name {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .model-row .name .status-tag {
+    font-family: var(--f-mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-4);
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+  }
+  .model-row .pct {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    text-align: right;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .model-row .pct.full { color: var(--pass); }
+  .model-row .pct.zero { color: var(--fail); }
+  .model-row .pct.skip {
+    color: var(--ink-4);
+    font-size: 18px;
+    font-family: var(--f-display);
+    font-style: italic;
+  }
+
+  /* ---- Heat strip ---- */
+  .heat-strip {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    height: 26px;
+  }
+  .heat-strip .cell {
+    flex: 1;
+    height: 100%;
+    min-width: 6px;
+    border-radius: 1px;
+    transition: transform 0.12s ease, filter 0.12s ease;
+    position: relative;
+  }
+  .heat-strip .cell.ok   { background: var(--pass); }
+  .heat-strip .cell.fail { background: var(--fail); }
+  .heat-strip .cell.skip {
+    background: repeating-linear-gradient(45deg,
+      var(--skip), var(--skip) 3px, transparent 3px, transparent 6px);
+  }
+  .heat-strip .cell:hover { transform: scaleY(1.2); filter: brightness(1.08); z-index: 2; }
+  .heat-strip .cell[data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper-1);
+    padding: 5px 9px;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    border-radius: 2px;
+    z-index: 10;
+    pointer-events: none;
+    max-width: 480px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .heat-strip .tag {
+    flex: 1;
+    height: 100%;
+    background: transparent;
+    border: 1px dashed var(--ink-4);
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .heat-strip .tag.fail { border-color: var(--fail); color: var(--fail); }
+
+  .count {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--ink-2);
+    text-align: right;
+  }
+  .count strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .count .em { color: var(--ink-4); font-size: 11px; }
+
+  /* ---- Expanded layer detail ---- */
+  .detail {
+    grid-column: 1 / -1;
+    display: none;
+    padding: 16px 0 4px 16px;
+    border-left: 2px solid var(--accent);
+    margin-left: 4px;
+    margin-top: 4px;
+  }
+  .model-row.open .detail { display: block; }
+  .layers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .layer {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    align-items: start;
+    gap: 12px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    padding: 7px 10px;
+    border-radius: 2px;
+  }
+  .layer:hover { background: rgba(77, 134, 247, 0.05); }
+  .layer .mark {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 6px;
+  }
+  .layer.ok .mark { background: var(--pass); }
+  .layer.fail .mark { background: var(--fail); }
+  .layer .path { color: var(--ink); word-break: break-all; line-height: 1.4; }
+  .layer .msg {
+    color: var(--fail);
+    font-size: 11.5px;
+    margin-top: 4px;
+    display: block;
+    line-height: 1.4;
+  }
+  .layer.ok .msg { display: none; }
+
+  .build-msg {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--fail);
+    background: var(--fail-soft);
+    padding: 10px 14px;
+    border-left: 3px solid var(--fail);
+    border-radius: 0 2px 2px 0;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .empty-msg {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-3);
+    padding: 8px 0;
+  }
+
+  /* ---- Failure panel ---- */
+  .failure-panel {
+    margin-top: 28px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .failure-panel h3 {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .failure-panel .item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .failure-panel .item:last-child { border-bottom: none; padding-bottom: 0; }
+  .failure-panel .item .pct {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--fail);
+    text-align: right;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .failure-panel .item .text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .failure-panel .item .text b {
+    font-family: var(--f-mono);
+    font-weight: 500;
+    font-size: 12px;
+    background: var(--paper-2);
+    padding: 1px 6px;
+    border-radius: 2px;
+    color: var(--ink);
+  }
+  .failure-panel .item .text .desc {
+    color: var(--ink-3);
+    font-size: 13px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  /* ---- Empty state ---- */
+  #empty {
+    display: none;
+    padding: 64px 0;
+    text-align: center;
+    font-family: var(--f-display);
+    font-style: italic;
+    color: var(--ink-4);
+    font-size: 22px;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    margin-top: 88px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule-strong);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  footer code {
+    background: var(--paper-2);
+    padding: 2px 6px;
+    border-radius: 2px;
+    color: var(--ink-2);
+    font-family: var(--f-mono);
+  }
+  footer a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  footer a:hover { border-color: var(--accent); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 800px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .kpi { border-bottom: 1px solid var(--rule); }
+    .kpi:nth-child(2) { border-right: 0; }
+    .model-row { grid-template-columns: 1fr 60px; }
+    .model-row .heat-strip { grid-column: 1 / -1; }
+    .model-row .count { grid-column: 1 / -1; text-align: left; }
+    .failure-panel { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="breadcrumb">
+  <a href="/">bruno aristimunha</a>
+  <span class="slash">/</span>
+  <span>probe_layer coverage</span>
+</div>
+
+<h1>How well does <span class="it">probe_layer</span><br>cover braindecode?</h1>
+
+<p class="deck">
+  Layer-wise linear probing tested across the entire
+  <code>braindecode.models.util.models_dict</code> registry: every model,
+  a sample of its named submodules, one forward pass per (model, layer) pair.
+  The dots below are the result — green for a passing hook, vermillion for a
+  failure, hatched for skipped.
+</p>
+
+<div class="kpis">
+  <div class="kpi">
+    <span class="num">56</span>
+    <div class="lbl">Models in registry</div>
+  </div>
+  <div class="kpi acc">
+    <span class="num">51<small>/56</small></span>
+    <div class="lbl">Built successfully</div>
+  </div>
+  <div class="kpi good">
+    <span class="num">21</span>
+    <div class="lbl">100% layer pass-rate</div>
+  </div>
+  <div class="kpi">
+    <span class="num">394<small>/488</small></span>
+    <div class="lbl">Layers passed · 80.7%</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>The matrix</h2>
+  <span class="rule"></span>
+  <span class="meta">Click a row to enumerate its layers</span>
+</div>
+
+<div class="controls">
+  <input type="search" id="q" placeholder="filter models…" autocomplete="off">
+  <span class="pill active" data-status="all">All</span>
+  <span class="pill" data-status="ok"><span class="dot"></span> Perfect</span>
+  <span class="pill" data-status="partial"><span class="dot"></span> Partial</span>
+  <span class="pill" data-status="build_failed"><span class="dot"></span> Build failed</span>
+  <span class="pill" data-status="skipped"><span class="dot"></span> Skipped</span>
+  <span class="grow"></span>
+  <span class="right" id="row-count">56 shown</span>
+</div>
+
+<div id="rows"></div>
+<div id="empty">Nothing matches that filter.</div>
+
+<div class="section" style="margin-top: 72px;">
+  <h2>Why layers fail, when they do</h2>
+  <span class="rule"></span>
+  <span class="meta">Pattern analysis</span>
+</div>
+
+<div class="failure-panel">
+  <div>
+    <h3>By cause</h3>
+    <div id="failure-causes"></div>
+  </div>
+  <div>
+    <h3>By model (top offenders)</h3>
+    <div id="failure-families"></div>
+  </div>
+</div>
+
+<footer>
+  <span>
+    <strong>neuralbench</strong> · DownstreamWrapper.probe_layer
+    · <a href="https://github.com/facebookresearch/neuroai/pull/83">PR #83</a>
+  </span>
+  <span><code>BATCH=2</code> · <code>sample=10</code> · 2026-05-21</span>
+</footer>
+
+<script>
+const DATA = {"metadata": {"batch": 2, "layer_sample_cap": 10, "n_models": 56, "n_built": 51, "n_perfect": 21, "n_layers_total": 488, "n_layers_passed": 394}, "models": [{"name": "ATCNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "attention_blocks.3.mha.fc_q", "status": "ok", "message": "OK"}, {"name": "attention_blocks.4.dimshuffle", "status": "ok", "message": "OK"}, {"name": "conv_block.pool2", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.0", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.0.1", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.0.1.conv2", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.1.0", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.2.0.conv1", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.2.0.conv2", "status": "ok", "message": "OK"}, {"name": "temporal_conv_nets.2.1.conv2", "status": "ok", "message": "OK"}]}, {"name": "AttentionBaseNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "channel_attention_block", "status": "ok", "message": "OK"}, {"name": "channel_attention_block.conv.1", "status": "ok", "message": "OK"}, {"name": "channel_attention_block.pool", "status": "ok", "message": "OK"}, {"name": "channel_expansion", "status": "ok", "message": "OK"}, {"name": "channel_expansion.0", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "final_layer.1", "status": "ok", "message": "OK"}, {"name": "input_block", "status": "ok", "message": "OK"}, {"name": "input_block.spatial_conv", "status": "ok", "message": "OK"}, {"name": "input_block.temporal_conv", "status": "ok", "message": "OK"}]}, {"name": "AttnSleep", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "feature_extractor.0.AFR.0.conv1", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0.AFR.0.downsample", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0.AFR.0.downsample.0", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0.AFR.0.features", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0.AFR.0.se.avg_pool", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0.features1", "status": "ok", "message": "OK"}, {"name": "feature_extractor.1.layers.0.self_attn.convs", "status": "fail", "message": "RuntimeError: probe_layer='feature_extractor.1.layers.0.self_att"}, {"name": "feature_extractor.1.layers.0.self_attn.convs.0", "status": "fail", "message": "RuntimeError: probe_layer='feature_extractor.1.layers.0.self_att"}, {"name": "feature_extractor.1.layers.1.conv", "status": "ok", "message": "OK"}, {"name": "feature_extractor.1.layers.1.self_attn.linear", "status": "ok", "message": "OK"}]}, {"name": "BDTCN", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "base_tcn.ensuredims", "status": "ok", "message": "OK"}, {"name": "base_tcn.final_layer", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_0.downsample", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_1", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_1.chomp2", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_1.conv2", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_2.chomp1", "status": "ok", "message": "OK"}, {"name": "base_tcn.temporal_blocks.temporal_block_2.conv1", "status": "ok", "message": "OK"}, {"name": "final_layer.0", "status": "ok", "message": "OK"}, {"name": "final_layer.1", "status": "ok", "message": "OK"}]}, {"name": "BENDR", "status": "partial", "total": 10, "passed": 2, "failed": 8, "layers": [{"name": "contextualizer.output_layer", "status": "ok", "message": "OK"}, {"name": "contextualizer.transformer_layers.1", "status": "fail", "message": "bad-shape (12, 3)"}, {"name": "contextualizer.transformer_layers.4.linear1", "status": "fail", "message": "bad-shape (12, 3)"}, {"name": "contextualizer.transformer_layers.4.self_attn", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "contextualizer.transformer_layers.4.self_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='contextualizer.transformer_layers.4.s"}, {"name": "contextualizer.transformer_layers.5", "status": "fail", "message": "bad-shape (12, 3)"}, {"name": "contextualizer.transformer_layers.6", "status": "fail", "message": "bad-shape (12, 3)"}, {"name": "contextualizer.transformer_layers.6.linear2", "status": "fail", "message": "bad-shape (12, 3)"}, {"name": "contextualizer.transformer_layers.7.self_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='contextualizer.transformer_layers.7.s"}, {"name": "encoder.encoder.Encoder_1", "status": "ok", "message": "OK"}]}, {"name": "BIOT", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "encoder.patch_embedding.projection", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.0.1.fn.fn", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.1.0.fn.to_k", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.1.0.fn.to_out", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.1.0.fn.to_v", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.1.1.fn.fn.w2", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.2", "status": "fail", "message": "RuntimeError: probe_layer='encoder.transformer.layers.layers.2' "}, {"name": "encoder.transformer.layers.layers.3.0.fn.local_attn", "status": "fail", "message": "RuntimeError: probe_layer='encoder.transformer.layers.layers.3.0"}, {"name": "encoder.transformer.layers.layers.3.1.fn", "status": "ok", "message": "OK"}, {"name": "encoder.transformer.layers.layers.3.1.fn.fn.w1", "status": "ok", "message": "OK"}]}, {"name": "BrainModule", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "encoder.glus.1", "status": "ok", "message": "OK"}, {"name": "encoder.glus.1.0", "status": "ok", "message": "OK"}, {"name": "encoder.glus.1.1", "status": "ok", "message": "OK"}, {"name": "encoder.glus.5", "status": "ok", "message": "OK"}, {"name": "encoder.glus.5.0", "status": "ok", "message": "OK"}, {"name": "encoder.glus.5.1", "status": "ok", "message": "OK"}, {"name": "encoder.sequence", "status": "fail", "message": "RuntimeError: probe_layer='encoder.sequence' hook did not fire d"}, {"name": "encoder.sequence.6.0", "status": "ok", "message": "OK"}, {"name": "encoder.sequence.8", "status": "ok", "message": "OK"}, {"name": "encoder.sequence.9.0", "status": "ok", "message": "OK"}]}, {"name": "CBraMod", "status": "partial", "total": 10, "passed": 5, "failed": 5, "layers": [{"name": "encoder.layers.11.linear1", "status": "ok", "message": "OK"}, {"name": "encoder.layers.2.self_attn_t.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='encoder.layers.2.self_attn_t.out_proj"}, {"name": "encoder.layers.3.self_attn_s.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='encoder.layers.3.self_attn_s.out_proj"}, {"name": "encoder.layers.4.linear2", "status": "ok", "message": "OK"}, {"name": "encoder.layers.5.self_attn_s", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "encoder.layers.5.self_attn_t", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "encoder.layers.6.linear1", "status": "ok", "message": "OK"}, {"name": "encoder.layers.7.self_attn_s", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "patch_embedding.proj_in.0", "status": "ok", "message": "OK"}, {"name": "proj_out.0", "status": "ok", "message": "OK"}]}, {"name": "CTNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "cnn.eegnet_module.2", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "trans.layers.1.attention.module.0.keys", "status": "ok", "message": "OK"}, {"name": "trans.layers.2.attention.module.0.projection", "status": "ok", "message": "OK"}, {"name": "trans.layers.2.attention.module.0.queries", "status": "ok", "message": "OK"}, {"name": "trans.layers.2.attention.module.0.rearrange_unstack", "status": "ok", "message": "OK"}, {"name": "trans.layers.3.attention.module.0", "status": "ok", "message": "OK"}, {"name": "trans.layers.3.attention.module.0.values", "status": "ok", "message": "OK"}, {"name": "trans.layers.5.attention.module.0.rearrange_stack", "status": "ok", "message": "OK"}, {"name": "trans.layers.5.feed_forward.module", "status": "ok", "message": "OK"}]}, {"name": "CodeBrain", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "final_conv.2", "status": "ok", "message": "OK"}, {"name": "final_layer.0", "status": "ok", "message": "OK"}, {"name": "patch_embedding.proj_in.4", "status": "ok", "message": "OK"}, {"name": "residual_layer.residual_blocks.1.sgconv.kernel_list", "status": "fail", "message": "RuntimeError: probe_layer='residual_layer.residual_blocks.1.sgco"}, {"name": "residual_layer.residual_blocks.2.skip_conv", "status": "ok", "message": "OK"}, {"name": "residual_layer.residual_blocks.3.conv_layer.conv", "status": "ok", "message": "OK"}, {"name": "residual_layer.residual_blocks.3.rms_norm", "status": "ok", "message": "OK"}, {"name": "residual_layer.residual_blocks.4.rms_norm", "status": "ok", "message": "OK"}, {"name": "residual_layer.residual_blocks.4.sgconv", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "residual_layer.residual_blocks.7.conv_layer.conv", "status": "ok", "message": "OK"}]}, {"name": "ContraWR", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "convs", "status": "fail", "message": "RuntimeError: probe_layer='convs' hook did not fire during the d"}, {"name": "convs.1", "status": "fail", "message": "RuntimeError: probe_layer='convs.1' hook did not fire during the"}, {"name": "convs.1.conv1", "status": "ok", "message": "OK"}, {"name": "convs.1.downsample", "status": "ok", "message": "OK"}, {"name": "convs.1.downsample.0", "status": "ok", "message": "OK"}, {"name": "convs.2.conv1", "status": "ok", "message": "OK"}, {"name": "convs.2.conv2", "status": "ok", "message": "OK"}, {"name": "convs.3.downsample", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "flatten_layer", "status": "ok", "message": "OK"}]}, {"name": "DGCNN", "status": "partial", "total": 6, "passed": 5, "failed": 1, "layers": [{"name": "learnable_adjacency", "status": "fail", "message": "bad-shape (22, 3)"}, {"name": "graph_conv", "status": "ok", "message": "OK"}, {"name": "graph_conv.projection", "status": "ok", "message": "OK"}, {"name": "classifier", "status": "ok", "message": "OK"}, {"name": "classifier.0", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "Deep4Net", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "conv_2", "status": "ok", "message": "OK"}, {"name": "conv_3", "status": "ok", "message": "OK"}, {"name": "conv_time_spat.conv_spat", "status": "fail", "message": "RuntimeError: probe_layer='conv_time_spat.conv_spat' hook did no"}, {"name": "conv_time_spat.conv_time", "status": "fail", "message": "RuntimeError: probe_layer='conv_time_spat.conv_time' hook did no"}, {"name": "ensuredims", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "final_layer.conv_classifier", "status": "ok", "message": "OK"}, {"name": "final_layer.squeeze.squeeze", "status": "ok", "message": "OK"}, {"name": "pool_2", "status": "ok", "message": "OK"}, {"name": "pool_4", "status": "ok", "message": "OK"}]}, {"name": "DeepSleepNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "cnn1.conv1", "status": "ok", "message": "OK"}, {"name": "cnn1.conv4", "status": "ok", "message": "OK"}, {"name": "cnn1.conv4.0", "status": "ok", "message": "OK"}, {"name": "cnn2.conv1", "status": "ok", "message": "OK"}, {"name": "cnn2.conv1.0", "status": "ok", "message": "OK"}, {"name": "cnn2.conv2", "status": "ok", "message": "OK"}, {"name": "cnn2.conv2.0", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "remove_seq_dim", "status": "ok", "message": "OK"}, {"name": "residual_shortcut.0", "status": "ok", "message": "OK"}]}, {"name": "EEGConformer", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "fc.fc", "status": "ok", "message": "OK"}, {"name": "patch_embedding.projection", "status": "ok", "message": "OK"}, {"name": "transformer.1.0.fn.1.rearrange_unstack", "status": "ok", "message": "OK"}, {"name": "transformer.1.1.fn.1.3", "status": "ok", "message": "OK"}, {"name": "transformer.2.1", "status": "ok", "message": "OK"}, {"name": "transformer.2.1.fn.1", "status": "ok", "message": "OK"}, {"name": "transformer.2.1.fn.1.3", "status": "ok", "message": "OK"}, {"name": "transformer.3.0.fn.1.rearrange_stack", "status": "ok", "message": "OK"}, {"name": "transformer.3.1.fn", "status": "ok", "message": "OK"}, {"name": "transformer.5.1.fn.1.0", "status": "ok", "message": "OK"}]}, {"name": "EEGITNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "TC_block1", "status": "ok", "message": "OK"}, {"name": "TC_block1.tc2", "status": "ok", "message": "OK"}, {"name": "TC_block2.tc1", "status": "ok", "message": "OK"}, {"name": "TC_block2.tc2", "status": "ok", "message": "OK"}, {"name": "TC_block2.tc2.0", "status": "ok", "message": "OK"}, {"name": "TC_block3", "status": "ok", "message": "OK"}, {"name": "TC_block3.tc2.0", "status": "ok", "message": "OK"}, {"name": "TC_block4", "status": "ok", "message": "OK"}, {"name": "TC_block4.tc1", "status": "ok", "message": "OK"}, {"name": "input_preprocess.1", "status": "ok", "message": "OK"}]}, {"name": "EEGInceptionERP", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "avg_pool_1", "status": "ok", "message": "OK"}, {"name": "dimshuffle", "status": "ok", "message": "OK"}, {"name": "final_block.0", "status": "ok", "message": "OK"}, {"name": "final_block.9", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "inception_block_1.branches.1.0", "status": "ok", "message": "OK"}, {"name": "inception_block_1.branches.1.4", "status": "ok", "message": "OK"}, {"name": "inception_block_1.branches.2.4", "status": "ok", "message": "OK"}, {"name": "inception_block_2.branches", "status": "fail", "message": "RuntimeError: probe_layer='inception_block_2.branches' hook did "}, {"name": "inception_block_2.branches.0", "status": "ok", "message": "OK"}]}, {"name": "EEGInceptionMI", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "initial_inception_module.pooling_conv", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_1.0.conv_list.4", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.0.pooling", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.1.conv_list.0", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.1.conv_list.2", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.1.pooling_conv", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.2.conv_list.0", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.2.conv_list.1", "status": "ok", "message": "OK"}, {"name": "intermediate_inception_modules_2.2.conv_list.4", "status": "ok", "message": "OK"}, {"name": "residual_block_1", "status": "ok", "message": "OK"}]}, {"name": "EEGMiner", "status": "partial", "total": 4, "passed": 3, "failed": 1, "layers": [{"name": "filter", "status": "ok", "message": "OK"}, {"name": "ensure_dim", "status": "ok", "message": "OK"}, {"name": "flatten_layer", "status": "fail", "message": "RuntimeError: probe_layer='flatten_layer' hook did not fire duri"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "EEGNeX", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "block_1", "status": "ok", "message": "OK"}, {"name": "block_1.1", "status": "ok", "message": "OK"}, {"name": "block_2", "status": "ok", "message": "OK"}, {"name": "block_2.0", "status": "ok", "message": "OK"}, {"name": "block_3.0", "status": "ok", "message": "OK"}, {"name": "block_3.3", "status": "ok", "message": "OK"}, {"name": "block_4", "status": "ok", "message": "OK"}, {"name": "block_5.3", "status": "ok", "message": "OK"}, {"name": "block_5.5", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "EEGNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "conv_separable_depth", "status": "ok", "message": "OK"}, {"name": "conv_separable_point", "status": "ok", "message": "OK"}, {"name": "conv_spatial", "status": "ok", "message": "OK"}, {"name": "conv_temporal", "status": "ok", "message": "OK"}, {"name": "ensuredims", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "final_layer.squeeze", "status": "ok", "message": "OK"}, {"name": "final_layer.squeeze.squeeze", "status": "ok", "message": "OK"}, {"name": "pool_1", "status": "ok", "message": "OK"}, {"name": "pool_2", "status": "ok", "message": "OK"}]}, {"name": "EEGPT", "status": "partial", "total": 10, "passed": 1, "failed": 9, "layers": [{"name": "target_encoder.blocks.2.attn.proj", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.3.attn.proj", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.3.attn.qkv", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.3.mlp", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.5.mlp.fc2", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.6", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.6.attn.proj", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.7.attn", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.blocks.7.mlp", "status": "fail", "message": "bad-shape (62, 3)"}, {"name": "target_encoder.patch_embed.proj", "status": "ok", "message": "OK"}]}, {"name": "EEGSimpleConv", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "blocks", "status": "fail", "message": "RuntimeError: probe_layer='blocks' hook did not fire during the "}, {"name": "blocks.0", "status": "ok", "message": "OK"}, {"name": "blocks.0.0", "status": "ok", "message": "OK"}, {"name": "blocks.0.2", "status": "ok", "message": "OK"}, {"name": "blocks.0.4", "status": "ok", "message": "OK"}, {"name": "blocks.1", "status": "ok", "message": "OK"}, {"name": "blocks.1.0", "status": "ok", "message": "OK"}, {"name": "blocks.1.4", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "resample", "status": "ok", "message": "OK"}]}, {"name": "EEGSym", "status": "build_failed", "reason": "FORWARD RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 500 but got size 501 for tensor number 1 in the list.", "layers": []}, {"name": "EEGTCNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "arrange_dim_eegnet", "status": "ok", "message": "OK"}, {"name": "eegnet_tc", "status": "ok", "message": "OK"}, {"name": "eegnet_tc.pool2", "status": "ok", "message": "OK"}, {"name": "eegnet_tc.separable_conv_depthwise", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "tcn_block", "status": "ok", "message": "OK"}, {"name": "tcn_block.layers.0.0", "status": "ok", "message": "OK"}, {"name": "tcn_block.layers.0.1", "status": "ok", "message": "OK"}, {"name": "tcn_block.layers.0.5", "status": "ok", "message": "OK"}, {"name": "tcn_block.layers.1", "status": "ok", "message": "OK"}]}, {"name": "EMG2QwertyNet", "status": "partial", "total": 10, "passed": 1, "failed": 9, "layers": [{"name": "model", "status": "fail", "message": "bad-shape (373, 3)"}, {"name": "model.1.mlps.1.mlp.0", "status": "fail", "message": "bad-shape (497, 3)"}, {"name": "model.3.tds_conv_blocks.0.conv2d", "status": "ok", "message": "OK"}, {"name": "model.3.tds_conv_blocks.1.fc_block.0", "status": "fail", "message": "bad-shape (466, 3)"}, {"name": "model.3.tds_conv_blocks.3.fc_block", "status": "fail", "message": "bad-shape (435, 3)"}, {"name": "model.3.tds_conv_blocks.3.fc_block.0", "status": "fail", "message": "bad-shape (435, 3)"}, {"name": "model.3.tds_conv_blocks.3.fc_block.2", "status": "fail", "message": "bad-shape (435, 3)"}, {"name": "model.3.tds_conv_blocks.5.fc_block", "status": "fail", "message": "bad-shape (404, 3)"}, {"name": "model.3.tds_conv_blocks.5.fc_block.0", "status": "fail", "message": "bad-shape (404, 3)"}, {"name": "model.3.tds_conv_blocks.5.fc_block.2", "status": "fail", "message": "bad-shape (404, 3)"}]}, {"name": "FBCNet", "status": "partial", "total": 9, "passed": 6, "failed": 3, "layers": [{"name": "spectral_filtering", "status": "ok", "message": "OK"}, {"name": "spectral_filtering.fir_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.fir_list' hook did"}, {"name": "spectral_filtering.b_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.b_list' hook did n"}, {"name": "spectral_filtering.a_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.a_list' hook did n"}, {"name": "spatial_conv", "status": "ok", "message": "OK"}, {"name": "spatial_conv.0", "status": "ok", "message": "OK"}, {"name": "temporal_layer", "status": "ok", "message": "OK"}, {"name": "flatten_layer", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "FBLightConvNet", "status": "partial", "total": 10, "passed": 7, "failed": 3, "layers": [{"name": "spectral_filtering", "status": "ok", "message": "OK"}, {"name": "spectral_filtering.fir_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.fir_list' hook did"}, {"name": "spectral_filtering.b_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.b_list' hook did n"}, {"name": "spectral_filtering.a_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.a_list' hook did n"}, {"name": "spatial_conv", "status": "ok", "message": "OK"}, {"name": "spatial_conv.0", "status": "ok", "message": "OK"}, {"name": "temporal_layer", "status": "ok", "message": "OK"}, {"name": "flatten_layer", "status": "ok", "message": "OK"}, {"name": "attn_conv", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "FBMSNet", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "mix_conv", "status": "ok", "message": "OK"}, {"name": "mix_conv.0.convs", "status": "fail", "message": "RuntimeError: probe_layer='mix_conv.0.convs' hook did not fire d"}, {"name": "mix_conv.0.convs.0", "status": "ok", "message": "OK"}, {"name": "mix_conv.0.convs.1", "status": "ok", "message": "OK"}, {"name": "spatial_conv", "status": "ok", "message": "OK"}, {"name": "spatial_conv.0", "status": "ok", "message": "OK"}, {"name": "spectral_filtering", "status": "ok", "message": "OK"}, {"name": "spectral_filtering.a_list", "status": "fail", "message": "RuntimeError: probe_layer='spectral_filtering.a_list' hook did n"}, {"name": "temporal_layer", "status": "ok", "message": "OK"}]}, {"name": "IFNet", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "ensuredim", "status": "ok", "message": "OK"}, {"name": "feature_block", "status": "ok", "message": "OK"}, {"name": "feature_block.inter_frequency", "status": "ok", "message": "OK"}, {"name": "feature_block.spatial_conv", "status": "ok", "message": "OK"}, {"name": "feature_block.temporal_convs", "status": "fail", "message": "RuntimeError: probe_layer='feature_block.temporal_convs' hook di"}, {"name": "feature_block.temporal_convs.1", "status": "ok", "message": "OK"}, {"name": "feature_block.temporal_convs.1.0", "status": "ok", "message": "OK"}, {"name": "feature_block.unpack_bands", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "spectral_filtering", "status": "ok", "message": "OK"}]}, {"name": "InterpolatedBENDR", "status": "skipped", "reason": "Interpolated model \u2014 slow MNE step", "layers": []}, {"name": "InterpolatedBIOT", "status": "skipped", "reason": "Interpolated model \u2014 slow MNE step", "layers": []}, {"name": "InterpolatedLaBraM", "status": "skipped", "reason": "Interpolated model \u2014 slow MNE step", "layers": []}, {"name": "InterpolatedSignalJEPA", "status": "skipped", "reason": "Interpolated model \u2014 slow MNE step", "layers": []}, {"name": "LUNA", "status": "partial", "total": 10, "passed": 6, "failed": 4, "layers": [{"name": "blocks.1.attn.proj", "status": "ok", "message": "OK"}, {"name": "blocks.1.attn.rotary_emb", "status": "fail", "message": "RuntimeError: probe_layer='blocks.1.attn.rotary_emb' hook did no"}, {"name": "blocks.1.mlp.fc1", "status": "ok", "message": "OK"}, {"name": "blocks.2.mlp.fc2", "status": "ok", "message": "OK"}, {"name": "blocks.3.attn.rotary_emb", "status": "fail", "message": "RuntimeError: probe_layer='blocks.3.attn.rotary_emb' hook did no"}, {"name": "blocks.7.attn.rotary_emb", "status": "fail", "message": "RuntimeError: probe_layer='blocks.7.attn.rotary_emb' hook did no"}, {"name": "blocks.7.mlp", "status": "ok", "message": "OK"}, {"name": "cross_attn.query_self_attn.layers.2", "status": "fail", "message": "bad-shape (50, 3)"}, {"name": "final_layer.decoder_ffn.fc2", "status": "ok", "message": "OK"}, {"name": "patch_embed.proj_in.4", "status": "ok", "message": "OK"}]}, {"name": "Labram", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "blocks.3", "status": "ok", "message": "OK"}, {"name": "blocks.3.mlp.0", "status": "ok", "message": "OK"}, {"name": "blocks.4.mlp.0", "status": "ok", "message": "OK"}, {"name": "blocks.5.attn.qkv", "status": "fail", "message": "RuntimeError: probe_layer='blocks.5.attn.qkv' hook did not fire "}, {"name": "blocks.5.mlp", "status": "ok", "message": "OK"}, {"name": "blocks.5.mlp.2", "status": "ok", "message": "OK"}, {"name": "blocks.7", "status": "ok", "message": "OK"}, {"name": "blocks.7.attn", "status": "ok", "message": "OK"}, {"name": "blocks.7.mlp", "status": "ok", "message": "OK"}, {"name": "patch_embed.temporal_conv.norm1", "status": "ok", "message": "OK"}]}, {"name": "MEDFormer", "status": "partial", "total": 10, "passed": 7, "failed": 3, "layers": [{"name": "enc_embedding.value_embeddings.2", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.1.attention.intra_attentions.2.out_projection", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.2.attention.inter_attention.query_projection", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.2.attention.intra_attentions", "status": "fail", "message": "RuntimeError: probe_layer='encoder.attn_layers.2.attention.intra"}, {"name": "encoder.attn_layers.2.attention.intra_attentions.2.inner_attention", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "encoder.attn_layers.2.conv2", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.3.attention.inter_attention.out_projection", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.3.attention.intra_attentions.0", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "encoder.attn_layers.3.attention.intra_attentions.2.key_projection", "status": "ok", "message": "OK"}, {"name": "encoder.attn_layers.3.attention.intra_attentions.2.out_projection", "status": "ok", "message": "OK"}]}, {"name": "MSVTNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "mstsconv.0", "status": "ok", "message": "OK"}, {"name": "mstsconv.1.0.10", "status": "ok", "message": "OK"}, {"name": "mstsconv.2.0.10", "status": "ok", "message": "OK"}, {"name": "mstsconv.2.1", "status": "ok", "message": "OK"}, {"name": "mstsconv.3", "status": "ok", "message": "OK"}, {"name": "mstsconv.3.0.10", "status": "ok", "message": "OK"}, {"name": "mstsconv.3.0.7", "status": "ok", "message": "OK"}, {"name": "transformer.pos_embedding", "status": "ok", "message": "OK"}, {"name": "transformer.trans.layers.0.linear1", "status": "ok", "message": "OK"}, {"name": "transformer.trans.layers.1", "status": "ok", "message": "OK"}]}, {"name": "MetaNeuromotorHand", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "conformer.2.0.attn_block.child.2.flatten_trailing", "status": "ok", "message": "OK"}, {"name": "conformer.2.10.attn_block.child.1", "status": "ok", "message": "OK"}, {"name": "conformer.2.11.conv_block.child.1", "status": "ok", "message": "OK"}, {"name": "conformer.2.11.ff_block1.child", "status": "ok", "message": "OK"}, {"name": "conformer.2.12.attn_block", "status": "ok", "message": "OK"}, {"name": "conformer.2.13.ff_block2.child", "status": "ok", "message": "OK"}, {"name": "conformer.2.14.attn_block.child", "status": "ok", "message": "OK"}, {"name": "conformer.2.14.ff_block2.child.4", "status": "ok", "message": "OK"}, {"name": "conformer.2.7.attn_block", "status": "ok", "message": "OK"}, {"name": "conformer.2.8.attn_block.child.2.add_query_axis", "status": "fail", "message": "bad-shape (320, 3)"}]}, {"name": "PBT", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "pos_embedding", "status": "fail", "message": "bad-shape (344, 3)"}, {"name": "transformer_encoder.encoder_block.1.feed_forward.proj", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.1.layer_norm_ff", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.1.mhsa", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.2.feed_forward.proj", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.2.feed_forward.proj_in", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.2.layer_norm_att", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.2.mhsa", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.2.mhsa.attn", "status": "ok", "message": "OK"}, {"name": "transformer_encoder.encoder_block.3", "status": "ok", "message": "OK"}]}, {"name": "REVE", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "transformer.layers.1.0", "status": "ok", "message": "OK"}, {"name": "transformer.layers.10.0.attend", "status": "ok", "message": "OK"}, {"name": "transformer.layers.12.0.to_out", "status": "ok", "message": "OK"}, {"name": "transformer.layers.14.1.net.0", "status": "ok", "message": "OK"}, {"name": "transformer.layers.15.1.net.2", "status": "ok", "message": "OK"}, {"name": "transformer.layers.16.1.net.0", "status": "ok", "message": "OK"}, {"name": "transformer.layers.17.0.to_out", "status": "ok", "message": "OK"}, {"name": "transformer.layers.19.1.net.1", "status": "ok", "message": "OK"}, {"name": "transformer.layers.20.0", "status": "ok", "message": "OK"}, {"name": "transformer.layers.21.0.norm", "status": "ok", "message": "OK"}]}, {"name": "SCCNet", "status": "ok", "total": 7, "passed": 7, "failed": 0, "layers": [{"name": "ensure_dim", "status": "ok", "message": "OK"}, {"name": "activation", "status": "ok", "message": "OK"}, {"name": "spatial_conv", "status": "ok", "message": "OK"}, {"name": "permute", "status": "ok", "message": "OK"}, {"name": "spatial_filt_conv", "status": "ok", "message": "OK"}, {"name": "temporal_smoothing", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "SPARCNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "encoder.denseblock1.denselayer1.conv1", "status": "ok", "message": "OK"}, {"name": "encoder.denseblock4", "status": "ok", "message": "OK"}, {"name": "encoder.denseblock4.denselayer1.conv1", "status": "ok", "message": "OK"}, {"name": "encoder.denseblock4.denselayer4.conv1", "status": "ok", "message": "OK"}, {"name": "encoder.denseblock7.denselayer3.conv2", "status": "ok", "message": "OK"}, {"name": "encoder.transition2.conv", "status": "ok", "message": "OK"}, {"name": "encoder.transition3.conv", "status": "ok", "message": "OK"}, {"name": "encoder.transition4.conv", "status": "ok", "message": "OK"}, {"name": "encoder.transition6.conv", "status": "ok", "message": "OK"}, {"name": "encoder.transition7.conv", "status": "ok", "message": "OK"}]}, {"name": "SSTDPN", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "encoder", "status": "ok", "message": "OK"}, {"name": "encoder.chan_conv", "status": "ok", "message": "OK"}, {"name": "encoder.chan_conv.0", "status": "ok", "message": "OK"}, {"name": "encoder.mvp", "status": "ok", "message": "OK"}, {"name": "encoder.mvp.var_layers", "status": "fail", "message": "RuntimeError: probe_layer='encoder.mvp.var_layers' hook did not "}, {"name": "encoder.mvp.var_layers.0", "status": "ok", "message": "OK"}, {"name": "encoder.mvp.var_layers.1", "status": "ok", "message": "OK"}, {"name": "encoder.mvp.var_layers.1.0", "status": "ok", "message": "OK"}, {"name": "encoder.mvp.var_layers.1.1", "status": "ok", "message": "OK"}, {"name": "encoder.mvp.var_layers.2.0", "status": "ok", "message": "OK"}]}, {"name": "ShallowFBCSPNet", "status": "partial", "total": 10, "passed": 8, "failed": 2, "layers": [{"name": "conv_nonlin_exp", "status": "ok", "message": "OK"}, {"name": "conv_time_spat", "status": "ok", "message": "OK"}, {"name": "conv_time_spat.conv_spat", "status": "fail", "message": "RuntimeError: probe_layer='conv_time_spat.conv_spat' hook did no"}, {"name": "conv_time_spat.conv_time", "status": "fail", "message": "RuntimeError: probe_layer='conv_time_spat.conv_time' hook did no"}, {"name": "ensuredims", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "final_layer.squeeze", "status": "ok", "message": "OK"}, {"name": "final_layer.squeeze.squeeze", "status": "ok", "message": "OK"}, {"name": "pool", "status": "ok", "message": "OK"}, {"name": "pool_nonlin_exp", "status": "ok", "message": "OK"}]}, {"name": "SignalJEPA", "status": "partial", "total": 10, "passed": 4, "failed": 6, "layers": [{"name": "feature_encoder.2", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "transformer.decoder.layers.0", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0' hook di"}, {"name": "transformer.decoder.layers.0.multihead_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0.multihea"}, {"name": "transformer.decoder.layers.0.self_attn", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0.self_att"}, {"name": "transformer.encoder.layers.2.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.3.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.5.self_attn", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "transformer.encoder.layers.6", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.6.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.6.self_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='transformer.encoder.layers.6.self_att"}]}, {"name": "SignalJEPA_Contextual", "status": "partial", "total": 10, "passed": 4, "failed": 6, "layers": [{"name": "feature_encoder.2", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "transformer.decoder.layers.0", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0' hook di"}, {"name": "transformer.decoder.layers.0.multihead_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0.multihea"}, {"name": "transformer.decoder.layers.0.self_attn", "status": "fail", "message": "RuntimeError: probe_layer='transformer.decoder.layers.0.self_att"}, {"name": "transformer.encoder.layers.2.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.3.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.5.self_attn", "status": "fail", "message": "AttributeError: 'tuple' object has no attribute 'shape'"}, {"name": "transformer.encoder.layers.6", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.6.linear2", "status": "ok", "message": "OK"}, {"name": "transformer.encoder.layers.6.self_attn.out_proj", "status": "fail", "message": "RuntimeError: probe_layer='transformer.encoder.layers.6.self_att"}]}, {"name": "SignalJEPA_PostLocal", "status": "partial", "total": 10, "passed": 3, "failed": 7, "layers": [{"name": "feature_encoder.0", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.1.2", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.2", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.2.0", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.3", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.3.0", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.5.0", "status": "fail", "message": "bad-shape (44, 3)"}, {"name": "feature_encoder.6", "status": "ok", "message": "OK"}, {"name": "final_layer.flatten", "status": "ok", "message": "OK"}, {"name": "final_layer.unflatten_tokens", "status": "ok", "message": "OK"}]}, {"name": "SignalJEPA_PreLocal", "status": "partial", "total": 10, "passed": 4, "failed": 6, "layers": [{"name": "feature_encoder.0", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.1.2", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.2.0", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.3", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.3.0", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.5.0", "status": "fail", "message": "bad-shape (8, 3)"}, {"name": "feature_encoder.6", "status": "ok", "message": "OK"}, {"name": "final_layer.1", "status": "ok", "message": "OK"}, {"name": "spatial_conv.0", "status": "ok", "message": "OK"}, {"name": "spatial_conv.1", "status": "ok", "message": "OK"}]}, {"name": "SincShallowNet", "status": "ok", "total": 9, "passed": 9, "failed": 0, "layers": [{"name": "ensuredims", "status": "ok", "message": "OK"}, {"name": "sinc_filter_layer", "status": "ok", "message": "OK"}, {"name": "depthwiseconv", "status": "ok", "message": "OK"}, {"name": "depthwiseconv.0", "status": "ok", "message": "OK"}, {"name": "depthwiseconv.2", "status": "ok", "message": "OK"}, {"name": "temporal_aggregation", "status": "ok", "message": "OK"}, {"name": "temporal_aggregation.2", "status": "ok", "message": "OK"}, {"name": "temporal_aggregation.4", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "SleepStagerBlanco2020", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "feature_extractor", "status": "ok", "message": "OK"}, {"name": "feature_extractor.11", "status": "ok", "message": "OK"}, {"name": "feature_extractor.12", "status": "ok", "message": "OK"}, {"name": "feature_extractor.15", "status": "ok", "message": "OK"}, {"name": "feature_extractor.20", "status": "ok", "message": "OK"}, {"name": "feature_extractor.23", "status": "ok", "message": "OK"}, {"name": "feature_extractor.24", "status": "ok", "message": "OK"}, {"name": "feature_extractor.7", "status": "ok", "message": "OK"}, {"name": "feature_extractor.8", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "SleepStagerChambon2018", "status": "ok", "total": 8, "passed": 8, "failed": 0, "layers": [{"name": "spatial_conv", "status": "ok", "message": "OK"}, {"name": "feature_extractor", "status": "ok", "message": "OK"}, {"name": "feature_extractor.0", "status": "ok", "message": "OK"}, {"name": "feature_extractor.3", "status": "ok", "message": "OK"}, {"name": "feature_extractor.4", "status": "ok", "message": "OK"}, {"name": "feature_extractor.7", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "final_layer.1", "status": "ok", "message": "OK"}]}, {"name": "SyncNet", "status": "ok", "total": 5, "passed": 5, "failed": 0, "layers": [{"name": "pad_input", "status": "ok", "message": "OK"}, {"name": "pad_res", "status": "ok", "message": "OK"}, {"name": "pool", "status": "ok", "message": "OK"}, {"name": "ensuredim", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "TIDNet", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "dscnn.extract_features", "status": "ok", "message": "OK"}, {"name": "dscnn.extract_features.0", "status": "ok", "message": "OK"}, {"name": "dscnn.spatial.channel_collapse.activation", "status": "ok", "message": "OK"}, {"name": "dscnn.spatial.net.0", "status": "ok", "message": "OK"}, {"name": "dscnn.spatial.net.1.net.1", "status": "ok", "message": "OK"}, {"name": "dscnn.spatial.net.1.net.2", "status": "ok", "message": "OK"}, {"name": "dscnn.spatial.net.1.net.4", "status": "ok", "message": "OK"}, {"name": "dscnn.temporal.0", "status": "ok", "message": "OK"}, {"name": "dscnn.temporal.2.residual", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}]}, {"name": "TSception", "status": "partial", "total": 10, "passed": 9, "failed": 1, "layers": [{"name": "dense_layer.1", "status": "ok", "message": "OK"}, {"name": "final_layer", "status": "ok", "message": "OK"}, {"name": "spatial_block_1.0", "status": "ok", "message": "OK"}, {"name": "spatial_block_1.1", "status": "ok", "message": "OK"}, {"name": "spatial_block_2.0", "status": "ok", "message": "OK"}, {"name": "temporal_blocks", "status": "fail", "message": "RuntimeError: probe_layer='temporal_blocks' hook did not fire du"}, {"name": "temporal_blocks.1.1", "status": "ok", "message": "OK"}, {"name": "temporal_blocks.1.2", "status": "ok", "message": "OK"}, {"name": "temporal_blocks.2.1", "status": "ok", "message": "OK"}, {"name": "temporal_blocks.2.2", "status": "ok", "message": "OK"}]}, {"name": "USleep", "status": "ok", "total": 10, "passed": 10, "failed": 0, "layers": [{"name": "decoder_blocks.0.block_preskip.0", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.10", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.11", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.2.block_preskip", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.4.block_preskip.1", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.5.block_postskip", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.6.block_preskip.1", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.7.block_preskip", "status": "ok", "message": "OK"}, {"name": "decoder_blocks.9.block_postskip", "status": "ok", "message": "OK"}, {"name": "encoder_blocks.1.maxpool", "status": "ok", "message": "OK"}]}]};
+
+const $rows = document.getElementById('rows');
+const $empty = document.getElementById('empty');
+const $rowCount = document.getElementById('row-count');
+const $q = document.getElementById('q');
+const $pills = document.querySelectorAll('.pill');
+
+let filterStatus = 'all';
+let filterText = '';
+
+function statusLabel(model) {
+  if (model.status === 'skipped') return 'SKIPPED';
+  if (model.status === 'build_failed') return 'BUILD FAILED';
+  if (model.failed === 0) return 'ALL LAYERS PASS';
+  return `${model.failed} OF ${model.total} FAIL`;
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+function escapeText(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function buildHeat(model) {
+  if (model.status === 'skipped') {
+    return `<div class="heat-strip"><div class="tag">SKIPPED</div></div>`;
+  }
+  if (model.status === 'build_failed') {
+    return `<div class="heat-strip"><div class="tag fail">BUILD FAILED</div></div>`;
+  }
+  const cells = model.layers.map(l => {
+    const cls = l.status === 'ok' ? 'ok' : 'fail';
+    const tip = `${l.name} · ${l.status === 'ok' ? 'OK' : l.message}`;
+    return `<div class="cell ${cls}" data-tip="${escapeAttr(tip)}"></div>`;
+  }).join('');
+  return `<div class="heat-strip">${cells}</div>`;
+}
+
+function pctText(model) {
+  if (model.status === 'skipped') return '<span class="pct skip">—</span>';
+  if (model.status === 'build_failed') return '<span class="pct zero">×</span>';
+  const pct = model.total === 0 ? 0 : Math.round(100 * model.passed / model.total);
+  const cls = pct === 100 ? 'full' : pct === 0 ? 'zero' : '';
+  return `<span class="pct ${cls}">${pct}%</span>`;
+}
+
+function countText(model) {
+  if (model.status === 'skipped' || model.status === 'build_failed') {
+    return '<div class="count"><span class="em">—</span></div>';
+  }
+  return `<div class="count"><strong>${model.passed}</strong>/${model.total} <span class="em">layers</span></div>`;
+}
+
+function detailHTML(model) {
+  if (model.status === 'skipped') {
+    return `<div class="detail"><div class="empty-msg">${escapeText(model.reason || 'Skipped')}</div></div>`;
+  }
+  if (model.status === 'build_failed') {
+    return `<div class="detail"><div class="build-msg">${escapeText(model.reason)}</div></div>`;
+  }
+  const layerHTML = model.layers.map(l => `
+    <div class="layer ${l.status}">
+      <div class="mark"></div>
+      <div>
+        <span class="path">${escapeText(l.name)}</span>
+        <span class="msg">${escapeText(l.message)}</span>
+      </div>
+    </div>`).join('');
+  return `<div class="detail"><div class="layers">${layerHTML}</div></div>`;
+}
+
+function renderRow(model) {
+  const row = document.createElement('div');
+  row.className = 'model-row';
+  row.dataset.status = model.status;
+  row.innerHTML = `
+    <div class="name">
+      ${escapeText(model.name)}
+      <span class="status-tag">${statusLabel(model)}</span>
+    </div>
+    ${pctText(model)}
+    ${buildHeat(model)}
+    ${countText(model)}
+    ${detailHTML(model)}
+  `;
+  row.addEventListener('click', (e) => {
+    if (e.target.closest('.detail')) return;
+    row.classList.toggle('open');
+  });
+  return row;
+}
+
+function render() {
+  $rows.innerHTML = '';
+  let n = 0;
+  const term = filterText.toLowerCase().trim();
+  for (const model of DATA.models) {
+    if (filterStatus !== 'all') {
+      if (filterStatus === 'ok' && model.status !== 'ok') continue;
+      if (filterStatus === 'partial' && model.status !== 'partial') continue;
+      if (filterStatus === 'build_failed' && model.status !== 'build_failed') continue;
+      if (filterStatus === 'skipped' && model.status !== 'skipped') continue;
+    }
+    if (term && !model.name.toLowerCase().includes(term)) continue;
+    $rows.appendChild(renderRow(model));
+    n++;
+  }
+  $empty.style.display = n === 0 ? 'block' : 'none';
+  $rowCount.textContent = `${n} of ${DATA.models.length} shown`;
+}
+
+$q.addEventListener('input', () => { filterText = $q.value; render(); });
+$pills.forEach(p => p.addEventListener('click', () => {
+  $pills.forEach(pp => pp.classList.remove('active'));
+  p.classList.add('active');
+  filterStatus = p.dataset.status;
+  render();
+}));
+
+// ----- Failure-cause analysis -----
+function classifyFailure(msg) {
+  if (!msg) return 'other';
+  const m = msg.toLowerCase();
+  if (m.includes('hook did not fire')) return 'hook_not_fired';
+  if (m.includes('bad-shape') || m.includes('bad shape')) return 'shape_mismatch';
+  if (m.includes('tuple')) return 'tuple_return';
+  if (m.includes('runtimeerror')) return 'runtime_error';
+  if (m.includes('attributeerror')) return 'attribute_error';
+  if (m.includes('valueerror')) return 'value_error';
+  return 'other';
+}
+
+const CAUSES = {
+  hook_not_fired:  ['hook_not_fired',  'The submodule is registered in named_modules() but the model\'s forward path bypasses it'],
+  shape_mismatch:  ['shape_mismatch',  'Captured tensor isn\'t batch-first — often a sequence-first transformer flattened over the wrong axis'],
+  tuple_return:    ['tuple_return',    'Module returns (output, attn) — probe an enclosing block, not the inner attention layer'],
+  runtime_error:   ['runtime_error',   'Misc PyTorch dispatch failures during the hooked forward'],
+  attribute_error: ['attribute_error', 'Captured object isn\'t a tensor (Parameter, parametrization machinery, etc.)'],
+  value_error:     ['value_error',     'Mostly broadcasting / shape preconditions in inner modules'],
+  other:           ['other',           'Catch-all'],
+};
+
+const causeCounts = {};
+const familyCounts = {};
+for (const model of DATA.models) {
+  if (!model.layers) continue;
+  for (const l of model.layers) {
+    if (l.status === 'ok') continue;
+    const c = classifyFailure(l.message);
+    causeCounts[c] = (causeCounts[c] || 0) + 1;
+    familyCounts[model.name] = (familyCounts[model.name] || 0) + 1;
+  }
+}
+
+const totalFails = Object.values(causeCounts).reduce((a, b) => a + b, 0) || 1;
+const causesHTML = Object.entries(causeCounts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([k, v]) => {
+    const pct = Math.round(100 * v / totalFails);
+    const [label, desc] = CAUSES[k] || [k, ''];
+    return `<div class="item">
+      <div class="pct">${v}</div>
+      <div class="text">
+        <b>${label}</b> <span style="color:var(--ink-4);font-size:11px;letter-spacing:0.04em"> · ${pct}%</span>
+        <span class="desc">${desc}</span>
+      </div>
+    </div>`;
+  }).join('');
+document.getElementById('failure-causes').innerHTML = causesHTML;
+
+const families = Object.entries(familyCounts)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 8);
+const familyHTML = families.map(([name, n]) => {
+  return `<div class="item">
+    <div class="pct">${n}</div>
+    <div class="text">
+      <b>${escapeText(name)}</b>
+      <span class="desc">${n} failing layer${n === 1 ? '' : 's'} in the 10-layer sample</span>
+    </div>
+  </div>`;
+}).join('');
+document.getElementById('failure-families').innerHTML = familyHTML;
+
+render();
+</script>
+</body>
+</html>
