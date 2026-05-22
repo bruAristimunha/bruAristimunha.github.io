@@ -26,6 +26,8 @@
     --pass-soft:    rgba(6, 109, 84, 0.12);
     --fail:         #c44a0e;   /* Okabe-Ito vermillion */
     --fail-soft:    rgba(196, 74, 14, 0.10);
+    --tune:         #7bbf99;   /* light bluish-green: fixable via probe config */
+    --tune-soft:    rgba(123, 191, 153, 0.15);
     --skip:         #9aa0a8;
 
     --f-display:    'DM Serif Display', 'Newsreader', Georgia, serif;
@@ -290,6 +292,7 @@
   }
   .heat-strip .cell.ok   { background: var(--pass); }
   .heat-strip .cell.fail { background: var(--fail); }
+  .heat-strip .cell.tune { background: var(--tune); }
   .heat-strip .cell.skip {
     background: repeating-linear-gradient(45deg,
       var(--skip), var(--skip) 3px, transparent 3px, transparent 6px);
@@ -377,6 +380,8 @@
   }
   .layer.ok .mark { background: var(--pass); }
   .layer.fail .mark { background: var(--fail); }
+  .layer.tune .mark { background: var(--tune); }
+  .layer.tune .msg { color: #2e7a5b; }
   .layer .path { color: var(--ink); word-break: break-all; line-height: 1.4; }
   .layer .msg {
     color: var(--fail);
@@ -885,8 +890,17 @@ function buildHeat(model) {
     return `<div class="heat-strip"><div class="tag fail">BUILD FAILED</div></div>`;
   }
   const cells = model.layers.map(l => {
-    const cls = l.status === 'ok' ? 'ok' : 'fail';
-    const tip = `${l.name} · ${l.status === 'ok' ? 'OK' : l.message}`;
+    let cls = 'fail';
+    let tip;
+    if (l.status === 'ok') {
+      cls = 'ok';
+      tip = `${l.name} · OK`;
+    } else if (classifyFailure(l.message) === 'shape_mismatch') {
+      cls = 'tune';
+      tip = `${l.name} · needs a better probe_layer choice for this aggregation (${l.message})`;
+    } else {
+      tip = `${l.name} · ${l.message}`;
+    }
     return `<div class="cell ${cls}" data-tip="${escapeAttr(tip)}"></div>`;
   }).join('');
   return `<div class="heat-strip">${cells}</div>`;
@@ -914,14 +928,22 @@ function detailHTML(model) {
   if (model.status === 'build_failed') {
     return `<div class="detail"><div class="build-msg">${escapeText(model.reason)}</div></div>`;
   }
-  const layerHTML = model.layers.map(l => `
-    <div class="layer ${l.status}">
+  const layerHTML = model.layers.map(l => {
+    let stateClass = l.status;
+    let msg = l.message;
+    if (l.status !== 'ok' && classifyFailure(l.message) === 'shape_mismatch') {
+      stateClass = 'tune';
+      msg = `needs a better probe_layer choice to match the input shape — ${l.message}`;
+    }
+    return `
+    <div class="layer ${stateClass}">
       <div class="mark"></div>
       <div>
         <span class="path">${escapeText(l.name)}</span>
-        <span class="msg">${escapeText(l.message)}</span>
+        <span class="msg">${escapeText(msg)}</span>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
   return `<div class="detail"><div class="layers">${layerHTML}</div></div>`;
 }
 
@@ -988,7 +1010,7 @@ function classifyFailure(msg) {
 
 const CAUSES = {
   hook_not_fired:  ['hook_not_fired',  'The submodule is registered in named_modules() but the model\'s forward path bypasses it'],
-  shape_mismatch:  ['shape_mismatch',  'Captured tensor isn\'t batch-first — often a sequence-first transformer flattened over the wrong axis'],
+  shape_mismatch:  ['shape_mismatch (tunable)',  'Layer needs to be better selected to match the input shape — these are configuration issues, not true failures. Pick a different probe_layer, or pair sequence-first outputs with aggregation=mean_tokens.'],
   tuple_return:    ['tuple_return',    'Module returns (output, attn) — probe an enclosing block, not the inner attention layer'],
   runtime_error:   ['runtime_error',   'Misc PyTorch dispatch failures during the hooked forward'],
   attribute_error: ['attribute_error', 'Captured object isn\'t a tensor (Parameter, parametrization machinery, etc.)'],
