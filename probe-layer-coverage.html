@@ -594,9 +594,11 @@
 
 
 
+
+
 <section class="depth-section">
   <div class="depth-figure">
-<svg viewBox="0 0 1120 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AUROC vs probe-layer depth in BENDR. Peak at Encoder_1/Encoder_3; falls to below chance at the positional encoder." class="depth-chart" preserveAspectRatio="xMidYMid meet">
+<svg viewBox="0 0 1120 640" xmlns="http://www.w3.org/2000/svg" role="img" class="depth-chart" preserveAspectRatio="xMidYMid meet">
 
 <defs>
   <pattern id="hatch-soft" patternUnits="userSpaceOnUse" width="9" height="9" patternTransform="rotate(45)">
@@ -605,82 +607,142 @@
 </defs>
 
 <text x="88" y="38" class="fig-title">Where does motor-imagery information live in BENDR?</text>
-<text x="88" y="62" class="fig-deck">Linear-probe AUROC at each probeable layer, in forward order · frozen 157M backbone · BNCI 2014-001 (4-class) · single seed (33)</text>
-<line x1="88" y1="387.7" x2="1092" y2="387.7" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
-<text x="76" y="391.7" text-anchor="end" class="ax-tick">0.45</text>
-<line x1="88" y1="333.8" x2="1092" y2="333.8" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
-<text x="76" y="337.8" text-anchor="end" class="ax-tick">0.50</text>
-<line x1="88" y1="280.0" x2="1092" y2="280.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
-<text x="76" y="284.0" text-anchor="end" class="ax-tick">0.55</text>
-<line x1="88" y1="226.2" x2="1092" y2="226.2" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
-<text x="76" y="230.2" text-anchor="end" class="ax-tick">0.60</text>
-<line x1="88" y1="172.3" x2="1092" y2="172.3" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
-<text x="76" y="176.3" text-anchor="end" class="ax-tick">0.65</text>
+<text x="88" y="62" class="fig-deck">Linear-probe AUROC at each probeable layer · forward order · frozen 157M backbone · BNCI 2014-001 (4-class) · 3 seeds · V100 on SDSC Expanse</text>
+<line x1="88" y1="390.0" x2="1092" y2="390.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="394.0" text-anchor="end" class="ax-tick">0.45</text>
+<line x1="88" y1="340.0" x2="1092" y2="340.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="344.0" text-anchor="end" class="ax-tick">0.50</text>
+<line x1="88" y1="290.0" x2="1092" y2="290.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="294.0" text-anchor="end" class="ax-tick">0.55</text>
+<line x1="88" y1="240.0" x2="1092" y2="240.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="244.0" text-anchor="end" class="ax-tick">0.60</text>
+<line x1="88" y1="190.0" x2="1092" y2="190.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="194.0" text-anchor="end" class="ax-tick">0.65</text>
+<line x1="88" y1="140.0" x2="1092" y2="140.0" stroke="rgba(83,88,98,0.08)" stroke-width="1"/>
+<text x="76" y="144.0" text-anchor="end" class="ax-tick">0.70</text>
 <text x="32" y="280.0" text-anchor="middle" class="axis-title" transform="rotate(-90, 32, 280.0)">AUROC · test set</text>
-<line x1="88" y1="333.8" x2="1092" y2="333.8" stroke="#353a44" stroke-width="1.3" stroke-dasharray="6 5"/>
-<text x="94" y="327.8" class="ref-label">chance · 0.50</text>
-<rect x="645.8" y="140" width="446.2" height="280" fill="url(#hatch-soft)"/>
-<text x="868.9" y="162.0" text-anchor="middle" class="zone-label">8 transformer blocks · pending</text>
-<text x="868.9" y="180.0" text-anchor="middle" class="zone-sublabel">aggregation=mean_tokens (next sweep)</text>
+<line x1="88" y1="340.0" x2="1092" y2="340.0" stroke="#353a44" stroke-width="1.3" stroke-dasharray="6 5"/>
+<text x="94" y="334.0" class="ref-label">chance · 0.50</text>
+<rect x="88" y="313.7" width="1004" height="34.4" fill="rgba(6, 109, 84, 0.08)"/>
+<line x1="88" y1="330.9" x2="1092" y2="330.9" stroke="#066d54" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.7"/>
+<text x="1086" y="324.9" text-anchor="end" class="baseline-label">canonical probe (final BENDR output, aggregation=flatten) · 0.509 ± 0.017</text>
 <line x1="422.7" y1="140" x2="422.7" y2="420" stroke="#1a1812" stroke-width="2"/>
-<text x="430.7" y="154.0" class="transition-label">conv → transformer entry</text>
+<text x="430.7" y="154.0" class="transition-label">conv → contextualizer entry</text>
 <line x1="645.8" y1="140" x2="645.8" y2="420" stroke="rgba(26, 24, 18, 0.4)" stroke-width="1" stroke-dasharray="2 4"/>
-<line x1="115.89" y1="176.72" x2="171.67" y2="174.35" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="171.67" y1="174.35" x2="227.44" y2="200.63" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="227.44" y1="200.63" x2="283.22" y2="179.31" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="283.22" y1="179.31" x2="339.00" y2="261.05" stroke="#c44a0e" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="339.00" y1="261.05" x2="394.78" y2="329.65" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="394.78" y1="329.65" x2="450.56" y2="292.17" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="450.56" y1="292.17" x2="506.33" y2="330.40" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="506.33" y1="330.40" x2="562.11" y2="229.60" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
-<line x1="562.11" y1="229.60" x2="617.89" y2="376.60" stroke="#1f4d8a" stroke-width="2.4" stroke-linecap="round"/>
-<circle cx="115.89" cy="176.72" r="5.0" fill="#066d54" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_0
+<path d="M 115.89 166.38 L 171.67 194.71 L 227.44 210.47 L 283.22 207.75 L 339.00 244.97 L 394.78 282.26 L 450.56 282.72 L 506.33 316.89 L 562.11 251.62 L 617.89 308.60 L 673.67 325.10 L 729.44 331.05 L 785.22 328.67 L 841.00 333.94 L 896.78 329.57 L 952.56 323.56 L 1008.33 316.16 L 1064.11 323.69 L 1064.11 357.71 L 1008.33 347.51 L 952.56 353.71 L 896.78 342.48 L 841.00 342.67 L 785.22 340.26 L 729.44 349.75 L 673.67 347.02 L 617.89 376.29 L 562.11 339.82 L 506.33 346.68 L 450.56 359.43 L 394.78 309.21 L 339.00 272.97 L 283.22 220.62 L 227.44 220.48 L 171.67 206.54 L 115.89 212.10 Z" fill="rgba(31, 35, 43, 0.10)" stroke="none"/>
+<line x1="115.89" y1="189.24" x2="171.67" y2="200.62" stroke="#c44a0e" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="171.67" y1="200.62" x2="227.44" y2="215.48" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="227.44" y1="215.48" x2="283.22" y2="214.18" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="283.22" y1="214.18" x2="339.00" y2="258.97" stroke="#066d54" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="339.00" y1="258.97" x2="394.78" y2="295.73" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="394.78" y1="295.73" x2="450.56" y2="321.07" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="450.56" y1="321.07" x2="506.33" y2="331.79" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="506.33" y1="331.79" x2="562.11" y2="295.72" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="562.11" y1="295.72" x2="617.89" y2="342.45" stroke="#1f4d8a" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="617.89" y1="342.45" x2="673.67" y2="336.06" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="673.67" y1="336.06" x2="729.44" y2="340.40" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="729.44" y1="340.40" x2="785.22" y2="334.47" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="785.22" y1="334.47" x2="841.00" y2="338.31" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="841.00" y1="338.31" x2="896.78" y2="336.02" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="896.78" y1="336.02" x2="952.56" y2="338.64" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="952.56" y1="338.64" x2="1008.33" y2="331.83" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="1008.33" y1="331.83" x2="1064.11" y2="340.70" stroke="#6a7280" stroke-width="2.4" stroke-linecap="round"/>
+<circle cx="115.89" cy="189.24" r="7.0" fill="#c44a0e" stroke="#fbf7ec" stroke-width="2.4"><title>encoder.encoder.Encoder_0
 module: Conv block
-AUROC: 0.646
-bal_acc: 0.351</title></circle>
-<circle cx="171.67" cy="174.35" r="7.0" fill="#066d54" stroke="#fbf7ec" stroke-width="2.4"><title>encoder.encoder.Encoder_1
+AUROC: 0.651 ± 0.023
+bal_acc: 0.372 ± 0.018
+n_seeds: 3</title></circle>
+<circle cx="171.67" cy="200.62" r="5.0" fill="#066d54" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_1
 module: Conv block
-AUROC: 0.648
-bal_acc: 0.363</title></circle>
-<circle cx="227.44" cy="200.63" r="5.0" fill="#066d54" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_2
+AUROC: 0.639 ± 0.006
+bal_acc: 0.368 ± 0.006
+n_seeds: 3</title></circle>
+<circle cx="227.44" cy="215.48" r="5.0" fill="#066d54" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_2
 module: Conv block
-AUROC: 0.624
-bal_acc: 0.347</title></circle>
-<circle cx="283.22" cy="179.31" r="5.0" fill="#c44a0e" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_3
+AUROC: 0.625 ± 0.005
+bal_acc: 0.355 ± 0.007
+n_seeds: 3</title></circle>
+<circle cx="283.22" cy="214.18" r="5.0" fill="#066d54" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_3
 module: Conv block
-AUROC: 0.643
-bal_acc: 0.373</title></circle>
-<circle cx="339.00" cy="261.05" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_4
+AUROC: 0.626 ± 0.006
+bal_acc: 0.348 ± 0.002
+n_seeds: 3</title></circle>
+<circle cx="339.00" cy="258.97" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_4
 module: Conv block
-AUROC: 0.568
-bal_acc: 0.320</title></circle>
-<circle cx="394.78" cy="329.65" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_5
+AUROC: 0.581 ± 0.014
+bal_acc: 0.317 ± 0.001
+n_seeds: 3</title></circle>
+<circle cx="394.78" cy="295.73" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>encoder.encoder.Encoder_5
 module: Conv block
-AUROC: 0.504
-bal_acc: 0.260</title></circle>
-<circle cx="450.56" cy="292.17" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.0
+AUROC: 0.544 ± 0.013
+bal_acc: 0.296 ± 0.006
+n_seeds: 3</title></circle>
+<circle cx="450.56" cy="321.07" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.0
 module: Rearrange
-AUROC: 0.539
-bal_acc: 0.275</title></circle>
-<circle cx="506.33" cy="330.40" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.1
+AUROC: 0.519 ± 0.038
+bal_acc: 0.265 ± 0.026
+n_seeds: 3</title></circle>
+<circle cx="506.33" cy="331.79" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.1
 module: LayerNorm
-AUROC: 0.503
-bal_acc: 0.276</title></circle>
-<circle cx="562.11" cy="229.60" r="5.0" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.3
+AUROC: 0.508 ± 0.015
+bal_acc: 0.260 ± 0.005
+n_seeds: 3</title></circle>
+<circle cx="562.11" cy="295.72" r="5.0" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.input_conditioning.3
 module: Linear projection
-AUROC: 0.597
-bal_acc: 0.334</title></circle>
-<circle cx="617.89" cy="376.60" r="5.0" fill="#a02b0a" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.relative_position.0
+AUROC: 0.544 ± 0.044
+bal_acc: 0.284 ± 0.039
+n_seeds: 3</title></circle>
+<circle cx="617.89" cy="342.45" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.relative_position.0
 module: Positional conv
-AUROC: 0.460
-bal_acc: 0.251</title></circle>
-<line x1="171.7" y1="162.4" x2="171.7" y2="136.4" stroke="#c44a0e" stroke-width="1.3"/>
-<text x="171.7" y="124.4" text-anchor="middle" class="peak-mono">AUROC 0.648 · bal_acc 0.363</text>
-<text x="171.7" y="106.4" text-anchor="middle" class="peak-em">encoder.encoder.Encoder_1</text>
-<line x1="562.1" y1="217.6" x2="562.1" y2="191.6" stroke="#1f4d8a" stroke-width="1.3"/>
-<text x="562.1" y="179.6" text-anchor="middle" class="annot-mono">+0.09 AUROC vs ic.1</text>
-<text x="562.1" y="161.6" text-anchor="middle" class="annot-em">Linear projection recovers signal</text>
-<text x="611.9" y="398.6" text-anchor="end" class="annot-em-red">positional enc. drops below chance</text>
+AUROC: 0.498 ± 0.034
+bal_acc: 0.270 ± 0.021
+n_seeds: 3</title></circle>
+<circle cx="673.67" cy="336.06" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.0
+module: TransformerEncoderLayer
+AUROC: 0.504 ± 0.011
+bal_acc: 0.253 ± 0.008
+n_seeds: 3</title></circle>
+<circle cx="729.44" cy="340.40" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.1
+module: TransformerEncoderLayer
+AUROC: 0.500 ± 0.009
+bal_acc: 0.253 ± 0.007
+n_seeds: 3</title></circle>
+<circle cx="785.22" cy="334.47" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.2
+module: TransformerEncoderLayer
+AUROC: 0.506 ± 0.006
+bal_acc: 0.252 ± 0.015
+n_seeds: 3</title></circle>
+<circle cx="841.00" cy="338.31" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.3
+module: TransformerEncoderLayer
+AUROC: 0.502 ± 0.004
+bal_acc: 0.245 ± 0.006
+n_seeds: 3</title></circle>
+<circle cx="896.78" cy="336.02" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.4
+module: TransformerEncoderLayer
+AUROC: 0.504 ± 0.006
+bal_acc: 0.262 ± 0.013
+n_seeds: 3</title></circle>
+<circle cx="952.56" cy="338.64" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.5
+module: TransformerEncoderLayer
+AUROC: 0.501 ± 0.015
+bal_acc: 0.255 ± 0.020
+n_seeds: 3</title></circle>
+<circle cx="1008.33" cy="331.83" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.6
+module: TransformerEncoderLayer
+AUROC: 0.508 ± 0.016
+bal_acc: 0.259 ± 0.013
+n_seeds: 3</title></circle>
+<circle cx="1064.11" cy="340.70" r="5.0" fill="#6a7280" stroke="#fbf7ec" stroke-width="1.8"><title>contextualizer.transformer_layers.7
+module: TransformerEncoderLayer
+AUROC: 0.499 ± 0.017
+bal_acc: 0.249 ± 0.016
+n_seeds: 3</title></circle>
+<line x1="115.9" y1="177.2" x2="115.9" y2="151.2" stroke="#c44a0e" stroke-width="1.3"/>
+<text x="115.9" y="139.2" text-anchor="middle" class="peak-mono">AUROC 0.651 ± 0.023</text>
+<text x="115.9" y="121.2" text-anchor="middle" class="peak-em">peak · Enc 0</text>
+<line x1="562.1" y1="283.7" x2="562.1" y2="257.7" stroke="#1f4d8a" stroke-width="1.3"/>
+<text x="562.1" y="245.7" text-anchor="middle" class="annot-mono">+0.036 AUROC vs ic.1</text>
+<text x="562.1" y="227.7" text-anchor="middle" class="annot-em">Linear projection bump</text>
 <line x1="115.9" y1="420" x2="115.9" y2="428" stroke="#353a44" stroke-width="1"/>
 <text x="115.9" y="445" text-anchor="middle" class="ax-tick-x">Enc 0</text>
 <line x1="171.7" y1="420" x2="171.7" y2="428" stroke="#353a44" stroke-width="1"/>
@@ -701,53 +763,61 @@ bal_acc: 0.251</title></circle>
 <text x="562.1" y="445" text-anchor="middle" class="ax-tick-x">ic.3</text>
 <line x1="617.9" y1="420" x2="617.9" y2="428" stroke="#353a44" stroke-width="1"/>
 <text x="617.9" y="445" text-anchor="middle" class="ax-tick-x">rel-pos</text>
-<line x1="673.7" y1="420" x2="673.7" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="673.7" y="445" text-anchor="middle" class="ax-tick-x-faded">T0</text>
-<line x1="729.4" y1="420" x2="729.4" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="729.4" y="445" text-anchor="middle" class="ax-tick-x-faded">T1</text>
-<line x1="785.2" y1="420" x2="785.2" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="785.2" y="445" text-anchor="middle" class="ax-tick-x-faded">T2</text>
-<line x1="841.0" y1="420" x2="841.0" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="841.0" y="445" text-anchor="middle" class="ax-tick-x-faded">T3</text>
-<line x1="896.8" y1="420" x2="896.8" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="896.8" y="445" text-anchor="middle" class="ax-tick-x-faded">T4</text>
-<line x1="952.6" y1="420" x2="952.6" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="952.6" y="445" text-anchor="middle" class="ax-tick-x-faded">T5</text>
-<line x1="1008.3" y1="420" x2="1008.3" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="1008.3" y="445" text-anchor="middle" class="ax-tick-x-faded">T6</text>
-<line x1="1064.1" y1="420" x2="1064.1" y2="428" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
-<text x="1064.1" y="445" text-anchor="middle" class="ax-tick-x-faded">T7</text>
+<line x1="673.7" y1="420" x2="673.7" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="673.7" y="445" text-anchor="middle" class="ax-tick-x">T0</text>
+<line x1="729.4" y1="420" x2="729.4" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="729.4" y="445" text-anchor="middle" class="ax-tick-x">T1</text>
+<line x1="785.2" y1="420" x2="785.2" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="785.2" y="445" text-anchor="middle" class="ax-tick-x">T2</text>
+<line x1="841.0" y1="420" x2="841.0" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="841.0" y="445" text-anchor="middle" class="ax-tick-x">T3</text>
+<line x1="896.8" y1="420" x2="896.8" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="896.8" y="445" text-anchor="middle" class="ax-tick-x">T4</text>
+<line x1="952.6" y1="420" x2="952.6" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="952.6" y="445" text-anchor="middle" class="ax-tick-x">T5</text>
+<line x1="1008.3" y1="420" x2="1008.3" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="1008.3" y="445" text-anchor="middle" class="ax-tick-x">T6</text>
+<line x1="1064.1" y1="420" x2="1064.1" y2="428" stroke="#353a44" stroke-width="1"/>
+<text x="1064.1" y="445" text-anchor="middle" class="ax-tick-x">T7</text>
 <rect x="90.0" y="466" width="330.7" height="60" fill="rgba(6, 109, 84, 0.10)" stroke="#066d54" stroke-width="1.2" rx="3"/>
 <text x="255.3" y="490.0" text-anchor="middle" class="band-title" fill="#066d54">Convolutional encoder</text>
-<text x="255.3" y="510.0" text-anchor="middle" class="band-sub">6 strided 1-D conv blocks · (B,C,T)</text>
+<text x="255.3" y="510.0" text-anchor="middle" class="band-sub">6 strided 1-D conv blocks · (B,C,T) · aggregation=flatten</text>
 <rect x="424.7" y="466" width="219.1" height="60" fill="rgba(31, 77, 138, 0.10)" stroke="#1f4d8a" stroke-width="1.2" rx="3"/>
 <text x="534.2" y="490.0" text-anchor="middle" class="band-title" fill="#1f4d8a">Pre-transformer projection</text>
-<text x="534.2" y="510.0" text-anchor="middle" class="band-sub">Rearrange · Norm · Linear · PosConv</text>
-<rect x="647.8" y="466" width="442.2" height="60" fill="rgba(106, 114, 128, 0.10)" stroke="#6a7280" stroke-width="1.2" rx="3"/>
-<text x="868.9" y="490.0" text-anchor="middle" class="band-title" fill="#6a7280">Transformer</text>
-<text x="868.9" y="510.0" text-anchor="middle" class="band-sub">8 layers · sequence-first (T,B,D)</text>
-<text x="88" y="552" class="caption">BENDR (157.1M params, frozen) · BNCI 2014-001, 4-class motor imagery · 9 subjects · single seed (33) · linear probe, val/loss early-stop (patience 5)</text>
-<text x="88" y="568" class="caption-em">Std bars and transformer-block probes pending — multi-seed sweep running.</text>
+<text x="534.2" y="510.0" text-anchor="middle" class="band-sub">Rearrange · Norm · Linear · PosConv · aggregation=flatten</text>
+<rect x="1094.0" y="466" width="-4.0" height="60" fill="rgba(106, 114, 128, 0.10)" stroke="#6a7280" stroke-width="1.2" rx="3"/>
+<text x="1092.0" y="490.0" text-anchor="middle" class="band-title" fill="#6a7280">Transformer</text>
+<text x="1092.0" y="510.0" text-anchor="middle" class="band-sub">8 blocks · (T,B,D) · aggregation=mean_tokens</text>
+<text x="88" y="552" class="caption">BENDR (157.1M params, frozen) · BNCI 2014-001, 4-class motor imagery · 9 subjects · seeds 33, 34, 35 · linear probe, val/loss early-stop (patience 5) · shaded band is ±1 std across seeds</text>
+<text x="88" y="568" class="caption-em">Conv encoder uses aggregation=flatten; transformer blocks use the new aggregation=mean_tokens (mean over dim 0 of sequence-first captures).</text>
 </svg>
   </div>
 
   <details class="depth-table-wrap">
-    <summary>show numbers · 10 layers</summary>
+    <summary>show numbers</summary>
     <table class="depth-table">
       <thead>
-        <tr><th>probe_layer</th><th>module class</th><th>AUROC</th><th>bal_acc</th></tr>
+        <tr><th>probe_layer</th><th>module class</th><th>AUROC ± std</th><th>bal_acc ± std</th><th>n</th></tr>
       </thead>
       <tbody>
-<tr><td class="mono">encoder.encoder.Encoder_0</td><td>Conv block</td><td class="num">0.646</td><td class="num">0.351</td></tr>
-<tr><td class="mono">encoder.encoder.Encoder_1</td><td>Conv block</td><td class="num">0.648</td><td class="num">0.363</td></tr>
-<tr><td class="mono">encoder.encoder.Encoder_2</td><td>Conv block</td><td class="num">0.624</td><td class="num">0.347</td></tr>
-<tr><td class="mono">encoder.encoder.Encoder_3</td><td>Conv block</td><td class="num">0.643</td><td class="num">0.373</td></tr>
-<tr><td class="mono">encoder.encoder.Encoder_4</td><td>Conv block</td><td class="num">0.568</td><td class="num">0.320</td></tr>
-<tr><td class="mono">encoder.encoder.Encoder_5</td><td>Conv block</td><td class="num">0.504</td><td class="num">0.260</td></tr>
-<tr><td class="mono">contextualizer.input_conditioning.0</td><td>Rearrange</td><td class="num">0.539</td><td class="num">0.275</td></tr>
-<tr><td class="mono">contextualizer.input_conditioning.1</td><td>LayerNorm</td><td class="num">0.503</td><td class="num">0.276</td></tr>
-<tr><td class="mono">contextualizer.input_conditioning.3</td><td>Linear projection</td><td class="num">0.597</td><td class="num">0.334</td></tr>
-<tr><td class="mono">contextualizer.relative_position.0</td><td>Positional conv</td><td class="num">0.460</td><td class="num">0.251</td></tr>
+<tr class="baseline-row"><td class="mono">— canonical (probe at final output) —</td><td>flatten · 25k probe params</td><td class="num">0.509 ± 0.017</td><td class="num">0.259 ± 0.018</td><td class="num">3</td></tr><tr><td class="mono">encoder.encoder.Encoder_0</td><td>Conv block</td><td class="num">0.651 ± 0.023</td><td class="num">0.372 ± 0.018</td><td class="num">3</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_1</td><td>Conv block</td><td class="num">0.639 ± 0.006</td><td class="num">0.368 ± 0.006</td><td class="num">3</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_2</td><td>Conv block</td><td class="num">0.625 ± 0.005</td><td class="num">0.355 ± 0.007</td><td class="num">3</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_3</td><td>Conv block</td><td class="num">0.626 ± 0.006</td><td class="num">0.348 ± 0.002</td><td class="num">3</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_4</td><td>Conv block</td><td class="num">0.581 ± 0.014</td><td class="num">0.317 ± 0.001</td><td class="num">3</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_5</td><td>Conv block</td><td class="num">0.544 ± 0.013</td><td class="num">0.296 ± 0.006</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.0</td><td>Rearrange</td><td class="num">0.519 ± 0.038</td><td class="num">0.265 ± 0.026</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.1</td><td>LayerNorm</td><td class="num">0.508 ± 0.015</td><td class="num">0.260 ± 0.005</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.3</td><td>Linear projection</td><td class="num">0.544 ± 0.044</td><td class="num">0.284 ± 0.039</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.relative_position.0</td><td>Positional conv</td><td class="num">0.498 ± 0.034</td><td class="num">0.270 ± 0.021</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.0</td><td>TransformerEncoderLayer</td><td class="num">0.504 ± 0.011</td><td class="num">0.253 ± 0.008</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.1</td><td>TransformerEncoderLayer</td><td class="num">0.500 ± 0.009</td><td class="num">0.253 ± 0.007</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.2</td><td>TransformerEncoderLayer</td><td class="num">0.506 ± 0.006</td><td class="num">0.252 ± 0.015</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.3</td><td>TransformerEncoderLayer</td><td class="num">0.502 ± 0.004</td><td class="num">0.245 ± 0.006</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.4</td><td>TransformerEncoderLayer</td><td class="num">0.504 ± 0.006</td><td class="num">0.262 ± 0.013</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.5</td><td>TransformerEncoderLayer</td><td class="num">0.501 ± 0.015</td><td class="num">0.255 ± 0.020</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.6</td><td>TransformerEncoderLayer</td><td class="num">0.508 ± 0.016</td><td class="num">0.259 ± 0.013</td><td class="num">3</td></tr>
+<tr><td class="mono">contextualizer.transformer_layers.7</td><td>TransformerEncoderLayer</td><td class="num">0.499 ± 0.017</td><td class="num">0.249 ± 0.016</td><td class="num">3</td></tr>
       </tbody>
     </table>
   </details>
@@ -763,7 +833,6 @@ bal_acc: 0.251</title></circle>
     overflow-x: auto;
   }
   .depth-chart { width: 100%; height: auto; display: block; min-width: 720px; }
-
   .depth-chart .fig-title {
     font-family: var(--f-display, 'DM Serif Display', serif);
     font-size: 30px; font-weight: 400; fill: var(--ink, #1f232b);
@@ -773,79 +842,26 @@ bal_acc: 0.251</title></circle>
     font-family: var(--f-body, 'DM Sans', sans-serif);
     font-size: 14.5px; fill: var(--ink-2, #353a44);
   }
-
   .depth-chart .axis-title {
     font-family: var(--f-display, 'DM Serif Display', serif);
     font-size: 15px; fill: var(--ink, #1f232b); letter-spacing: 0.02em;
   }
-  .depth-chart .ax-tick {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 12px; fill: #4a4639;
-  }
-  .depth-chart .ax-tick-x {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 13px; font-weight: 500; fill: var(--ink, #1f232b);
-  }
-  .depth-chart .ax-tick-x-faded {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 12px; fill: #9aa0a8;
-  }
-
-  .depth-chart .ref-label {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11px; fill: #353a44; letter-spacing: 0.03em;
-  }
-  .depth-chart .transition-label {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11px; fill: #1a1812; letter-spacing: 0.04em;
-  }
-  .depth-chart .zone-label {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11px; fill: #6a7280; letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .depth-chart .zone-sublabel {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 12px; fill: #6a7280; font-style: italic;
-  }
-
-  .depth-chart .peak-mono {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11.5px; fill: #c44a0e; letter-spacing: 0.03em;
-  }
-  .depth-chart .peak-em {
-    font-family: var(--f-display, 'DM Serif Display', serif);
-    font-style: italic; font-size: 15px; fill: #c44a0e;
-  }
-  .depth-chart .annot-mono {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11px; fill: #1f4d8a; letter-spacing: 0.02em;
-  }
-  .depth-chart .annot-em {
-    font-family: var(--f-display, 'DM Serif Display', serif);
-    font-style: italic; font-size: 13.5px; fill: #1f4d8a;
-  }
-  .depth-chart .annot-em-red {
-    font-family: var(--f-display, 'DM Serif Display', serif);
-    font-style: italic; font-size: 13.5px; fill: #a02b0a;
-  }
-
-  .depth-chart .band-title {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.10em; text-transform: uppercase;
-  }
-  .depth-chart .band-sub {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 12px; fill: #4a4639;
-  }
-  .depth-chart .caption {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 11px; fill: #6a7280; letter-spacing: 0.04em;
-  }
-  .depth-chart .caption-em {
-    font-family: var(--f-body, 'DM Sans', sans-serif);
-    font-size: 12px; fill: #6a7280; font-style: italic;
-  }
+  .depth-chart .ax-tick { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 12px; fill: #4a4639; }
+  .depth-chart .ax-tick-x { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 13px; font-weight: 500; fill: var(--ink, #1f232b); }
+  .depth-chart .ax-tick-x-faded { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 12px; fill: #9aa0a8; }
+  .depth-chart .ref-label { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11px; fill: #353a44; letter-spacing: 0.03em; }
+  .depth-chart .baseline-label { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 10.5px; fill: #066d54; letter-spacing: 0.02em; }
+  .depth-chart .transition-label { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11px; fill: #1a1812; letter-spacing: 0.04em; }
+  .depth-chart .zone-label { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11px; fill: #6a7280; letter-spacing: 0.06em; text-transform: uppercase; }
+  .depth-chart .zone-sublabel { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 12px; fill: #6a7280; font-style: italic; }
+  .depth-chart .peak-mono { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11.5px; fill: #c44a0e; letter-spacing: 0.03em; }
+  .depth-chart .peak-em { font-family: var(--f-display, 'DM Serif Display', serif); font-style: italic; font-size: 15px; fill: #c44a0e; }
+  .depth-chart .annot-mono { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11px; fill: #1f4d8a; letter-spacing: 0.02em; }
+  .depth-chart .annot-em { font-family: var(--f-display, 'DM Serif Display', serif); font-style: italic; font-size: 13.5px; fill: #1f4d8a; }
+  .depth-chart .band-title { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 12px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
+  .depth-chart .band-sub { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 12px; fill: #4a4639; }
+  .depth-chart .caption { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 11px; fill: #6a7280; letter-spacing: 0.04em; }
+  .depth-chart .caption-em { font-family: var(--f-body, 'DM Sans', sans-serif); font-size: 12px; fill: #6a7280; font-style: italic; }
 
   .depth-table-wrap { margin-top: 24px; }
   .depth-table-wrap summary {
@@ -856,24 +872,15 @@ bal_acc: 0.251</title></circle>
     text-transform: uppercase; letter-spacing: 0.1em;
   }
   .depth-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
-  .depth-table th, .depth-table td {
-    text-align: left; padding: 8px 10px;
-    border-bottom: 1px solid rgba(83, 88, 98, 0.12);
-  }
-  .depth-table th {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 10.5px; color: #6a7280;
-    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
-  }
-  .depth-table .mono {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    font-size: 12.5px; color: #1f232b;
-  }
-  .depth-table .num {
-    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
-    text-align: right; font-variant-numeric: tabular-nums;
-  }
+  .depth-table th, .depth-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid rgba(83, 88, 98, 0.12); }
+  .depth-table th { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 10.5px; color: #6a7280; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+  .depth-table .mono { font-family: var(--f-mono, 'IBM Plex Mono', monospace); font-size: 12.5px; color: #1f232b; }
+  .depth-table .num { font-family: var(--f-mono, 'IBM Plex Mono', monospace); text-align: right; font-variant-numeric: tabular-nums; }
+  .depth-table .baseline-row { background: rgba(6, 109, 84, 0.05); }
+  .depth-table .baseline-row .mono { color: #066d54; font-style: italic; }
 </style>
+
+
 
 
 
