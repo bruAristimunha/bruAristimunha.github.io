@@ -589,6 +589,295 @@
   </div>
 </div>
 
+
+<section class="depth-section">
+  <div class="depth-header">
+    <h2>Where does motor-imagery information live in BENDR?</h2>
+    <p class="depth-deck">
+      Linear-probe AUROC at every probeable layer of BENDR, in forward order.
+      Backbone is the pretrained 157M-parameter encoder frozen end-to-end;
+      only the linear probe head trains.  Read it like
+      <em>plot_decoding_over_time</em>, but the x-axis is model depth instead
+      of stimulus time, and the vertical rule marks the architectural transition
+      from conv encoder to transformer entry.
+    </p>
+  </div>
+
+  <div class="depth-figure">
+<svg viewBox="0 0 980 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AUROC vs probe-layer depth in BENDR" class="depth-chart">
+
+<defs>
+  <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(110, 116, 128, 0.42)" stroke-width="1.4"/>
+  </pattern>
+  <pattern id="hatch-soft" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(110, 116, 128, 0.18)" stroke-width="1.2"/>
+  </pattern>
+</defs>
+
+<line x1="70" y1="400.0" x2="956" y2="400.0" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="404.0" text-anchor="end" class="ax-label">0.40</text>
+<line x1="70" y1="356.6" x2="956" y2="356.6" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="360.6" text-anchor="end" class="ax-label">0.45</text>
+<line x1="70" y1="313.1" x2="956" y2="313.1" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="317.1" text-anchor="end" class="ax-label">0.50</text>
+<line x1="70" y1="269.7" x2="956" y2="269.7" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="273.7" text-anchor="end" class="ax-label">0.55</text>
+<line x1="70" y1="226.3" x2="956" y2="226.3" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="230.3" text-anchor="end" class="ax-label">0.60</text>
+<line x1="70" y1="182.9" x2="956" y2="182.9" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="186.9" text-anchor="end" class="ax-label">0.65</text>
+<line x1="70" y1="139.4" x2="956" y2="139.4" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="143.4" text-anchor="end" class="ax-label">0.70</text>
+<line x1="70" y1="96.0" x2="956" y2="96.0" stroke="rgba(83,88,98,0.10)" stroke-width="1"/>
+<text x="60" y="100.0" text-anchor="end" class="ax-label">0.75</text>
+<line x1="70" y1="313.1" x2="956" y2="313.1" stroke="#353a44" stroke-width="1.4" stroke-dasharray="6 5"/>
+<text x="950" y="305.1" text-anchor="end" class="ax-annot">chance · 0.50</text>
+<rect x="562.2" y="96" width="393.8" height="304" fill="url(#hatch-soft)"/>
+<text x="759.1" y="118" text-anchor="middle" class="zone-label">8 transformer blocks · unprobed</text>
+<text x="759.1" y="136" text-anchor="middle" class="zone-sublabel">sequence-first outputs require a custom aggregation</text>
+<line x1="365.3" y1="96" x2="365.3" y2="400" stroke="#1a1812" stroke-width="2"/>
+<text x="373.3" y="110" class="transition-label">conv → transformer entry</text>
+<line x1="562.2" y1="96" x2="562.2" y2="400" stroke="rgba(26, 24, 18, 0.4)" stroke-width="1" stroke-dasharray="2 4"/>
+<path d="M 94.61 186.42 L 143.83 184.54 L 193.06 205.67 L 242.28 188.54 L 291.50 254.45 L 340.72 309.76 L 389.94 279.56 L 439.17 310.35 L 488.39 229.06 L 537.61 347.66" fill="none" stroke="#1f4d8a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="94.61" cy="186.42" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_0
+class: Conv block
+AUROC: 0.646
+bal_acc: 0.351</title></circle>
+<circle cx="143.83" cy="184.54" r="6.5" fill="#c44a0e" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_1
+class: Conv block
+AUROC: 0.648
+bal_acc: 0.363</title></circle>
+<circle cx="193.06" cy="205.67" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_2
+class: Conv block
+AUROC: 0.624
+bal_acc: 0.347</title></circle>
+<circle cx="242.28" cy="188.54" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_3
+class: Conv block
+AUROC: 0.643
+bal_acc: 0.373</title></circle>
+<circle cx="291.50" cy="254.45" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_4
+class: Conv block
+AUROC: 0.568
+bal_acc: 0.320</title></circle>
+<circle cx="340.72" cy="309.76" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>encoder.encoder.Encoder_5
+class: Conv block
+AUROC: 0.504
+bal_acc: 0.260</title></circle>
+<circle cx="389.94" cy="279.56" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>contextualizer.input_conditioning.0
+class: Rearrange
+AUROC: 0.539
+bal_acc: 0.275</title></circle>
+<circle cx="439.17" cy="310.35" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>contextualizer.input_conditioning.1
+class: LayerNorm
+AUROC: 0.503
+bal_acc: 0.276</title></circle>
+<circle cx="488.39" cy="229.06" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>contextualizer.input_conditioning.3
+class: Linear
+AUROC: 0.597
+bal_acc: 0.334</title></circle>
+<circle cx="537.61" cy="347.66" r="4.5" fill="#1f4d8a" stroke="#fbf7ec" stroke-width="2.2"><title>contextualizer.relative_position.0
+class: Pos. ParametrizedConv1d
+AUROC: 0.460
+bal_acc: 0.251</title></circle>
+<line x1="143.8" y1="170.5" x2="143.8" y2="140.5" stroke="#c44a0e" stroke-width="1.3"/>
+<text x="143.8" y="132.5" text-anchor="middle" class="peak-annot">peak · AUROC 0.648 · bal_acc 0.363</text>
+<text x="143.8" y="112.5" text-anchor="middle" class="peak-annot-em">encoder.encoder.Encoder_1</text>
+<text x="22" y="248.0" text-anchor="middle" class="axis-title" transform="rotate(-90, 22, 248.0)">AUROC · test set</text>
+<line x1="94.6" y1="400" x2="94.6" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="94.6" y="424" text-anchor="middle" class="ax-label-x">Enc 0</text>
+<text x="94.6" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="143.8" y1="400" x2="143.8" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="143.8" y="424" text-anchor="middle" class="ax-label-x">Enc 1</text>
+<text x="143.8" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="193.1" y1="400" x2="193.1" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="193.1" y="424" text-anchor="middle" class="ax-label-x">Enc 2</text>
+<text x="193.1" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="242.3" y1="400" x2="242.3" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="242.3" y="424" text-anchor="middle" class="ax-label-x">Enc 3</text>
+<text x="242.3" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="291.5" y1="400" x2="291.5" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="291.5" y="424" text-anchor="middle" class="ax-label-x">Enc 4</text>
+<text x="291.5" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="340.7" y1="400" x2="340.7" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="340.7" y="424" text-anchor="middle" class="ax-label-x">Enc 5</text>
+<text x="340.7" y="440" text-anchor="middle" class="ax-sublabel-x">Conv block</text>
+<line x1="389.9" y1="400" x2="389.9" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="389.9" y="424" text-anchor="middle" class="ax-label-x">ic.0</text>
+<text x="389.9" y="440" text-anchor="middle" class="ax-sublabel-x">Rearrange</text>
+<line x1="439.2" y1="400" x2="439.2" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="439.2" y="424" text-anchor="middle" class="ax-label-x">ic.1</text>
+<text x="439.2" y="440" text-anchor="middle" class="ax-sublabel-x">LayerNorm</text>
+<line x1="488.4" y1="400" x2="488.4" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="488.4" y="424" text-anchor="middle" class="ax-label-x">ic.3</text>
+<text x="488.4" y="440" text-anchor="middle" class="ax-sublabel-x">Linear</text>
+<line x1="537.6" y1="400" x2="537.6" y2="408" stroke="#353a44" stroke-width="1"/>
+<text x="537.6" y="424" text-anchor="middle" class="ax-label-x">rel-pos</text>
+<text x="537.6" y="440" text-anchor="middle" class="ax-sublabel-x">Pos. ParametrizedConv1d</text>
+<line x1="586.8" y1="400" x2="586.8" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="586.8" y="424" text-anchor="middle" class="ax-label-x-faded">T0</text>
+<line x1="636.1" y1="400" x2="636.1" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="636.1" y="424" text-anchor="middle" class="ax-label-x-faded">T1</text>
+<line x1="685.3" y1="400" x2="685.3" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="685.3" y="424" text-anchor="middle" class="ax-label-x-faded">T2</text>
+<line x1="734.5" y1="400" x2="734.5" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="734.5" y="424" text-anchor="middle" class="ax-label-x-faded">T3</text>
+<line x1="783.7" y1="400" x2="783.7" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="783.7" y="424" text-anchor="middle" class="ax-label-x-faded">T4</text>
+<line x1="832.9" y1="400" x2="832.9" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="832.9" y="424" text-anchor="middle" class="ax-label-x-faded">T5</text>
+<line x1="882.2" y1="400" x2="882.2" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="882.2" y="424" text-anchor="middle" class="ax-label-x-faded">T6</text>
+<line x1="931.4" y1="400" x2="931.4" y2="408" stroke="rgba(83,88,98,0.3)" stroke-width="1"/>
+<text x="931.4" y="424" text-anchor="middle" class="ax-label-x-faded">T7</text>
+<rect x="72.0" y="464" width="291.3" height="56" fill="rgba(6, 109, 84, 0.10)" stroke="#066d54" stroke-width="1.2" rx="3"/>
+<text x="217.7" y="486" text-anchor="middle" class="band-title" fill="#066d54">Convolutional encoder</text>
+<text x="217.7" y="504" text-anchor="middle" class="band-sub">6 strided 1-D conv blocks · channel-first (B,C,T)</text>
+<rect x="367.3" y="464" width="192.9" height="56" fill="rgba(31, 77, 138, 0.10)" stroke="#1f4d8a" stroke-width="1.2" rx="3"/>
+<text x="463.8" y="486" text-anchor="middle" class="band-title" fill="#1f4d8a">Pre-transformer projection</text>
+<text x="463.8" y="504" text-anchor="middle" class="band-sub">Rearrange · LayerNorm · Linear · Pos. enc.</text>
+<rect x="564.2" y="464" width="389.8" height="56" fill="rgba(106, 114, 128, 0.10)" stroke="#6a7280" stroke-width="1.2" rx="3"/>
+<text x="759.1" y="486" text-anchor="middle" class="band-title" fill="#6a7280">Transformer</text>
+<text x="759.1" y="504" text-anchor="middle" class="band-sub">8 layers · sequence-first (T,B,D) · unprobed by aggregation=flatten</text>
+<text x="70" y="546" class="caption">BENDR (157.1M params, frozen) · BNCI 2014-001, 4-class motor imagery · 9 subjects · single seed (33) · linear probe head, val/loss early-stop</text>
+</svg>
+  </div>
+
+  <details class="depth-table-wrap">
+    <summary>show numbers</summary>
+    <table class="depth-table">
+      <thead>
+        <tr><th>probe_layer</th><th>module class</th><th>AUROC</th><th>bal_acc</th></tr>
+      </thead>
+      <tbody>
+<tr><td class="mono">encoder.encoder.Encoder_0</td><td>Conv block</td><td class="num">0.646</td><td class="num">0.351</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_1</td><td>Conv block</td><td class="num">0.648</td><td class="num">0.363</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_2</td><td>Conv block</td><td class="num">0.624</td><td class="num">0.347</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_3</td><td>Conv block</td><td class="num">0.643</td><td class="num">0.373</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_4</td><td>Conv block</td><td class="num">0.568</td><td class="num">0.320</td></tr>
+<tr><td class="mono">encoder.encoder.Encoder_5</td><td>Conv block</td><td class="num">0.504</td><td class="num">0.260</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.0</td><td>Rearrange</td><td class="num">0.539</td><td class="num">0.275</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.1</td><td>LayerNorm</td><td class="num">0.503</td><td class="num">0.276</td></tr>
+<tr><td class="mono">contextualizer.input_conditioning.3</td><td>Linear</td><td class="num">0.597</td><td class="num">0.334</td></tr>
+<tr><td class="mono">contextualizer.relative_position.0</td><td>Pos. ParametrizedConv1d</td><td class="num">0.460</td><td class="num">0.251</td></tr>
+      </tbody>
+    </table>
+  </details>
+</section>
+
+<style>
+  .depth-section { margin-top: 72px; }
+  .depth-header h2 {
+    font-family: var(--f-display, 'DM Serif Display', serif);
+    font-weight: 400; font-size: 32px; letter-spacing: -0.015em;
+    color: var(--ink, #1f232b); line-height: 1; margin: 0 0 14px;
+  }
+  .depth-deck {
+    font-size: 16px; color: var(--ink-2, #353a44);
+    max-width: 70ch; line-height: 1.55; margin-bottom: 24px;
+  }
+  .depth-deck em {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-style: normal; font-size: 13.5px;
+    background: rgba(31, 77, 138, 0.08);
+    color: var(--accent-deep, #224b8d);
+    padding: 1px 6px; border-radius: 2px;
+  }
+  .depth-figure {
+    background: #fbf7ec;
+    border: 1px solid rgba(83, 88, 98, 0.16);
+    border-radius: 4px;
+    padding: 18px;
+    overflow-x: auto;
+  }
+  .depth-chart { width: 100%; height: auto; display: block; }
+  .depth-chart .ax-label,
+  .depth-chart .ax-label-x,
+  .depth-chart .ax-sublabel-x,
+  .depth-chart .ax-label-x-faded,
+  .depth-chart .ax-annot,
+  .depth-chart .axis-title,
+  .depth-chart .transition-label,
+  .depth-chart .peak-annot,
+  .depth-chart .peak-annot-em,
+  .depth-chart .band-title,
+  .depth-chart .band-sub,
+  .depth-chart .zone-label,
+  .depth-chart .zone-sublabel,
+  .depth-chart .caption {
+    font-family: var(--f-body, 'DM Sans', sans-serif);
+  }
+  .depth-chart .ax-label { font-size: 12px; fill: #4a4639; }
+  .depth-chart .ax-label-x { font-size: 13px; fill: #1f232b; font-weight: 500; }
+  .depth-chart .ax-sublabel-x { font-size: 10.5px; fill: #6a7280; font-style: italic; }
+  .depth-chart .ax-label-x-faded { font-size: 11px; fill: #9aa0a8; }
+  .depth-chart .ax-annot { font-size: 11.5px; fill: #353a44; font-style: italic; }
+  .depth-chart .axis-title {
+    font-family: var(--f-display, 'DM Serif Display', serif);
+    font-size: 15px; fill: #1f232b; letter-spacing: 0.02em;
+  }
+  .depth-chart .transition-label {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 11px; fill: #1a1812; letter-spacing: 0.04em;
+  }
+  .depth-chart .peak-annot {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 11.5px; fill: #c44a0e; letter-spacing: 0.03em;
+  }
+  .depth-chart .peak-annot-em {
+    font-family: var(--f-display, 'DM Serif Display', serif);
+    font-style: italic;
+    font-size: 14px; fill: #c44a0e;
+  }
+  .depth-chart .band-title {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .depth-chart .band-sub {
+    font-size: 12px; fill: #4a4639;
+  }
+  .depth-chart .zone-label {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 11.5px; fill: #6a7280;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .depth-chart .zone-sublabel { font-size: 11.5px; fill: #6a7280; font-style: italic; }
+  .depth-chart .caption {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 11px; fill: #6a7280; letter-spacing: 0.04em;
+  }
+
+  .depth-table-wrap { margin-top: 24px; }
+  .depth-table-wrap summary {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 11.5px; color: var(--ink-3, #6a7280);
+    cursor: pointer; padding: 6px 0;
+    border-top: 1px solid rgba(83, 88, 98, 0.16);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .depth-table {
+    width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13.5px;
+  }
+  .depth-table th, .depth-table td {
+    text-align: left; padding: 8px 10px;
+    border-bottom: 1px solid rgba(83, 88, 98, 0.12);
+  }
+  .depth-table th {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 10.5px; color: #6a7280;
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+  }
+  .depth-table .mono {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    font-size: 12.5px; color: #1f232b;
+  }
+  .depth-table .num {
+    font-family: var(--f-mono, 'IBM Plex Mono', monospace);
+    text-align: right; font-variant-numeric: tabular-nums;
+  }
+</style>
+
 <footer>
   <span>
     <strong>neuralbench</strong> · DownstreamWrapper.probe_layer
