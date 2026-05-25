@@ -1196,14 +1196,17 @@ render();
   <div class="phase4-header">
     <h2>NeuralBench-EEG-Core — Cross-FM evaluation</h2>
     <p class="phase4-lede">
-      Layer-wise linear probes on six EEG foundation models across nine tasks
-      (NeuralBench-EEG-Core v0). 51 of 54 (FM&times;task) cells, 1,183 individual
-      experiments (10&ndash;11 probe layers &times; 3 seeds per cell). The three
-      missing cells are LaBraM &times; {mental_arithmetic, mental_workload,
-      motor_execution}, where the dataset's channel names
-      (<code>AFF5H</code>, <code>FFC5H</code>, etc.) fall outside
-      <code>LABRAM_CHANNEL_ORDER</code> &mdash; fixable with
-      <code>InterpolatedLaBraM</code>, not a sweep failure.
+      Layer-wise linear probes on six EEG foundation models across the
+      <strong>nine tasks with public-data YAMLs</strong> in
+      <code>facebookresearch/neuroai</code>. The Core spec lists 36 EEG tasks,
+      but only 9 ship dataset configs in the public release &mdash; the other
+      27 require manual access to gated corpora (TUH EEG, THINGS-images, etc.).
+      So &ldquo;NeuralBench-EEG-Core v1.0&rdquo; here is the full public-data
+      sweep: 6 FMs &times; 9 tasks &times; 10&ndash;11 probe layers &times; 3 seeds.
+      Three (FM&times;task) cells are structurally impossible: LaBraM &times;
+      {mental_arithmetic, mental_workload, motor_execution}, where the
+      dataset has channels not in <code>LABRAM_CHANNEL_ORDER</code> (only
+      fixable with <code>InterpolatedLaBraM</code>).
     </p>
   </div>
 
