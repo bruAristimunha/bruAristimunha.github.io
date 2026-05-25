@@ -301,14 +301,16 @@ def _panel_per_fm(rows, fm, width=480, height=300):
 # Story 2: Master view — all 6 FMs on one normalised-depth axis
 # ---------------------------------------------------------------------------
 
-def master_overlay(rows, width=920, height=420):
+def master_overlay(rows, width=960, height=460):
     """All six FMs on a shared 0..1 depth axis with their mean curves.
 
-    Direct labels per FM. The point of this chart is the ranking by AUROC
-    AND the depth where each FM peaks — both visible at a glance.
+    Each curve carries an inline annotation at its best point with a short
+    leader line that doesn't cross other curves. Labels for the FM name and
+    final-output value sit at the right edge, vertically stacked.
     """
     by_fm = {}
     best_per_fm = {}
+    end_means = {}  # mean AUROC at the LAST point (depth=1, usually null/output)
     for fm in FM_ORDER:
         layer_pts = defaultdict(list)
         for r in rows:
@@ -330,8 +332,12 @@ def master_overlay(rows, width=920, height=420):
         by_fm[fm] = curve
         bi = max(range(len(means)), key=lambda i: means[i])
         best_per_fm[fm] = (curve[bi][0], means[bi], curve[bi][2])
+        end_means[fm] = means[-1]
 
-    margin = {"top": 70, "right": 220, "bottom": 70, "left": 64}
+    # Sorted by best AUROC so the top-ranked FM gets the top right-edge slot.
+    fm_sorted = sorted(by_fm.keys(), key=lambda f: -best_per_fm[f][1])
+
+    margin = {"top": 80, "right": 200, "bottom": 78, "left": 64}
     plot_w = width - margin["left"] - margin["right"]
     plot_h = height - margin["top"] - margin["bottom"]
     y_min, y_max = 0.45, 0.85
@@ -339,8 +345,9 @@ def master_overlay(rows, width=920, height=420):
     def x_of(f): return margin["left"] + f * plot_w
 
     parts = [f'<svg viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, Helvetica, sans-serif">']
-    parts.append(f'<text x="{margin["left"]}" y="28" font-size="20" font-weight="700" fill="#1f232b" font-family="DM Serif Display, serif">REVE peaks deepest; BENDR\'s best is at the input</text>')
-    parts.append(f'<text x="{margin["left"]}" y="48" font-size="12" fill="#353a44">Mean AUROC across the 9 NeuralBench-EEG-Core tasks, plotted on each model\'s normalised depth axis (0 = input, 1 = output).</text>')
+    # Headline: assertion that matches the actual data
+    parts.append(f'<text x="{margin["left"]}" y="32" font-size="22" font-weight="700" fill="#1f232b" font-family="DM Serif Display, serif">Optimal probe depth varies by FM — no universal layer</text>')
+    parts.append(f'<text x="{margin["left"]}" y="54" font-size="12.5" fill="#353a44">BENDR peaks at the input, LaBraM at the output, REVE and CBraMod near mid-depth, LUNA close to the input. Mean AUROC across the 9 tasks; each curve uses its own model\'s normalised depth axis.</text>')
 
     # Y ticks
     for v in (0.5, 0.6, 0.7, 0.8):
@@ -348,48 +355,58 @@ def master_overlay(rows, width=920, height=420):
         parts.append(f'<line x1="{margin["left"]}" y1="{y}" x2="{margin["left"] + plot_w}" y2="{y}" stroke="#eaecef" stroke-width="0.6"/>')
         parts.append(f'<text x="{margin["left"] - 8}" y="{y + 3}" text-anchor="end" font-size="11" fill="#7c828a">{v:.1f}</text>')
     parts.append(f'<line x1="{margin["left"]}" y1="{y_of(0.5)}" x2="{margin["left"] + plot_w}" y2="{y_of(0.5)}" stroke="#9aa0a8" stroke-width="0.8" stroke-dasharray="3,3"/>')
-    parts.append(f'<text x="{margin["left"] + plot_w - 4}" y="{y_of(0.5) - 4}" text-anchor="end" font-size="10.5" fill="#9aa0a8" font-style="italic">chance</text>')
+    parts.append(f'<text x="{margin["left"] + 4}" y="{y_of(0.5) + 12}" font-size="10.5" fill="#9aa0a8" font-style="italic">chance</text>')
 
-    # X axis label + ticks
+    # X axis
     parts.append(f'<line x1="{margin["left"]}" y1="{margin["top"] + plot_h}" x2="{margin["left"] + plot_w}" y2="{margin["top"] + plot_h}" stroke="#5b616b"/>')
     for f in (0.0, 0.25, 0.5, 0.75, 1.0):
         x = x_of(f)
         parts.append(f'<line x1="{x:.1f}" y1="{margin["top"] + plot_h}" x2="{x:.1f}" y2="{margin["top"] + plot_h + 4}" stroke="#5b616b"/>')
         parts.append(f'<text x="{x:.1f}" y="{margin["top"] + plot_h + 18}" text-anchor="middle" font-size="11" fill="#5b616b">{f:.2f}</text>')
-    parts.append(f'<text x="{x_of(0.5):.1f}" y="{margin["top"] + plot_h + 38}" text-anchor="middle" font-size="12" fill="#353a44">depth fraction within each FM (0 = input → 1 = output)</text>')
+    # Axis label with input/output anchors
+    parts.append(f'<text x="{x_of(0.0):.1f}" y="{margin["top"] + plot_h + 40}" text-anchor="start" font-size="11" fill="#353a44">input</text>')
+    parts.append(f'<text x="{x_of(0.5):.1f}" y="{margin["top"] + plot_h + 40}" text-anchor="middle" font-size="11.5" fill="#353a44">depth fraction within each FM\'s architecture</text>')
+    parts.append(f'<text x="{x_of(1.0):.1f}" y="{margin["top"] + plot_h + 40}" text-anchor="end" font-size="11" fill="#353a44">output</text>')
 
     # Y axis label
-    parts.append(f'<text x="22" y="{margin["top"] + plot_h / 2}" font-size="12" fill="#353a44" transform="rotate(-90 22 {margin["top"] + plot_h / 2})" text-anchor="middle">mean AUROC across tasks</text>')
+    parts.append(f'<text x="22" y="{margin["top"] + plot_h / 2}" font-size="11.5" fill="#353a44" transform="rotate(-90 22 {margin["top"] + plot_h / 2})" text-anchor="middle">mean AUROC across the 9 tasks</text>')
 
-    # Each FM curve (sorted by best AUROC so labels stack nicely)
-    fm_sorted = sorted(by_fm.keys(), key=lambda f: -best_per_fm[f][1])
-    label_y_taken = []  # avoid overlap
-
+    # Plot all curves first (so callout dots render on top later)
     for fm in fm_sorted:
         curve = by_fm[fm]
-        # path
         path = " ".join(f"{'M' if i == 0 else 'L'}{x_of(f):.1f},{y_of(m):.1f}" for i, (f, m, _) in enumerate(curve))
-        parts.append(f'<path d="{path}" fill="none" stroke="{PAL[fm]}" stroke-width="2.2" opacity="0.95"/>')
+        parts.append(f'<path d="{path}" fill="none" stroke="{PAL[fm]}" stroke-width="2.2" opacity="0.92"/>')
         for f, m, _ in curve:
             parts.append(f'<circle cx="{x_of(f):.1f}" cy="{y_of(m):.1f}" r="2.5" fill="{PAL[fm]}"/>')
 
-        # callout: dot + label at the BEST point
+    # Right-side stacked labels — sorted by best AUROC, top-down.
+    # Each label sits at a fixed slot; no connector line crosses the plot.
+    label_x = margin["left"] + plot_w + 18
+    n = len(fm_sorted)
+    slot_h = min(48, plot_h / max(n, 1))
+    top_slot = margin["top"] + 6
+    for i, fm in enumerate(fm_sorted):
+        bf, bm, bname = best_per_fm[fm]
+        slot_y = top_slot + i * slot_h + slot_h * 0.5
+        # FM color swatch (small line segment)
+        parts.append(f'<line x1="{label_x - 14:.1f}" y1="{slot_y:.1f}" x2="{label_x - 4:.1f}" y2="{slot_y:.1f}" stroke="{PAL[fm]}" stroke-width="3"/>')
+        parts.append(f'<text x="{label_x:.1f}" y="{slot_y - 2:.1f}" font-size="13" font-weight="700" fill="#1f232b">{FM_LABEL[fm]} <tspan fill="#353a44" font-weight="400">{bm:.3f}</tspan></text>')
+        parts.append(f'<text x="{label_x:.1f}" y="{slot_y + 13:.1f}" font-size="10.5" fill="#7c828a" font-family="IBM Plex Mono, monospace">best: {short_label(bname)} (depth {bf:.2f})</text>')
+
+    # In-plot best-point markers — halo + tiny short label NEXT to dot, no diagonal connector.
+    for fm in fm_sorted:
         bf, bm, bname = best_per_fm[fm]
         bx, by_ = x_of(bf), y_of(bm)
-        parts.append(f'<circle cx="{bx:.1f}" cy="{by_:.1f}" r="6.5" fill="none" stroke="{PAL[fm]}" stroke-width="1.6"/>')
-
-        # right-side legend block — sorted by AUROC so the strongest is at top
-        # we place each FM's label aligned with its best y, then nudge to avoid overlap
-        legend_x = margin["left"] + plot_w + 16
-        target_y = by_
-        for ty in label_y_taken:
-            if abs(target_y - ty) < 22: target_y = ty + 22
-        label_y_taken.append(target_y)
-        # connector
-        parts.append(f'<line x1="{bx:.1f}" y1="{by_:.1f}" x2="{legend_x - 6:.1f}" y2="{target_y:.1f}" stroke="{PAL[fm]}" stroke-width="1" opacity="0.5"/>')
-        parts.append(f'<circle cx="{legend_x - 4:.1f}" cy="{target_y:.1f}" r="3.5" fill="{PAL[fm]}"/>')
-        parts.append(f'<text x="{legend_x + 4:.1f}" y="{target_y - 1:.1f}" font-size="12.5" font-weight="600" fill="#1f232b">{FM_LABEL[fm]}  <tspan fill="#5b616b" font-weight="400">{bm:.3f}</tspan></text>')
-        parts.append(f'<text x="{legend_x + 4:.1f}" y="{target_y + 12:.1f}" font-size="10.5" fill="#7c828a" font-family="IBM Plex Mono, monospace">{short_label(bname)}  ·  depth {bf:.2f}</text>')
+        parts.append(f'<circle cx="{bx:.1f}" cy="{by_:.1f}" r="6.5" fill="none" stroke="{PAL[fm]}" stroke-width="1.8"/>')
+        # short FM tag right next to the halo, alternating above/below to reduce collisions
+        tag_above = (best_per_fm[fm][1] > 0.65)  # high-AUROC FMs labeled above; low-AUROC below
+        ty = by_ - 9 if tag_above else by_ + 16
+        anchor = "middle"
+        tx = bx
+        # Edge-protect
+        if bf < 0.08: anchor, tx = "start", bx + 4
+        elif bf > 0.92: anchor, tx = "end", bx - 4
+        parts.append(f'<text x="{tx:.1f}" y="{ty:.1f}" text-anchor="{anchor}" font-size="11" font-weight="600" fill="{PAL[fm]}">{FM_LABEL[fm]}</text>')
 
     parts.append('</svg>')
     return "\n".join(parts)
@@ -471,8 +488,16 @@ def best_layer_strip(rows, width=920, height=320):
 # Story 4: Per-FM heatmap (layer × task) — for drilling down
 # ---------------------------------------------------------------------------
 
-def heatmap_panel(rows, fm, width=560, height=360):
-    by_lt = {}
+def heatmap_panel(rows, fm, width=560, height=380):
+    """Per-FM (layer × task) heatmap.
+
+    Each cell records (mean AUROC, n_seeds). Cells with fewer than 3 seeds
+    are drawn with a diagonal hatch to make incomplete data visible at a
+    glance. Empty cells (no rows at all) are left blank so the chart never
+    over-claims coverage.
+    """
+    by_lt = {}    # (depth, name, task) -> auroc
+    by_lt_n = {}  # (depth, name, task) -> n_seeds
     layer_set = set()
     tasks_present = set()
     for r in rows:
@@ -482,24 +507,35 @@ def heatmap_panel(rows, fm, width=560, height=360):
         layer_set.add((d, r["probe_layer"]))
         tasks_present.add(r["task"])
         by_lt[(d, r["probe_layer"], r["task"])] = r["test/auroc"]
+        by_lt_n[(d, r["probe_layer"], r["task"])] = r.get("n_seeds", 1)
 
     layers = sorted(layer_set, key=_layer_sort_key)
     if not layers:
         return f"<!-- no data for {fm} -->"
 
-    # Order tasks by FM's mean AUROC (best first) so the pattern emerges
-    task_mean = {t: statistics.mean([by_lt[(d, n, t)] for (d, n) in layers if (d, n, t) in by_lt])
-                 for t in tasks_present}
-    task_order = sorted(tasks_present, key=lambda t: -task_mean[t])
+    # Order tasks by FM's mean AUROC (best first) — ignore missing cells
+    task_mean = {}
+    for t in tasks_present:
+        vals = [by_lt[(d, n, t)] for (d, n) in layers if (d, n, t) in by_lt]
+        if vals:
+            task_mean[t] = statistics.mean(vals)
+    task_order = sorted(task_mean.keys(), key=lambda t: -task_mean[t])
+
+    # Coverage stats — tell the user up front
+    total_cells = len(layers) * len(task_order)
+    filled = sum(1 for L in layers for t in task_order if (L[0], L[1], t) in by_lt)
+    full_seed = sum(1 for L in layers for t in task_order
+                    if by_lt_n.get((L[0], L[1], t), 0) >= 3)
+    coverage_pct = filled / total_cells * 100 if total_cells else 0
 
     nT = len(task_order)
     nL = len(layers)
-    margin = {"top": 56, "right": 16, "bottom": 84, "left": 86}
-    cellw = (width - margin["left"] - margin["right"]) / nT
-    cellh = (height - margin["top"] - margin["bottom"]) / nL
+    margin = {"top": 64, "right": 18, "bottom": 96, "left": 88}
+    cellw = (width - margin["left"] - margin["right"]) / max(nT, 1)
+    cellh = (height - margin["top"] - margin["bottom"]) / max(nL, 1)
 
     def col(v):
-        if v is None: return "#eef0f3"
+        if v is None: return "#f3f4f6"
         t = max(0.0, min(1.0, (v - 0.5) / 0.45))
         r0, g0, b0 = int(PAL[fm][1:3], 16), int(PAL[fm][3:5], 16), int(PAL[fm][5:7], 16)
         mr = int(250 - (250 - r0) * t)
@@ -507,24 +543,56 @@ def heatmap_panel(rows, fm, width=560, height=360):
         mb = int(250 - (250 - b0) * t)
         return f"rgb({mr},{mg},{mb})"
 
-    # find global best for this FM
     best_v = max((by_lt[(d, n, t)] for (d, n) in layers for t in task_order if (d, n, t) in by_lt), default=0)
 
     parts = [f'<svg viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, Helvetica, sans-serif">']
-    parts.append(f'<text x="{margin["left"]}" y="22" font-size="15" font-weight="700" fill="#1f232b">{FM_LABEL[fm]}</text>')
-    parts.append(f'<text x="{margin["left"]}" y="40" font-size="11" fill="#353a44">probe layer (rows) × task (cols, sorted by mean AUROC). Best cell: {best_v:.3f}.</text>')
+    # Hatch pattern for partial-seed cells
+    pid = f"hatch_{fm}"
+    parts.append(f'<defs><pattern id="{pid}" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)"><rect width="4" height="4" fill="transparent"/><line x1="0" y1="0" x2="0" y2="4" stroke="#9aa0a8" stroke-width="0.8" opacity="0.45"/></pattern></defs>')
+
+    parts.append(f'<text x="{margin["left"]}" y="22" font-size="16" font-weight="700" fill="#1f232b">{FM_LABEL[fm]}</text>')
+    parts.append(f'<text x="{margin["left"]}" y="40" font-size="11" fill="#353a44">probe layer × task. Cell = mean AUROC; hatched = &lt; 3 seeds; blank = no run.</text>')
+    parts.append(f'<text x="{margin["left"]}" y="55" font-size="10.5" fill="#7c828a">coverage: {filled}/{total_cells} cells ({coverage_pct:.0f}%), of which {full_seed} have the full 3-seed grid · best cell {best_v:.3f}</text>')
+
+    # Track best cell coords for highlight
+    best_cell = None
+    if best_v > 0:
+        for (d, lname) in layers:
+            for task in task_order:
+                if by_lt.get((d, lname, task)) == best_v:
+                    best_cell = (d, lname, task)
+                    break
+            if best_cell: break
 
     for li, (d, lname) in enumerate(layers):
         y = margin["top"] + li * cellh
         for ti, task in enumerate(task_order):
             x = margin["left"] + ti * cellw
             v = by_lt.get((d, lname, task))
-            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{cellw:.1f}" height="{cellh:.1f}" fill="{col(v)}" stroke="#fff" stroke-width="0.5"/>')
-            if v is not None and cellw > 30 and cellh > 14:
+            n = by_lt_n.get((d, lname, task), 0)
+            if v is None:
+                # truly empty — leave as a very light tile, no value
+                parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{cellw:.1f}" height="{cellh:.1f}" fill="#f6f7f9" stroke="#fff" stroke-width="0.6"/>')
+                continue
+            # Filled cell
+            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{cellw:.1f}" height="{cellh:.1f}" fill="{col(v)}" stroke="#fff" stroke-width="0.6"/>')
+            # Hatch overlay for partial seeds
+            if n < 3:
+                parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{cellw:.1f}" height="{cellh:.1f}" fill="url(#{pid})"/>')
+            if cellw > 28 and cellh > 14:
                 txt_color = "#fff" if v > 0.72 else "#1f232b"
                 parts.append(f'<text x="{x + cellw/2:.1f}" y="{y + cellh/2 + 3:.1f}" text-anchor="middle" font-size="9.5" fill="{txt_color}" font-variant-numeric="tabular-nums">{v:.2f}</text>')
         # row label
         parts.append(f'<text x="{margin["left"] - 6:.1f}" y="{margin["top"] + li * cellh + cellh / 2 + 3:.1f}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#353a44">{short_label(lname)}</text>')
+
+    # Highlight best cell with a stroke
+    if best_cell is not None:
+        d, lname, task = best_cell
+        li = next(i for i, (dd, nn) in enumerate(layers) if dd == d and nn == lname)
+        ti = task_order.index(task)
+        x = margin["left"] + ti * cellw
+        y = margin["top"] + li * cellh
+        parts.append(f'<rect x="{x + 1:.1f}" y="{y + 1:.1f}" width="{cellw - 2:.1f}" height="{cellh - 2:.1f}" fill="none" stroke="#1f232b" stroke-width="1.6"/>')
 
     # column labels (rotated)
     for ti, task in enumerate(task_order):
