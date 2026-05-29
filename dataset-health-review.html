@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dataset health review · NeuralBench-EEG · Bruno Aristimunha</title>
+<meta name="description" content="A multi-dimensional health review of the NeuralBench-EEG core datasets: subjects, license, redistribution, access, and citations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper-1:#f8f8f6; --paper-2:#f1f1ee;
+  --paper:linear-gradient(180deg,var(--paper-1) 0%,var(--paper-2) 100%);
+  --ink:#1f232b; --ink-2:#353a44; --ink-3:#6a7280; --ink-4:#9aa0a8;
+  --rule:rgba(83,88,98,.18); --rule-strong:rgba(43,48,58,.4);
+  --accent:#4d86f7; --accent-deep:#224b8d;
+  --keep:#066d54; --keep-soft:rgba(6,109,84,.12);
+  --review:#b5710a; --review-soft:rgba(181,113,10,.12);
+  --replace:#c44a0e; --replace-soft:rgba(196,74,14,.12);
+  --f-display:'DM Serif Display',Georgia,serif;
+  --f-body:'DM Sans','Helvetica Neue',sans-serif;
+  --f-mono:'IBM Plex Mono',Menlo,monospace;
+  --shadow:0 1px 0 rgba(0,0,0,.02),0 22px 48px -30px rgba(31,35,43,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+a{color:var(--accent-deep);text-decoration:none}
+a:hover{text-decoration:underline}
+.mono{font-family:var(--f-mono)}
+
+header{padding:60px 0 28px}
+.kick{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-deep);font-weight:600}
+h1{font-family:var(--f-display);font-size:clamp(38px,6vw,68px);line-height:1.02;margin:14px 0 10px;letter-spacing:-.01em;max-width:18ch}
+.lede{font-size:17px;color:var(--ink-2);max-width:64ch;margin:0}
+.byline{font-family:var(--f-mono);font-size:12px;color:var(--ink-4);margin-top:14px}
+
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:13px;overflow:hidden;margin:30px 0}
+.stat{background:var(--paper-1);padding:18px 16px}
+.stat .n{font-family:var(--f-display);font-size:clamp(28px,3.6vw,42px);line-height:1}
+.stat .l{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:6px;display:block}
+.stat.k .n{color:var(--keep)} .stat.r .n{color:var(--review)} .stat.x .n{color:var(--replace)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+section{padding:40px 0;border-top:1px solid var(--rule)}
+.sn{font-family:var(--f-mono);font-size:12px;color:var(--accent-deep);font-weight:600}
+h2{font-family:var(--f-display);font-size:30px;margin:6px 0 4px;letter-spacing:-.01em}
+.sub{color:var(--ink-3);max-width:66ch;margin:0 0 24px}
+
+/* dimension cards */
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.dim{border:1px solid var(--rule);border-radius:11px;padding:13px 15px;background:var(--paper-1)}
+.dim b{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.dim p{margin:6px 0 0;font-size:13px;color:var(--ink-3);line-height:1.45}
+
+/* scatter */
+.plotcard{border:1px solid var(--rule);border-radius:14px;background:var(--paper-1);box-shadow:var(--shadow);padding:22px 20px 14px}
+.plotwrap{position:relative;width:100%}
+svg.scatter{width:100%;height:auto;display:block;font-family:var(--f-mono)}
+.axlab{fill:var(--ink-3);font-size:11px}
+.gridln{stroke:var(--rule);stroke-width:1}
+.pt{cursor:pointer;transition:r .15s}
+.ptlab{fill:var(--ink-2);font-size:10px;font-family:var(--f-mono)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-family:var(--f-mono);font-size:11.5px;padding:8px 10px;border-radius:8px;opacity:0;transition:opacity .12s;max-width:240px;z-index:10;line-height:1.4}
+.leg{display:flex;flex-wrap:wrap;gap:14px 20px;margin-top:14px;font-size:12.5px}
+.leg span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:50%;flex:none}
+.ring{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink-3);background:transparent;flex:none}
+
+/* verdict bar */
+.vbar{display:flex;height:40px;border-radius:9px;overflow:hidden;border:1px solid var(--rule-strong);margin:0 0 8px}
+.vseg{display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--f-mono);font-size:12.5px;font-weight:600;transition:flex-basis .8s cubic-bezier(.7,0,.2,1);flex-basis:0}
+
+/* controls + table */
+.ctrls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 14px}
+.seg-ctrl{display:flex;border:1px solid var(--rule-strong);border-radius:9px;overflow:hidden}
+.seg-ctrl button{font-family:var(--f-mono);font-size:12px;padding:8px 13px;border:0;background:var(--paper-1);cursor:pointer;color:var(--ink-3);border-right:1px solid var(--rule)}
+.seg-ctrl button:last-child{border-right:0}
+.seg-ctrl button[aria-pressed=true]{background:var(--ink);color:#fff}
+.search{flex:1;min-width:180px;position:relative}
+.search input{width:100%;padding:10px 12px;border:1px solid var(--rule-strong);border-radius:9px;background:#fff;font-family:var(--f-mono);font-size:13px}
+.search input:focus{outline:none;border-color:var(--accent)}
+.tcard{border:1px solid var(--rule);border-radius:13px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:var(--ink-3);padding:12px 14px;background:var(--paper-2);border-bottom:1px solid var(--rule-strong);cursor:pointer;white-space:nowrap}
+thead th:hover{color:var(--accent-deep)}
+tbody tr{border-bottom:1px solid var(--rule)}
+tbody tr:hover{background:var(--paper-1)}
+tbody tr:last-child{border-bottom:0}
+td{padding:11px 14px;vertical-align:middle}
+.dsname{font-family:var(--f-mono);font-weight:500;white-space:nowrap}
+.tasklab{font-weight:600}
+.cat{font-family:var(--f-mono);font-size:10px;color:var(--ink-4);display:block;margin-top:2px}
+.num{font-family:var(--f-mono);text-align:right;color:var(--ink-2);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.v-keep{background:var(--keep-soft);color:var(--keep)} .v-review{background:var(--review-soft);color:var(--review)} .v-replace{background:var(--replace-soft);color:var(--replace)}
+.licdot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:middle}
+.rd{font-family:var(--f-mono);font-size:11px}
+.rd-yes{color:var(--keep)} .rd-conditional{color:var(--review)} .rd-no{color:var(--replace)} .rd-unknown{color:var(--ink-4)}
+.acc{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.acc.hard{color:var(--replace)} .acc.moderate{color:var(--review)}
+
+/* flagged cards */
+.flags{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.fcard{border:1px solid var(--rule);border-left-width:4px;border-radius:11px;padding:16px 17px;background:var(--paper-1)}
+.fcard.replace{border-left-color:var(--replace)} .fcard.review{border-left-color:var(--review)}
+.fcard .ft{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fcard .fl{font-weight:700;font-size:15px}
+.fcard .fds{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);margin:2px 0 9px}
+.fcard .fwhy{font-family:var(--f-mono);font-size:11px;color:var(--ink-2);margin-bottom:9px;display:flex;flex-wrap:wrap;gap:5px}
+.fcard .fwhy b{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:2px 7px;font-weight:500}
+.fcard .alt{font-size:13px;color:var(--ink-2);line-height:1.5}
+.fcard .alt::before{content:"→ ";color:var(--accent);font-weight:700}
+
+footer{padding:36px 0 70px;color:var(--ink-3);font-size:12.5px;border-top:1px solid var(--rule)}
+footer code{font-family:var(--f-mono);background:var(--paper-2);padding:1px 5px;border-radius:4px}
+.fade{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kick fade">NeuralBench-EEG · dataset audit</div>
+  <h1 class="fade" style="animation-delay:.05s">Is every core dataset a <em>good</em> dataset?</h1>
+  <p class="lede fade" style="animation-delay:.12s">A multi-dimensional health review of the <strong>36 NeuralBench-EEG core datasets</strong> — judged on cohort size, license, redistribution rights, access friction, and community adoption. Not every benchmark anchor holds up; some should be swapped.</p>
+  <div class="byline fade" style="animation-delay:.18s">Bruno Aristimunha · licenses cross-checked against the neuroai registry · taxonomy per NeuralBench Table S1</div>
+</header>
+
+<div class="stats fade" style="animation-delay:.2s" id="stats"></div>
+
+<section>
+  <div class="sn">01</div><h2>How each dataset was judged</h2>
+  <p class="sub">Five dimensions, each independently verifiable. A dataset is flagged when it fails several at once — a small cohort under a restrictive, non-redistributable license behind a data-use agreement is a poor benchmark anchor, however famous.</p>
+  <div class="dims" id="dims"></div>
+</section>
+
+<section>
+  <div class="sn">02</div><h2>The landscape</h2>
+  <p class="sub">Each core dataset by <strong>cohort size</strong> (x, log) and <strong>citations</strong> of its paper (y, log). Colour = verdict; a hollow ring = <strong>cannot be redistributed</strong>. The healthy zone is lower-right (many subjects, openly shareable); the flagged datasets cluster left (tiny cohorts) or are ringed (locked).</p>
+  <div class="plotcard">
+    <div class="plotwrap"><div class="tip" id="tip"></div><svg class="scatter" id="scatter" viewBox="0 0 920 460"></svg></div>
+    <div class="leg" id="leg"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sn">03</div><h2>Verdicts</h2>
+  <div class="vbar" id="vbar"></div>
+  <p class="sub" style="margin-top:10px">Sortable, by NeuralBench Table S1 category. Filter by verdict.</p>
+  <div class="ctrls">
+    <div class="seg-ctrl" id="vfilter">
+      <button data-v="all" aria-pressed="true">all</button>
+      <button data-v="keep">keep</button>
+      <button data-v="review">review</button>
+      <button data-v="replace">replace</button>
+    </div>
+    <label class="search"><input id="q" placeholder="search task or dataset…" autocomplete="off"></label>
+  </div>
+  <div class="tcard"><table>
+    <thead><tr>
+      <th data-k="label">Task / dataset</th>
+      <th data-k="subjects">Subjects ↕</th>
+      <th data-k="license">License</th>
+      <th data-k="redist">Re-dist ↕</th>
+      <th data-k="access_ease">Access ↕</th>
+      <th data-k="cites">Citations ↕</th>
+      <th data-k="verdict">Verdict ↕</th>
+    </tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sn">04</div><h2>Flagged — and what to do</h2>
+  <p class="sub">The 11 datasets that warrant a second look, each with the specific concern and a concrete alternative or context note.</p>
+  <div class="flags" id="flags"></div>
+</section>
+
+<footer>
+  <p><strong>Method.</strong> Subjects, source URLs and licenses extracted from the <code>neuroai</code> / <code>neuralfetch</code> study registry (91/94 licenses verified directly; FACED corrected to CC-BY). Citations from <a href="https://openalex.org">OpenAlex</a> (of the dataset's associated paper — note the MNE-sample count is the MNE-Python <em>software</em> paper, not the data). Access class inferred from the host (OpenNeuro / Zenodo / OSF = open; Synapse = account; TUH = data-use agreement). Categories follow <strong>NeuralBench Table S1</strong> (Banville et al., 2026). Verdicts are heuristic — a prompt for review, not a final ruling.</p>
+</footer>
+</div>
+
+<script id="d" type="application/json">{"core":[{"task":"age","label":"Age","category":"Phenotyping","dataset":"Shirazi2024Hbn","subjects":3146,"license":"CC-BY-SA-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 attribution + share-alike","access":"Open \u00b7 OpenNeuro","access_ease":"easy","cites":0,"year":2024,"url":"https://openneuro.org/datasets/ds005516/versions/1.0.1/download","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"artifact","label":"Artifact detection","category":"Misc","dataset":"Hamid2020Tuar","subjects":213,"license":"Custom","lfam":"restricted","redist":"no","redist_note":"Custom terms / data-use agreement \u2014 obtain from source, no redistribution","access":"DUA application \u00b7 TUH","access_ease":"hard","cites":29,"year":2020,"url":"https://isip.piconepress.com/projects/nedc/data/tuh_eeg/tuh_eeg_artifact/","verdict":"replace","flags":["no redistribution","DUA-gated access","restrictive license"],"src":"repo","alt":"TUH Artifacts \u2014 DUA-gated, non-redistributable. Consider an open artifact-annotated set if redistribution matters.","cite_caveat":false},{"task":"audiovisual_stimulus","label":"Audiovisual","category":"Evoked Responses","dataset":"Mne2013SampleEeg","subjects":1,"license":"BSD-3-Clause (MNE sample)","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Bundled \u00b7 MNE demo","access_ease":"easy","cites":3936,"year":2013,"url":"https://mne.tools/stable/overview/datasets_index.html#sample","verdict":"replace","flags":["demo-scale (N<5)"],"src":"supplied","alt":"1-subject MNE-Python software demo (the 3,936 citations are the MNE-Python paper, not the data). Replace with a real auditory+visual evoked dataset (e.g. an OpenNeuro AEP/VEP oddball).","cite_caveat":true},{"task":"clinical_event","label":"Clinical event","category":"Clinical","dataset":"Harati2015Tuev","subjects":370,"license":"Custom","lfam":"restricted","redist":"no","redist_note":"Custom terms / data-use agreement \u2014 obtain from source, no redistribution","access":"DUA application \u00b7 TUH","access_ease":"hard","cites":47,"year":2015,"url":"https://isip.piconepress.com/projects/nedc/data/tuh_eeg/tuh_eeg_events/","verdict":"replace","flags":["no redistribution","DUA-gated access","restrictive license"],"src":"repo","alt":"TUH Events \u2014 DUA-gated, non-redistributable. Same trade-off as TUAB; no strong open substitute.","cite_caveat":false},{"task":"cvep","label":"c-VEP","category":"BCI","dataset":"Thielen2021From","subjects":30,"license":"CC0-1.0","lfam":"public","redist":"yes","redist_note":"Public domain \u2014 no conditions","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":48,"year":2021,"url":"https://public.data.ru.nl/dcc/DSC_2018.00122_448_v3","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"dementia_diagnosis","label":"Dementia Dx","category":"Clinical","dataset":"Miltiadous2023Dice","subjects":88,"license":"CC0-1.0","lfam":"public","redist":"yes","redist_note":"Public domain \u2014 no conditions","access":"Open \u00b7 OpenNeuro","access_ease":"easy","cites":164,"year":2023,"url":"https://openneuro.org/datasets/ds004504/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"depression_diagnosis","label":"Depression Dx","category":"Clinical","dataset":"Mumtaz2018Machine","subjects":64,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 Figshare","access_ease":"easy","cites":203,"year":2017,"url":"https://figshare.com/articles/dataset/EEG_Data_New/4244171","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"emotion","label":"Emotion recognition","category":"Internal State","dataset":"Chen2023Large","subjects":123,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Account \u00b7 Synapse","access_ease":"moderate","cites":77,"year":2023,"url":"https://www.synapse.org/Synapse:syn50614194/files/","verdict":"keep","flags":[],"src":"corrected","alt":"","cite_caveat":false},{"task":"ern","label":"Error-related negativity","category":"Evoked Responses","dataset":"Kappenman2021ErpErn","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"image","label":"Image","category":"Cognitive","dataset":"Gifford2022Large","subjects":10,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":118,"year":2022,"url":"https://osf.io/3jk45/","verdict":"review","flags":["very small N (<15)"],"src":"repo","alt":"N=10 but thousands of trials/subject by design \u2014 adequate for image decoding. Small-N flag is structural, not a quality concern.","cite_caveat":false},{"task":"lrp","label":"LRP","category":"Evoked Responses","dataset":"Kappenman2021ErpLrp","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"mental_arithmetic","label":"Mental arithmetic","category":"Internal State","dataset":"Zyma2019Electroencephalograms","subjects":35,"license":"ODC-By-1.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":296,"year":2019,"url":"https://physionet.org/files/eegmat/1.0.0/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"mental_imagery","label":"Mental imagery","category":"BCI","dataset":"Scherer2015Individually","subjects":9,"license":"CC-BY-NC-ND-4.0","lfam":"noncommercial","redist":"conditional","redist_note":"Non-commercial, verbatim only (no derivatives)","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":79,"year":2015,"url":"http://doc.ml.tu-berlin.de/bbci/","verdict":"review","flags":["very small N (<15)","restrictive license"],"src":"repo","alt":"N=9, CC-BY-NC-ND (no commercial / no derivatives). Prefer a larger open mental-imagery dataset.","cite_caveat":false},{"task":"mental_workload","label":"Mental workload","category":"Internal State","dataset":"Hinss2023Open","subjects":29,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 Zenodo","access_ease":"easy","cites":48,"year":2023,"url":"https://zenodo.org/records/7413650","verdict":"keep","flags":["small N (<30)"],"src":"repo","alt":"","cite_caveat":false},{"task":"mismatch_negativity","label":"MMN","category":"Evoked Responses","dataset":"Kappenman2021ErpMmn","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"motor_execution","label":"Motor execution","category":"BCI","dataset":"Srisrisawang2024Simultaneous","subjects":20,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":null,"year":null,"url":"https://lampx.tugraz.at/~bci/database/001-2025/","verdict":"keep","flags":["small N (<30)"],"src":"repo","alt":"","cite_caveat":false},{"task":"motor_imagery","label":"Motor imagery","category":"BCI","dataset":"Stieger2021Continuous","subjects":62,"license":"CC-BY-NC-4.0","lfam":"noncommercial","redist":"conditional","redist_note":"Non-commercial redistribution only","access":"Open \u00b7 Figshare","access_ease":"easy","cites":48,"year":2021,"url":"https://figshare.com/articles/dataset/13123148","verdict":"keep","flags":["restrictive license"],"src":"repo","alt":"","cite_caveat":false},{"task":"n170","label":"N170","category":"Evoked Responses","dataset":"Kappenman2021ErpN170","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"n2pc","label":"N2Pc","category":"Evoked Responses","dataset":"Kappenman2021ErpN2pc","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"n400","label":"N400","category":"Evoked Responses","dataset":"Kappenman2021ErpN400","subjects":40,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":235,"year":2020,"url":"https://files.osf.io/v1/resources/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"p3","label":"P300","category":"BCI","dataset":"Schreuder2010New","subjects":21,"license":"CC-BY-NC-ND-4.0","lfam":"noncommercial","redist":"conditional","redist_note":"Non-commercial, verbatim only (no derivatives)","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":280,"year":2010,"url":"http://doc.ml.tu-berlin.de/bbci/","verdict":"review","flags":["small N (<30)","restrictive license"],"src":"repo","alt":"N=21, CC-BY-NC-ND. The P300 family has 20+ open variants in NB-Full \u2014 promote a CC-BY one (e.g. ERP CORE P3) as the headline core.","cite_caveat":false},{"task":"parkinsons_diagnosis","label":"Parkinson's Dx","category":"Clinical","dataset":"Singh2021Timing","subjects":129,"license":"PDDL-1.0","lfam":"public","redist":"yes","redist_note":"Public domain \u2014 no conditions","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":85,"year":2021,"url":"https://huggingface.co/datasets/jalauer/Singh2021Timing/tree/main/data","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"pathology","label":"Pathology","category":"Clinical","dataset":"Lopez2017Tuab","subjects":2329,"license":"Custom","lfam":"restricted","redist":"no","redist_note":"Custom terms / data-use agreement \u2014 obtain from source, no redistribution","access":"DUA application \u00b7 TUH","access_ease":"hard","cites":79,"year":2015,"url":"https://isip.piconepress.com/projects/nedc/data/tuh_eeg/tuh_eeg_abnormal/","verdict":"replace","flags":["no redistribution","DUA-gated access","restrictive license"],"src":"repo","alt":"TUH Abnormal \u2014 gold standard but DUA-gated & non-redistributable (N=2329). Keep for clinical realism; document the access barrier. Open alternatives for abnormal-EEG screening are scarce.","cite_caveat":false},{"task":"psychopathology","label":"Psychopathology","category":"Phenotyping","dataset":"Shirazi2024Hbn","subjects":3146,"license":"CC-BY-SA-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 attribution + share-alike","access":"Open \u00b7 OpenNeuro","access_ease":"easy","cites":0,"year":2024,"url":"https://openneuro.org/datasets/ds005516/versions/1.0.1/download","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"reaction_time","label":"Reaction time","category":"Misc","dataset":"Shirazi2024Hbn","subjects":3146,"license":"CC-BY-SA-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 attribution + share-alike","access":"Open \u00b7 OpenNeuro","access_ease":"easy","cites":0,"year":2024,"url":"https://openneuro.org/datasets/ds005516/versions/1.0.1/download","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"schizophrenia_diagnosis","label":"Schizophrenia Dx","category":"Clinical","dataset":"Albrecht2019Increased","subjects":77,"license":"PDDL-1.0","lfam":"public","redist":"yes","redist_note":"Public domain \u2014 no conditions","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":9,"year":2018,"url":"https://huggingface.co/datasets/jalauer/Albrecht2019/tree/main","verdict":"keep","flags":["low adoption"],"src":"repo","alt":"","cite_caveat":false},{"task":"seizure","label":"Seizure detection","category":"Clinical","dataset":"Dan2023Bids","subjects":23,"license":"ODC-By-1.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 Zenodo","access_ease":"easy","cites":0,"year":2010,"url":"https://zenodo.org/records/10259996","verdict":"review","flags":["small N (<30)","low adoption"],"src":"repo","alt":"0 citations only because it is a 2023 BIDS repackaging of CHB-MIT (heavily cited upstream). Open (ODC-By). Keep.","cite_caveat":false},{"task":"sentence","label":"Sentence","category":"Cognitive","dataset":"Hollenstein2018Zuco","subjects":12,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":185,"year":2018,"url":"https://osf.io/q3zws/","verdict":"review","flags":["very small N (<15)"],"src":"repo","alt":"N=12; naturalistic reading-EEG is genuinely scarce \u2014 keep, but note the small cohort.","cite_caveat":false},{"task":"sex","label":"Sex","category":"Phenotyping","dataset":"Shirazi2024Hbn","subjects":3146,"license":"CC-BY-SA-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 attribution + share-alike","access":"Open \u00b7 OpenNeuro","access_ease":"easy","cites":0,"year":2024,"url":"https://openneuro.org/datasets/ds005516/versions/1.0.1/download","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"sleep_arousal","label":"Sleep arousal","category":"Sleep","dataset":"Ghassemi2018You","subjects":1983,"license":"ODC-By-1.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":184,"year":2018,"url":"https://physionet.org/files/challenge-2018/1.0.0/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"sleep_stage","label":"Sleep stage","category":"Sleep","dataset":"Kemp2000Analysis","subjects":78,"license":"ODC-By-1.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":913,"year":2000,"url":"https://physionet.org/files/sleep-edfx/1.0.0/sleep-cassette/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"speech","label":"Speech","category":"Cognitive","dataset":"Brennan2019Hierarchical","subjects":33,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":131,"year":2019,"url":"https://deepblue.lib.umich.edu/data/concern/data_sets/bn999738r","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"ssvep","label":"Ssvep","category":"BCI","dataset":"Wang2017Benchmark","subjects":34,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 Zenodo","access_ease":"easy","cites":489,"year":2016,"url":"https://zenodo.org/records/14865172/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false},{"task":"typing","label":"Typing","category":"Cognitive","dataset":"Levy2025BrainEeg","subjects":null,"license":"UNKNOWN (not in registry)","lfam":"unknown","redist":"unknown","redist_note":"License unresolved \u2014 verify before sharing","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":null,"year":null,"url":"","verdict":"review","flags":["license unresolved"],"src":"unresolved","alt":"License unresolved and absent from the neuroai registry. Resolve license before relying on it, or pick an alternative typing/keystroke EEG set.","cite_caveat":false},{"task":"video","label":"Video","category":"Cognitive","dataset":"Liu2024Eeg2video","subjects":20,"license":"Custom","lfam":"restricted","redist":"no","redist_note":"Custom terms / data-use agreement \u2014 obtain from source, no redistribution","access":"Programmatic \u00b7 MOABB","access_ease":"easy","cites":6,"year":2024,"url":"https://bcmi.sjtu.edu.cn/home/eeg2video/","verdict":"replace","flags":["small N (<30)","no redistribution","restrictive license"],"src":"repo","alt":"Custom license, non-redistributable, N=20. Prefer an open (CC-BY) naturalistic-video EEG set as the video core.","cite_caveat":false},{"task":"word","label":"Word","category":"Cognitive","dataset":"Nieuwland2018Large","subjects":295,"license":"CC-BY-4.0","lfam":"permissive","redist":"yes","redist_note":"Allowed \u2014 with attribution","access":"Open \u00b7 OSF","access_ease":"easy","cites":300,"year":2018,"url":"https://osf.io/eyzaq/","verdict":"keep","flags":[],"src":"repo","alt":"","cite_caveat":false}],"cat_order":["Cognitive","BCI","Evoked Responses","Clinical","Internal State","Sleep","Phenotyping","Misc"],"verdict_counts":{"keep":25,"replace":5,"review":6},"meta":{"tasks":36,"core":33,"all":94,"pairs":98,"verified":91},"agg":{"median_subjects":40,"n_no_redist":4,"n_hard_access":3,"n_small":9}}</script>
+<script>
+const S=JSON.parse(document.getElementById('d').textContent);
+const core=S.core;
+const VC={keep:'var(--keep)',review:'var(--review)',replace:'var(--replace)'};
+const LIC={permissive:'#066d54',public:'#1B6CA8',copyleft:'#8A6D1F',noncommercial:'#b5710a',restricted:'#c44a0e',unknown:'#9aa0a8'};
+
+/* stats */
+const vc=S.verdict_counts;
+document.getElementById('stats').innerHTML=[
+ ['',S.meta.tasks,'core tasks'],['k',vc.keep||0,'keep'],['r',vc.review||0,'review'],
+ ['x',vc.replace||0,'replace'],['',S.agg.median_subjects,'median subjects']
+].map(s=>`<div class="stat ${s[0]}"><span class="n">${s[1]}</span><span class="l">${s[2]}</span></div>`).join('');
+
+/* dimensions */
+document.getElementById('dims').innerHTML=[
+ ['Subjects','Cohort size — the ceiling on generalization. <15 is a red flag; demo-scale (<5) disqualifies.'],
+ ['License','Permissive (CC-BY/CC0/ODC) vs non-commercial / no-derivatives / custom.'],
+ ['Redistribution','Can the data be re-shared in a bundle? TUH & custom-terms sets cannot.'],
+ ['Access','Friction to obtain — open download vs account vs data-use agreement.'],
+ ['Citations','Community adoption & validation of the dataset paper (OpenAlex).'],
+].map(d=>`<div class="dim"><b>${d[0]}</b><p>${d[1]}</p></div>`).join('');
+
+/* ---- scatter ---- */
+(function(){
+ const W=920,H=460,L=58,R=24,T=24,B=46;
+ const xs=core.filter(d=>d.subjects).map(d=>d.subjects);
+ const lx=v=>Math.log10(Math.max(1,v)), ly=v=>Math.log10((v||0)+1);
+ const xmin=0, xmax=lx(Math.max(...xs))+.1;     // 1 .. ~3146
+ const ymax=ly(Math.max(...core.map(d=>d.cites||0)))+.1;
+ const px=v=>L+(lx(v)-xmin)/(xmax-xmin)*(W-L-R);
+ const py=v=>H-B-(ly(v))/(ymax)*(H-T-B);
+ let g='';
+ // gridlines x at 1,10,100,1000 ; y at 1,10,100,1000
+ [1,10,100,1000,3000].forEach(t=>{const x=px(t);g+=`<line class="gridln" x1="${x}" y1="${T}" x2="${x}" y2="${H-B}"/><text class="axlab" x="${x}" y="${H-B+16}" text-anchor="middle">${t}</text>`;});
+ [0,10,100,1000].forEach(t=>{const y=py(t);g+=`<line class="gridln" x1="${L}" y1="${y}" x2="${W-R}" y2="${y}"/><text class="axlab" x="${L-8}" y="${y+3}" text-anchor="end">${t}</text>`;});
+ g+=`<text class="axlab" x="${(W+L)/2}" y="${H-6}" text-anchor="middle">subjects (log)</text>`;
+ g+=`<text class="axlab" transform="translate(14,${(H)/2}) rotate(-90)" text-anchor="middle">citations (log)</text>`;
+ const ann={"Mne2013SampleEeg":"MNE demo","Lopez2017Tuab":"TUH Abnormal","Chen2023Large":"FACED","Shirazi2024Hbn":"HBN","Wang2017Benchmark":"SSVEP bench","Levy2025BrainEeg":"typing"};
+ core.forEach((d,i)=>{
+   if(!d.subjects && d.cites==null) return;
+   const x=px(d.subjects||1), y=py(d.cites||0), c=VC[d.verdict];
+   const ring=d.redist==='no';
+   g+=`<circle class="pt" data-i="${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6.5"
+        fill="${ring?'transparent':c}" stroke="${c}" stroke-width="${ring?2.2:1}" />`;
+   if(ann[d.dataset]) g+=`<text class="ptlab" x="${(x+9).toFixed(1)}" y="${(y+3).toFixed(1)}">${ann[d.dataset]}</text>`;
+ });
+ const sv=document.getElementById('scatter'); sv.innerHTML=g;
+ const tip=document.getElementById('tip');
+ sv.querySelectorAll('.pt').forEach(p=>{
+   const d=core[+p.dataset.i];
+   p.addEventListener('mousemove',e=>{const r=sv.getBoundingClientRect();
+     tip.style.opacity=1;tip.style.left=(e.clientX-r.left+12)+'px';tip.style.top=(e.clientY-r.top+12)+'px';
+     tip.innerHTML=`<b>${d.label}</b><br>${d.dataset}<br>${d.subjects||'?'} subj · ${d.cites==null?'?':d.cites} cites<br>${d.license}<br>${d.access}`;});
+   p.addEventListener('mouseleave',()=>tip.style.opacity=0);
+ });
+ document.getElementById('leg').innerHTML=
+  `<span><span class="sw" style="background:var(--keep)"></span>keep</span>
+   <span><span class="sw" style="background:var(--review)"></span>review</span>
+   <span><span class="sw" style="background:var(--replace)"></span>replace</span>
+   <span><span class="ring"></span>hollow = not redistributable</span>`;
+})();
+
+/* ---- verdict bar ---- */
+(function(){const tot=core.length;const o=['keep','review','replace'];
+ document.getElementById('vbar').innerHTML=o.map(v=>{const n=core.filter(d=>d.verdict===v).length;
+   return `<div class="vseg" style="background:${VC[v]};flex-basis:0" data-b="${100*n/tot}">${n} ${v}</div>`;}).join('');
+ requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelectorAll('.vseg').forEach(s=>s.style.flexBasis=s.dataset.b+'%')));
+})();
+
+/* ---- table ---- */
+let sortK='verdict',dir=1,vf='all';
+const VRANK={replace:0,review:1,keep:2}, ARANK={hard:0,moderate:1,easy:2}, RRANK={no:0,conditional:1,unknown:2,yes:3};
+const CATORD=S.cat_order;
+const tb=document.getElementById('tbody');
+function render(){
+ const q=document.getElementById('q').value.toLowerCase().trim();
+ let rows=core.filter(d=>(vf==='all'||d.verdict===vf)&&(!q||d.label.toLowerCase().includes(q)||d.dataset.toLowerCase().includes(q)));
+ rows.sort((a,b)=>{
+   let va,vb;
+   if(sortK==='verdict'){va=VRANK[a.verdict];vb=VRANK[b.verdict];}
+   else if(sortK==='access_ease'){va=ARANK[a.access_ease];vb=ARANK[b.access_ease];}
+   else if(sortK==='redist'){va=RRANK[a.redist];vb=RRANK[b.redist];}
+   else if(sortK==='label'){const ca=CATORD.indexOf(a.category),cb=CATORD.indexOf(b.category);if(ca!==cb)return ca-cb;va=a.label;vb=b.label;}
+   else {va=a[sortK]??-1;vb=b[sortK]??-1;}
+   if(typeof va==='string')return dir*va.localeCompare(vb);
+   return dir*((va>vb)-(va<vb));
+ });
+ tb.innerHTML=rows.map(d=>`<tr>
+   <td><span class="tasklab">${d.label}</span><span class="cat">${d.category} · <span class="dsname">${d.dataset}</span></span></td>
+   <td class="num">${d.subjects??'—'}</td>
+   <td><span class="rd"><span class="licdot" style="background:${LIC[d.lfam]||'#9aa0a8'}"></span>${d.license}</span></td>
+   <td><span class="rd rd-${d.redist}" title="${d.redist_note}">${d.redist}</span></td>
+   <td><span class="acc ${d.access_ease}">${d.access}</span></td>
+   <td class="num">${d.cites==null?'—':d.cites}${d.cite_caveat?'*':''}</td>
+   <td><span class="pill v-${d.verdict}">${d.verdict}</span></td>
+ </tr>`).join('');
+}
+document.getElementById('q').addEventListener('input',render);
+document.querySelectorAll('#vfilter button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#vfilter button').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');vf=b.dataset.v;render();}));
+document.querySelectorAll('thead th').forEach(th=>th.addEventListener('click',()=>{
+  const k=th.dataset.k;if(sortK===k)dir*=-1;else{sortK=k;dir=(k==='subjects'||k==='cites')?-1:1;}render();}));
+render();
+
+/* ---- flagged cards ---- */
+const flagged=core.filter(d=>d.verdict!=='keep').sort((a,b)=>VRANK[a.verdict]-VRANK[b.verdict]||a.label.localeCompare(b.label));
+document.getElementById('flags').innerHTML=flagged.map(d=>`<div class="fcard ${d.verdict}">
+  <div class="ft"><span class="fl">${d.label}</span><span class="pill v-${d.verdict}">${d.verdict}</span></div>
+  <div class="fds">${d.dataset} · ${d.category}</div>
+  <div class="fwhy">${d.flags.map(f=>`<b>${f}</b>`).join('')}</div>
+  <div class="alt">${d.alt||'Review against the dimensions above.'}</div>
+</div>`).join('');
+</script>
+</body>
+</html>
