@@ -36,7 +36,7 @@ A few of the projects I build and maintain — you can also browse my full activ
   </div>
   <div class="software-card">
     <p class="software-card__name"><a href="https://eegdash.org">EEG-DaSh</a></p>
-    <span class="software-card__role">Core developer</span>
+    <span class="software-card__role">Creator</span>
     <p class="software-card__detail">Open data, tools, and compute resource for machine learning on neuroelectromagnetic data.</p>
     <p class="software-card__meta">
       <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" width="106" height="20" loading="lazy"></a>

@@ -403,38 +403,44 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0001--5258--2995-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-5258-2995)
 [![OpenAlex](https://img.shields.io/badge/OpenAlex-profile-2D7DD2)](https://openalex.org/A5060466816)
 
-1. <span class="anchor" id="paper-p1"></span>Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H. From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs. In 2026 34th European Signal Processing Conference (EUSIPCO). IEEE. [arXiv:2605.12408](https://arxiv.org/abs/2605.12408). ***SUBMITTED***
-2. <span class="anchor" id="paper-p2"></span>Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A. (2026). Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models. In EUSIPCO 2026. ***SUBMITTED***
-3. <span class="anchor" id="paper-p3"></span>Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A. EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding. NeurIPS 2025. [arXiv:2506.19141](https://arxiv.org/abs/2506.19141).
-4. <span class="anchor" id="paper-p4"></span>Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P. (2026). Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases. Heliyon, 12(4).
-5. <span class="anchor" id="paper-p5"></span>Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B. (2025). Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study. In EMBC 2025. IEEE.
-6. <span class="anchor" id="paper-p6"></span>Darvishi-Bayazi, M. J., Ghonia, H., Riachi, R., Aristimunha, B., Khorasani, A., Arefin, M. R., Dumas, G. & Rish, I. (2024). General-Purpose Brain Foundation Models for Time-Series Neuroimaging Data. NeurIPS 2024 Workshop.
-7. <span class="anchor" id="paper-p7"></span>Carrara, I.*, Aristimunha, B.*, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T. (2025). Geometric Neural Network based on Phase Space for BCI decoding. Journal of Neural Engineering, 22(1), 016049.
-8. <span class="anchor" id="paper-p8"></span>Aristimunha, B., Moreau, T., Chevallier, S., Camargo, R. Y., & Corsi, M. C. (2024). What is the best model for decoding neurophysiological signals? Depends on how you evaluate. CNS 2024.
-9. <span class="anchor" id="paper-p9"></span>Rodrigues, G., Aristimunha, B., Chevallier, S. & Camargo, R. Y. de (2024). Combining Euclidean Alignment and Data Augmentation for BCI decoding. In EUSIPCO 2024. IEEE.
-10. <span class="anchor" id="paper-p10"></span>Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A. (2024). Alljoined: A dataset for EEG-to-Image decoding. CVPR 2024 Workshop.
-11. <span class="anchor" id="paper-p11"></span>Junqueira, B., Aristimunha, B., Chevallier, S., & de Camargo, R. Y. (2024). A systematic evaluation of Euclidean alignment with deep learning for EEG decoding. Journal of Neural Engineering, 21(3), 036038. doi:10.1088/1741-2552/ad4f18
-12. <span class="anchor" id="paper-p12"></span>Aristimunha, B., de Camargo, R. Y., Chevallier, S., Lucena, O., Thomas, A. G., Cardoso, M. J., Pinaya, W. L. & Dafflon, J. (2023). Synthetic Sleep EEG Signal Generation using Latent Diffusion Models. NeurIPS 2023 DGM4H Workshop (Spotlight).
-13. <span class="anchor" id="paper-p13"></span>Aristimunha, B., de Camargo, R. Y., Pinaya, W. L., Chevallier, S., Gramfort, A., & Rommel, C. (2023). Evaluating the structure of cognitive tasks with transfer learning. NeurIPS 2023 AI for Science Workshop.
-14. <span class="anchor" id="paper-p14"></span>Moraes, C. P., Aristimunha, B., Dos Santos, L. H., Pinaya, W. H. L., de Camargo, R. Y., Fantinato, D. G., & Neves, A. (2023). Applying independent vector analysis on EEG-based motor imagery classification. ICASSP 2023. IEEE.
-15. <span class="anchor" id="paper-p15"></span>Aristimunha, B., De Camargo, R. Y., Pinaya, W. H. L., Yger, F., Corsi, M. C., & Chevallier, S. (2023). CONCERTO: Coherence & Functional Connectivity Graph Network. Journee CORTICO 2023.
-16. <span class="anchor" id="paper-p16"></span>Carrara, I.*, Aristimunha, B.*, Chevallier, S., Corsi, M. C., & Papadopoulo, T. (2023). Holographic EEG: multi-view deep learning for BCI. Journee CORTICO 2023.
-17. <span class="anchor" id="paper-p17"></span>Aristimunha, B., Bayerlein, A. J., Cardoso, M. J., Pinaya, W. H. L., & De Camargo, R. Y. (2023). Sleep-Energy: An Energy Optimization Method to Sleep Stage Scoring. IEEE Access, 11, 34595-34602.
-18. <span class="anchor" id="paper-p18"></span>Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T. (2024). The largest EEG-based BCI reproducibility study for open science: the MOABB benchmark. arXiv:2404.15319. Under review at Journal of Neural Engineering.
-19. <span class="anchor" id="paper-p19"></span>Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C. Uncovering and improving the structure of cognitive tasks with transfer learning. Under review at Imaging Neuroscience.
-20. <span class="anchor" id="paper-p20"></span>Aristimunha, B., Carrara, I., Guetschel, P., Sedlar, S., Rodrigues, P., Sosulski, J., Narayanan, D., Bjareholt, E., Quentin, B., Schirrmeister, R. T., Kobler, R., Kalunga, E., Darmet, L., Gregoire, C., Abdul Hussain, A., Gatti, R., Goncharenko, V., Thielen, J., Moreau, T., ... Chevallier, S. (2024). Mother of all BCI Benchmarks. Zenodo. [https://doi.org/10.5281/zenodo.11545401](https://doi.org/10.5281/zenodo.11545401)
-21. <span class="anchor" id="paper-p21"></span>Aristimunha, B., Tibor, R., Gemein, L., Gramfort, A., Rommel, C., Banville, H., Sliwowskim, M., Wilson, D., Theo gnassou, P., Gtch, P., Lopes, B., Moreau, T., Sedlar, S., Zamboni, M., Paillard, J., Terris, M., Chevallier, S., ... Yao, E. (2023). Braindecode. Zenodo. [https://braindecode.org](https://braindecode.org)
-22. <span class="anchor" id="paper-p22"></span>Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R. (2026). SPD Learn: A geometric deep learning Python library for neural decoding through trivialization. Journal of Machine Learning - Open Source Track. [https://spdlearn.org](https://spdlearn.org). [arXiv:2602.22895](https://arxiv.org/abs/2602.22895). ***SUBMITTED***
-23. <span class="anchor" id="paper-p23"></span>Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A. (2026). EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data. Journal of Database. [https://eegdash.org](https://eegdash.org) ***SUBMITTED***
-24. <span class="anchor" id="paper-p24"></span>Kokate, K., Aristimunha, B., Truong, D., & Delorme, A. (2026). Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes. [arXiv:2604.23091](https://arxiv.org/abs/2604.23091).
-25. <span class="anchor" id="paper-p25"></span>Aristimunha, B., Cattan, G., & Andreev, A. (2024). Evaluation of the Electroencephalogram Conformer for the P300 Signal.
-26. <span class="anchor" id="paper-p26"></span>Carrara, I., Aristimunha, B., Corsi, M.-C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T. (2023). Augmented SPDNet: Second-Order Neural Network for Motor Imagery-Based BCI. Soph.I.A Summit 2023.
-27. <span class="anchor" id="paper-p27"></span>Gueron, E., Pellegrini, J., & Aristimunha, B. (2023). Distribuição de Newcomb-Benford, Mudanças de Bases e Aplicações Eleitorais. Proceeding Series of the Brazilian Society of Computational and Applied Mathematics.
-28. <span class="anchor" id="paper-p28"></span>Aristimunha, B. (2020). Quem é Estamira? Uma análise da coerência dos discursos através de combinação de medidas para classificação de texto. ERAMIA-SP 2020 (2nd best undergraduate paper).
-29. <span class="anchor" id="paper-p29"></span>Aristimunha, B., Júnior, J. S. F., Batagelo, H. C., Goya, D., & dos Santos, C. S. (2020). Evasão em Nível de Disciplinas na Ciência da Computação na Universidade Federal do ABC.
-30. <span class="anchor" id="paper-p30"></span>Aristimunha, B., Borges, F. S. B., Gonçalves, A. B., & Pistori, H. (2019). A comparison study of deep convolutional neural networks for the classification of Brazilian savannah pollen grains: Preliminary results. Workshop de Visão Computacional (WVC), 91-96.
-31. <span class="anchor" id="paper-p31"></span>Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H. (2016). Contagem de Carunchos do Bambu através de Técnicas de Limiarização. Sibgrapi 2016.
-32. <span class="anchor" id="paper-p32"></span>Martins, J. M. P., Pinto, B. A., de Albuquerque, P. L. F., da Silveira, E. S., de Souza, K. P., & Pistori, H. (2015). Rastreamento do caruncho do bambu usando fluxo óptico. Anais do Computer on the Beach, 348-357.
+{% assign pubs = site.data.publications %}
+{% assign n_journal = pubs | where: "type", "journal" | size %}
+{% assign n_conference = pubs | where: "type", "conference" | size %}
+{% assign n_workshop = pubs | where: "type", "workshop" | size %}
+{% assign n_abstract = pubs | where: "type", "abstract" | size %}
+{% assign n_software = pubs | where: "type", "software" | size %}
+{% assign n_all = pubs | size %}
+{% assign year_groups = pubs | group_by: "year" | sort: "name" | reverse %}
+<div class="pubtrack" data-pubtrack>
+<div class="pubtrack__filters" role="group" aria-label="Filter publications by type">
+<button type="button" class="pubtrack__filter is-active" data-filter="all" aria-pressed="true">All <span class="pubtrack__count">{{ n_all }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--journal" data-filter="journal" aria-pressed="false">Journal <span class="pubtrack__count">{{ n_journal }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--conference" data-filter="conference" aria-pressed="false">Conference <span class="pubtrack__count">{{ n_conference }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--workshop" data-filter="workshop" aria-pressed="false">Workshop <span class="pubtrack__count">{{ n_workshop }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--abstract" data-filter="abstract" aria-pressed="false">Abstract <span class="pubtrack__count">{{ n_abstract }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--software" data-filter="software" aria-pressed="false">Software <span class="pubtrack__count">{{ n_software }}</span></button>
+</div>
+<div class="pubtrack__years">
+{% for group in year_groups %}
+<div class="pubtrack__year" data-year-group>
+<p class="pubtrack__year-marker"><span class="pubtrack__year-label">{{ group.name }}</span></p>
+<div class="pubtrack__rows">
+{% for pub in group.items %}
+{% assign authors = pub.authors | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
+{% if pub.links.pdf %}{% assign title_href = pub.links.pdf | relative_url %}{% elsif pub.links.arxiv %}{% assign title_href = pub.links.arxiv %}{% elsif pub.links.doi %}{% assign title_href = pub.links.doi %}{% elsif pub.links.site %}{% assign title_href = pub.links.site %}{% else %}{% assign title_href = "" %}{% endif %}
+<div class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
+<p class="pubtrack__metarow"><span class="pubtrack__num">P{{ pub.num }}</span><span class="pubtrack__badge pubtrack__badge--{{ pub.type }}">{{ pub.type | capitalize }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}</p>
+{% if title_href != "" %}<p class="pubtrack__title"><a href="{{ title_href }}">{{ pub.title }}</a></p>{% else %}<p class="pubtrack__title">{{ pub.title }}</p>{% endif %}
+<p class="pubtrack__authors">{{ authors }}</p>
+<p class="pubtrack__venue"><em>{{ pub.venue }} · {{ pub.year }}</em></p>
+{% if pub.links %}<p class="pubtrack__links">{% if pub.links.pdf %}<a class="pubtrack__pill" href="{{ pub.links.pdf | relative_url }}">PDF</a>{% endif %}{% if pub.links.arxiv %}<a class="pubtrack__pill" href="{{ pub.links.arxiv }}">arXiv</a>{% endif %}{% if pub.links.doi %}<a class="pubtrack__pill" href="{{ pub.links.doi }}">DOI</a>{% endif %}{% if pub.links.site %}<a class="pubtrack__pill" href="{{ pub.links.site }}">Site</a>{% endif %}</p>{% endif %}
+</div>
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
 
 
 # 📖 Education
@@ -508,6 +514,26 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 I was privileged to work with and mentor a group of outstanding students:
 
 <ul class="mentorship">
+  <li class="mentorship__card">
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/leoburgund/">Léo Burgund</a></h2>
+    <span class="mentorship__role">Master student → Yneuro</span>
+    <p class="mentorship__detail">Université Paris-Saclay (M2 Mathematics &amp; AI), now Machine Learning Researcher at Yneuro.</p>
+  </li>
+  <li class="mentorship__card">
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/mariani-tom/">Tom Mariani</a></h2>
+    <span class="mentorship__role">Master student → Yneuro</span>
+    <p class="mentorship__detail">MVA, ENS Paris-Saclay / Mines, now Research Scientist at Yneuro.</p>
+  </li>
+  <li class="mentorship__card">
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/amanjaiswal1503/">Aman Jaiswal</a></h2>
+    <span class="mentorship__role">Master student</span>
+    <p class="mentorship__detail">UC San Diego, MS in Computer Science.</p>
+  </li>
+  <li class="mentorship__card">
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h2>
+    <span class="mentorship__role">Master student</span>
+    <p class="mentorship__detail">UC San Diego, MS in Machine Learning &amp; Data Science (ECE). Co-author on EEG-DaSh and the EEG foundation-model channel-adaptation benchmark.</p>
+  </li>
   <li class="mentorship__card">
     <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h2>
     <span class="mentorship__role">Master student</span>

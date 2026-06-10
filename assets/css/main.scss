@@ -1275,3 +1275,275 @@ h1, .anchor {
 @media (prefers-reduced-motion: reduce) {
     .software-card { transition: none !important; }
 }
+
+/* === Publications trajectory ===
+   One "island" holding the full publication list as a year-grouped trajectory.
+   Type colours use the Okabe-Ito colour-blind-safe palette as a left accent +
+   tinted badge (never heavy solid fills, to keep the island light).
+   Filtering is progressive enhancement: with JS off, every row stays visible. */
+$pubtrack-types: (
+    journal:    #009E73,
+    conference: #0072B2,
+    workshop:   #E69F00,
+    abstract:   #6e7681,
+    software:   #CC79A7
+);
+
+.pubtrack {
+    --pubtrack-text: #1f232b;
+    --pubtrack-muted: #353a44;
+    --pubtrack-link: #4d86f7;
+    --pubtrack-line: rgba(83, 88, 98, 0.34);
+
+    margin: 1.5rem 0 2rem 0;
+    padding: 1.4rem 1.4rem 1.2rem 1.4rem;
+    border: 1px solid rgba(173, 178, 188, 0.38);
+    border-radius: 22px;
+    background: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
+                0 20px 38px rgba(31, 35, 43, 0.07);
+    color: var(--pubtrack-text);
+}
+
+/* Filter bar */
+.pubtrack__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--pubtrack-line);
+}
+
+.pubtrack__filter {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.32rem 0.8rem;
+    border: 1px solid rgba(83, 88, 98, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--pubtrack-muted);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pubtrack__filter:hover,
+.pubtrack__filter:focus-visible {
+    border-color: rgba(83, 88, 98, 0.36);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--pubtrack-text);
+}
+
+.pubtrack__filter.is-active {
+    border-color: rgba(43, 48, 58, 0.7);
+    background: #fff;
+    color: var(--pubtrack-text);
+}
+
+.pubtrack__count {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.74rem;
+    color: #6b7280;
+}
+
+.pubtrack__filter.is-active .pubtrack__count { color: var(--pubtrack-muted); }
+
+/* Type-tinted filter dots (small left accent so the bar reads as a legend too) */
+@each $name, $col in $pubtrack-types {
+    .pubtrack__filter--#{$name}::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $col;
+    }
+}
+
+/* Year groups + slim marker */
+.pubtrack__year + .pubtrack__year { margin-top: 1.5rem; }
+
+.pubtrack__year-marker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 0.7rem 0;
+}
+
+.pubtrack__year-marker::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--pubtrack-line);
+}
+
+.pubtrack__year-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--pubtrack-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.pubtrack__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+/* Entry row */
+.pubtrack__entry {
+    padding: 0.7rem 0.9rem 0.75rem 1rem;
+    border: 1px solid rgba(173, 178, 188, 0.32);
+    border-left: 3px solid #8a8f98;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pubtrack__entry:hover {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(83, 88, 98, 0.42);
+}
+
+@each $name, $col in $pubtrack-types {
+    .pubtrack__entry--#{$name} { border-left-color: $col; }
+}
+
+.pubtrack__metarow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0 0 0.35rem 0;
+}
+
+.pubtrack__num {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid rgba(83, 88, 98, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.01em;
+}
+
+.pubtrack__badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    line-height: 1.25;
+}
+
+@each $name, $col in $pubtrack-types {
+    .pubtrack__badge--#{$name} {
+        color: $col;
+        background: rgba($col, 0.1);
+    }
+}
+
+.pubtrack__status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(83, 88, 98, 0.32);
+    color: var(--pubtrack-muted);
+    background: transparent;
+}
+
+.pubtrack__title {
+    margin: 0 0 0.2rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.32;
+    color: var(--pubtrack-text);
+}
+
+.pubtrack__title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(83, 88, 98, 0.35);
+}
+
+.pubtrack__title a:hover,
+.pubtrack__title a:focus {
+    color: var(--pubtrack-link);
+    border-bottom-color: var(--pubtrack-link);
+    text-decoration: none;
+}
+
+.pubtrack__authors {
+    margin: 0 0 0.1rem 0;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    color: var(--pubtrack-muted);
+}
+
+.pubtrack__authors strong { font-weight: 700; color: var(--pubtrack-text); }
+
+.pubtrack__venue {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #6b7280;
+}
+
+.pubtrack__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.55rem 0 0 0;
+}
+
+.pubtrack__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.24rem 0.65rem;
+    border: 1px solid rgba(83, 88, 98, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--pubtrack-text);
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pubtrack__pill:hover,
+.pubtrack__pill:focus {
+    border-color: rgba(83, 88, 98, 0.32);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--pubtrack-link);
+    text-decoration: none;
+}
+
+@include breakpoint(max-width 48em) {
+    .pubtrack {
+        padding: 1rem 0.9rem 0.95rem 0.9rem;
+        border-radius: 16px;
+    }
+    .pubtrack__filters { gap: 0.35rem; }
+    .pubtrack__entry { padding: 0.65rem 0.7rem 0.7rem 0.8rem; }
+    .pubtrack__title { font-size: 0.96rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pubtrack__filter,
+    .pubtrack__entry,
+    .pubtrack__pill,
+    .pubtrack__title a { transition: none !important; }
+}
