@@ -7,7 +7,7 @@ main:
     url: "/#journey"
 
   - title: "CV"
-    url: "/#-curriculum-vitae"
+    url: "https://docs.google.com/document/d/1Pba371Sv7Epgjz5kMwT2t8i3PgueNhpE8hN1nAR98iU/edit?usp=sharing"
 
   - title: "Research"
     url: "/#-research-overview"
