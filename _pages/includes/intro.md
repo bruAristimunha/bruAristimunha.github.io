@@ -8,11 +8,41 @@ My current research interests include **Learning Representation** from the time 
 
 ### Open Source Projects
 
-I strongly advocate for open source for reproducible science and community-driven progress, while occasionally working with closed code. I lead the widely used Python libraries [**Braindecode**](https://braindecode.org) [![pypi downloads](https://pepy.tech/badge/braindecode)](https://pepy.tech/project/braindecode) and [**MOABB**](https://moabb.neurotechx.com/docs/index.html) [![pypi downloads](https://pepy.tech/badge/moabb)](https://pepy.tech/project/moabb), actively shaping standards and enabling EEG Decoding in both. I also collaborate with related open-source projects like MNE-Python, MONAI, MONAI Generative, SpeechBrain. 
+I strongly advocate for open source for reproducible science and community-driven progress, while occasionally working with closed code. I lead the widely used Python libraries [**Braindecode**](https://braindecode.org) and [**MOABB**](https://moabb.neurotechx.com/docs/index.html), actively shaping standards and enabling EEG Decoding in both. I also collaborate with related open-source projects like MNE-Python, MONAI, MONAI Generative, SpeechBrain. 
 
-You can usually check my current work on [GitHub](https://github.com/bruAristimunha):
+A few of the projects I build and maintain — you can also browse my full activity on [GitHub](https://github.com/bruAristimunha):
 
-[![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=bruAristimunha&show_icons=true)](https://github.com/bruAristimunha/)
+<div class="software-cards">
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://braindecode.org">Braindecode</a></p>
+    <span class="software-card__role">Lead maintainer</span>
+    <p class="software-card__detail">Deep learning for EEG/MEG/brain-signal decoding in PyTorch.</p>
+    <p class="software-card__meta">
+      <a href="https://pepy.tech/project/braindecode"><img class="software-card__badge" src="https://pepy.tech/badge/braindecode" alt="Braindecode downloads on PyPI" width="106" height="20" loading="lazy"></a>
+    </p>
+  </div>
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://moabb.neurotechx.com/docs/index.html">MOABB</a></p>
+    <span class="software-card__role">Lead maintainer</span>
+    <p class="software-card__detail">Mother of All BCI Benchmarks: reproducible evaluation of BCI pipelines across open datasets.</p>
+    <p class="software-card__meta">
+      <a href="https://pepy.tech/project/moabb"><img class="software-card__badge" src="https://pepy.tech/badge/moabb" alt="MOABB downloads on PyPI" width="106" height="20" loading="lazy"></a>
+    </p>
+  </div>
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://spdlearn.org">SPD Learn</a></p>
+    <span class="software-card__role">Creator</span>
+    <p class="software-card__detail">Geometric (Riemannian/SPD) deep learning library for neural decoding through trivialization.</p>
+  </div>
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://eegdash.org">EEG-DaSh</a></p>
+    <span class="software-card__role">Core developer</span>
+    <p class="software-card__detail">Open data, tools, and compute resource for machine learning on neuroelectromagnetic data.</p>
+    <p class="software-card__meta">
+      <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" width="106" height="20" loading="lazy"></a>
+    </p>
+  </div>
+</div>
 
 ### Community Involvement
 

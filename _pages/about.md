@@ -384,6 +384,11 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
   <script type="application/json" class="research-overview__data">
     {{ site.data.research_overview | jsonify }}
   </script>
+  <div class="research-overview__list">
+    <ul class="research-tree">
+      {% include research_tree_node.html nodes=site.data.research_overview %}
+    </ul>
+  </div>
   <noscript>
     <ul class="research-tree">
       {% include research_tree_node.html nodes=site.data.research_overview %}

@@ -295,6 +295,14 @@ h1:before, .anchor:before {
     }
 }
 
+/* On touch viewports the embedded Google Docs preview traps scroll and renders
+   desktop-width text, so hide the iframe and let the header CTA stand alone. */
+@include breakpoint(max-width 48em) {
+    .cv-embed__frame-wrap {
+        display: none;
+    }
+}
+
 .research-overview {
     --overview-bg: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
     --overview-line: rgba(83, 88, 98, 0.34);
@@ -317,6 +325,12 @@ h1:before, .anchor:before {
     padding-bottom: 0.35rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(100, 106, 118, 0.45) transparent;
+}
+
+/* The nested-list fallback is hidden on desktop where the SVG tree is shown;
+   below 48em it replaces the horizontally-scrolling diagram (see media query). */
+.research-overview__list {
+    display: none;
 }
 
 .research-overview__actions {
@@ -617,6 +631,18 @@ h1:before, .anchor:before {
     .research-tree,
     .research-tree ul {
         padding-left: 0.95rem;
+    }
+}
+
+/* On phones, panning a rotated-label diagram is poor UX: swap the scrolling SVG
+   tree for the legible nested list. CSS-only, no JS dependency. */
+@include breakpoint(max-width 48em) {
+    .research-overview__scroll {
+        display: none;
+    }
+
+    .research-overview__list {
+        display: block;
     }
 }
 
@@ -1152,4 +1178,103 @@ h1:before, .anchor:before {
 
 @media (prefers-reduced-motion: reduce) {
     .mentorship__card { transition: none !important; }
+}
+
+/* === Software cards === */
+
+.software-cards {
+    margin: 1.2rem 0 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.software-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.1rem 1.05rem 1.1rem;
+    border: 1px solid rgba(173, 178, 188, 0.38);
+    border-radius: 22px;
+    background: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
+                0 20px 38px rgba(31, 35, 43, 0.07);
+    color: #1f232b;
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.software-card:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
+                0 24px 44px rgba(31, 35, 43, 0.1);
+    border-color: rgba(83, 88, 98, 0.5);
+}
+
+.software-card__name {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1f232b;
+}
+
+.software-card__name a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(83, 88, 98, 0.35);
+}
+
+.software-card__name a:hover,
+.software-card__name a:focus {
+    color: #4d86f7;
+    border-bottom-color: #4d86f7;
+    text-decoration: none;
+}
+
+.software-card__role {
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 0.5rem 0;
+    padding: 0.1rem 0.55rem;
+    border: 1px solid rgba(83, 88, 98, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #353a44;
+}
+
+.software-card__detail {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #353a44;
+}
+
+.software-card__meta {
+    /* margin-top: auto pushes the badge to the card bottom so cards in a row align */
+    margin: auto 0 0 0;
+    padding-top: 0.7rem;
+    line-height: 0;
+}
+
+.software-card__badge {
+    display: inline-block;
+    width: 106px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+@include breakpoint(max-width 37.5em) {
+    .software-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .software-card {
+        border-radius: 16px;
+        padding: 0.9rem 1rem 0.95rem 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .software-card { transition: none !important; }
 }
