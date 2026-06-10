@@ -9,6 +9,8 @@
 title                    : "Bruno Aristimunha (Bru)"
 description              : "Research Scientist at Yneuro, working on deep learning for brain time-series decoding. Lead maintainer of Braindecode and MOABB. PhD from Université Paris-Saclay and UFABC."
 repository               : "bruaristimunha/bruaristimunha.github.io"
+url                      : "https://bruaristimunha.github.io" # explicit, otherwise the github-pages gem injects a wrong production fallback
+baseurl                  : "" # explicit, otherwise the github-pages gem injects /pages/bruaristimunha in CI
 google_scholar_stats_use_cdn : true
 # google analytics
 google_analytics_id      : "G-Q7SBRQ31EV" # get google_analytics_id from https://analytics.google.com/analytics/
