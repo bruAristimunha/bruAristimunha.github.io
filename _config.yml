@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Bruno Aristimunha (Bru)"
-description              : "Ph.D. student in Paris-Saclay University. Focusing on deep learning for time-series decoding. "
+description              : "Research Scientist at Yneuro, working on deep learning for brain time-series decoding. Lead maintainer of Braindecode and MOABB. PhD from Université Paris-Saclay and UFABC."
 repository               : "bruaristimunha/bruaristimunha.github.io"
 google_scholar_stats_use_cdn : true
 # google analytics
@@ -21,9 +21,9 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Bruno Aristimunha"
   avatar           : "images/bruno_profile.png"
-  bio              : "Research Engineer <br>PhD student "
-  location         : "Paris-Saclay University, France"
-  employer         : INRIA TAU
+  bio              : "Research Scientist <br>PhD in Computer Science"
+  location         : "France"
+  employer         : Yneuro · UC San Diego INC (Hon.)
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=2Gd5gOQAAAAJ"
   email            : "b.aristimunha@gmail.com"
@@ -134,7 +134,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-timezone: Asia/Shanghai # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Europe/Paris # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins

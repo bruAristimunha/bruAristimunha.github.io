@@ -1,6 +1,18 @@
-<script src="assets/js/main.min.js"></script>
-<script src="assets/js/research-overview.js"></script>
-<script src="assets/js/journey.js"></script>
+<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/research-overview.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/journey.js' | relative_url }}"></script>
+
+<script>
+  // External links open in a new tab; internal and in-page anchor links stay in this tab.
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href^="http"]').forEach(function (link) {
+      if (link.hostname !== window.location.hostname) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  });
+</script>
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}

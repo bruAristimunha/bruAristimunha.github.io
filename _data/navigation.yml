@@ -4,7 +4,7 @@ main:
     url: "/#about-me"
 
   - title: "Journey"
-    url: "/#-journey"
+    url: "/#journey"
 
   - title: "CV"
     url: "/#-curriculum-vitae"

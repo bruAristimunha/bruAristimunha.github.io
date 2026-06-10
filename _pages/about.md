@@ -22,6 +22,8 @@ redirect_from:
 <!-- # 🔥 News
 - *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list... -->
 
+<span class='anchor' id='journey'></span>
+
 # 🗺️ Journey
 
 <div class="journey" data-journey>
