@@ -302,3 +302,13 @@
   type: conference
   links:
     site: https://periodicos.univali.br/index.php/acotb/article/view/7050
+- id: paper-p33
+  num: 33
+  authors: "Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B."
+  year: 2026
+  title: "Learning aligned EEG representations with subject-specific encoders"
+  venue: "Manuscript"
+  type: journal
+  status: submitted
+  links:
+    pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf

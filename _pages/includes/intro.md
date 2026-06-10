@@ -33,6 +33,9 @@ A few of the projects I build and maintain — you can also browse my full activ
     <p class="software-card__name"><a href="https://spdlearn.org">SPD Learn</a></p>
     <span class="software-card__role">Creator</span>
     <p class="software-card__detail">Geometric (Riemannian/SPD) deep learning library for neural decoding through trivialization.</p>
+    <p class="software-card__meta">
+      <a href="https://pepy.tech/project/spd-learn"><img class="software-card__badge" src="https://pepy.tech/badge/spd-learn" alt="SPD Learn downloads on PyPI" width="106" height="20" loading="lazy"></a>
+    </p>
   </div>
   <div class="software-card">
     <p class="software-card__name"><a href="https://eegdash.org">EEG-DaSh</a></p>

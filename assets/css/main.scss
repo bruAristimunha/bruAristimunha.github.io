@@ -1470,6 +1470,13 @@ $pub-software: #CC79A7;
     gap: 0.22rem;
 }
 
+/* explicit display values above would otherwise defeat the hidden attribute
+   set by the type filter */
+.pubtrack__entry[hidden],
+.pubtrack__year[hidden] {
+    display: none;
+}
+
 .pubtrack__entry::before {
     content: '';
     position: absolute;
