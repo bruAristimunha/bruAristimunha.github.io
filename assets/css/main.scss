@@ -1194,7 +1194,6 @@ $pub-software: #CC79A7;
 .pubtrack__chart {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
 }
 
 .pubtrack__col {
@@ -1204,6 +1203,8 @@ $pub-software: #CC79A7;
     gap: 7px;
     text-decoration: none;
     border-radius: 6px;
+    /* >=24px tap target (13px cells + padding) without changing visual rhythm */
+    padding: 4px 6px;
 }
 
 .pubtrack__col:hover,
@@ -1256,7 +1257,7 @@ $pub-software: #CC79A7;
 
 .pubtrack__col-year {
     font-size: 0.7rem;
-    color: #767c85;
+    color: #62686f; /* 4.5:1 on white at this small size */
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
     transition: color 0.18s ease;
@@ -1485,8 +1486,8 @@ $pub-software: #CC79A7;
 /* --- Mobile -------------------------------------------------------------- */
 
 @include breakpoint(max-width 48em) {
-    .pubtrack__chart {
-        gap: 6px;
+    .pubtrack__col {
+        padding: 4px 7px;
     }
 
     .pubtrack__cell,

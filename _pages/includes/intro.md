@@ -18,7 +18,7 @@ A few of the projects I build and maintain — you can also browse my full activ
     <span class="software-card__role">Lead maintainer</span>
     <p class="software-card__detail">Deep learning for EEG/MEG/brain-signal decoding in PyTorch.</p>
     <p class="software-card__meta">
-      <a href="https://pepy.tech/project/braindecode"><img class="software-card__badge" src="https://pepy.tech/badge/braindecode" alt="Braindecode downloads on PyPI" width="106" height="20" loading="lazy"></a>
+      <a href="https://pepy.tech/project/braindecode"><img class="software-card__badge" src="https://pepy.tech/badge/braindecode" alt="Braindecode downloads on PyPI" height="20" loading="lazy"></a>
     </p>
   </div>
   <div class="software-card">
@@ -26,7 +26,7 @@ A few of the projects I build and maintain — you can also browse my full activ
     <span class="software-card__role">Lead maintainer</span>
     <p class="software-card__detail">Mother of All BCI Benchmarks: reproducible evaluation of BCI pipelines across open datasets.</p>
     <p class="software-card__meta">
-      <a href="https://pepy.tech/project/moabb"><img class="software-card__badge" src="https://pepy.tech/badge/moabb" alt="MOABB downloads on PyPI" width="106" height="20" loading="lazy"></a>
+      <a href="https://pepy.tech/project/moabb"><img class="software-card__badge" src="https://pepy.tech/badge/moabb" alt="MOABB downloads on PyPI" height="20" loading="lazy"></a>
     </p>
   </div>
   <div class="software-card">
@@ -34,7 +34,7 @@ A few of the projects I build and maintain — you can also browse my full activ
     <span class="software-card__role">Creator</span>
     <p class="software-card__detail">Geometric (Riemannian/SPD) deep learning library for neural decoding through trivialization.</p>
     <p class="software-card__meta">
-      <a href="https://pepy.tech/project/spd-learn"><img class="software-card__badge" src="https://pepy.tech/badge/spd-learn" alt="SPD Learn downloads on PyPI" width="106" height="20" loading="lazy"></a>
+      <a href="https://pepy.tech/project/spd-learn"><img class="software-card__badge" src="https://pepy.tech/badge/spd-learn" alt="SPD Learn downloads on PyPI" height="20" loading="lazy"></a>
     </p>
   </div>
   <div class="software-card">
@@ -42,7 +42,7 @@ A few of the projects I build and maintain — you can also browse my full activ
     <span class="software-card__role">Creator</span>
     <p class="software-card__detail">Open data, tools, and compute resource for machine learning on neuroelectromagnetic data.</p>
     <p class="software-card__meta">
-      <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" width="106" height="20" loading="lazy"></a>
+      <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" height="20" loading="lazy"></a>
     </p>
   </div>
 </div>
