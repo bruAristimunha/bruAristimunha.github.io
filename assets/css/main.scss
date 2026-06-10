@@ -1151,7 +1151,7 @@ h1, .anchor {
 
 .software-card__badge {
     display: inline-block;
-    width: 106px;
+    width: auto;
     height: 20px;
     vertical-align: middle;
 }
@@ -1263,10 +1263,10 @@ $pub-software: #CC79A7;
     transition: color 0.18s ease;
 }
 
-.pubtrack__chart-note {
+.page__content .pubtrack__chart-note {
     margin: 0.6rem 0 0;
     font-size: 0.74rem;
-    color: #767c85;
+    color: #62686f;
     letter-spacing: 0.01em;
 }
 
@@ -1327,7 +1327,7 @@ $pub-software: #CC79A7;
 .pubtrack__count {
     font-size: 0.72rem;
     font-weight: 700;
-    color: #767c85;
+    color: #62686f;
     font-variant-numeric: tabular-nums;
 }
 
@@ -1341,12 +1341,12 @@ $pub-software: #CC79A7;
     margin-bottom: 0;
 }
 
-.pubtrack__year-label {
+.page__content .pubtrack__year-label {
     margin: 0 0 0.8rem;
     font-size: 1.85rem;
     font-weight: 700;
     line-height: 1;
-    color: #9097a1;
+    color: #868d97;
     letter-spacing: 0.015em;
     font-variant-numeric: tabular-nums;
 }
@@ -1391,7 +1391,7 @@ $pub-software: #CC79A7;
 .pubtrack__entry--abstract::before   { background: $pub-abstract; }
 .pubtrack__entry--software::before   { background: $pub-software; }
 
-.pubtrack__title {
+.page__content .pubtrack__title {
     margin: 0;
     font-size: 1.03rem;
     font-weight: 700;
@@ -1411,7 +1411,7 @@ $pub-software: #CC79A7;
     text-underline-offset: 3px;
 }
 
-.pubtrack__meta {
+.page__content .pubtrack__meta {
     margin: 0;
     font-size: 0.78rem;
     color: #4d535b;
@@ -1438,10 +1438,10 @@ $pub-software: #CC79A7;
 .pubtrack__num {
     font-family: SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.7rem;
-    color: #767c85;
+    color: #62686f;
 }
 
-.pubtrack__authors {
+.page__content .pubtrack__authors {
     margin: 0;
     font-size: 0.86rem;
     line-height: 1.55;
@@ -1452,7 +1452,7 @@ $pub-software: #CC79A7;
     color: #23272e;
 }
 
-.pubtrack__links {
+.page__content .pubtrack__links {
     margin: 0.12rem 0 0;
     font-size: 0.8rem;
     font-weight: 600;
@@ -1480,7 +1480,7 @@ $pub-software: #CC79A7;
 .pubtrack__glyph {
     font-weight: 400;
     font-size: 0.72rem;
-    color: #767c85;
+    color: #62686f;
 }
 
 /* --- Mobile -------------------------------------------------------------- */
@@ -1503,7 +1503,7 @@ $pub-software: #CC79A7;
         gap: 0.1rem 0.9rem;
     }
 
-    .pubtrack__year-label {
+    .page__content .pubtrack__year-label {
         font-size: 1.5rem;
     }
 
