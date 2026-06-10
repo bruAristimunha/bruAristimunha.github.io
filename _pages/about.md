@@ -333,6 +333,33 @@ redirect_from:
   </div>
 </div>
 
+# 🔬 Featured Manuscript
+
+<section class="featured-paper">
+  <a
+    class="featured-paper__figure"
+    href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}"
+      alt="Figure from Learning aligned EEG representations with subject-specific encoders"
+      loading="lazy"
+    >
+  </a>
+  <div class="featured-paper__body">
+    <p class="featured-paper__eyebrow">EEG representation learning</p>
+    <h2 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h2>
+    <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
+    <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment, preserving cross-subject decoding performance while exposing head selection as the main remaining bottleneck.</p>
+    <p class="featured-paper__links">
+      <a href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Read PDF</a>
+      <a href="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}" target="_blank" rel="noopener noreferrer">Open figure</a>
+    </p>
+  </div>
+</section>
+
 # 🧭 Research Overview
 
 Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV numbering.
@@ -444,7 +471,7 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
         <span class="timeline-island__date">03/2022 – 06/2022</span>
         <span class="timeline-island__title">Data Scientist Intern, University of Glasgow / FGV</span>
       </div>
-      <p class="timeline-island__detail">Brazil 🇧🇷.</p>
+      <p class="timeline-island__detail">United Kingdom 🇬🇧.</p>
     </li>
     <li class="timeline-island__item">
       <div class="timeline-island__row">

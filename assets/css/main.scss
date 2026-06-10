@@ -108,6 +108,95 @@ h1:before, .anchor:before {
     font-size: .8em;
 }
 
+
+/* ==========================================================================
+   Featured paper
+   ========================================================================== */
+
+.featured-paper {
+    display: grid;
+    gap: 1.2rem;
+    align-items: center;
+    margin: 1.6rem 0 2.4rem;
+    padding: 1rem 0 2rem;
+    border-bottom: 1px solid rgba(31, 35, 43, 0.12);
+}
+
+.featured-paper__figure {
+    display: block;
+}
+
+.featured-paper__figure img {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    margin: 0;
+    border: 1px solid rgba(31, 35, 43, 0.12);
+    box-shadow: 0 18px 36px rgba(31, 35, 43, 0.12);
+}
+
+.featured-paper__body {
+    max-width: 46rem;
+}
+
+.featured-paper__eyebrow {
+    margin: 0 0 0.35rem;
+    color: #536170;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.featured-paper__title {
+    margin: 0 0 0.55rem;
+    font-size: 1.32rem;
+    line-height: 1.2;
+}
+
+.featured-paper__authors,
+.featured-paper__summary {
+    margin: 0 0 0.75rem;
+}
+
+.featured-paper__authors {
+    color: #4b5563;
+    font-size: 0.92rem;
+}
+
+.featured-paper__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 1rem 0 0;
+}
+
+.featured-paper__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid rgba(31, 35, 43, 0.16);
+    color: #1f232b;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.featured-paper__links a:hover,
+.featured-paper__links a:focus {
+    border-color: rgba(77, 134, 247, 0.55);
+    color: #245dcc;
+    text-decoration: none;
+}
+
+@include breakpoint($medium) {
+    .featured-paper {
+        grid-template-columns: minmax(260px, 0.9fr) minmax(260px, 1fr);
+        gap: 1.8rem;
+    }
+}
+
 /* ==========================================================================
    CV Embed
    ========================================================================== */
