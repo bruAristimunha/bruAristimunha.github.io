@@ -411,7 +411,28 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 {% assign n_software = pubs | where: "type", "software" | size %}
 {% assign n_all = pubs | size %}
 {% assign year_groups = pubs | group_by: "year" | sort: "name" | reverse %}
+{% assign chart_groups = pubs | group_by: "year" | sort: "name" %}
 <div class="pubtrack" data-pubtrack>
+<div class="pubtrack__chart-wrap">
+<div class="pubtrack__chart" role="img" aria-label="One square per publication, stacked by year from 2015 to 2026 and colored by type. Output rises sharply from 2023 onward.">
+{% for y in (2015..2026) %}
+{% assign ystr = y | append: "" %}
+{% assign g = chart_groups | where: "name", ystr | first %}
+{% if g %}
+<a class="pubtrack__col" href="#pubyear-{{ y }}" data-chart-year="{{ y }}" aria-label="{{ y }}: {{ g.items | size }} publications">
+<span class="pubtrack__stack">{% for pub in g.items %}<i class="pubtrack__cell pubtrack__cell--{{ pub.type }}" data-cell-type="{{ pub.type }}" title="{{ pub.title | escape }}"></i>{% endfor %}</span>
+<span class="pubtrack__col-year">&rsquo;{{ ystr | slice: 2, 2 }}</span>
+</a>
+{% else %}
+<span class="pubtrack__col pubtrack__col--empty" aria-hidden="true">
+<span class="pubtrack__stack"><i class="pubtrack__tick"></i></span>
+<span class="pubtrack__col-year">&rsquo;{{ ystr | slice: 2, 2 }}</span>
+</span>
+{% endif %}
+{% endfor %}
+</div>
+<p class="pubtrack__chart-note">One square = one publication. Click a year to jump to it.</p>
+</div>
 <div class="pubtrack__filters" role="group" aria-label="Filter publications by type">
 <button type="button" class="pubtrack__filter is-active" data-filter="all" aria-pressed="true">All <span class="pubtrack__count">{{ n_all }}</span></button>
 <button type="button" class="pubtrack__filter pubtrack__filter--journal" data-filter="journal" aria-pressed="false">Journal <span class="pubtrack__count">{{ n_journal }}</span></button>
@@ -422,19 +443,18 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 </div>
 <div class="pubtrack__years">
 {% for group in year_groups %}
-<div class="pubtrack__year" data-year-group>
-<p class="pubtrack__year-marker"><span class="pubtrack__year-label">{{ group.name }}</span></p>
+<div class="pubtrack__year anchor" id="pubyear-{{ group.name }}" data-year-group>
+<p class="pubtrack__year-label">{{ group.name }}</p>
 <div class="pubtrack__rows">
 {% for pub in group.items %}
 {% assign authors = pub.authors | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
 {% if pub.links.pdf %}{% assign title_href = pub.links.pdf | relative_url %}{% elsif pub.links.arxiv %}{% assign title_href = pub.links.arxiv %}{% elsif pub.links.doi %}{% assign title_href = pub.links.doi %}{% elsif pub.links.site %}{% assign title_href = pub.links.site %}{% else %}{% assign title_href = "" %}{% endif %}
-<div class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
-<p class="pubtrack__metarow"><span class="pubtrack__num">P{{ pub.num }}</span><span class="pubtrack__badge pubtrack__badge--{{ pub.type }}">{{ pub.type | capitalize }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}</p>
+<article class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
 {% if title_href != "" %}<p class="pubtrack__title"><a href="{{ title_href }}">{{ pub.title }}</a></p>{% else %}<p class="pubtrack__title">{{ pub.title }}</p>{% endif %}
+<p class="pubtrack__meta"><span class="pubtrack__type pubtrack__type--{{ pub.type }}">{{ pub.type }}</span><span class="pubtrack__venue">{{ pub.venue }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}<span class="pubtrack__num">P{{ pub.num }}</span></p>
 <p class="pubtrack__authors">{{ authors }}</p>
-<p class="pubtrack__venue"><em>{{ pub.venue }} · {{ pub.year }}</em></p>
-{% if pub.links %}<p class="pubtrack__links">{% if pub.links.pdf %}<a class="pubtrack__pill" href="{{ pub.links.pdf | relative_url }}">PDF</a>{% endif %}{% if pub.links.arxiv %}<a class="pubtrack__pill" href="{{ pub.links.arxiv }}">arXiv</a>{% endif %}{% if pub.links.doi %}<a class="pubtrack__pill" href="{{ pub.links.doi }}">DOI</a>{% endif %}{% if pub.links.site %}<a class="pubtrack__pill" href="{{ pub.links.site }}">Site</a>{% endif %}</p>{% endif %}
-</div>
+{% if pub.links %}<p class="pubtrack__links">{% if pub.links.pdf %}<a href="{{ pub.links.pdf | relative_url }}">PDF<span class="pubtrack__glyph">&nbsp;&darr;</span></a>{% endif %}{% if pub.links.arxiv %}<a href="{{ pub.links.arxiv }}">arXiv<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.doi %}<a href="{{ pub.links.doi }}">DOI<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.site %}<a href="{{ pub.links.site }}">Site<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}</p>{% endif %}
+</article>
 {% endfor %}
 </div>
 </div>
@@ -532,7 +552,7 @@ I was privileged to work with and mentor a group of outstanding students:
   <li class="mentorship__card">
     <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h2>
     <span class="mentorship__role">Master student</span>
-    <p class="mentorship__detail">UC San Diego, MS in Machine Learning &amp; Data Science (ECE). Co-author on EEG-DaSh and the EEG foundation-model channel-adaptation benchmark.</p>
+    <p class="mentorship__detail">UC San Diego, MS in Machine Learning &amp; Data Science (ECE).</p>
   </li>
   <li class="mentorship__card">
     <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h2>

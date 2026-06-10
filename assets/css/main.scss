@@ -1277,273 +1277,351 @@ h1, .anchor {
 }
 
 /* === Publications trajectory ===
-   One "island" holding the full publication list as a year-grouped trajectory.
-   Type colours use the Okabe-Ito colour-blind-safe palette as a left accent +
-   tinted badge (never heavy solid fills, to keep the island light).
-   Filtering is progressive enhancement: with JS off, every row stays visible. */
-$pubtrack-types: (
-    journal:    #009E73,
-    conference: #0072B2,
-    workshop:   #E69F00,
-    abstract:   #6e7681,
-    software:   #CC79A7
-);
+   Unit chart (one square per paper, stacked by year) + editorial spine
+   timeline. Okabe-Ito colors live on squares/dots only; all text stays
+   neutral for WCAG AA contrast. */
+
+$pub-journal: #009E73;
+$pub-conference: #0072B2;
+$pub-workshop: #E69F00;
+$pub-abstract: #8a9099;
+$pub-software: #CC79A7;
 
 .pubtrack {
-    --pubtrack-text: #1f232b;
-    --pubtrack-muted: #353a44;
-    --pubtrack-link: #4d86f7;
-    --pubtrack-line: rgba(83, 88, 98, 0.34);
-
-    margin: 1.5rem 0 2rem 0;
-    padding: 1.4rem 1.4rem 1.2rem 1.4rem;
-    border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 22px;
-    background: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 20px 38px rgba(31, 35, 43, 0.07);
-    color: var(--pubtrack-text);
+    margin: 1.6rem 0 2.6rem;
 }
 
-/* Filter bar */
+/* --- Unit chart -------------------------------------------------------- */
+
+.pubtrack__chart-wrap {
+    margin-bottom: 1.4rem;
+}
+
+.pubtrack__chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.pubtrack__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.pubtrack__col:hover,
+.pubtrack__col:focus-visible {
+    text-decoration: none;
+}
+
+.pubtrack__col:hover .pubtrack__stack,
+.pubtrack__col:focus-visible .pubtrack__stack {
+    transform: translateY(-2px);
+}
+
+.pubtrack__col:hover .pubtrack__col-year,
+.pubtrack__col:focus-visible .pubtrack__col-year {
+    color: #1f232b;
+}
+
+.pubtrack__stack {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
+    transition: transform 0.18s ease;
+}
+
+.pubtrack__cell {
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 3.5px;
+    transition: opacity 0.18s ease;
+}
+
+.pubtrack__cell--journal    { background: $pub-journal; }
+.pubtrack__cell--conference { background: $pub-conference; }
+.pubtrack__cell--workshop   { background: $pub-workshop; }
+.pubtrack__cell--abstract   { background: $pub-abstract; }
+.pubtrack__cell--software   { background: $pub-software; }
+
+.pubtrack__cell.is-dim {
+    opacity: 0.18;
+}
+
+.pubtrack__tick {
+    display: block;
+    width: 13px;
+    height: 3px;
+    border-radius: 2px;
+    background: #e2e4e8;
+}
+
+.pubtrack__col-year {
+    font-size: 0.7rem;
+    color: #767c85;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    transition: color 0.18s ease;
+}
+
+.pubtrack__chart-note {
+    margin: 0.6rem 0 0;
+    font-size: 0.74rem;
+    color: #767c85;
+    letter-spacing: 0.01em;
+}
+
+/* --- Filter tabs (double as the color legend) -------------------------- */
+
 .pubtrack__filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 1.4rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid var(--pubtrack-line);
+    gap: 0.1rem 1.15rem;
+    margin: 0 0 1.7rem;
+    padding: 0.55rem 0;
+    border-top: 1px solid rgba(31, 35, 43, 0.10);
+    border-bottom: 1px solid rgba(31, 35, 43, 0.10);
 }
 
 .pubtrack__filter {
     appearance: none;
+    border: 0;
+    background: none;
+    margin: 0;
+    padding: 0.25rem 0;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #4d535b;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.32rem 0.8rem;
-    border: 1px solid rgba(83, 88, 98, 0.2);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--pubtrack-muted);
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    gap: 0.42rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
+
+.pubtrack__filter::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    background: #1f232b;
+    flex-shrink: 0;
+}
+
+.pubtrack__filter--journal::before    { background: $pub-journal; }
+.pubtrack__filter--conference::before { background: $pub-conference; }
+.pubtrack__filter--workshop::before   { background: $pub-workshop; }
+.pubtrack__filter--abstract::before   { background: $pub-abstract; }
+.pubtrack__filter--software::before   { background: $pub-software; }
 
 .pubtrack__filter:hover,
 .pubtrack__filter:focus-visible {
-    border-color: rgba(83, 88, 98, 0.36);
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--pubtrack-text);
+    color: #1f232b;
 }
 
 .pubtrack__filter.is-active {
-    border-color: rgba(43, 48, 58, 0.7);
-    background: #fff;
-    color: var(--pubtrack-text);
+    color: #1f232b;
+    border-bottom-color: #1f232b;
 }
 
 .pubtrack__count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #767c85;
     font-variant-numeric: tabular-nums;
-    font-size: 0.74rem;
-    color: #6b7280;
 }
 
-.pubtrack__filter.is-active .pubtrack__count { color: var(--pubtrack-muted); }
+/* --- Spine timeline ----------------------------------------------------- */
 
-/* Type-tinted filter dots (small left accent so the bar reads as a legend too) */
-@each $name, $col in $pubtrack-types {
-    .pubtrack__filter--#{$name}::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: $col;
-    }
+.pubtrack__year {
+    margin-bottom: 1.9rem;
 }
 
-/* Year groups + slim marker */
-.pubtrack__year + .pubtrack__year { margin-top: 1.5rem; }
-
-.pubtrack__year-marker {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin: 0 0 0.7rem 0;
-}
-
-.pubtrack__year-marker::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--pubtrack-line);
+.pubtrack__year:last-child {
+    margin-bottom: 0;
 }
 
 .pubtrack__year-label {
-    font-size: 0.92rem;
+    margin: 0 0 0.8rem;
+    font-size: 1.85rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--pubtrack-muted);
+    line-height: 1;
+    color: #9097a1;
+    letter-spacing: 0.015em;
     font-variant-numeric: tabular-nums;
 }
 
 .pubtrack__rows {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
+    border-left: 2px solid rgba(31, 35, 43, 0.10);
+    padding-left: 1.45rem;
+    margin-left: 5px;
+    display: grid;
+    gap: 1.25rem;
 }
 
-/* Entry row */
 .pubtrack__entry {
-    padding: 0.7rem 0.9rem 0.75rem 1rem;
-    border: 1px solid rgba(173, 178, 188, 0.32);
-    border-left: 3px solid #8a8f98;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.5);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    display: grid;
+    gap: 0.22rem;
 }
 
-.pubtrack__entry:hover {
-    background: rgba(255, 255, 255, 0.78);
-    border-color: rgba(83, 88, 98, 0.42);
+.pubtrack__entry::before {
+    content: '';
+    position: absolute;
+    left: -1.45rem;
+    top: 0.42em;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transform: translateX(calc(-50% - 1px));
+    background: #1f232b;
 }
 
-@each $name, $col in $pubtrack-types {
-    .pubtrack__entry--#{$name} { border-left-color: $col; }
-}
-
-.pubtrack__metarow {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin: 0 0 0.35rem 0;
-}
-
-.pubtrack__num {
-    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #6b7280;
-    padding: 0.1rem 0.4rem;
-    border: 1px solid rgba(83, 88, 98, 0.2);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.01em;
-}
-
-.pubtrack__badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 0.12rem 0.5rem;
-    border-radius: 999px;
-    border: 1px solid currentColor;
-    line-height: 1.25;
-}
-
-@each $name, $col in $pubtrack-types {
-    .pubtrack__badge--#{$name} {
-        color: $col;
-        background: rgba($col, 0.1);
-    }
-}
-
-.pubtrack__status {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    letter-spacing: 0.03em;
-    padding: 0.12rem 0.5rem;
-    border-radius: 999px;
-    border: 1px solid rgba(83, 88, 98, 0.32);
-    color: var(--pubtrack-muted);
-    background: transparent;
-}
+.pubtrack__entry--journal::before    { background: $pub-journal; }
+.pubtrack__entry--conference::before { background: $pub-conference; }
+.pubtrack__entry--workshop::before   { background: $pub-workshop; }
+.pubtrack__entry--abstract::before   { background: $pub-abstract; }
+.pubtrack__entry--software::before   { background: $pub-software; }
 
 .pubtrack__title {
-    margin: 0 0 0.2rem 0;
-    font-size: 1rem;
+    margin: 0;
+    font-size: 1.03rem;
     font-weight: 700;
-    line-height: 1.32;
-    color: var(--pubtrack-text);
+    line-height: 1.38;
+    color: #1f232b;
 }
 
 .pubtrack__title a {
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px dotted rgba(83, 88, 98, 0.35);
 }
 
 .pubtrack__title a:hover,
 .pubtrack__title a:focus {
-    color: var(--pubtrack-link);
-    border-bottom-color: var(--pubtrack-link);
-    text-decoration: none;
+    color: #245dcc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pubtrack__meta {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #4d535b;
+    line-height: 1.5;
+}
+
+.pubtrack__meta > * + *::before {
+    content: '\00b7';
+    margin: 0 0.5em;
+    color: #b9bec6;
+}
+
+.pubtrack__type {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    font-size: 0.7rem;
+}
+
+.pubtrack__status {
+    font-style: italic;
+}
+
+.pubtrack__num {
+    font-family: SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    color: #767c85;
 }
 
 .pubtrack__authors {
-    margin: 0 0 0.1rem 0;
-    font-size: 0.83rem;
-    line-height: 1.5;
-    color: var(--pubtrack-muted);
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #5d636c;
 }
 
-.pubtrack__authors strong { font-weight: 700; color: var(--pubtrack-text); }
-
-.pubtrack__venue {
-    margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    color: #6b7280;
+.pubtrack__authors strong {
+    color: #23272e;
 }
 
 .pubtrack__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0.55rem 0 0 0;
-}
-
-.pubtrack__pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.24rem 0.65rem;
-    border: 1px solid rgba(83, 88, 98, 0.18);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--pubtrack-text);
-    font-size: 0.76rem;
+    margin: 0.12rem 0 0;
+    font-size: 0.8rem;
     font-weight: 600;
-    line-height: 1;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.pubtrack__pill:hover,
-.pubtrack__pill:focus {
-    border-color: rgba(83, 88, 98, 0.32);
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--pubtrack-link);
+.pubtrack__links a {
+    color: #3b66c4;
     text-decoration: none;
 }
+
+.pubtrack__links a:hover,
+.pubtrack__links a:focus {
+    color: #245dcc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pubtrack__links > a + a::before {
+    content: '\00b7';
+    margin: 0 0.55em;
+    color: #b9bec6;
+    font-weight: 400;
+}
+
+.pubtrack__glyph {
+    font-weight: 400;
+    font-size: 0.72rem;
+    color: #767c85;
+}
+
+/* --- Mobile -------------------------------------------------------------- */
 
 @include breakpoint(max-width 48em) {
-    .pubtrack {
-        padding: 1rem 0.9rem 0.95rem 0.9rem;
-        border-radius: 16px;
+    .pubtrack__chart {
+        gap: 6px;
     }
-    .pubtrack__filters { gap: 0.35rem; }
-    .pubtrack__entry { padding: 0.65rem 0.7rem 0.7rem 0.8rem; }
-    .pubtrack__title { font-size: 0.96rem; }
+
+    .pubtrack__cell,
+    .pubtrack__tick {
+        width: 11px;
+    }
+
+    .pubtrack__cell {
+        height: 11px;
+    }
+
+    .pubtrack__filters {
+        gap: 0.1rem 0.9rem;
+    }
+
+    .pubtrack__year-label {
+        font-size: 1.5rem;
+    }
+
+    .pubtrack__rows {
+        padding-left: 1.15rem;
+        margin-left: 4px;
+    }
+
+    .pubtrack__entry::before {
+        left: -1.15rem;
+        width: 10px;
+        height: 10px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .pubtrack__filter,
-    .pubtrack__entry,
-    .pubtrack__pill,
-    .pubtrack__title a { transition: none !important; }
+    .pubtrack__stack,
+    .pubtrack__cell,
+    .pubtrack__col-year,
+    .pubtrack__filter {
+        transition: none !important;
+    }
 }

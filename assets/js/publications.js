@@ -5,6 +5,7 @@
     var filters = root.querySelectorAll("[data-filter]");
     var entries = root.querySelectorAll("[data-type]");
     var groups = root.querySelectorAll("[data-year-group]");
+    var cells = root.querySelectorAll("[data-cell-type]");
     if (!filters.length || !entries.length) return;
 
     function apply(type) {
@@ -12,10 +13,15 @@
         var show = type === "all" || el.getAttribute("data-type") === type;
         el.hidden = !show;
       });
-      // Hide a year marker when none of its entries are visible under the filter.
+      // Hide a year group when none of its entries are visible under the filter.
       groups.forEach(function (g) {
         var visible = g.querySelectorAll("[data-type]:not([hidden])").length;
         g.hidden = visible === 0;
+      });
+      // Dim non-matching squares in the unit chart so it doubles as feedback.
+      cells.forEach(function (c) {
+        var match = type === "all" || c.getAttribute("data-cell-type") === type;
+        c.classList.toggle("is-dim", !match);
       });
       filters.forEach(function (b) {
         var on = b.getAttribute("data-filter") === type;
