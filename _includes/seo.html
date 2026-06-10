@@ -24,6 +24,10 @@
   {% assign seo_author_twitter = author_data.twitter | replace: "@", "" %}
 {% endif %}
 
+{% if seo_description %}
+  <meta name="description" content="{{ seo_description }}">
+{% endif %}
+
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ site.title }}">

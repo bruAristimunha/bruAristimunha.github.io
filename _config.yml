@@ -11,7 +11,6 @@ description              : "Research Scientist at Yneuro, working on deep learni
 repository               : "bruaristimunha/bruaristimunha.github.io"
 url                      : "https://bruaristimunha.github.io" # explicit, otherwise the github-pages gem injects a wrong production fallback
 baseurl                  : "" # explicit, otherwise the github-pages gem injects /pages/bruaristimunha in CI
-google_scholar_stats_use_cdn : true
 # google analytics
 google_analytics_id      : "G-Q7SBRQ31EV" # get google_analytics_id from https://analytics.google.com/analytics/
 # SEO Related
@@ -22,7 +21,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 # Site Author
 author:
   name             : "Bruno Aristimunha"
-  avatar           : "images/bruno_profile.png"
+  avatar           : "images/bruno_profile.webp"
   bio              : "Research Scientist <br>PhD in Computer Science"
   location         : "France"
   employer         : Yneuro · UC San Diego INC (Hon.)

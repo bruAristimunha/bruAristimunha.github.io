@@ -8,13 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-{% if site.google_scholar_stats_use_cdn %}
-{% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
-{% else %}
-{% assign gsDataBaseUrl = "https://raw.githubusercontent.com/" | append: site.repository | append: "/" %}
-{% endif %}
-{% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
-
 <span class='anchor' id='about-me'></span>
 
 {% include_relative includes/intro.md %}
@@ -401,6 +394,10 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 
 # 📝 Publications (Full List)
 
+[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-profile-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=2Gd5gOQAAAAJ)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--5258--2995-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-5258-2995)
+[![OpenAlex](https://img.shields.io/badge/OpenAlex-profile-2D7DD2)](https://openalex.org/A5060466816)
+
 1. <span class="anchor" id="paper-p1"></span>Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H. From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs. In 2026 34nd European Signal Processing Conference (EUSIPCO). IEEE. ***SUBMITTED***
 2. <span class="anchor" id="paper-p2"></span>Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A. (2026). Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models. In EUSIPCO 2026. ***SUBMITTED***
 3. <span class="anchor" id="paper-p3"></span>Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A. EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding. NeurIPS 2025.
@@ -498,27 +495,27 @@ I was privileged to work with and mentor a group of outstanding students:
 
 <ul class="mentorship">
   <li class="mentorship__card">
-    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h4>
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h2>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">Federal University of ABC, Computer Science.</p>
   </li>
   <li class="mentorship__card">
-    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h4>
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h2>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Université Paris-Saclay, now a master student.</p>
   </li>
   <li class="mentorship__card">
-    <h4 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h4>
+    <h2 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h2>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Universidade de São Paulo (USP), now a master student at USP.</p>
   </li>
   <li class="mentorship__card">
-    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h4>
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h2>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">USP, now in the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay.</p>
   </li>
   <li class="mentorship__card">
-    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h4>
+    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h2>
     <span class="mentorship__role">Undergrad → Industry</span>
     <p class="mentorship__detail">Federal University of ABC, now at Hospital Albert Einstein.</p>
   </li>
