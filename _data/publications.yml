@@ -22,6 +22,7 @@
   status: submitted
   links:
     pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
+  figure: /assets/images/publications/learning-aligned-eeg-representations.png
   map:
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
@@ -49,6 +50,7 @@
   links:
     pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
     arxiv: https://arxiv.org/abs/2604.23091
+  figure: /assets/images/publications/channel-adaptation-eeg-fm.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -65,6 +67,7 @@
     pdf: /assets/pdfs/artifact-rejection-eusipco26.pdf
     arxiv: https://arxiv.org/abs/2605.12408
   venue_short: EUSIPCO
+  figure: /assets/images/publications/artifact-rejection-eusipco26.png
   map:
     area: Preprocessing
     label: From EEG Cleaning to Decoding
@@ -79,6 +82,7 @@
     pdf: /assets/pdfs/openeeg-bench-eusipco26.pdf
     site: https://huggingface.co/spaces/braindecode/OpenEEGBench#/
   venue_short: EUSIPCO
+  figure: /assets/images/publications/openeeg-bench-eusipco26.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -96,6 +100,7 @@
     arxiv: https://arxiv.org/abs/2602.22895
     site: https://spdlearn.org
   venue_short: JMLR OST
+  figure: /assets/images/publications/spd-learn-jmlr.png
   map:
     area: Software
     label: SPD Learn
@@ -107,7 +112,9 @@
   venue: Heliyon
   type: journal
   links:
+    pdf: /assets/pdfs/meg-differential-diagnosis-heliyon.pdf
     doi: https://doi.org/10.1016/j.heliyon.2026.e44559
+  figure: /assets/images/publications/meg-differential-diagnosis-heliyon.png
   map:
     area: Clinical
     label: Interpretable MEG Differential Diagnosis
@@ -121,6 +128,7 @@
   links:
     pdf: /assets/pdfs/eeg-foundation-challenge-neurips25.pdf
     arxiv: https://arxiv.org/abs/2506.19141
+  figure: /assets/images/publications/eeg-foundation-challenge-neurips25.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -136,6 +144,7 @@
     pdf: /assets/pdfs/finetuning-continual-eeg-embc25.pdf
     arxiv: https://arxiv.org/abs/2502.06828
     doi: https://doi.org/10.1109/embc58623.2025.11253543
+  figure: /assets/images/publications/finetuning-continual-eeg-embc25.png
   map:
     area: Data Alignment
     topic: Online adaptation
@@ -148,8 +157,10 @@
   venue: NeurIPS Workshop (TSALM)
   type: workshop
   links:
+    pdf: /assets/pdfs/brain-foundation-models-tsalm24.pdf
     site: https://openreview.net/forum?id=HwDQH0r37I
   venue_short: NeurIPS TSALM
+  figure: /assets/images/publications/brain-foundation-models-tsalm24.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -165,6 +176,7 @@
     pdf: /assets/pdfs/phase-space-geometric-nn-jne.pdf
     arxiv: https://arxiv.org/abs/2403.05645
     doi: https://doi.org/10.1088/1741-2552/ad88a2
+  figure: /assets/images/publications/phase-space-geometric-nn-jne.png
   map:
     area: Models
     topic: Decoding architectures
@@ -176,6 +188,9 @@
   title: What is the best model for decoding neurophysiological signals? Depends on how you evaluate
   venue: CNS
   type: abstract
+  links:
+    pdf: /assets/pdfs/best-model-evaluation-cns24.pdf
+  figure: /assets/images/publications/best-model-evaluation-cns24.png
   map:
     area: Benchmark and Evaluation
     label: Best Model Depends on Evaluation
@@ -191,6 +206,7 @@
     arxiv: https://arxiv.org/abs/2405.14994
     doi: https://doi.org/10.23919/eusipco63174.2024.10715237
   venue_short: EUSIPCO
+  figure: /assets/images/publications/euclidean-alignment-augmentation-eusipco24.png
   map:
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
@@ -205,6 +221,7 @@
   links:
     pdf: /assets/pdfs/alljoined-eeg-image-cvpr24.pdf
     arxiv: https://arxiv.org/abs/2404.05553
+  figure: /assets/images/publications/alljoined-eeg-image-cvpr24.png
   map:
     area: Data
     topic: Data resources and platforms
@@ -220,6 +237,7 @@
     pdf: /assets/pdfs/euclidean-alignment-deeplearning-jne.pdf
     arxiv: https://arxiv.org/abs/2401.10746
     doi: https://doi.org/10.1088/1741-2552/ad4f18
+  figure: /assets/images/publications/euclidean-alignment-deeplearning-jne.png
   map:
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
@@ -232,8 +250,10 @@
   venue: NeurIPS Workshop (DGM4H, Spotlight)
   type: workshop
   links:
+    pdf: /assets/pdfs/synthetic-sleep-eeg-diffusion-neurips23.pdf
     site: https://openreview.net/forum?id=mDwURmlapW
   venue_short: NeurIPS DGM4H
+  figure: /assets/images/publications/synthetic-sleep-eeg-diffusion-neurips23.png
   map:
     area: Data
     topic: Data generation
@@ -249,6 +269,7 @@
     pdf: /assets/pdfs/cognitive-tasks-transfer-neurips23.pdf
     arxiv: https://arxiv.org/abs/2308.02408
   venue_short: NeurIPS AI for Science
+  figure: /assets/images/publications/cognitive-tasks-transfer-neurips23.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -273,6 +294,9 @@
   title: 'CONCERTO: Coherence & Functional Connectivity Graph Network'
   venue: Journée CORTICO
   type: abstract
+  links:
+    pdf: /assets/pdfs/concerto-cortico23.pdf
+  figure: /assets/images/publications/concerto-cortico23.png
   map:
     area: Models
     topic: Decoding architectures
@@ -284,6 +308,9 @@
   title: 'Holographic EEG: multi-view deep learning for BCI'
   venue: Journée CORTICO
   type: abstract
+  links:
+    pdf: /assets/pdfs/holographic-eeg-cortico23.pdf
+  figure: /assets/images/publications/holographic-eeg-cortico23.png
   map:
     area: Models
     topic: Decoding architectures
@@ -296,7 +323,9 @@
   venue: IEEE Access
   type: journal
   links:
+    pdf: /assets/pdfs/sleep-energy-ieee-access.pdf
     doi: https://doi.org/10.1109/access.2023.3263477
+  figure: /assets/images/publications/sleep-energy-ieee-access.png
   map:
     area: Models
     topic: Decoding architectures
@@ -313,6 +342,7 @@
     pdf: /assets/pdfs/moabb-benchmark.pdf
     arxiv: https://arxiv.org/abs/2404.15319
   venue_short: Preprint
+  figure: /assets/images/publications/moabb-benchmark.png
   map:
     area: Benchmark and Evaluation
     label: Largest MOABB Reproducibility Study
@@ -327,6 +357,7 @@
   links:
     pdf: /assets/pdfs/cognitive-tasks-transfer-neurips23.pdf
     arxiv: https://arxiv.org/abs/2308.02408
+  figure: /assets/images/publications/cognitive-tasks-transfer-neurips23.png
   map:
     area: Models
     topic: Foundation and transfer models
@@ -364,7 +395,9 @@
   venue: Preprint (HAL)
   type: report
   links:
+    pdf: /assets/pdfs/eeg-conformer-p300-hal.pdf
     site: https://hal.science/hal-04791526
+  figure: /assets/images/publications/eeg-conformer-p300-hal.png
   map:
     area: Models
     topic: Decoding architectures
@@ -377,7 +410,9 @@
   venue: Soph.I.A Summit
   type: abstract
   links:
+    pdf: /assets/pdfs/augmented-spdnet-sophia23.pdf
     site: https://inria.hal.science/hal-04308549
+  figure: /assets/images/publications/augmented-spdnet-sophia23.png
   map:
     area: Models
     topic: Decoding architectures
@@ -390,7 +425,9 @@
   venue: Proc. SBMAC
   type: workshop
   links:
+    pdf: /assets/pdfs/newcomb-benford-sbmac23.pdf
     doi: https://doi.org/10.5540/03.2023.010.01.0042
+  figure: /assets/images/publications/newcomb-benford-sbmac23.png
 - id: paper-p28
   num: 28
   authors: Aristimunha, B.
@@ -399,7 +436,9 @@
   venue: ERAMIA-SP
   type: workshop
   links:
+    pdf: /assets/pdfs/estamira-eramia20.pdf
     site: https://sol.sbc.org.br/index.php/eramiasp/article/view/13610
+  figure: /assets/images/publications/estamira-eramia20.png
 - id: paper-p29
   num: 29
   authors: Aristimunha, B., Júnior, J. S. F., Batagelo, H. C., Goya, D., & dos Santos, C. S.
@@ -408,7 +447,9 @@
   venue: Workshop do Nuvem
   type: workshop
   links:
+    pdf: /assets/pdfs/evasao-disciplinas-nuvem20.pdf
     doi: https://doi.org/10.5281/zenodo.3778956
+  figure: /assets/images/publications/evasao-disciplinas-nuvem20.png
 - id: paper-p30
   num: 30
   authors: Aristimunha, B., Borges, F. S. B., Gonçalves, A. B., & Pistori, H.
@@ -417,7 +458,9 @@
   venue: Workshop of Computer Vision (WVC)
   type: workshop
   links:
+    pdf: /assets/pdfs/pollen-cnn-wvc19.pdf
     doi: https://doi.org/10.5753/wvc.2019.7634
+  figure: /assets/images/publications/pollen-cnn-wvc19.png
 - id: paper-p31
   num: 31
   authors: Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H.
@@ -425,6 +468,9 @@
   title: Contagem de Carunchos do Bambu através de Técnicas de Limiarização
   venue: The Conference on Graphics, Patterns and Images (SIBGRAPI)
   type: workshop
+  links:
+    pdf: /assets/pdfs/caruncho-limiarizacao-sibgrapi16.pdf
+  figure: /assets/images/publications/caruncho-limiarizacao-sibgrapi16.png
 - id: paper-p32
   num: 32
   authors: Martins, J. M. P., Pinto, B. A., de Albuquerque, P. L. F., da Silveira, E. S., de Souza, K. P., & Pistori, H.
@@ -433,4 +479,6 @@
   venue: Computer on the Beach
   type: conference
   links:
+    pdf: /assets/pdfs/caruncho-fluxo-otico-cotb15.pdf
     site: https://periodicos.univali.br/index.php/acotb/article/view/7050
+  figure: /assets/images/publications/caruncho-fluxo-otico-cotb15.png

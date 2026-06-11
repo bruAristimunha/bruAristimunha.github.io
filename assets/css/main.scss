@@ -409,9 +409,13 @@ $pub-report: #D55E00;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.research-tree__node:hover {
+.research-tree__node:hover,
+.research-tree__node:focus-within {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(31, 35, 43, 0.11);
+    /* lift the node's stacking context above later sibling cards so the
+       .pubfig hover preview is not painted underneath them */
+    z-index: 70;
 }
 
 /* Junction dot where the elbow meets the card */
@@ -1473,6 +1477,48 @@ a.research-tree__title:focus-visible {
     color: #245dcc;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+/* --- Paper figure hover preview ----------------------------------------- */
+/* A `figure:` key on a publications.yml entry embeds a hidden representative
+   figure inside the publication title (and the research-map card, see
+   research_map_card.html). It surfaces as a tooltip-style card on hover or
+   keyboard focus. display:none keeps the lazy images from being fetched
+   until first hover; hover-capable pointers only, so touch never pays. */
+
+.pubfig {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.45rem);
+    z-index: 60;
+    width: min(420px, 78vw);
+    padding: 5px;
+    background: #fff;
+    border: 1px solid rgba(83, 88, 98, 0.28);
+    border-radius: 10px;
+    box-shadow: 0 14px 34px rgba(31, 35, 43, 0.22);
+    pointer-events: none;
+}
+
+.pubfig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.pubfig--map {
+    width: min(340px, 70vw);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pubtrack__title:hover .pubfig,
+    .pubtrack__title a:focus-visible .pubfig,
+    .research-tree__node:hover > .pubfig,
+    .research-tree__node:focus-within > .pubfig {
+        display: block;
+    }
 }
 
 .page__content .pubtrack__meta {

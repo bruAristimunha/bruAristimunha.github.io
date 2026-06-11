@@ -21,5 +21,6 @@
       {%- endif -%}
       <span class="research-tree__venue">{{ rmc.venue_short | default: rmc.venue }} {{ rmc.year }}{% if rmc.status %} · {{ rmc.status | replace: "-", " " }}{% endif %}</span>
     </span>
+    {%- if rmc.figure -%}<span class="pubfig pubfig--map" aria-hidden="true"><img src="{{ rmc.figure | relative_url }}" alt="" loading="lazy"></span>{%- endif -%}
   </div>
 </li>
