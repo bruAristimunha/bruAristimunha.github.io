@@ -3,7 +3,7 @@
   authors: Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H.
   year: 2026
   title: 'From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs'
-  venue: EUSIPCO
+  venue: European Signal Processing Conference (EUSIPCO)
   type: conference
   status: submitted
   links:
@@ -14,11 +14,11 @@
   authors: Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A.
   year: 2026
   title: 'Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models'
-  venue: EUSIPCO
+  venue: European Signal Processing Conference (EUSIPCO)
   type: conference
-  status: submitted
   links:
     pdf: /assets/pdfs/openeeg-bench-eusipco26.pdf
+    site: https://huggingface.co/spaces/braindecode/OpenEEGBench#/
 - id: paper-p3
   num: 3
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
@@ -81,7 +81,7 @@
   authors: Rodrigues, G., Aristimunha, B., Chevallier, S. & Camargo, R. Y. de
   year: 2024
   title: Combining Euclidean Alignment and Data Augmentation for BCI decoding
-  venue: EUSIPCO
+  venue: European Signal Processing Conference (EUSIPCO)
   type: conference
   links:
     pdf: /assets/pdfs/euclidean-alignment-augmentation-eusipco24.pdf
@@ -162,9 +162,9 @@
 - id: paper-p18
   num: 18
   authors: Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T.
-  year: 2024
+  year: 2025
   title: 'The largest EEG-based BCI reproducibility study for open science: the MOABB benchmark'
-  venue: J. Neural Engineering
+  venue: In re-submittion queue
   type: journal
   status: under-review
   links:
@@ -173,9 +173,9 @@
 - id: paper-p19
   num: 19
   authors: Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C.
-  year: 2026
+  year: 2025
   title: Uncovering and improving the structure of cognitive tasks with transfer learning
-  venue: Imaging Neuroscience
+  venue: In re-submittion queue
   type: journal
   status: under-review
   links:
@@ -206,7 +206,7 @@
   title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
   venue: JMLR (Open Source Track)
   type: journal
-  status: submitted
+  status: In preparation
   links:
     pdf: /assets/pdfs/spd-learn-jmlr.pdf
     arxiv: https://arxiv.org/abs/2602.22895
@@ -216,7 +216,7 @@
   authors: Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
   year: 2026
   title: 'EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data'
-  venue: Journal of Database
+  venue: Scientific Data
   type: journal
   status: submitted
   links:
@@ -227,7 +227,7 @@
   year: 2026
   title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
   venue: Preprint (arXiv)
-  type: journal
+  type: Conference
   status: under-review
   links:
     pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
@@ -238,7 +238,7 @@
   year: 2024
   title: Evaluation of the Electroencephalogram Conformer for the P300 Signal
   venue: Preprint (HAL)
-  type: abstract
+  type: techical report
   links:
     site: https://hal.science/hal-04791526
 - id: paper-p26
@@ -273,7 +273,7 @@
   authors: Aristimunha, B., Júnior, J. S. F., Batagelo, H. C., Goya, D., & dos Santos, C. S.
   year: 2020
   title: Evasão em Nível de Disciplinas na Ciência da Computação na Universidade Federal do ABC
-  venue: Preprint (Zenodo)
+  venue: Workshop do Nuvem
   type: workshop
   links:
     doi: https://doi.org/10.5281/zenodo.3778956
@@ -282,7 +282,7 @@
   authors: Aristimunha, B., Borges, F. S. B., Gonçalves, A. B., & Pistori, H.
   year: 2019
   title: 'A comparison study of deep convolutional neural networks for the classification of Brazilian savannah pollen grains: Preliminary results'
-  venue: WVC
+  venue: Workshop of Computer Vision (WVC)
   type: workshop
   links:
     doi: https://doi.org/10.5753/wvc.2019.7634
@@ -291,7 +291,7 @@
   authors: Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H.
   year: 2016
   title: Contagem de Carunchos do Bambu através de Técnicas de Limiarização
-  venue: Sibgrapi (WIP)
+  venue: The Conference on Graphics, Patterns and Images (SIBGRAPI) 
   type: workshop
 - id: paper-p32
   num: 32
@@ -312,3 +312,11 @@
   status: submitted
   links:
     pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
+- id: paper-p34
+  num: 34
+  authors: "Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M."
+  year: 2026
+  title: "Learning aligned EEG representations with subject-specific encoders"
+  venue: "Manuscript"
+  type: conference
+  status: submitted to nice conference :)
