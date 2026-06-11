@@ -1521,6 +1521,72 @@ a.research-tree__title:focus-visible {
     }
 }
 
+/* --- FEBRACE throwback easter egg --------------------------------------- */
+/* Hover (or keyboard-focus) the word FEBRACE in the Origin act to reveal a
+   tiny taped-photo frame of a 2012 science-fair presentation. The image is
+   display:none until reveal, so it is never fetched on a casual visit. */
+
+.egg {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted rgba(127, 127, 127, 0.5);
+    outline: none;
+}
+
+.egg__pop {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.65rem);
+    transform: translateX(-50%) rotate(-3.5deg);
+    z-index: 80;
+    width: 188px;
+    padding: 6px 6px 4px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 14px 32px rgba(31, 35, 43, 0.3);
+    pointer-events: none;
+}
+
+/* a strip of "tape" pinning the photo up */
+.egg__pop::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 38px;
+    height: 15px;
+    transform: translateX(-50%) rotate(-5deg);
+    background: rgba(231, 196, 91, 0.5);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.egg__pop img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+.egg__cap {
+    display: block;
+    margin: 5px 1px 2px;
+    font-size: 0.62rem;
+    font-style: italic;
+    text-align: center;
+    color: #4d535b;
+}
+
+.egg:focus-visible .egg__pop {
+    display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .egg:hover .egg__pop {
+        display: block;
+    }
+}
+
 .page__content .pubtrack__meta {
     margin: 0;
     font-size: 0.78rem;

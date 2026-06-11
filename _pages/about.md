@@ -281,7 +281,7 @@ redirect_from:
           <span class="journey__ms-dot" aria-hidden="true"></span>
           <div class="journey__ms-row">
             <span class="journey__ms-year">2014</span>
-            <span class="journey__ms-label">FEBRACE + ABRITEC + ABRIC awards</span>
+            <span class="journey__ms-label"><span class="egg" tabindex="0">FEBRACE<span class="egg__pop"><img src="{{ '/assets/images/febrace-2012.jpg' | relative_url }}" alt="A teenage Bruno presenting at the booth during the FEBRACE 2012 science fair" loading="lazy"><span class="egg__cap">FEBRACE 2012, my first booth 🔬</span></span></span> + ABRITEC + ABRIC awards</span>
           </div>
           <div class="journey__ms-note">4th place Biological Sciences (FEBRACE national fair); ABRITEC Distinction in Science Incentive; ABRIC Excellence in Scientific Initiation. For the Wi-Fi pest-repellence project.</div>
         </li>
