@@ -22,7 +22,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
     ap.add_argument("--task", required=True)
-    ap.add_argument("--dataset", required=True)
+    # --dataset is optional. Pass a variant stem (e.g. "tangermann2012") to
+    # load tasks/eeg/<task>/datasets/<stem>.yaml; pass nothing or "core" to
+    # use the task's Core v1.0 default from tasks/eeg/<task>/config.yaml.
+    ap.add_argument("--dataset", default=None)
     ap.add_argument("--probes-file", required=True)
     ap.add_argument("--aggregation", default="flatten")
     ap.add_argument("--seeds", default="33,34,35")
@@ -58,7 +61,9 @@ def main():
     grid_conf["downstream_model_wrapper.model_output_key"] = [None]
     grid_conf["downstream_model_wrapper.layers_to_unfreeze"] = [[""]]
 
-    datasets = _resolve_datasets("eeg", args.task, [args.dataset])
+    # Core mode: dataset is None or "core" → load task's default config.yaml
+    ds_arg = None if args.dataset in (None, "", "core", "default") else args.dataset
+    datasets = _resolve_datasets("eeg", args.task, [ds_arg] if ds_arg else None)
     models   = _expand_models(args.model, device="eeg", task_name=args.task)
     configs  = prepare_task_configs(
         config.copy(), grid_conf, "eeg", args.task,
@@ -67,7 +72,6 @@ def main():
     )
     print(f"Total grid configs: {len(configs)}; FM={args.model} task={args.task} ds={args.dataset}", flush=True)
 
-    from pathlib import Path
     local_path = os.environ.get("SLURM_DATA_PATH")
     experiments = []
     for ci, cfg in enumerate(configs):
