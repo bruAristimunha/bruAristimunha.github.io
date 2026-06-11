@@ -24,7 +24,7 @@ redirect_from:
     <div class="journey__eyebrow">Three Acts</div>
     <h2 class="journey__title">A research scientist, in motion</h2>
     <p class="journey__lede">
-      Three countries, one through-line: building tools to decode signals from the brain. The arc bends from a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen) to a cotutelle PhD between Paris-Saclay and UFABC, and now a Research Scientist at Yneuro with an honorary affiliation at UC San Diego INC.
+      Three countries, one through-line: building tools to decode signals from the brain. It started at a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen), went through a cotutelle PhD between Paris-Saclay and UFABC, and continues today at Yneuro, with an honorary affiliation at UC San Diego INC.
     </p>
   </div>
 
@@ -50,7 +50,7 @@ redirect_from:
         <div class="journey__panel-period">2026 →</div>
         <h3 class="journey__panel-title">Research Scientist</h3>
         <div class="journey__panel-place">Yneuro 🇫🇷 · UC San Diego INC 🇺🇸 (Honorary)</div>
-        <p class="journey__panel-summary">Research Scientist at Yneuro and Honorary Research Associate at UC San Diego (INC). Lead maintainer of <strong>Braindecode</strong> and <strong>MOABB</strong>. Co-organizing the MLSP 2025 Special Session on Decoding the Brain Time Series.</p>
+        <p class="journey__panel-summary">Research Scientist at Yneuro and Honorary Research Associate at UC San Diego (INC). Lead maintainer of <strong>Braindecode</strong> and <strong>MOABB</strong>. Lead organizer of the MLSP 2025 Special Session on Decoding the Brain Time Series.</p>
       </header>
       <ol class="journey__milestones">
         <li class="journey__ms is-highlight">
@@ -67,7 +67,7 @@ redirect_from:
             <span class="journey__ms-year">2025</span>
             <span class="journey__ms-label">MLSP 2025 Special Session</span>
           </div>
-          <div class="journey__ms-note">Lead organizer — Decoding the Brain Time Series, IEEE MLSP.</div>
+          <div class="journey__ms-note">Lead organizer of Decoding the Brain Time Series at IEEE MLSP.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -103,7 +103,7 @@ redirect_from:
             <span class="journey__ms-year">2026</span>
             <span class="journey__ms-label">PhD defense</span>
           </div>
-          <div class="journey__ms-note">Cotutelle thesis defended February 2026 — Paris-Saclay & UFABC.</div>
+          <div class="journey__ms-note">Cotutelle thesis defended February 2026 at Paris-Saclay & UFABC.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -111,7 +111,7 @@ redirect_from:
             <span class="journey__ms-year">2024</span>
             <span class="journey__ms-label">Geometric Neural Network (JNE)</span>
           </div>
-          <div class="journey__ms-note">Phase-space SPDNet for BCI-EEG decoding — <em>Journal of Neural Engineering</em>, with Carrara, Corsi, Papadopoulo.</div>
+          <div class="journey__ms-note">Phase-space SPDNet for BCI-EEG decoding, in the <em>Journal of Neural Engineering</em> with Carrara, Corsi, Papadopoulo.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -135,7 +135,7 @@ redirect_from:
             <span class="journey__ms-year">2024</span>
             <span class="journey__ms-label">Alljoined dataset (CVPR-W)</span>
           </div>
-          <div class="journey__ms-note">EEG-to-Image decoding dataset — CVPR 2024 Workshop on Data Curation in Medical Imaging.</div>
+          <div class="journey__ms-note">EEG-to-Image decoding dataset, CVPR 2024 Workshop on Data Curation in Medical Imaging.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -143,7 +143,7 @@ redirect_from:
             <span class="journey__ms-year">2024</span>
             <span class="journey__ms-label">MOABB Zenodo release</span>
           </div>
-          <div class="journey__ms-note">Mother of all BCI Benchmarks — software registry at INRIA, DOI 10.5281/zenodo.</div>
+          <div class="journey__ms-note">Mother of all BCI Benchmarks: software registry at INRIA, DOI 10.5281/zenodo.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -151,7 +151,7 @@ redirect_from:
             <span class="journey__ms-year">2023</span>
             <span class="journey__ms-label">Synthetic Sleep EEG (NeurIPS DGM4H)</span>
           </div>
-          <div class="journey__ms-note">Latent diffusion models for EEG generation — NeurIPS 2023 DGM4H Workshop (Spotlight).</div>
+          <div class="journey__ms-note">Latent diffusion models for EEG generation, NeurIPS 2023 DGM4H Workshop (Spotlight).</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -167,7 +167,7 @@ redirect_from:
             <span class="journey__ms-year">2023</span>
             <span class="journey__ms-label">IVA for Motor Imagery (ICASSP)</span>
           </div>
-          <div class="journey__ms-note">Independent Vector Analysis on EEG-Based Motor Imagery Classification — ICASSP 2023.</div>
+          <div class="journey__ms-note">Independent Vector Analysis on EEG-Based Motor Imagery Classification, ICASSP 2023.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -207,7 +207,7 @@ redirect_from:
             <span class="journey__ms-year">2022</span>
             <span class="journey__ms-label">Glasgow / FGV intern</span>
           </div>
-          <div class="journey__ms-note">Data Scientist intern — University of Glasgow & Fundação Getúlio Vargas.</div>
+          <div class="journey__ms-note">Data Scientist intern at the University of Glasgow & Fundação Getúlio Vargas.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -215,7 +215,7 @@ redirect_from:
             <span class="journey__ms-year">2021</span>
             <span class="journey__ms-label">FGV consultant</span>
           </div>
-          <div class="journey__ms-note">Data Science consultant — IDB-funded urban-data project (Waze car-accident detection in São Paulo). Stack: AWS, SQL, Python, Dash.</div>
+          <div class="journey__ms-note">Data Science consultant on an IDB-funded urban-data project (Waze car-accident detection in São Paulo). Stack: AWS, SQL, Python, Dash.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -234,7 +234,7 @@ redirect_from:
         <div class="journey__panel-period">2012 — 2020</div>
         <h3 class="journey__panel-title">From science fairs to undergrad</h3>
         <div class="journey__panel-place">IFMS · UCDB · UFMS · UFABC 🇧🇷</div>
-        <p class="journey__panel-summary">The spark: a 2012 high-school science fair in Mato Grosso do Sul. From a Junior Scientific Initiation scholarship at IFMS, to a computer-vision internship at UCDB INOVISÃO lab, to two undergrad degrees at UFABC — with prizes and first-author papers along the way.</p>
+        <p class="journey__panel-summary">The spark: a 2012 high-school science fair in Mato Grosso do Sul. From a Junior Scientific Initiation scholarship at IFMS, to a computer-vision internship at UCDB INOVISÃO lab, to two undergrad degrees at UFABC, with prizes and first-author papers along the way.</p>
       </header>
       <ol class="journey__milestones">
         <li class="journey__ms">
@@ -243,7 +243,7 @@ redirect_from:
             <span class="journey__ms-year">2020</span>
             <span class="journey__ms-label">Double BSc graduation</span>
           </div>
-          <div class="journey__ms-note">UFABC — BSc in Science & Technology (with parallel work toward Computer Science). 2nd best undergrad paper at ERAMIA-SP 2020.</div>
+          <div class="journey__ms-note">UFABC: BSc in Science & Technology (with parallel work toward Computer Science). 2nd best undergrad paper at ERAMIA-SP 2020.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -251,7 +251,7 @@ redirect_from:
             <span class="journey__ms-year">2018</span>
             <span class="journey__ms-label">Scientific Initiation — Neuroscience</span>
           </div>
-          <div class="journey__ms-note">CNPq fellow — functional brain connectivity via causality in time series. UFABC.</div>
+          <div class="journey__ms-note">CNPq fellow: functional brain connectivity via causality in time series. UFABC.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -267,7 +267,7 @@ redirect_from:
             <span class="journey__ms-year">2015</span>
             <span class="journey__ms-label">First conference papers</span>
           </div>
-          <div class="journey__ms-note">Sibgrapi 2015 + Computer on the Beach — computer-vision work on bamboo-borer (<em>Dinoderus minutus</em>) detection from the UCDB INOVISÃO lab.</div>
+          <div class="journey__ms-note">Sibgrapi 2015 + Computer on the Beach: computer-vision work on bamboo-borer (<em>Dinoderus minutus</em>) detection from the UCDB INOVISÃO lab.</div>
         </li>
         <li class="journey__ms is-highlight">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -275,7 +275,7 @@ redirect_from:
             <span class="journey__ms-year">2014</span>
             <span class="journey__ms-label">UCDB Computer Vision intern</span>
           </div>
-          <div class="journey__ms-note">INOVISÃO lab under Prof. Hemerson Pistori — animal-behavior extraction from images. While still in high school.</div>
+          <div class="journey__ms-note">INOVISÃO lab under Prof. Hemerson Pistori: animal-behavior extraction from images. While still in high school.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -291,7 +291,7 @@ redirect_from:
             <span class="journey__ms-year">2012</span>
             <span class="journey__ms-label">First science fair (IFMS)</span>
           </div>
-          <div class="journey__ms-note">SESC Prize at FETEC/MS — the very first project: photography use among IFMS high-school students.</div>
+          <div class="journey__ms-note">SESC Prize at FETEC/MS. The very first project: photography use among IFMS high-school students.</div>
         </li>
       </ol>
     </section>
@@ -317,7 +317,7 @@ redirect_from:
     <p class="featured-paper__eyebrow">EEG representation learning</p>
     <h2 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h2>
     <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
-    <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment, preserving cross-subject decoding performance while exposing head selection as the main remaining bottleneck.</p>
+    <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment. Cross-subject decoding performance holds, and head selection becomes the main remaining bottleneck.</p>
     <p class="featured-paper__links">
       <a href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Read PDF</a>
       <a href="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}" target="_blank" rel="noopener noreferrer">Open figure</a>
@@ -443,7 +443,7 @@ redirect_from:
         <span class="timeline-island__date">2026 →</span>
         <span class="timeline-island__title">Research Scientist, <a href="https://yneuro.com/">Yneuro</a></span>
       </div>
-      <p class="timeline-island__detail">France 🇫🇷 — building tools for EEG decoding and foundation models on neural signals.</p>
+      <p class="timeline-island__detail">France 🇫🇷. Tools for EEG decoding and foundation models on neural signals.</p>
     </li>
     <li class="timeline-island__item">
       <div class="timeline-island__row">
@@ -471,14 +471,14 @@ redirect_from:
         <span class="timeline-island__date">07/2014 – 12/2015</span>
         <span class="timeline-island__title">Research Intern (Computer Vision), Dom Bosco Catholic University</span>
       </div>
-      <p class="timeline-island__detail">Brazil 🇧🇷 — INOVISÃO lab during high school. I published two papers :)</p>
+      <p class="timeline-island__detail">Brazil 🇧🇷. INOVISÃO lab during high school. I published two papers :)</p>
     </li>
   </ol>
 </div>
 
 # 👥 Mentorship
 
-I was privileged to work with and mentor a group of outstanding students:
+Students I was lucky to work with and mentor:
 
 <ul class="mentorship">
   <li class="mentorship__card">
