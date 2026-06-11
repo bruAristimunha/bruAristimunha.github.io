@@ -1,3 +1,42 @@
+- id: paper-p23
+  num: 23
+  authors: Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
+  year: 2026
+  title: 'EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data'
+  venue: Scientific Data
+  type: journal
+  status: submitted
+  links:
+    site: https://eegdash.org
+- id: paper-p33
+  num: 33
+  authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
+  year: 2026
+  title: Learning aligned EEG representations with subject-specific encoders
+  venue: Manuscript
+  type: journal
+  status: submitted
+  links:
+    pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
+- id: paper-p34
+  num: 34
+  authors: Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M.
+  year: 2026
+  title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
+  venue: Manuscript
+  type: conference
+  status: submitted to nice conference :)
+- id: paper-p24
+  num: 24
+  authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
+  year: 2026
+  title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
+  venue: Preprint (arXiv)
+  type: conference
+  status: under-review
+  links:
+    pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
+    arxiv: https://arxiv.org/abs/2604.23091
 - id: paper-p1
   num: 1
   authors: Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H.
@@ -19,6 +58,27 @@
   links:
     pdf: /assets/pdfs/openeeg-bench-eusipco26.pdf
     site: https://huggingface.co/spaces/braindecode/OpenEEGBench#/
+- id: paper-p22
+  num: 22
+  authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
+  year: 2026
+  title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
+  venue: JMLR (Open Source Track)
+  type: journal
+  status: in preparation
+  links:
+    pdf: /assets/pdfs/spd-learn-jmlr.pdf
+    arxiv: https://arxiv.org/abs/2602.22895
+    site: https://spdlearn.org
+- id: paper-p4
+  num: 4
+  authors: Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P.
+  year: 2026
+  title: Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases
+  venue: Heliyon
+  type: journal
+  links:
+    doi: https://doi.org/10.1016/j.heliyon.2026.e44559
 - id: paper-p3
   num: 3
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
@@ -29,15 +89,6 @@
   links:
     pdf: /assets/pdfs/eeg-foundation-challenge-neurips25.pdf
     arxiv: https://arxiv.org/abs/2506.19141
-- id: paper-p4
-  num: 4
-  authors: Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P.
-  year: 2026
-  title: Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases
-  venue: Heliyon
-  type: journal
-  links:
-    doi: https://doi.org/10.1016/j.heliyon.2026.e44559
 - id: paper-p5
   num: 5
   authors: Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B.
@@ -199,39 +250,6 @@
   type: software
   links:
     site: https://braindecode.org
-- id: paper-p22
-  num: 22
-  authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
-  year: 2026
-  title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
-  venue: JMLR (Open Source Track)
-  type: journal
-  status: in preparation
-  links:
-    pdf: /assets/pdfs/spd-learn-jmlr.pdf
-    arxiv: https://arxiv.org/abs/2602.22895
-    site: https://spdlearn.org
-- id: paper-p23
-  num: 23
-  authors: Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
-  year: 2026
-  title: 'EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data'
-  venue: Scientific Data
-  type: journal
-  status: submitted
-  links:
-    site: https://eegdash.org
-- id: paper-p24
-  num: 24
-  authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
-  year: 2026
-  title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
-  venue: Preprint (arXiv)
-  type: conference
-  status: under-review
-  links:
-    pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
-    arxiv: https://arxiv.org/abs/2604.23091
 - id: paper-p25
   num: 25
   authors: Aristimunha, B., Cattan, G., & Andreev, A.
@@ -302,21 +320,3 @@
   type: conference
   links:
     site: https://periodicos.univali.br/index.php/acotb/article/view/7050
-- id: paper-p33
-  num: 33
-  authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
-  year: 2026
-  title: Learning aligned EEG representations with subject-specific encoders
-  venue: Manuscript
-  type: journal
-  status: submitted
-  links:
-    pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
-- id: paper-p34
-  num: 34
-  authors: Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M.
-  year: 2026
-  title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
-  venue: Manuscript
-  type: conference
-  status: submitted to nice conference :)
