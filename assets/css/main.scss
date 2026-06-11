@@ -1530,7 +1530,23 @@ a.research-tree__title:focus-visible {
     position: relative;
     cursor: help;
     border-bottom: 1px dotted rgba(127, 127, 127, 0.5);
-    outline: none;
+}
+
+/* Keyboard users get a visible focus ring (WCAG 2.4.7); mouse/touch focus
+   stays clean. */
+.egg:focus { outline: none; }
+.egg:focus-visible {
+    outline: 2px solid #245dcc;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* Enlarge the touch/click target past the small inline word (WCAG 2.5.8)
+   without affecting layout, since it is absolutely positioned. */
+.egg::after {
+    content: "";
+    position: absolute;
+    inset: -7px -3px;
 }
 
 .egg__pop {
@@ -1577,6 +1593,9 @@ a.research-tree__title:focus-visible {
     color: #4d535b;
 }
 
+/* Touch/click toggle (easter-egg.js) and keyboard focus reveal the popover;
+   desktop pointers also get it on hover below. */
+.egg.is-open .egg__pop,
 .egg:focus-visible .egg__pop {
     display: block;
 }
@@ -1584,6 +1603,20 @@ a.research-tree__title:focus-visible {
 @media (hover: hover) and (pointer: fine) {
     .egg:hover .egg__pop {
         display: block;
+    }
+}
+
+/* On narrow screens anchor the popover to the word's left edge and cap its
+   width so it never spills off-screen. */
+@media (max-width: 40em) {
+    .egg__pop {
+        left: 0;
+        transform: translateX(0) rotate(-3deg);
+        width: min(188px, 74vw);
+    }
+
+    .egg__pop::before {
+        left: 28px;
     }
 }
 
