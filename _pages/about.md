@@ -379,6 +379,7 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 {% assign n_workshop = pubs | where: "type", "workshop" | size %}
 {% assign n_abstract = pubs | where: "type", "abstract" | size %}
 {% assign n_software = pubs | where: "type", "software" | size %}
+{% assign n_report = pubs | where: "type", "report" | size %}
 {% assign n_all = pubs | size %}
 {% assign year_groups = pubs | group_by: "year" | sort: "name" | reverse %}
 {% assign chart_groups = pubs | group_by: "year" | sort: "name" %}
@@ -410,6 +411,7 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
 <button type="button" class="pubtrack__filter pubtrack__filter--workshop" data-filter="workshop" aria-pressed="false">Workshop <span class="pubtrack__count">{{ n_workshop }}</span></button>
 <button type="button" class="pubtrack__filter pubtrack__filter--abstract" data-filter="abstract" aria-pressed="false">Abstract <span class="pubtrack__count">{{ n_abstract }}</span></button>
 <button type="button" class="pubtrack__filter pubtrack__filter--software" data-filter="software" aria-pressed="false">Software <span class="pubtrack__count">{{ n_software }}</span></button>
+<button type="button" class="pubtrack__filter pubtrack__filter--report" data-filter="report" aria-pressed="false">Report <span class="pubtrack__count">{{ n_report }}</span></button>
 </div>
 <div class="pubtrack__years">
 {% for group in year_groups %}

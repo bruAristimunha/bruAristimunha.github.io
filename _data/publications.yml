@@ -164,7 +164,7 @@
   authors: Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T.
   year: 2025
   title: 'The largest EEG-based BCI reproducibility study for open science: the MOABB benchmark'
-  venue: In re-submittion queue
+  venue: In re-submission queue
   type: journal
   status: under-review
   links:
@@ -175,7 +175,7 @@
   authors: Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C.
   year: 2025
   title: Uncovering and improving the structure of cognitive tasks with transfer learning
-  venue: In re-submittion queue
+  venue: In re-submission queue
   type: journal
   status: under-review
   links:
@@ -206,7 +206,7 @@
   title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
   venue: JMLR (Open Source Track)
   type: journal
-  status: In preparation
+  status: in preparation
   links:
     pdf: /assets/pdfs/spd-learn-jmlr.pdf
     arxiv: https://arxiv.org/abs/2602.22895
@@ -227,7 +227,7 @@
   year: 2026
   title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
   venue: Preprint (arXiv)
-  type: Conference
+  type: conference
   status: under-review
   links:
     pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
@@ -238,7 +238,7 @@
   year: 2024
   title: Evaluation of the Electroencephalogram Conformer for the P300 Signal
   venue: Preprint (HAL)
-  type: techical report
+  type: report
   links:
     site: https://hal.science/hal-04791526
 - id: paper-p26
@@ -291,7 +291,7 @@
   authors: Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H.
   year: 2016
   title: Contagem de Carunchos do Bambu através de Técnicas de Limiarização
-  venue: The Conference on Graphics, Patterns and Images (SIBGRAPI) 
+  venue: The Conference on Graphics, Patterns and Images (SIBGRAPI)
   type: workshop
 - id: paper-p32
   num: 32
@@ -304,19 +304,19 @@
     site: https://periodicos.univali.br/index.php/acotb/article/view/7050
 - id: paper-p33
   num: 33
-  authors: "Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B."
+  authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
   year: 2026
-  title: "Learning aligned EEG representations with subject-specific encoders"
-  venue: "Manuscript"
+  title: Learning aligned EEG representations with subject-specific encoders
+  venue: Manuscript
   type: journal
   status: submitted
   links:
     pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
 - id: paper-p34
   num: 34
-  authors: "Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M."
+  authors: Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M.
   year: 2026
-  title: "Learning aligned EEG representations with subject-specific encoders"
-  venue: "Manuscript"
+  title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
+  venue: Manuscript
   type: conference
   status: submitted to nice conference :)

@@ -1180,6 +1180,7 @@ $pub-conference: #0072B2;
 $pub-workshop: #E69F00;
 $pub-abstract: #8a9099;
 $pub-software: #CC79A7;
+$pub-report: #D55E00;
 
 .pubtrack {
     margin: 1.6rem 0 2.6rem;
@@ -1242,6 +1243,7 @@ $pub-software: #CC79A7;
 .pubtrack__cell--workshop   { background: $pub-workshop; }
 .pubtrack__cell--abstract   { background: $pub-abstract; }
 .pubtrack__cell--software   { background: $pub-software; }
+.pubtrack__cell--report     { background: $pub-report; }
 
 .pubtrack__cell.is-dim {
     opacity: 0.18;
@@ -1313,6 +1315,7 @@ $pub-software: #CC79A7;
 .pubtrack__filter--workshop::before   { background: $pub-workshop; }
 .pubtrack__filter--abstract::before   { background: $pub-abstract; }
 .pubtrack__filter--software::before   { background: $pub-software; }
+.pubtrack__filter--report::before     { background: $pub-report; }
 
 .pubtrack__filter:hover,
 .pubtrack__filter:focus-visible {
@@ -1390,6 +1393,7 @@ $pub-software: #CC79A7;
 .pubtrack__entry--workshop::before   { background: $pub-workshop; }
 .pubtrack__entry--abstract::before   { background: $pub-abstract; }
 .pubtrack__entry--software::before   { background: $pub-software; }
+.pubtrack__entry--report::before     { background: $pub-report; }
 
 .page__content .pubtrack__title {
     margin: 0;
