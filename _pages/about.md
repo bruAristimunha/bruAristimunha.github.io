@@ -327,11 +327,11 @@ redirect_from:
 
 # 🧭 Research Overview
 
-Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV numbering.
+{% include research_map.html %}
 
-<p class="research-overview__actions">
+<p class="research-map__actions">
   <a
-    class="research-overview__action-link"
+    class="research-map__action-link"
     href="{{ '/research-overview-figure.html' | relative_url }}"
     target="_blank"
     rel="noopener noreferrer"
@@ -339,32 +339,6 @@ Grouped from the CV update on February 28, 2026. Labels `[P#]` match your CV num
     Open standalone figure
   </a>
 </p>
-
-<div class="research-overview">
-  <div class="research-overview__scroll">
-    <div class="research-overview__stage">
-      <svg
-        class="research-overview__svg"
-        aria-hidden="true"
-        focusable="false"
-      ></svg>
-      <div class="research-overview__labels" aria-label="Brain Decoding contribution tree"></div>
-    </div>
-  </div>
-  <script type="application/json" class="research-overview__data">
-    {{ site.data.research_overview | jsonify }}
-  </script>
-  <div class="research-overview__list">
-    <ul class="research-tree">
-      {% include research_tree_node.html nodes=site.data.research_overview %}
-    </ul>
-  </div>
-  <noscript>
-    <ul class="research-tree">
-      {% include research_tree_node.html nodes=site.data.research_overview %}
-    </ul>
-  </noscript>
-</div>
 
 
 # 📝 Publications (Full List)

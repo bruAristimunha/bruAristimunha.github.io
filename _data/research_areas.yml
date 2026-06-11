@@ -1,0 +1,22 @@
+# Research map hierarchy: area/topic order for the contribution diagram.
+# Papers attach themselves to this tree via the `map:` block on entries in
+# publications.yml (map.area, optional map.topic, optional short map.label).
+# Within a branch, papers render in publications.yml file order (newest first).
+root: Brain Decoding
+areas:
+  - name: Preprocessing
+  - name: Data
+    topics:
+      - Data resources and platforms
+      - Data generation
+  - name: Data Alignment
+    topics:
+      - Cross-session and cross-subject alignment
+      - Online adaptation
+  - name: Models
+    topics:
+      - Decoding architectures
+      - Foundation and transfer models
+  - name: Benchmark and Evaluation
+  - name: Clinical
+  - name: Software

@@ -1,0 +1,49 @@
+{% comment %}
+  CSS-only research contribution diagram, driven by the publication system.
+  Hierarchy/order: _data/research_areas.yml. Membership: the `map:` block on
+  entries in _data/publications.yml (single source of truth for title, venue,
+  year, type, status, and links). Pass anchors=false to render without
+  in-page links (standalone figure page has no publication list to anchor into).
+{% endcomment %}
+{% assign rm_cfg = site.data.research_areas %}
+{% assign rm_pubs = site.data.publications | where_exp: "p", "p.map != nil" %}
+{% assign rm_leaf_count = rm_pubs | size %}
+{% assign rm_branch_count = rm_cfg.areas | size %}
+<div class="research-map">
+  <div class="research-map__header">
+    <span class="research-map__eyebrow">Research map</span>
+    <span class="research-map__title" role="heading" aria-level="2"><span class="research-map__root-dot" aria-hidden="true"></span>{{ rm_cfg.root }}</span>
+    <span class="research-map__caption">{{ rm_leaf_count }} contributions across {{ rm_branch_count }} areas, colored by publication type.{% unless include.anchors == false %} The [P#] labels match the CV numbering and jump to the full reference below.{% endunless %}</span>
+    <span class="research-map__stem" aria-hidden="true"></span>
+  </div>
+  <div class="research-map__columns">
+    {% for rm_area in rm_cfg.areas %}
+    {% assign rm_area_pubs = rm_pubs | where_exp: "p", "p.map.area == rm_area.name" %}
+    <section class="research-map__group">
+      <span class="research-map__branch" role="heading" aria-level="3">{{ rm_area.name }}<span class="research-map__count" aria-label="{{ rm_area_pubs | size }} contributions">{{ rm_area_pubs | size }}</span></span>
+      <ul class="research-tree">
+        {% if rm_area.topics %}
+          {% for rm_topic in rm_area.topics %}
+          {% assign rm_topic_pubs = rm_area_pubs | where_exp: "p", "p.map.topic == rm_topic" %}
+          <li class="research-tree__item research-tree__item--sub">
+            <span class="research-tree__sub">{{ rm_topic }}</span>
+            <ul class="research-tree research-tree--nested">
+              {% for rm_pub in rm_topic_pubs %}{% include research_map_card.html pub=rm_pub anchors=include.anchors %}{% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        {% else %}
+          {% for rm_pub in rm_area_pubs %}{% include research_map_card.html pub=rm_pub anchors=include.anchors %}{% endfor %}
+        {% endif %}
+      </ul>
+    </section>
+    {% endfor %}
+  </div>
+  <ul class="research-map__legend" aria-label="Publication types">
+    <li class="research-map__legend-item research-map__legend-item--journal">Journal</li>
+    <li class="research-map__legend-item research-map__legend-item--conference">Conference</li>
+    <li class="research-map__legend-item research-map__legend-item--workshop">Workshop</li>
+    <li class="research-map__legend-item research-map__legend-item--abstract">Abstract</li>
+    <li class="research-map__legend-item research-map__legend-item--software">Software</li>
+  </ul>
+</div>

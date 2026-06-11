@@ -8,6 +8,10 @@
   status: submitted
   links:
     site: https://eegdash.org
+  map:
+    area: Data
+    topic: Data resources and platforms
+    label: EEG-DaSh
 - id: paper-p33
   num: 33
   authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
@@ -48,6 +52,10 @@
   links:
     pdf: /assets/pdfs/artifact-rejection-eusipco26.pdf
     arxiv: https://arxiv.org/abs/2605.12408
+  venue_short: EUSIPCO
+  map:
+    area: Preprocessing
+    label: From EEG Cleaning to Decoding
 - id: paper-p2
   num: 2
   authors: Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A.
@@ -58,6 +66,11 @@
   links:
     pdf: /assets/pdfs/openeeg-bench-eusipco26.pdf
     site: https://huggingface.co/spaces/braindecode/OpenEEGBench#/
+  venue_short: EUSIPCO
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: OpenEEG-Bench
 - id: paper-p22
   num: 22
   authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
@@ -70,6 +83,10 @@
     pdf: /assets/pdfs/spd-learn-jmlr.pdf
     arxiv: https://arxiv.org/abs/2602.22895
     site: https://spdlearn.org
+  venue_short: JMLR OST
+  map:
+    area: Software
+    label: SPD Learn
 - id: paper-p4
   num: 4
   authors: Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P.
@@ -79,6 +96,9 @@
   type: journal
   links:
     doi: https://doi.org/10.1016/j.heliyon.2026.e44559
+  map:
+    area: Clinical
+    label: Interpretable MEG Differential Diagnosis
 - id: paper-p3
   num: 3
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
@@ -89,6 +109,10 @@
   links:
     pdf: /assets/pdfs/eeg-foundation-challenge-neurips25.pdf
     arxiv: https://arxiv.org/abs/2506.19141
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: EEG Foundation Challenge
 - id: paper-p5
   num: 5
   authors: Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B.
@@ -100,6 +124,10 @@
     pdf: /assets/pdfs/finetuning-continual-eeg-embc25.pdf
     arxiv: https://arxiv.org/abs/2502.06828
     doi: https://doi.org/10.1109/embc58623.2025.11253543
+  map:
+    area: Data Alignment
+    topic: Online adaptation
+    label: Continual Online EEG MI Fine-Tuning
 - id: paper-p6
   num: 6
   authors: Darvishi-Bayazi, M. J., Ghonia, H., Riachi, R., Aristimunha, B., Khorasani, A., Arefin, M. R., Dumas, G. & Rish, I.
@@ -109,6 +137,11 @@
   type: workshop
   links:
     site: https://openreview.net/forum?id=HwDQH0r37I
+  venue_short: NeurIPS TSALM
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: General-Purpose Brain Foundation Models
 - id: paper-p7
   num: 7
   authors: Carrara, I.*, Aristimunha, B.*, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
@@ -120,6 +153,10 @@
     pdf: /assets/pdfs/phase-space-geometric-nn-jne.pdf
     arxiv: https://arxiv.org/abs/2403.05645
     doi: https://doi.org/10.1088/1741-2552/ad88a2
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: Geometric Neural Network on Phase Space
 - id: paper-p8
   num: 8
   authors: Aristimunha, B., Moreau, T., Chevallier, S., Camargo, R. Y., & Corsi, M. C.
@@ -127,6 +164,9 @@
   title: What is the best model for decoding neurophysiological signals? Depends on how you evaluate
   venue: CNS
   type: abstract
+  map:
+    area: Benchmark and Evaluation
+    label: Best Model Depends on Evaluation
 - id: paper-p9
   num: 9
   authors: Rodrigues, G., Aristimunha, B., Chevallier, S. & Camargo, R. Y. de
@@ -138,6 +178,11 @@
     pdf: /assets/pdfs/euclidean-alignment-augmentation-eusipco24.pdf
     arxiv: https://arxiv.org/abs/2405.14994
     doi: https://doi.org/10.23919/eusipco63174.2024.10715237
+  venue_short: EUSIPCO
+  map:
+    area: Data Alignment
+    topic: Cross-session and cross-subject alignment
+    label: Euclidean Alignment + Augmentation
 - id: paper-p10
   num: 10
   authors: Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A.
@@ -148,6 +193,10 @@
   links:
     pdf: /assets/pdfs/alljoined-eeg-image-cvpr24.pdf
     arxiv: https://arxiv.org/abs/2404.05553
+  map:
+    area: Data
+    topic: Data resources and platforms
+    label: Alljoined EEG-to-Image Dataset
 - id: paper-p11
   num: 11
   authors: Junqueira, B., Aristimunha, B., Chevallier, S., & de Camargo, R. Y.
@@ -159,6 +208,10 @@
     pdf: /assets/pdfs/euclidean-alignment-deeplearning-jne.pdf
     arxiv: https://arxiv.org/abs/2401.10746
     doi: https://doi.org/10.1088/1741-2552/ad4f18
+  map:
+    area: Data Alignment
+    topic: Cross-session and cross-subject alignment
+    label: Systematic Euclidean Alignment Evaluation
 - id: paper-p12
   num: 12
   authors: Aristimunha, B., de Camargo, R. Y., Chevallier, S., Lucena, O., Thomas, A. G., Cardoso, M. J., Pinaya, W. L. & Dafflon, J.
@@ -168,6 +221,11 @@
   type: workshop
   links:
     site: https://openreview.net/forum?id=mDwURmlapW
+  venue_short: NeurIPS DGM4H
+  map:
+    area: Data
+    topic: Data generation
+    label: Synthetic Sleep EEG with Latent Diffusion
 - id: paper-p13
   num: 13
   authors: Aristimunha, B., de Camargo, R. Y., Pinaya, W. L., Chevallier, S., Gramfort, A., & Rommel, C.
@@ -178,6 +236,11 @@
   links:
     pdf: /assets/pdfs/cognitive-tasks-transfer-neurips23.pdf
     arxiv: https://arxiv.org/abs/2308.02408
+  venue_short: NeurIPS AI for Science
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: Cognitive Task Structure with Transfer Learning
 - id: paper-p14
   num: 14
   authors: Moraes, C. P., Aristimunha, B., Dos Santos, L. H., Pinaya, W. H. L., de Camargo, R. Y., Fantinato, D. G., & Neves, A.
@@ -187,6 +250,10 @@
   type: conference
   links:
     doi: https://doi.org/10.1109/icassp49357.2023.10095727
+  map:
+    area: Data Alignment
+    topic: Cross-session and cross-subject alignment
+    label: Independent Vector Analysis for MI
 - id: paper-p15
   num: 15
   authors: Aristimunha, B., De Camargo, R. Y., Pinaya, W. H. L., Yger, F., Corsi, M. C., & Chevallier, S.
@@ -210,6 +277,10 @@
   type: journal
   links:
     doi: https://doi.org/10.1109/access.2023.3263477
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: Sleep-Energy
 - id: paper-p18
   num: 18
   authors: Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T.
@@ -221,6 +292,10 @@
   links:
     pdf: /assets/pdfs/moabb-benchmark.pdf
     arxiv: https://arxiv.org/abs/2404.15319
+  venue_short: Preprint
+  map:
+    area: Benchmark and Evaluation
+    label: Largest MOABB Reproducibility Study
 - id: paper-p19
   num: 19
   authors: Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C.
@@ -241,6 +316,9 @@
   type: software
   links:
     doi: https://doi.org/10.5281/zenodo.11545401
+  map:
+    area: Software
+    label: MOABB
 - id: paper-p21
   num: 21
   authors: Aristimunha, B., Tibor, R., Gemein, L., Gramfort, A., Rommel, C., Banville, H., Sliwowskim, M., Wilson, D., Theo gnassou, P., Gtch, P., Lopes, B., Moreau, T., Sedlar, S., Zamboni, M., Paillard, J., Terris, M., Chevallier, S., ... Yao, E.
@@ -250,6 +328,10 @@
   type: software
   links:
     site: https://braindecode.org
+  venue_short: Zenodo
+  map:
+    area: Software
+    label: Braindecode
 - id: paper-p25
   num: 25
   authors: Aristimunha, B., Cattan, G., & Andreev, A.

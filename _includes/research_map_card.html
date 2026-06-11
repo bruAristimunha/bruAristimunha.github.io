@@ -1,0 +1,25 @@
+{% comment %}
+  One paper node card on the research map. include.pub = a publications.yml
+  entry carrying a `map:` block. include.anchors=false renders without
+  in-page links (standalone figure export).
+{% endcomment %}
+{% assign rmc = include.pub %}
+<li class="research-tree__item">
+  <div class="research-tree__node research-tree__node--{{ rmc.type }}">
+    {%- if include.anchors != false -%}
+      <a class="research-tree__pid" href="#{{ rmc.id }}" aria-label="Jump to publication P{{ rmc.num }}">P{{ rmc.num }}</a>
+    {%- else -%}
+      <span class="research-tree__pid">P{{ rmc.num }}</span>
+    {%- endif -%}
+    <span class="research-tree__node-body">
+      {%- if rmc.links.site -%}
+        <a class="research-tree__title" href="{{ rmc.links.site }}" target="_blank" rel="noopener noreferrer">{{ rmc.map.label | default: rmc.title }}</a>
+      {%- elsif include.anchors != false -%}
+        <a class="research-tree__title" href="#{{ rmc.id }}">{{ rmc.map.label | default: rmc.title }}</a>
+      {%- else -%}
+        <span class="research-tree__title research-tree__title--static">{{ rmc.map.label | default: rmc.title }}</span>
+      {%- endif -%}
+      <span class="research-tree__venue">{{ rmc.venue_short | default: rmc.venue }} {{ rmc.year }}{% if rmc.status %} · {{ rmc.status | replace: "-", " " }}{% endif %}</span>
+    </span>
+  </div>
+</li>
