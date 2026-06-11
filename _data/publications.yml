@@ -282,7 +282,9 @@
   venue: ICASSP
   type: conference
   links:
+    pdf: /assets/pdfs/iva-motor-imagery-icassp23.pdf
     doi: https://doi.org/10.1109/icassp49357.2023.10095727
+  figure: /assets/images/publications/iva-motor-imagery-icassp23.png
   map:
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
