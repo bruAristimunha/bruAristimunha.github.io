@@ -22,6 +22,10 @@
   status: submitted
   links:
     pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
+  map:
+    area: Data Alignment
+    topic: Cross-session and cross-subject alignment
+    label: Subject-Specific Aligned EEG Encoders
 - id: paper-p34
   num: 34
   authors: Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M.
@@ -30,6 +34,10 @@
   venue: Manuscript
   type: conference
   status: submitted to nice conference :)
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: Masking Geometry for EEG Foundation Models
 - id: paper-p24
   num: 24
   authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
@@ -41,6 +49,10 @@
   links:
     pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
     arxiv: https://arxiv.org/abs/2604.23091
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: Channel Adaptation for EEG Foundation Models
 - id: paper-p1
   num: 1
   authors: Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H.
@@ -261,6 +273,10 @@
   title: 'CONCERTO: Coherence & Functional Connectivity Graph Network'
   venue: Journée CORTICO
   type: abstract
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: CONCERTO Connectivity Graph Network
 - id: paper-p16
   num: 16
   authors: Carrara, I.*, Aristimunha, B.*, Chevallier, S., Corsi, M. C., & Papadopoulo, T.
@@ -268,6 +284,10 @@
   title: 'Holographic EEG: multi-view deep learning for BCI'
   venue: Journée CORTICO
   type: abstract
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: Holographic EEG Multi-View
 - id: paper-p17
   num: 17
   authors: Aristimunha, B., Bayerlein, A. J., Cardoso, M. J., Pinaya, W. H. L., & De Camargo, R. Y.
@@ -307,6 +327,10 @@
   links:
     pdf: /assets/pdfs/cognitive-tasks-transfer-neurips23.pdf
     arxiv: https://arxiv.org/abs/2308.02408
+  map:
+    area: Models
+    topic: Foundation and transfer models
+    label: Cognitive Task Structure (journal)
 - id: paper-p20
   num: 20
   authors: Aristimunha, B., Carrara, I., Guetschel, P., Sedlar, S., Rodrigues, P., Sosulski, J., Narayanan, D., Bjareholt, E., Quentin, B., Schirrmeister, R. T., Kobler, R., Kalunga, E., Darmet, L., Gregoire, C., Abdul Hussain, A., Gatti, R., Goncharenko, V., Thielen, J., Moreau, T., ... Chevallier, S.
@@ -341,6 +365,10 @@
   type: report
   links:
     site: https://hal.science/hal-04791526
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: EEG Conformer for P300
 - id: paper-p26
   num: 26
   authors: Carrara, I., Aristimunha, B., Corsi, M.-C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
@@ -350,6 +378,10 @@
   type: abstract
   links:
     site: https://inria.hal.science/hal-04308549
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: Augmented SPDNet for Motor Imagery
 - id: paper-p27
   num: 27
   authors: Gueron, E., Pellegrini, J., & Aristimunha, B.
