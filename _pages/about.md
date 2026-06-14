@@ -94,7 +94,7 @@ redirect_from:
         <div class="journey__panel-period">2020 — 2026</div>
         <h3 class="journey__panel-title">PhD in Computer Science (cotutelle)</h3>
         <div class="journey__panel-place">Université Paris-Saclay 🇫🇷 · UFABC 🇧🇷</div>
-        <p class="journey__panel-summary">Cotutelle PhD: <em>Learning Structure In Electroencephalogram Using Deep Learning</em> (Paris-Saclay) / <em>Geração de Representações Compactas de Sinais EEG</em> (UFABC). Advisors: Sylvain Chevallier, Marie-Constance Corsi, Raphael Y. de Camargo. Sandwich period at King's College London with Walter H. L. Pinaya. Funded by INRIA (FR) and CAPES (BR).</p>
+        <p class="journey__panel-summary">Cotutelle PhD: <em>Learning Representations of Electroencephalogram using Deep Learning</em> (Paris-Saclay) / <em>Aprendizado de Representações para Eletroencefalografia usando Aprendizado Profundo</em> (UFABC). Advisors: Sylvain Chevallier, Marie-Constance Corsi, Raphael Y. de Camargo. Sandwich period at King's College London with Walter H. L. Pinaya. Funded by INRIA (FR) and CAPES (BR).</p>
       </header>
       <ol class="journey__milestones">
         <li class="journey__ms is-highlight">
@@ -419,7 +419,7 @@ redirect_from:
         <span class="timeline-island__date">09/2020 – 02/2026</span>
         <span class="timeline-island__title">PhD in Computer Science</span>
       </div>
-      <p class="timeline-island__detail">Cotutelle between <a href="https://www.universite-paris-saclay.fr/">Université Paris-Saclay</a> 🇫🇷 and <a href="https://www.ufabc.edu.br/">UFABC</a> 🇧🇷. Advised by <a href="https://sylvchev.github.io/">Sylvain Chevallier</a>, <a href="https://marieconstance-corsi.netlify.app/">Marie-Constance Corsi</a>, and <a href="https://rycamargo.github.io">Raphael Y. de Camargo</a>.</p>
+      <p class="timeline-island__detail">Cotutelle between <a href="https://www.universite-paris-saclay.fr/">Université Paris-Saclay</a> 🇫🇷 and <a href="https://www.ufabc.edu.br/">UFABC</a> 🇧🇷. Advised by <a href="https://sylvchev.github.io/">Sylvain Chevallier</a>, <a href="https://marieconstance-corsi.netlify.app/">Marie-Constance Corsi</a>, and <a href="https://rycamargo.github.io">Raphael Y. de Camargo</a>. Thesis: <a href="https://theses.fr/2026UPASG016"><em>Learning Representations of Electroencephalogram using Deep Learning</em></a>.</p>
     </li>
     <li class="timeline-island__item">
       <div class="timeline-island__row">

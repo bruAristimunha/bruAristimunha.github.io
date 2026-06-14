@@ -10,7 +10,31 @@ My current research interests include **Learning Representation** from the time 
 
 I advocate for open source as the basis of reproducible science, while occasionally working with closed code. I lead the widely used Python libraries [**Braindecode**](https://braindecode.org) and [**MOABB**](https://moabb.neurotechx.com/docs/index.html), and I collaborate with related open-source projects like MNE-Python, MONAI, MONAI Generative, and SpeechBrain.
 
-A few of the projects I build and maintain (full activity on [GitHub](https://github.com/bruAristimunha)):
+From community competitions to libraries and open datasets — a few of the things I build, organize, and maintain (full activity on [GitHub](https://github.com/bruAristimunha)):
+
+<p class="software-group__label">Community challenges</p>
+
+<div class="software-cards">
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://neural-interfaces26.github.io">EEG/EMG Foundation Challenge 2026</a></p>
+    <span class="software-card__role">Co-organizer</span>
+    <p class="software-card__detail">Neural Interfaces for Generalizable Decoding — a NeurIPS 2026 (Sydney) competition testing whether biosignal foundation models transfer across subjects, sessions, and devices. Five tracks: EEG-to-Image, BCI decoding, sleep onset, EMG-to-Text, and a unified foundation-transfer encoder.</p>
+    <p class="software-card__links">
+      <a href="https://neural-interfaces26.github.io">Website<span class="software-card__glyph">&nbsp;&nearr;</span></a>
+    </p>
+  </div>
+  <div class="software-card">
+    <p class="software-card__name"><a href="https://eeg2025.github.io">EEG Foundation Challenge 2025</a></p>
+    <span class="software-card__role">Lead organizer</span>
+    <p class="software-card__detail">NeurIPS 2025 Competition Track — from cross-task to cross-subject EEG decoding on a 3,000+ subject, 128-channel dataset. Two tracks: cross-task transfer and psychopathology-factor prediction.</p>
+    <p class="software-card__links">
+      <a href="https://eeg2025.github.io">Website<span class="software-card__glyph">&nbsp;&nearr;</span></a>
+      <a href="https://arxiv.org/abs/2506.19141">Paper<span class="software-card__glyph">&nbsp;&nearr;</span></a>
+    </p>
+  </div>
+</div>
+
+<p class="software-group__label">Libraries &amp; infrastructure</p>
 
 <div class="software-cards">
   <div class="software-card">
@@ -43,6 +67,20 @@ A few of the projects I build and maintain (full activity on [GitHub](https://gi
     <p class="software-card__detail">Open data, tools, and compute resource for machine learning on neuroelectromagnetic data.</p>
     <p class="software-card__meta">
       <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" height="20" loading="lazy"></a>
+    </p>
+  </div>
+</div>
+
+<p class="software-group__label">Datasets</p>
+
+<div class="software-cards">
+  <div class="software-card software-card--wide">
+    <p class="software-card__name"><a href="https://arxiv.org/abs/2404.05553">Alljoined</a></p>
+    <span class="software-card__role">Co-creator</span>
+    <p class="software-card__detail">A large EEG-to-Image decoding dataset: time-locked EEG responses to thousands of natural images, built for visual neural decoding. CVPR 2024 Workshop, co-led with the Alljoined team.</p>
+    <p class="software-card__links">
+      <a href="{{ '/assets/pdfs/alljoined-eeg-image-cvpr24.pdf' | relative_url }}">PDF<span class="software-card__glyph">&nbsp;&darr;</span></a>
+      <a href="https://arxiv.org/abs/2404.05553">arXiv<span class="software-card__glyph">&nbsp;&nearr;</span></a>
     </p>
   </div>
 </div>

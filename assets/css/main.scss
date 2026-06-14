@@ -1240,6 +1240,45 @@ a.research-tree__title:focus-visible {
     .software-card { transition: none !important; }
 }
 
+/* Open-source sub-group labels, full-width feature cards, and link rows */
+.software-group__label {
+    margin: 0.4rem 0 0.6rem;
+    color: #536170;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.software-card--wide {
+    grid-column: 1 / -1;
+}
+
+.software-card__links {
+    margin: auto 0 0 0;
+    padding-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.software-card__links a {
+    color: #4d86f7;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.software-card__links a:hover,
+.software-card__links a:focus {
+    border-bottom-color: #4d86f7;
+}
+
+.software-card__glyph {
+    color: #8a93a3;
+}
+
 /* === Publications trajectory ===
    Unit chart (one square per paper, stacked by year) + editorial spine
    timeline. Okabe-Ito colors live on squares/dots only; all text stays

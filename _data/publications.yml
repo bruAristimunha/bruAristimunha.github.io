@@ -71,6 +71,27 @@
   map:
     area: Preprocessing
     label: From EEG Cleaning to Decoding
+- id: paper-p35
+  num: 35
+  authors: Caillet, A. H., Mellot, A., Aristimunha, B., Delorme, A., & Semah, T.
+  year: 2026
+  title: 'Real-Time Continuous EEG Authentication: Streaming Neural Biometrics'
+  venue: 'ICASSP 2026 (Show & Tell Demos), Barcelona'
+  venue_short: ICASSP Demo
+  type: abstract
+  status: demo
+  links:
+    site: https://2026.ieeeicassp.org/industry_program/
+- id: paper-p36
+  num: 36
+  authors: Aristimunha, B.
+  year: 2026
+  title: 'Learning Representations of Electroencephalogram using Deep Learning'
+  venue: 'PhD Thesis (cotutelle) · Université Paris-Saclay & UFABC'
+  venue_short: PhD Thesis
+  type: report
+  links:
+    site: https://theses.fr/2026UPASG016
 - id: paper-p2
   num: 2
   authors: Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A.
