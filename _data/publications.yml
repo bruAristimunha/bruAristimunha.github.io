@@ -2,7 +2,7 @@
   num: 23
   authors: Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
   year: 2026
-  title: 'EEG-DaSh: An Open Data, Tool, and Compute Resource for Machine Learning on Neuroelectromagnetic Data'
+  title: 'EEGDash: An open-source platform for machine learning on public neurophysiological data'
   venue: Scientific Data
   type: journal
   status: submitted
@@ -11,7 +11,7 @@
   map:
     area: Data
     topic: Data resources and platforms
-    label: EEG-DaSh
+    label: EEGDash
 - id: paper-p33
   num: 33
   authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
