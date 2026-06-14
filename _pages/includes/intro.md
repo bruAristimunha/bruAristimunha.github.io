@@ -49,20 +49,6 @@ From libraries to open datasets — a few of the things I build, organize, and m
   </div>
 </div>
 
-<p class="software-group__label">Datasets</p>
-
-<div class="software-cards">
-  <div class="software-card software-card--wide">
-    <p class="software-card__name"><a href="https://arxiv.org/abs/2404.05553">Alljoined</a></p>
-    <span class="software-card__role">Co-creator</span>
-    <p class="software-card__detail">A large EEG-to-Image decoding dataset: time-locked EEG responses to thousands of natural images, built for visual neural decoding. CVPR 2024 Workshop, co-led with the Alljoined team.</p>
-    <p class="software-card__links">
-      <a href="{{ '/assets/pdfs/alljoined-eeg-image-cvpr24.pdf' | relative_url }}">PDF<span class="software-card__glyph">&nbsp;&darr;</span></a>
-      <a href="https://arxiv.org/abs/2404.05553">arXiv<span class="software-card__glyph">&nbsp;&nearr;</span></a>
-    </p>
-  </div>
-</div>
-
 ### Community Involvement
 
 During my PhD, I collaborated with research groups across the US (San Diego, San Francisco, Washington), UK, Ireland, Germany, Italy, Netherlands, Canada (Waterloo, MILA), Brazil (Sao Paulo), and France. Those collaborations turned into more than 16 publications (full/short papers, reports, abstracts), all listed on [Google Scholar](https://scholar.google.com.br/citations?user=2Gd5gOQAAAAJ). I particularly enjoyed the self-contained, code-oriented projects 🧠⚙️. For academic cooperation, contact me via email or [LinkedIn](https://www.linkedin.com/in/bruaristimunha/).
