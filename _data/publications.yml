@@ -1,12 +1,13 @@
 - id: paper-p23
   num: 23
-  authors: Aristimunha, B., Dotan, A., Guetschel, P., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
+  authors: Aristimunha, B., Dotan, A., Guetschel, P., Jaiswal, A., Ashkenazi, G., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
   year: 2026
   title: 'EEGDash: An open-source platform for machine learning on public neurophysiological data'
   venue: Scientific Data
   type: journal
   status: submitted
   links:
+    arxiv: https://arxiv.org/abs/2606.16041
     site: https://eegdash.org
   map:
     area: Data
@@ -22,6 +23,7 @@
   status: submitted
   links:
     pdf: /assets/pdfs/learning-aligned-eeg-representations.pdf
+    arxiv: https://arxiv.org/abs/2606.16462
   figure: /assets/images/publications/learning-aligned-eeg-representations.png
   map:
     area: Data Alignment
