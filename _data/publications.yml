@@ -11,6 +11,15 @@
   map:
     area: Preprocessing
     label: EEGPrep
+  bibtex: |-
+    @misc{Delorme2026p37,
+      title = {EEGPrep: a validated Python implementation of the EEGLAB preprocessing pipeline},
+      author = {Delorme, A. and Ranganath, S. and Kothe, C. and Jaiswal, A. and Makeig, S. and Aristimunha, B.},
+      year = {2026},
+      eprint = {2607.16647},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2607.16647}
+    }
 - id: paper-p23
   num: 23
   authors: Aristimunha, B., Dotan, A., Guetschel, P., Jaiswal, A., Ashkenazi, G., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
@@ -27,6 +36,15 @@
     area: Data
     topic: Data resources and platforms
     label: EEGDash
+  bibtex: |-
+    @misc{Aristimunha2026p23,
+      title = {EEGDash: An open-source platform for machine learning on public neurophysiological data},
+      author = {Aristimunha, B. and Dotan, A. and Guetschel, P. and Jaiswal, A. and Ashkenazi, G. and Truong, D. and Kokate, K. and Majumdar, A. and Shriki, O. and Delorme, A.},
+      year = {2026},
+      eprint = {2606.16041},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2606.16041}
+    }
 - id: paper-p33
   num: 33
   authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
@@ -43,9 +61,18 @@
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
     label: Subject-Specific Aligned EEG Encoders
+  bibtex: |-
+    @misc{Lopes2026p33,
+      title = {Learning aligned EEG representations with subject-specific encoders},
+      author = {Lopes, B. J. and Schwartz, G. and Chevallier, S. and de Camargo, R. Y. and Aristimunha, B.},
+      year = {2026},
+      eprint = {2606.16462},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2606.16462}
+    }
 - id: paper-p34
   num: 34
-  authors: Guetschel, P., Aristimunha, B., Ouahidi, Y., Y. Delorme, A., Moreau, T. & Tangermann, M.
+  authors: Guetschel, P., Aristimunha, B., El Ouahidi, Y., Delorme, A., Moreau, T., & Tangermann, M.
   year: 2026
   title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
   venue: Manuscript
@@ -55,6 +82,13 @@
     area: Models
     topic: Foundation and transfer models
     label: Masking Geometry for EEG Foundation Models
+  bibtex: |-
+    @misc{Guetschel2026p34,
+      title = {What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA},
+      author = {Guetschel, P. and Aristimunha, B. and El Ouahidi, Y. and Delorme, A. and Moreau, T. and Tangermann, M.},
+      year = {2026},
+      howpublished = {Manuscript}
+    }
 - id: paper-p24
   num: 24
   authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
@@ -71,6 +105,15 @@
     area: Models
     topic: Foundation and transfer models
     label: Channel Adaptation for EEG Foundation Models
+  bibtex: |-
+    @misc{Kokate2026p24,
+      title = {Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes},
+      author = {Kokate, K. and Aristimunha, B. and Truong, D. and Delorme, A.},
+      year = {2026},
+      eprint = {2604.23091},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2604.23091}
+    }
 - id: paper-p1
   num: 1
   authors: Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H.
@@ -87,27 +130,52 @@
   map:
     area: Preprocessing
     label: From EEG Cleaning to Decoding
+  bibtex: |-
+    @misc{Hajhassani2026p1,
+      title = {From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs},
+      author = {Hajhassani, D. and Aristimunha, B. and Graignic, P-A. and Mellot, A. and Kusch, L. and Delorme, A. and Semah, T. and Caillet, A. H.},
+      year = {2026},
+      eprint = {2605.12408},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2605.12408}
+    }
 - id: paper-p35
   num: 35
   authors: Caillet, A. H., Mellot, A., Aristimunha, B., Delorme, A., & Semah, T.
   year: 2026
   title: 'Real-Time Continuous EEG Authentication: Streaming Neural Biometrics'
-  venue: 'ICASSP 2026 (Show & Tell Demos), Barcelona'
+  venue: ICASSP 2026 (Show & Tell Demos), Barcelona
   venue_short: ICASSP Demo
   type: abstract
   status: demo
   links:
     site: https://2026.ieeeicassp.org/industry_program/
+  bibtex: |-
+    @misc{Caillet2026p35,
+      title = {Real-Time Continuous EEG Authentication: Streaming Neural Biometrics},
+      author = {Caillet, A. H. and Mellot, A. and Aristimunha, B. and Delorme, A. and Semah, T.},
+      year = {2026},
+      howpublished = {ICASSP 2026 (Show \& Tell Demos), Barcelona},
+      url = {https://2026.ieeeicassp.org/industry_program/}
+    }
 - id: paper-p36
   num: 36
   authors: Aristimunha, B.
   year: 2026
-  title: 'Learning Representations of Electroencephalogram using Deep Learning'
-  venue: 'PhD Thesis (cotutelle) · Université Paris-Saclay & UFABC'
+  title: Learning Representations of Electroencephalogram using Deep Learning
+  venue: PhD Thesis (cotutelle) · Université Paris-Saclay & UFABC
   venue_short: PhD Thesis
   type: report
   links:
     site: https://theses.fr/2026UPASG016
+  bibtex: |-
+    @misc{Aristimunha2026p36,
+      title = {Learning Representations of Electroencephalogram using Deep Learning},
+      author = {Aristimunha, B.},
+      year = {2026},
+      howpublished = {PhD Thesis (cotutelle) · Université Paris-Saclay \& UFABC},
+      url = {https://theses.fr/2026UPASG016}
+    }
 - id: paper-p2
   num: 2
   authors: Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A.
@@ -124,6 +192,14 @@
     area: Models
     topic: Foundation and transfer models
     label: OpenEEG-Bench
+  bibtex: |-
+    @misc{Guetschel2026p2,
+      title = {Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models},
+      author = {Guetschel, P. and Aristimunha, B. and Truong, D. and Kokate, K. and Tangermann, M. and Delorme, A.},
+      year = {2026},
+      howpublished = {European Signal Processing Conference (EUSIPCO)},
+      url = {https://huggingface.co/spaces/braindecode/OpenEEGBench#/}
+    }
 - id: paper-p22
   num: 22
   authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
@@ -141,6 +217,15 @@
   map:
     area: Software
     label: SPD Learn
+  bibtex: |-
+    @misc{Aristimunha2026p22,
+      title = {SPD Learn: A geometric deep learning Python library for neural decoding through trivialization},
+      author = {Aristimunha, B. and Ju, C. and Collas, A. and Bouchard, F. and Mian, A. and Thirion, B. and Chevallier, S. and Kobler, R.},
+      year = {2026},
+      eprint = {2602.22895},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2602.22895}
+    }
 - id: paper-p4
   num: 4
   authors: Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P.
@@ -155,6 +240,21 @@
   map:
     area: Clinical
     label: Interpretable MEG Differential Diagnosis
+  bibtex: |-
+    @article{Klepachevskyi_2026,
+      title = {Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases},
+      volume = {12},
+      ISSN = {2405-8440},
+      url = {http://dx.doi.org/10.1016/j.heliyon.2026.e44559},
+      DOI = {10.1016/j.heliyon.2026.e44559},
+      number = {4},
+      journal = {Heliyon},
+      publisher = {Elsevier BV},
+      author = {Klepachevskyi, D. and Angiolelli, M. and Aristimunha, B. and Romano, A. and Trojsi, F. and Bonavita, S. and Sorrentino, G. and Andreone, V. and Minino, R. and Troisi Lopez, E. and Polverino, A. and Jirsa, V. and Saudargienė, A. and Corsi, M.-C. and Sorrentino, P.},
+      year = {2026},
+      month = Mar,
+      pages = {e44559}
+    }
 - id: paper-p3
   num: 3
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
@@ -170,6 +270,15 @@
     area: Models
     topic: Foundation and transfer models
     label: EEG Foundation Challenge
+  bibtex: |-
+    @misc{Aristimunha2025p3,
+      title = {EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding},
+      author = {Aristimunha, B. and Truong, D. and Guetschel, P. and Shirazi, S. Y. and Guyon, I. and Franco, A. R. and others, Delorme, A.},
+      year = {2025},
+      eprint = {2506.19141},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2506.19141}
+    }
 - id: paper-p5
   num: 5
   authors: Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B.
@@ -186,6 +295,18 @@
     area: Data Alignment
     topic: Online adaptation
     label: Continual Online EEG MI Fine-Tuning
+  bibtex: |-
+    @inproceedings{Wimpff_2025,
+      title = {Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study},
+      url = {http://dx.doi.org/10.1109/embc58623.2025.11253543},
+      DOI = {10.1109/embc58623.2025.11253543},
+      booktitle = {2025 47th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)},
+      publisher = {IEEE},
+      author = {Wimpff, Martin and Aristimunha, Bruno and Chevallier, Sylvain and Yang, Bin},
+      year = {2025},
+      month = July,
+      pages = {1–7}
+    }
 - id: paper-p6
   num: 6
   authors: Darvishi-Bayazi, M. J., Ghonia, H., Riachi, R., Aristimunha, B., Khorasani, A., Arefin, M. R., Dumas, G. & Rish, I.
@@ -202,6 +323,14 @@
     area: Models
     topic: Foundation and transfer models
     label: General-Purpose Brain Foundation Models
+  bibtex: |-
+    @misc{DarvishiBayazi2024p6,
+      title = {General-Purpose Brain Foundation Models for Time-Series Neuroimaging Data},
+      author = {Darvishi-Bayazi, M. J. and Ghonia, H. and Riachi, R. and Aristimunha, B. and Khorasani, A. and Arefin, M. R. and Dumas, G. and Rish, I.},
+      year = {2024},
+      howpublished = {NeurIPS Workshop (TSALM)},
+      url = {https://openreview.net/forum?id=HwDQH0r37I}
+    }
 - id: paper-p7
   num: 7
   authors: Carrara, I.*, Aristimunha, B.*, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
@@ -218,6 +347,21 @@
     area: Models
     topic: Decoding architectures
     label: Geometric Neural Network on Phase Space
+  bibtex: |-
+    @article{Carrara_2025,
+      title = {Geometric neural network based on phase space for BCI-EEG decoding},
+      volume = {22},
+      ISSN = {1741-2552},
+      url = {http://dx.doi.org/10.1088/1741-2552/ad88a2},
+      DOI = {10.1088/1741-2552/ad88a2},
+      number = {1},
+      journal = {Journal of Neural Engineering},
+      publisher = {IOP Publishing},
+      author = {Carrara, Igor and Aristimunha, Bruno and Corsi, Marie-Constance and de Camargo, Raphael Y and Chevallier, Sylvain and Papadopoulo, Théodore},
+      year = {2025},
+      month = Feb,
+      pages = {016049}
+    }
 - id: paper-p8
   num: 8
   authors: Aristimunha, B., Moreau, T., Chevallier, S., Camargo, R. Y., & Corsi, M. C.
@@ -231,6 +375,13 @@
   map:
     area: Benchmark and Evaluation
     label: Best Model Depends on Evaluation
+  bibtex: |-
+    @misc{Aristimunha2024p8,
+      title = {What is the best model for decoding neurophysiological signals? Depends on how you evaluate},
+      author = {Aristimunha, B. and Moreau, T. and Chevallier, S. and Camargo, R. Y. and Corsi, M. C.},
+      year = {2024},
+      howpublished = {CNS}
+    }
 - id: paper-p9
   num: 9
   authors: Rodrigues, G., Aristimunha, B., Chevallier, S. & Camargo, R. Y. de
@@ -248,6 +399,18 @@
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
     label: Euclidean Alignment + Augmentation
+  bibtex: |-
+    @inproceedings{Rodrigues_2024,
+      title = {Combining Euclidean Alignment and Data Augmentation for BCI decoding},
+      url = {http://dx.doi.org/10.23919/eusipco63174.2024.10715237},
+      DOI = {10.23919/eusipco63174.2024.10715237},
+      booktitle = {2024 32nd European Signal Processing Conference (EUSIPCO)},
+      publisher = {IEEE},
+      author = {Rodrigues, Gustavo H. and Aristimunha, Bruno and Chevallier, Sylvain and de Camargo, Raphael Y.},
+      year = {2024},
+      month = Aug,
+      pages = {1382–1387}
+    }
 - id: paper-p10
   num: 10
   authors: Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A.
@@ -263,6 +426,15 @@
     area: Data
     topic: Data resources and platforms
     label: Alljoined EEG-to-Image Dataset
+  bibtex: |-
+    @misc{Xu2024p10,
+      title = {Alljoined: A dataset for EEG-to-Image decoding},
+      author = {Xu, J. and Aristimunha, B. and Feucht, M. E. and Qian, E. and Liu, C. and Shahjahan, T. and others, Nestor, A.},
+      year = {2024},
+      eprint = {2404.05553},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2404.05553}
+    }
 - id: paper-p11
   num: 11
   authors: Junqueira, B., Aristimunha, B., Chevallier, S., & de Camargo, R. Y.
@@ -279,6 +451,21 @@
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
     label: Systematic Euclidean Alignment Evaluation
+  bibtex: |-
+    @article{Junqueira_2024,
+      title = {A systematic evaluation of Euclidean alignment with deep learning for EEG decoding},
+      volume = {21},
+      ISSN = {1741-2552},
+      url = {http://dx.doi.org/10.1088/1741-2552/ad4f18},
+      DOI = {10.1088/1741-2552/ad4f18},
+      number = {3},
+      journal = {Journal of Neural Engineering},
+      publisher = {IOP Publishing},
+      author = {Junqueira, Bruna and Aristimunha, Bruno and Chevallier, Sylvain and de Camargo, Raphael Y},
+      year = {2024},
+      month = June,
+      pages = {036038}
+    }
 - id: paper-p12
   num: 12
   authors: Aristimunha, B., de Camargo, R. Y., Chevallier, S., Lucena, O., Thomas, A. G., Cardoso, M. J., Pinaya, W. L. & Dafflon, J.
@@ -295,6 +482,14 @@
     area: Data
     topic: Data generation
     label: Synthetic Sleep EEG with Latent Diffusion
+  bibtex: |-
+    @misc{Aristimunha2023p12,
+      title = {Synthetic Sleep EEG Signal Generation using Latent Diffusion Models},
+      author = {Aristimunha, B. and de Camargo, R. Y. and Chevallier, S. and Lucena, O. and Thomas, A. G. and Cardoso, M. J. and Pinaya, W. L. and Dafflon, J.},
+      year = {2023},
+      howpublished = {NeurIPS Workshop (DGM4H, Spotlight)},
+      url = {https://openreview.net/forum?id=mDwURmlapW}
+    }
 - id: paper-p13
   num: 13
   authors: Aristimunha, B., de Camargo, R. Y., Pinaya, W. L., Chevallier, S., Gramfort, A., & Rommel, C.
@@ -311,6 +506,15 @@
     area: Models
     topic: Foundation and transfer models
     label: Cognitive Task Structure with Transfer Learning
+  bibtex: |-
+    @misc{Aristimunha2023p13,
+      title = {Evaluating the structure of cognitive tasks with transfer learning},
+      author = {Aristimunha, B. and de Camargo, R. Y. and Pinaya, W. L. and Chevallier, S. and Gramfort, A. and Rommel, C.},
+      year = {2023},
+      eprint = {2308.02408},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2308.02408}
+    }
 - id: paper-p14
   num: 14
   authors: Moraes, C. P., Aristimunha, B., Dos Santos, L. H., Pinaya, W. H. L., de Camargo, R. Y., Fantinato, D. G., & Neves, A.
@@ -326,6 +530,18 @@
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
     label: Independent Vector Analysis for MI
+  bibtex: |-
+    @inproceedings{Moraes_2023,
+      title = {Applying Independent Vector Analysis on EEG-Based Motor Imagery Classification},
+      url = {http://dx.doi.org/10.1109/icassp49357.2023.10095727},
+      DOI = {10.1109/icassp49357.2023.10095727},
+      booktitle = {ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+      publisher = {IEEE},
+      author = {Moraes, Caroline P. A. and Aristimunha, Bruno and Dos Santos, Lucas Heck and Pinaya, Walter Hugo Lopez and de Camargo, Raphael Yokoingawa and Fantinato, Denis G. and Neves, Aline},
+      year = {2023},
+      month = June,
+      pages = {1–5}
+    }
 - id: paper-p15
   num: 15
   authors: Aristimunha, B., De Camargo, R. Y., Pinaya, W. H. L., Yger, F., Corsi, M. C., & Chevallier, S.
@@ -340,6 +556,13 @@
     area: Models
     topic: Decoding architectures
     label: CONCERTO Connectivity Graph Network
+  bibtex: |-
+    @misc{Aristimunha2023p15,
+      title = {CONCERTO: Coherence & Functional Connectivity Graph Network},
+      author = {Aristimunha, B. and De Camargo, R. Y. and Pinaya, W. H. L. and Yger, F. and Corsi, M. C. and Chevallier, S.},
+      year = {2023},
+      howpublished = {Journée CORTICO}
+    }
 - id: paper-p16
   num: 16
   authors: Carrara, I.*, Aristimunha, B.*, Chevallier, S., Corsi, M. C., & Papadopoulo, T.
@@ -354,6 +577,13 @@
     area: Models
     topic: Decoding architectures
     label: Holographic EEG Multi-View
+  bibtex: |-
+    @misc{Carrara2023p16,
+      title = {Holographic EEG: multi-view deep learning for BCI},
+      author = {Carrara, I. and Aristimunha, B. and Chevallier, S. and Corsi, M. C. and Papadopoulo, T.},
+      year = {2023},
+      howpublished = {Journée CORTICO}
+    }
 - id: paper-p17
   num: 17
   authors: Aristimunha, B., Bayerlein, A. J., Cardoso, M. J., Pinaya, W. H. L., & De Camargo, R. Y.
@@ -369,6 +599,19 @@
     area: Models
     topic: Decoding architectures
     label: Sleep-Energy
+  bibtex: |-
+    @article{Aristimunha_2023,
+      title = {Sleep-Energy: An Energy Optimization Method to Sleep Stage Scoring},
+      volume = {11},
+      ISSN = {2169-3536},
+      url = {http://dx.doi.org/10.1109/access.2023.3263477},
+      DOI = {10.1109/access.2023.3263477},
+      journal = {IEEE Access},
+      publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+      author = {Aristimunha, Bruno and Bayerlein, Alexandre Janoni and Cardoso, M. Jorge and Pinaya, Walter Hugo Lopez and De Camargo, Raphael Yokoingawa},
+      year = {2023},
+      pages = {34595–34602}
+    }
 - id: paper-p18
   num: 18
   authors: Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T.
@@ -385,6 +628,15 @@
   map:
     area: Benchmark and Evaluation
     label: Largest MOABB Reproducibility Study
+  bibtex: |-
+    @misc{Chevallier2025p18,
+      title = {The largest EEG-based BCI reproducibility study for open science: the MOABB benchmark},
+      author = {Chevallier, S. and Carrara, I. and Aristimunha, B. and Guetschel, P. and Lopes, B. and others, Moreau, T.},
+      year = {2025},
+      eprint = {2404.15319},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2404.15319}
+    }
 - id: paper-p19
   num: 19
   authors: Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C.
@@ -401,6 +653,15 @@
     area: Models
     topic: Foundation and transfer models
     label: Cognitive Task Structure (journal)
+  bibtex: |-
+    @misc{Aristimunha2025p19,
+      title = {Uncovering and improving the structure of cognitive tasks with transfer learning},
+      author = {Aristimunha, B. and Pinaya, W. H. L. and de Camargo, R. Y. and Chevallier, S. and Gramfort, A. and Rommel, C.},
+      year = {2025},
+      eprint = {2308.02408},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2308.02408}
+    }
 - id: paper-p20
   num: 20
   authors: Aristimunha, B., Carrara, I., Guetschel, P., Sedlar, S., Rodrigues, P., Sosulski, J., Narayanan, D., Bjareholt, E., Quentin, B., Schirrmeister, R. T., Kobler, R., Kalunga, E., Darmet, L., Gregoire, C., Abdul Hussain, A., Gatti, R., Goncharenko, V., Thielen, J., Moreau, T., ... Chevallier, S.
@@ -413,6 +674,16 @@
   map:
     area: Software
     label: MOABB
+  bibtex: |-
+    @misc{https://doi.org/10.5281/zenodo.11545401,
+      doi = {10.5281/ZENODO.11545401},
+      url = {https://zenodo.org/doi/10.5281/zenodo.11545401},
+      author = {Aristimunha, Bruno and Carrara, Igor and Guetschel, Pierre and Sedlar, Sara and Rodrigues, Pedro and Sosulski, Jan and Narayanan, Divyesh and Bjareholt, Erik and Quentin, Barthelemy and Schirrmeister, Robin Tibor and Kobler, Reinmar and Kalunga, Emmanuel and Darmet, Ludovic and Gregoire, Cattan and Abdul Hussain, Ali and Gatti, Ramiro and Goncharenko, Vladislav and Thielen, Jordy and Moreau, Thomas and Roy, Yannick and Jayaram, Vinay and Barachant, Alexandre and Chevallier, Sylvain},
+      title = {Mother of all BCI Benchmarks},
+      publisher = {Zenodo},
+      year = {2024},
+      copyright = {Creative Commons Attribution 4.0 International}
+    }
 - id: paper-p21
   num: 21
   authors: Aristimunha, B., Tibor, R., Gemein, L., Gramfort, A., Rommel, C., Banville, H., Sliwowskim, M., Wilson, D., Theo gnassou, P., Gtch, P., Lopes, B., Moreau, T., Sedlar, S., Zamboni, M., Paillard, J., Terris, M., Chevallier, S., ... Yao, E.
@@ -426,6 +697,14 @@
   map:
     area: Software
     label: Braindecode
+  bibtex: |-
+    @misc{Aristimunha2023p21,
+      title = {Braindecode},
+      author = {Aristimunha, B. and Tibor, R. and Gemein, L. and Gramfort, A. and Rommel, C. and Banville, H. and Sliwowskim, M. and Wilson, D. and Theo gnassou, P. and Gtch, P. and Lopes, B. and Moreau, T. and Sedlar, S. and Zamboni, M. and Paillard, J. and Terris, M. and Chevallier, S. and others, Yao, E.},
+      year = {2023},
+      howpublished = {Zenodo / braindecode.org},
+      url = {https://braindecode.org}
+    }
 - id: paper-p25
   num: 25
   authors: Aristimunha, B., Cattan, G., & Andreev, A.
@@ -441,6 +720,14 @@
     area: Models
     topic: Decoding architectures
     label: EEG Conformer for P300
+  bibtex: |-
+    @misc{Aristimunha2024p25,
+      title = {Evaluation of the Electroencephalogram Conformer for the P300 Signal},
+      author = {Aristimunha, B. and Cattan, G. and Andreev, A.},
+      year = {2024},
+      howpublished = {Preprint (HAL)},
+      url = {https://hal.science/hal-04791526}
+    }
 - id: paper-p26
   num: 26
   authors: Carrara, I., Aristimunha, B., Corsi, M.-C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
@@ -456,6 +743,14 @@
     area: Models
     topic: Decoding architectures
     label: Augmented SPDNet for Motor Imagery
+  bibtex: |-
+    @misc{Carrara2023p26,
+      title = {Augmented SPDNet: Second-Order Neural Network for Motor Imagery-Based BCI},
+      author = {Carrara, I. and Aristimunha, B. and Corsi, M.-C. and de Camargo, R. Y. and Chevallier, S. and Papadopoulo, T.},
+      year = {2023},
+      howpublished = {Soph.I.A Summit},
+      url = {https://inria.hal.science/hal-04308549}
+    }
 - id: paper-p27
   num: 27
   authors: Gueron, E., Pellegrini, J., & Aristimunha, B.
@@ -467,6 +762,18 @@
     pdf: /assets/pdfs/newcomb-benford-sbmac23.pdf
     doi: https://doi.org/10.5540/03.2023.010.01.0042
   figure: /assets/images/publications/newcomb-benford-sbmac23.png
+  bibtex: |-
+    @inproceedings{Gueron_2023,
+      title = {Distribuição de Newcomb-Benford, Mudanças de Bases e Aplicações Eleitorais},
+      ISSN = {2359-0793},
+      url = {http://dx.doi.org/10.5540/03.2023.010.01.0042},
+      DOI = {10.5540/03.2023.010.01.0042},
+      booktitle = {Proceeding Series of the Brazilian Society of Computational and Applied Mathematics},
+      publisher = {SBMAC},
+      author = {Gueron, Eduardo and Pellegrini, Jerônimo and Aristimunha, Bruno},
+      year = {2023},
+      month = Dec
+    }
 - id: paper-p28
   num: 28
   authors: Aristimunha, B.
@@ -478,6 +785,14 @@
     pdf: /assets/pdfs/estamira-eramia20.pdf
     site: https://sol.sbc.org.br/index.php/eramiasp/article/view/13610
   figure: /assets/images/publications/estamira-eramia20.png
+  bibtex: |-
+    @misc{Aristimunha2020p28,
+      title = {Quem é Estamira? Uma análise da coerência dos discursos através de combinação de medidas para classificação de texto},
+      author = {Aristimunha, B.},
+      year = {2020},
+      howpublished = {ERAMIA-SP},
+      url = {https://sol.sbc.org.br/index.php/eramiasp/article/view/13610}
+    }
 - id: paper-p29
   num: 29
   authors: Aristimunha, B., Júnior, J. S. F., Batagelo, H. C., Goya, D., & dos Santos, C. S.
@@ -489,6 +804,18 @@
     pdf: /assets/pdfs/evasao-disciplinas-nuvem20.pdf
     doi: https://doi.org/10.5281/zenodo.3778956
   figure: /assets/images/publications/evasao-disciplinas-nuvem20.png
+  bibtex: |-
+    @article{https://doi.org/10.5281/zenodo.3778956,
+      doi = {10.5281/ZENODO.3778956},
+      url = {https://zenodo.org/record/3778956},
+      author = {Aristimunha, Bruno and Da Silva Freitas Júnior, Jairo and Batagelo, Harlen Costa and Goya, Denise and Da Silva Dos Santos, Carlos},
+      keywords = {Mineração de Dados Acadêmicos, Evasão em Disciplina, Ensino Superior},
+      language = {pt},
+      title = {Evasão em Nível de Disciplinas na Ciência da Computação na Universidade Federal do ABC},
+      publisher = {Zenodo},
+      year = {2019},
+      copyright = {Creative Commons Attribution 4.0 International}
+    }
 - id: paper-p30
   num: 30
   authors: Aristimunha, B., Borges, F. S. B., Gonçalves, A. B., & Pistori, H.
@@ -500,6 +827,20 @@
     pdf: /assets/pdfs/pollen-cnn-wvc19.pdf
     doi: https://doi.org/10.5753/wvc.2019.7634
   figure: /assets/images/publications/pollen-cnn-wvc19.png
+  bibtex: |-
+    @inproceedings{Aristimunha_2019,
+      series = {WVC 2019},
+      title = {A Comparison Study of Deep Convolutional Neural Networks for the Classification of Brazilian Savannah Pollen Grains: Preliminary Results},
+      url = {http://dx.doi.org/10.5753/wvc.2019.7634},
+      DOI = {10.5753/wvc.2019.7634},
+      booktitle = {Anais do XV Workshop de Visão Computacional (WVC 2019)},
+      publisher = {Sociedade Brasileira de Computação - SBC},
+      author = {Aristimunha, Bruno and Borges, Felipe Silveira Brito and Gonçalves, Ariadne Barbosa and Pistori, Hemerson},
+      year = {2019},
+      month = Sept,
+      pages = {91–96},
+      collection = {WVC 2019}
+    }
 - id: paper-p31
   num: 31
   authors: Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H.
@@ -510,6 +851,13 @@
   links:
     pdf: /assets/pdfs/caruncho-limiarizacao-sibgrapi16.pdf
   figure: /assets/images/publications/caruncho-limiarizacao-sibgrapi16.png
+  bibtex: |-
+    @misc{Albuquerque2016p31,
+      title = {Contagem de Carunchos do Bambu através de Técnicas de Limiarização},
+      author = {Albuquerque, P. L. F. and Pinto, B. A. and Martins, J. M. P. and da Silveira, E. S. and Cereda, M. P. and Pistori, H.},
+      year = {2016},
+      howpublished = {The Conference on Graphics, Patterns and Images (SIBGRAPI)}
+    }
 - id: paper-p32
   num: 32
   authors: Martins, J. M. P., Pinto, B. A., de Albuquerque, P. L. F., da Silveira, E. S., de Souza, K. P., & Pistori, H.
@@ -521,3 +869,11 @@
     pdf: /assets/pdfs/caruncho-fluxo-otico-cotb15.pdf
     site: https://periodicos.univali.br/index.php/acotb/article/view/7050
   figure: /assets/images/publications/caruncho-fluxo-otico-cotb15.png
+  bibtex: |-
+    @misc{Martins2015p32,
+      title = {Rastreamento do caruncho do bambu usando fluxo óptico},
+      author = {Martins, J. M. P. and Pinto, B. A. and de Albuquerque, P. L. F. and da Silveira, E. S. and de Souza, K. P. and Pistori, H.},
+      year = {2015},
+      howpublished = {Computer on the Beach},
+      url = {https://periodicos.univali.br/index.php/acotb/article/view/7050}
+    }

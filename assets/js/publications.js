@@ -42,9 +42,27 @@
     else document.addEventListener("DOMContentLoaded", fn);
   }
 
+  function initBibtex() {
+    document.querySelectorAll("[data-copy-bibtex]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy-bibtex");
+        navigator.clipboard.writeText(text).then(function () {
+          var original = btn.innerHTML;
+          btn.innerHTML = "Copied ✓";
+          btn.classList.add("is-copied");
+          setTimeout(function () {
+            btn.innerHTML = original;
+            btn.classList.remove("is-copied");
+          }, 1600);
+        });
+      });
+    });
+  }
+
   ready(function () {
     document.querySelectorAll("[data-pubtrack]").forEach(function (root) {
       init(root);
     });
+    initBibtex();
   });
 })();

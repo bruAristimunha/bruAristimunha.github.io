@@ -1718,7 +1718,30 @@ a.research-tree__title:focus-visible {
     text-underline-offset: 3px;
 }
 
-.pubtrack__links > a + a::before {
+.pubtrack__bib {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-weight: 600;
+    color: #3b66c4;
+    cursor: pointer;
+}
+
+.pubtrack__bib:hover,
+.pubtrack__bib:focus {
+    color: #245dcc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pubtrack__bib.is-copied {
+    color: #1a7f4b;
+}
+
+.pubtrack__links > * + a::before,
+.pubtrack__links > * + .pubtrack__bib::before {
     content: '\00b7';
     margin: 0 0.55em;
     color: #b9bec6;
