@@ -1,3 +1,16 @@
+- id: paper-p37
+  num: 37
+  authors: Delorme, A., Ranganath, S., Kothe, C., Jaiswal, A., Makeig, S., & Aristimunha, B.
+  year: 2026
+  title: 'EEGPrep: a validated Python implementation of the EEGLAB preprocessing pipeline'
+  venue: J. Neural Engineering
+  type: journal
+  status: submitted
+  links:
+    arxiv: https://arxiv.org/abs/2607.16647
+  map:
+    area: Preprocessing
+    label: EEGPrep
 - id: paper-p23
   num: 23
   authors: Aristimunha, B., Dotan, A., Guetschel, P., Jaiswal, A., Ashkenazi, G., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
