@@ -441,7 +441,7 @@ redirect_from:
     <li class="timeline-island__item timeline-island__item--highlight">
       <div class="timeline-island__row">
         <span class="timeline-island__date">2026 →</span>
-        <span class="timeline-island__title">Research Scientist, <a href="https://yneuro.com/">Yneuro</a></span>
+        <span class="timeline-island__title">Research Scientist, <a href="https://www.yneuro.com/">Yneuro</a></span>
       </div>
       <p class="timeline-island__detail">France 🇫🇷. Tools for EEG decoding and foundation models on neural signals.</p>
     </li>
