@@ -61,6 +61,14 @@ redirect_from:
           </div>
           <div class="journey__ms-note">Joined post-PhD to continue work on EEG decoding and foundation models for neural signals.</div>
         </li>
+        <li class="journey__ms is-highlight">
+          <span class="journey__ms-dot" aria-hidden="true"></span>
+          <div class="journey__ms-row">
+            <span class="journey__ms-year">2025</span>
+            <span class="journey__ms-label">NeurIPS 2025 Competition — EEG Foundation Challenge</span>
+          </div>
+          <div class="journey__ms-note">Led the organization of <em>From Cross-Task to Cross-Subject EEG Decoding</em>, with Terrence J. Sejnowski, Isabelle Guyon, Alan Evans, Scott Makeig, Arnaud Delorme and Alexandre Gramfort.</div>
+        </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
           <div class="journey__ms-row">
@@ -298,7 +306,33 @@ redirect_from:
   </div>
 </div>
 
-# 🔬 Featured Manuscript
+# 🔬 Featured
+
+<section class="featured-paper">
+  <a
+    class="featured-paper__figure"
+    href="https://neural-interfaces26.github.io/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="{{ '/assets/images/publications/eeg-emg-foundation-challenge-2026.jpg' | relative_url }}"
+      alt="EEG/EMG Foundation Challenge 2026 — 4 tracks, 4 generalization shifts: EEG-to-IMG (cross-stimulus), BCI decoding (cross-session), sleep onset (cross-user), EMG-to-Pose (cross-user)"
+      loading="lazy"
+    >
+  </a>
+  <div class="featured-paper__body">
+    <p class="featured-paper__eyebrow">Competition · Brain and Body Workshop at NeurIPS 2026</p>
+    <h2 class="featured-paper__title">EEG/EMG Foundation Challenge 2026</h2>
+    <p class="featured-paper__authors">Main lead: Bruno Aristimunha · Hosted by Yneuro, Inria, and UC San Diego, with 30 organizers from 15 institutions and 8 countries</p>
+    <p class="featured-paper__summary">I am the main lead of the 2026 competition. Four decoding tracks — EEG-to-Image, BCI decoding, sleep onset, and EMG-to-Pose — test models across new stimuli, sessions, and people. Registration is open; the competition runs 21 Sep – 21 Nov 2026, with a $20,000 prize pool and winners celebrated at NeurIPS in Sydney. The 2025 edition gathered 1,197 teams from 247 institutions.</p>
+    <p class="featured-paper__links">
+      <a href="https://neural-interfaces26.github.io/" target="_blank" rel="noopener noreferrer">Competition website</a>
+      <a href="https://neural-interfaces26.github.io/tracks.html" target="_blank" rel="noopener noreferrer">Tracks</a>
+      <a href="https://neural-interfaces26.github.io/register.html" target="_blank" rel="noopener noreferrer">Register</a>
+    </p>
+  </div>
+</section>
 
 <section class="featured-paper">
   <a
@@ -314,7 +348,7 @@ redirect_from:
     >
   </a>
   <div class="featured-paper__body">
-    <p class="featured-paper__eyebrow">EEG representation learning</p>
+    <p class="featured-paper__eyebrow">EEG representation learning · Accepted</p>
     <h2 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h2>
     <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
     <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment. Cross-subject decoding performance holds, and head selection becomes the main remaining bottleneck.</p>
@@ -518,8 +552,8 @@ Students I was lucky to work with and mentor:
   </li>
   <li class="mentorship__card">
     <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h2>
-    <span class="mentorship__role">Undergrad → Master</span>
-    <p class="mentorship__detail">USP, now in the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay.</p>
+    <span class="mentorship__role">Undergrad → Master → PhD</span>
+    <p class="mentorship__detail">USP, then the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay; now my PhD student.</p>
   </li>
   <li class="mentorship__card">
     <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h2>
