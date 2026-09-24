@@ -1,8 +1,8 @@
 # Research map hierarchy: area/topic order for the contribution diagram.
 # Papers attach themselves to this tree via the `map:` block on entries in
 # publications.yml (map.area, optional map.topic, optional short map.label).
-# Within a branch, papers render in publications.yml file order (newest first).
-root: Brain Decoding
+# Within a branch, papers run from oldest near the trunk to newest at the tip.
+root: Representation learning
 areas:
   - name: Preprocessing
   - name: Data

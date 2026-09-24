@@ -11,6 +11,7 @@
         var on = t.getAttribute("data-journey-tab") === key;
         t.classList.toggle("is-active", on);
         t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
       });
       panels.forEach(function (p) {
         var on = p.getAttribute("data-journey-panel") === key;

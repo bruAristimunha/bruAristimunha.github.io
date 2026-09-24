@@ -10,22 +10,30 @@ layout: compress
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    <div id="main"{% if page.url == "/" %} class="main--home"{% endif %} role="main">
+    <main id="main"{% if page.url == "/" %} class="main--home"{% endif %} tabindex="-1">
       {% include sidebar.html %}
     
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
         <div class="page__inner-wrap">
           <section class="page__content" itemprop="text">
+            {% if page.date %}<h1 class="page__title">{{ page.title | escape }}</h1>{% endif %}
             {{ content }}
           </section>
         </div>
       </article>
-    </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Bruno Aristimunha <span>Research &amp; open science</span></p>
+      <a href="mailto:{{ site.author.email }}">Get in touch</a>
+      <a href="#main">Back to top ↑</a>
+    </footer>
 
     {% include scripts.html %}
 

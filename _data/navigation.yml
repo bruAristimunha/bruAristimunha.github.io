@@ -1,13 +1,7 @@
 # main links links
 main:
-  - title: "About Me"
+  - title: "About"
     url: "/#about-me"
-
-  - title: "Journey"
-    url: "/#journey"
-
-  - title: "CV"
-    url: "https://docs.google.com/document/d/1Pba371Sv7Epgjz5kMwT2t8i3PgueNhpE8hN1nAR98iU/edit?usp=sharing"
 
   - title: "Research"
     url: "/#-research-overview"
@@ -15,14 +9,8 @@ main:
   - title: "Publications"
     url: "/#-publications-full-list"
 
-  - title: "Education"
-    url: "/#-education"
-
-  - title: "Work Experience"
-    url: "/#-work-experience"
-
-  - title: "Mentorship"
-    url: "/#-mentorship"
+  - title: "Journey"
+    url: "/#journey"
 
   - title: "Blog"
     url: "/blog/"

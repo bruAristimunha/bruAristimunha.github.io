@@ -1,26 +1,17 @@
 {% comment %}
-  One paper node card on the research map. include.pub = a publications.yml
-  entry carrying a `map:` block. include.anchors=false renders without
-  in-page links (standalone figure export).
+  One paper on the research tree: a list item that is both the accessible
+  reading of a leaf and the data (attributes) the SVG leaf is grown from.
+  include.pub = a publications.yml entry carrying a `map:` block.
+  include.anchors=false renders without in-page links (standalone figure).
 {% endcomment %}
 {% assign rmc = include.pub %}
-<li class="research-tree__item">
-  <div class="research-tree__node research-tree__node--{{ rmc.type }}">
-    {%- if include.anchors != false -%}
-      <a class="research-tree__pid" href="#{{ rmc.id }}" aria-label="Jump to publication P{{ rmc.num }}">P{{ rmc.num }}</a>
-    {%- else -%}
-      <span class="research-tree__pid">P{{ rmc.num }}</span>
-    {%- endif -%}
-    <span class="research-tree__node-body">
-      {%- if rmc.links.site -%}
-        <a class="research-tree__title" href="{{ rmc.links.site }}" target="_blank" rel="noopener noreferrer">{{ rmc.map.label | default: rmc.title }}</a>
-      {%- elsif include.anchors != false -%}
-        <a class="research-tree__title" href="#{{ rmc.id }}">{{ rmc.map.label | default: rmc.title }}</a>
-      {%- else -%}
-        <span class="research-tree__title research-tree__title--static">{{ rmc.map.label | default: rmc.title }}</span>
-      {%- endif -%}
-      <span class="research-tree__venue">{{ rmc.venue_short | default: rmc.venue }} {{ rmc.year }}{% if rmc.status %} · {{ rmc.status | replace: "-", " " }}{% endif %}</span>
-    </span>
-    {%- if rmc.figure -%}<span class="pubfig pubfig--map" aria-hidden="true"><img src="{{ rmc.figure | relative_url }}" alt="" loading="lazy"></span>{%- endif -%}
-  </div>
+{% assign rmc_label = rmc.map.label | default: rmc.title %}
+{% assign rmc_venue = rmc.venue_short | default: rmc.venue %}
+<li class="rm-paper" data-id="{{ rmc.id }}" data-num="{{ rmc.num }}" data-type="{{ rmc.type }}" data-label="{{ rmc_label | escape }}" data-venue="{{ rmc_venue | escape }} {{ rmc.year }}"{% if rmc.status %} data-status="{{ rmc.status | replace: '-', ' ' }}"{% endif %}{% if rmc.figure %} data-figure="{{ rmc.figure | relative_url }}"{% endif %}>
+  {%- if include.anchors != false -%}
+    <a class="rm-paper__link" href="#{{ rmc.id }}">{{ rmc_label }}</a>
+  {%- else -%}
+    <span class="rm-paper__link">{{ rmc_label }}</span>
+  {%- endif %}
+  <span class="rm-paper__meta">P{{ rmc.num }}, {{ rmc_venue }} {{ rmc.year }}{% if rmc.status %} ({{ rmc.status | replace: "-", " " }}){% endif %}</span>
 </li>

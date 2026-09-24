@@ -1,3 +1,72 @@
+- id: paper-p40
+  num: 40
+  authors: Hajhassani, D., Graignic, P-A., Aristimunha, B., Mellot, A., Mariani, T., Nober, C., Lopes, B. J., Burgund, L., Kusch, L., Semah, T., & Caillet, A. H.
+  year: 2026
+  title: 'Automated Artifact Removal in EEG Age Prediction: A Systematic Comparison'
+  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue_short: ICASSP
+  type: conference
+  status: submitted
+  figure: /assets/images/publications/artifact-removal-age-icassp27.png
+  map:
+    area: Preprocessing
+    label: Artifact Removal for EEG Age Prediction
+  abstract: >-
+    Automated EEG artifact removal may improve downstream analysis but can also alter predictive information. We benchmarked nine automated artifact removal methods against a common no-artifact-removal baseline for cross-dataset EEG age prediction. We introduce Signal Quality Index (SQI)-guided GEDAI, which leverages local signal-quality assessment to restrict correction to the channel-epoch pairs requiring intervention. Three deep neural architectures were trained on TUEG and evaluated without target-domain fitting on ds005385, LEMON, and TDBRAIN. Across this setting, GEDAI and SQI-guided GEDAI were the only methods with consistent gains over baseline in age prediction performance across all datasets and architectures ( =-0.77/-0.64 years, R²=+0.083/+0.072, respectively). The remaining methods were neutral or detrimental on average ( =+0.220.16 years, R²=-0.0230.016 across methods). The two GEDAI-based methods achieved closely matched performance, while SQI guidance reduced the median modification ratio from 74.78% to 42.80%. These findings show that curation benefits are method-dependent and establish SQI guidance as a more selective operating point, leaving more of the original EEG unchanged and limiting the potential loss of neural activity while retaining most of GEDAI's predictive benefit.
+  bibtex: |-
+    @misc{Hajhassani2026p40,
+      title = {Automated Artifact Removal in EEG Age Prediction: A Systematic Comparison},
+      author = {Hajhassani, D. and Graignic, P-A. and Aristimunha, B. and Mellot, A. and Mariani, T. and Nober, C. and Lopes, B. J. and Burgund, L. and Kusch, L. and Semah, T. and Caillet, A. H.},
+      year = {2026},
+      howpublished = {Submitted to ICASSP 2027}
+    }
+- id: paper-p39
+  num: 39
+  authors: Nunes de Oliveira Junior, J. M., Lopes, B. J., Burgund, L., de Camargo, R. Y., & Aristimunha, B.
+  year: 2026
+  title: 'Scaling Laws for EEG Decoding: How Much Data is Enough?'
+  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue_short: ICASSP
+  type: conference
+  status: submitted
+  figure: /assets/images/publications/scaling-laws-eeg-icassp27.png
+  map:
+    area: Benchmark and Evaluation
+    label: Scaling Laws for EEG Decoding
+  abstract: >-
+    Deep learning has become a cornerstone of EEG-based brain decoding, with a growing number of architectures proposed every day; however, how the performance of these different models scales with data volume is not clear. Although this relationship has been characterized in other fields under the name of scaling laws, it remains poorly understood in the EEG domain. The present study addresses this gap by investigating how scan time and subject diversity affect the performance of different architectures. We evaluated five models across four EEG datasets. Training data volume was controlled by varying both subject count and trial volume under cross-subject validation. We then fitted power-law relationships to characterize the resulting behavior. Our findings reveal that as total data volume increases, the distinction between trial and subject scaling becomes largely irrelevant. Furthermore, we show that power-law relationships are both model and dataset-specific, yet they provide a robust descriptive framework for EEG decoding performance; extrapolation to larger subject pools yields RMSE values below 0.1 in most cases. Our work contributes to the literature by providing a descriptive framework for data scaling in EEG and by demonstrating data-efficient experimental design in EEG research.
+  bibtex: |-
+    @misc{NunesdeOliveiraJunior2026p39,
+      title = {Scaling Laws for EEG Decoding: How Much Data is Enough?},
+      author = {Nunes de Oliveira Junior, J. M. and Lopes, B. J. and Burgund, L. and de Camargo, R. Y. and Aristimunha, B.},
+      year = {2026},
+      howpublished = {Submitted to ICASSP 2027}
+    }
+- id: paper-p38
+  num: 38
+  authors: Mounir, A., Douka, S., Caillet, A. H., Aristimunha, B., & Chevallier, S.
+  year: 2026
+  title: 'Neuron-Level Architecture Growth: A Controlled Evaluation for EEG Time-Series Decoding'
+  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue_short: ICASSP
+  type: conference
+  status: submitted
+  links:
+    pdf: /assets/pdfs/neuron-growth-eeg-icassp27.pdf
+  figure: /assets/images/publications/neuron-growth-eeg-icassp27.png
+  map:
+    area: Models
+    topic: Decoding architectures
+    label: Neuron-Level Architecture Growth
+  abstract: >-
+    Convolutional EEG decoders are trained at a fixed width, usually set by their authors on other data. Growing methods add neurons during training where the loss could decrease the most, but whether they improve compared to a reference width is untested on EEG. Here, we grow three convolutional backbones on 12 motor-imagery datasets under three protocols and compare each with its reference model per subject. The growing ShallowFBCSPNet scores 2.9 points above its reference model with only half the parameters (0.57x), SCCNet changes by at most 1.2 points. Deep4Net growing models show decreased accuracy, but they require adaptation that prevent to compare faithfully the results. These differences follow the selection step, which keeps a candidate neuron relying on a dynamic threshold from singular values decomposition. Overall, these results suggest that growth helps when its criterion can rank the candidate neurons, and that the rate of skipped neuron addition tells where a decoder can be grown small from scratch.
+  bibtex: |-
+    @misc{Mounir2026p38,
+      title = {Neuron-Level Architecture Growth: A Controlled Evaluation for EEG Time-Series Decoding},
+      author = {Mounir, A. and Douka, S. and Caillet, A. H. and Aristimunha, B. and Chevallier, S.},
+      year = {2026},
+      howpublished = {Submitted to ICASSP 2027}
+    }
 - id: paper-p37
   num: 37
   authors: Delorme, A., Ranganath, S., Kothe, C., Jaiswal, A., Makeig, S., & Aristimunha, B.
@@ -8,9 +77,12 @@
   status: submitted
   links:
     arxiv: https://arxiv.org/abs/2607.16647
+  figure: /assets/images/publications/eegprep-jne26.png
   map:
     area: Preprocessing
     label: EEGPrep
+  abstract: >-
+    Automated EEG preprocessing is common in research and clinical work, but few pipelines have been tested systematically. In a recent benchmark, the default EEGLAB pipeline was the only pipeline that significantly outperformed simple high pass filtering. Its MATLAB implementation, however, complicates deployment in Python and cloud workflows. We developed EEGPrep to reproduce this pipeline in Python while supporting BIDS data. The main technical problem was numerical: small floating point differences can accumulate during recursive filtering and ICA. Approach. EEGPrep covers the default EEGLAB workflow: average rereferencing, artifact removal with the clean rawdata plugin, Picard ICA, ICLabel component classification, channel interpolation, and epoching. We compared each stage with MATLAB reference output on ARM arm64, the primary analysis, and Intel x86 64, the supplementary analysis. The test dataset contained 64 channel P300 auditory oddball recordings from 13 participants. We measured maximum absolute difference, RMS error, AMARI distance for ICA, and agreement between ICLabel decisions. Main Results. On ARM arm64, import and rereferencing matched exactly for all 12 analysed subjects. The clean rawdata and Picard ICA stages remained at numerical zero, with maximum RMS equal to 1.5 x 10^-12 microvolts, AMARI distance less than or equal to 0.000001, and mean correlation equal to 1.000. ICLabel neural network inference introduced the only measurable difference, with maximum RMS equal to 2.0 x 10^-5 microvolts. Rejection decisions nevertheless agreed for every subject, and the difference did not increase through interpolation and epoching, with end to end maximum RMS less than or equal to 2.1 x 10^-5 microvolts. The Intel x86 64 analysis matched to the same precision. Significance. EEGPrep reproduces the validated EEGLAB pipeline and can be installed from PyPI or run in Docker.
   bibtex: |-
     @misc{Delorme2026p37,
       title = {EEGPrep: a validated Python implementation of the EEGLAB preprocessing pipeline},
@@ -32,10 +104,13 @@
     arxiv: https://arxiv.org/abs/2606.16041
     site: https://eegdash.org
     journal: https://academic.oup.com/database
+  figure: /assets/images/publications/eegdash-database26.png
   map:
     area: Data
     topic: Data resources and platforms
     label: EEGDash
+  abstract: >-
+    Public neurophysiological datasets are increasingly accessible but remain hard to reuse: turning one into a trained model still takes thousands of lines of code for download, loading, format repair, windowing, and evaluation, and a dataset that meets metadata standards can still fail to load. EEG-Dash is a software resource that catalogues 791 publicly archived recordings (39,778 participants, over 86,051 hours) spanning electroencephalography (EEG), magnetoencephalography (MEG), intracranial EEG (iEEG), electromyography (EMG), and functional near-infrared spectroscopy (fNIRS) from the OpenNeuro and NEMAR archives. It exposes each dataset as an importable, queryable class that preserves signal attributes and loads into machine-learning workflows without custom code, delegating signal handling to MNE-Python, windowing to Braindecode, and format compliance to the official Brain Imaging Data Structure (BIDS) validator. A metadata-first registry adds semantic search, a format-repair layer, automatic dataset-level tags drawn from each source publication, and a feature-extraction framework. The catalogue, with per-record loadability and compliance metadata, supports benchmarking, model development, and cross-dataset analysis.
   bibtex: |-
     @misc{Aristimunha2026p23,
       title = {EEGDash: An open-source platform for machine learning on public neurophysiological data},
@@ -61,6 +136,8 @@
     area: Data Alignment
     topic: Cross-session and cross-subject alignment
     label: Subject-Specific Aligned EEG Encoders
+  abstract: >-
+    Cross-subject EEG decoding promises more training data, but it also exposes neural networks to strong inter-subject distribution shifts. We study whether task supervision and architecture alone can learn subject-aligned representations. We replace a shared EEG encoder with subject-specific encoders followed by a common classifier, and compare this hybrid model with standard EEGNet, AttentionBaseNet, and CTNet baselines with Euclidean Alignment (EA) on three motor-imagery datasets and one motor-execution dataset. EA improves shared encoders by recentering subject covariances, whereas the hybrid encoder reduces reliance on EA: removing EA has little effect on validation-loss dynamics or latent-space organization, and both hybrid variants consistently outperform non-aligned shared baselines. Subject-specific heads increase class distinctiveness and place each subject close to its own latent manifold while improving within-subject class separation. However, on cross-subject classification, subject-specific heads hinder direct parameter transfer to unseen subjects, motivating quantitative head selection and a brief calibration session. Although decoding gains depend on the dataset and backbone, our main findings concern that the sole use of architecture pressure promotes representation learning and alignment in a direction complementary to domain adaptation methods such as Euclidean Alignment. A per-subject low-rank adapter of only 2Cr parameters recover the full encoder's accuracy across five backbones and ranks r=1 to 16, so the per-subject module can be compressed by two to three orders of magnitude.
   bibtex: |-
     @misc{Lopes2026p33,
       title = {Learning aligned EEG representations with subject-specific encoders},
@@ -105,6 +182,8 @@
     area: Models
     topic: Foundation and transfer models
     label: Channel Adaptation for EEG Foundation Models
+  abstract: >-
+    Scaling EEG foundation models requires pooling data across heterogeneous electrode montages, a prerequisite both for larger pretraining corpora and for downstream deployment. We present the first systematic comparison of four channel adaptation methods (Conv1d projection, spherical spline interpolation (SSI), source-space decomposition, and Riemannian re-centering) across five pretrained EEG foundation models (5M-157M parameters), five downstream tasks, and two training regimes with 10-15 random seeds each. We find that rigid-montage models (BENDR, Neuro-GPT) require external adaptation, while flexible models (EEGPT, CBraMod) match or exceed it natively when fine-tuned but benefit from external methods under frozen-encoder deployment. A probe-SFT asymmetry exists: external adaptation can cause severe negative transfer during fine-tuning of flexible models. The optimal method is architecture-dependent (Conv1d for BENDR, SSI/Riemannian for Neuro-GPT, source-space decomposition for depression detection), and 5M-parameter CBraMod outperforms models up to 31x larger on 4/5 datasets, consistent with independent findings that compact EEG-specific architectures can match larger models.
   bibtex: |-
     @misc{Kokate2026p24,
       title = {Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes},
@@ -130,6 +209,8 @@
   map:
     area: Preprocessing
     label: From EEG Cleaning to Decoding
+  abstract: >-
+    Motor imagery (MI) BCIs are sensitive to EEG artifacts, yet the practical impact of automated artifact rejection on downstream MI decoding performance remains unclear. While most work focuses on decoder design, the contribution of data curation, particularly automated rejection policies, has received comparatively less attention, despite its importance for robust machine learning pipelines. Here, we propose Fast Automatic Artifact Rejection (FAAR), a lightweight method that computes a compact set of artifact-sensitive features, derives an epoch-level Signal Quality Index, adaptively selects rejection thresholds, and automatically rejects contaminated epochs without requiring prior knowledge of artifact types or manual threshold tuning. We evaluate FAAR on 13 publicly available MI datasets and compare it to a no-rejection baseline, AutoReject, and Isolation Forest. We show rejection effects are strongly subjectand regime-dependent, with the largest gains in low-baseline/low-SNR conditions, so it should be used adaptively. FAAR reduces inter-subject performance variability, an important property for MI-BCI reliability and BCI-illiteracy, without aggressive data removal. Finally, FAAR's lightweight and fully automated thresholding yields consistent rejection behavior across offline curation, training, and online filtering, and supports real-time BCI constraints.
   bibtex: |-
     @misc{Hajhassani2026p1,
       title = {From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs},
@@ -168,6 +249,9 @@
   type: report
   links:
     site: https://theses.fr/2026UPASG016
+  figure: /assets/images/publications/phd-thesis-eeg-representations.png
+  abstract: >-
+    Electroencephalography (EEG) decoding faces a fundamental challenge: deep learning methods that transformed the field require massive datasets, yet EEG studies typically collect only hundreds to thousands of trials per subject. This data scarcity, combined with high inter-subject variability and low signal-to-noise ratios, limits the application of modern machine learning approaches. This thesis investigates representation learning strategies to address EEG data constraints, proposing methods to reuse, create, and constrain representations while establishing infrastructure for reproducible evaluation. In the first part, we focused on reusing representations through transfer learning across cognitive tasks. We investigated whether features learned on one EEG paradigm could improve decoding on another using linear probing to measure transferability across 11 paradigms from two datasets comprising 135 subjects. We found that transfer is highly asymmetric: some tasks serve as effective sources for multiple targets, while others benefit from no pre-training. Linear probing yielded accuracy gains, and hierarchical clustering of transfer matrices revealed that tasks recruiting similar cognitive processes cluster together. In the second part, we focused on creating representations through generative modeling to augment limited datasets. We trained latent diffusion models with a novel spectral loss on sleep EEG data from two datasets to generate realistic 30-second epochs. The spectral loss enforces frequency-domain fidelity by minimizing differences between short-time Fourier transforms of real and synthetic signals, preserving physiologically relevant oscillations in delta, theta, and alpha bands. The generated signals achieved low Fréchet Inception Distance and correct power spectral density profiles, demonstrating that diffusion models can synthesize EEG suitable for privacy-preserving data sharing. In the third part, we addressed the challenge of parameter efficiency by constraining representations with geometric priors. We proposed Phase-SPDNet, which combines Riemannian geometry on the symmetric positive-definite manifold with Takens’ theorem-based phase-space reconstruction. This approach enriches spatial covariance matrices with temporal dynamics through delay embedding, enabling effective decoding with minimal electrodes. Evaluated on six motor imagery datasets using only three electrodes, Phase-SPDNet achieved state-of-the-art performance. In the fourth part, we addressed the reproducibility crisis in EEG decoding by developing standardized benchmarking infrastructure. We organized a large-scale challenge on 3,000+ subjects with six cognitive tasks, revealing that cross-subject generalization remains substantially harder than cross-task generalization. Beyond the competition, we developed three open-source tools: MOABB for standardized benchmarking, Braindecode as a PyTorch model zoo, and EEGDash for dataset cataloging. These tools have collectively exceeded one million installations. The contributions address EEG data constraints from complementary angles: transfer learning reduces calibration burden, generative models expand available training data, geometric constraints improve parameter efficiency, and reproducible benchmarks enable fair comparison.
   bibtex: |-
     @misc{Aristimunha2026p36,
       title = {Learning Representations of Electroencephalogram using Deep Learning},
@@ -192,6 +276,8 @@
     area: Models
     topic: Foundation and transfer models
     label: OpenEEG-Bench
+  abstract: >-
+    The rapid emergence of foundation models for electroencephalography (EEG) promises to transform brain-computer interfaces and clinical neuroscience. In many cases, however, results reported on foundation models are snapshots in time, which are hard to compare due to heterogeneous evaluation protocols, such as differing pre-processing, datasets, data-splits, finetuning methods etc. To mitigate this, a few benchmark papers have recently been proposed that try to standardize the comparison of foundation models. Compared to other domains, however, the EEG field still lacks a continuously updated, open-source benchmark which provides a live online leaderboard and allows for a fair, reproducible comparison of current foundation models, and also allows for introspecting which design decisions are impactful. In this paper, building upon our experience organizing the NeurIPS 2025 EEG Foundation Model Challenge, we describe our four initial design choices for a live EEG foundation model benchmark, that implements a continuously updated leaderboard: (1) It embraces existing open-source tools, including MNE-Python, Braindecode, and HuggingFace for easier adoption. (2) We recommend using openly accessible datasets and will include new datasets in the future. (3) We standardize the finetuning and pre-processing procedures for comparable results. (4) We implement a community-driven governance to ensure long-term sustainability. To stimulate feedback and discussion about our current design choices, we also present the initial results for five recent foundation models evaluated across ten commonly used datasets. Before we freeze design decisions, we invite the community to share suggestions at https://huggingface.co/spaces/braindecode/EEG-finetune-arena/discussions. The live leaderboard will be accessible at the same location. The code is open-source and can be found at https://github.com/braindecode/OpenEEGBench.
   bibtex: |-
     @misc{Guetschel2026p2,
       title = {Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models},
@@ -217,6 +303,8 @@
   map:
     area: Software
     label: SPD Learn
+  abstract: >-
+    Implementations of symmetric positive definite (SPD) matrix-based neural networks for neural decoding remain fragmented across research codebases and Python packages. Existing implementations often employ ad hoc handling of manifold constraints and non-unified training setups, which hinders reproducibility and integration into modern deep-learning workflows. To address this gap, we introduce SPD Learn, a unified and modular Python package for geometric deep learning with SPD matrices. SPD Learn provides core SPD operators and neural-network layers, including numerically stable spectral operators, and enforces Stiefel/SPD constraints via trivialization-based parameterizations. This design enables standard backpropagation and optimization in unconstrained Euclidean spaces while producing manifold-constrained parameters by construction. The package also offers reference implementations of representative SPDNet-based models and interfaces with widely used brain computer interface/neuroimaging toolkits and modern machine-learning libraries (e.g., MOABB, Braindecode, Nilearn, and SKADA), facilitating reproducible benchmarking and practical deployment.
   bibtex: |-
     @misc{Aristimunha2026p22,
       title = {SPD Learn: A geometric deep learning Python library for neural decoding through trivialization},
@@ -240,6 +328,8 @@
   map:
     area: Clinical
     label: Interpretable MEG Differential Diagnosis
+  abstract: >-
+    Automating the diagnostic process steps has been of interest for research grounds and to help manage the healthcare systems. Improved classification accuracies, provided by ever more sophisticated algorithms, were mirrored by the loss of interpretability on the criteria for achieving accuracy. In other words, the mechanisms responsible for generating the distinguishing features are typically not investigated. Furthermore, the vast majority of the classification studies focus on the classification of one disease as opposed to matched controls. While this scenario has internal validity, concerning the appropriateness toward answering scientific questions, it does not have external validity. In other words, differentiating multiple diseases at once is a classification problem closer to many real-world scenarios. In this work, we test the hypothesis that specific data features hold most of the discriminative power across multiple neurodegenerative diseases. Furthermore, we perform an explorative analysis to compare metrics based on different assumptions (concerning the underlying mechanisms). To test this hypothesis, we leverage a large magnetoencephalography dataset (N=109) merging four cohorts, recorded in the same clinical setting, of patients affected by multiple sclerosis, amyotrophic lateral sclerosis, Parkinson's disease, and mild cognitive impairment. Our results show that it is possible to reach a balanced accuracy of 67.1% (chance level = 35%), based on a small set of (non-disease specific) features. We show that edge metrics (defined as statistical dependencies between pairs of brain signals) perform better than nodal metrics (considering regions while disregarding the interactions). Moreover, phase-based metrics slightly outperform amplitude-based metrics. In conclusion, our work shows that a small set of phase-based connectivity metrics applied to MEG data successfully distinguishes across multiple neurological diseases.
   bibtex: |-
     @article{Klepachevskyi_2026,
       title = {Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases},

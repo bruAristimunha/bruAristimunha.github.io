@@ -1,0 +1,15 @@
+<div class="software-card__scene software-card__scene--{{ include.library }}" data-library-scene aria-hidden="true">
+  <div class="software-card__logo-wrap">
+    {% case include.library %}
+      {% when 'braindecode' %}{% include library-logos/braindecode.svg %}
+      {% when 'moabb' %}{% include library-logos/moabb.svg %}
+      {% when 'eegdash' %}{% include library-logos/eegdash.svg %}
+      {% when 'spdlearn' %}
+      <div class="library-logo library-logo--spdlearn">
+        <img src="{{ '/assets/images/software/spdlearn.png' | relative_url }}" width="657" height="657" alt="" loading="lazy" decoding="async">
+        <span class="spd-logo__light"></span>
+        <span class="spd-logo__ember"></span>
+      </div>
+    {% endcase %}
+  </div>
+</div>

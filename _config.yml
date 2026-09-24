@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Bruno Aristimunha (Bru)"
-description              : "Research Scientist at Yneuro, working on deep learning for brain time-series decoding. Lead maintainer of Braindecode and MOABB. PhD from Université Paris-Saclay and UFABC."
+description              : "Research Scientist at Yneuro, studying representation learning from time series and neural signals. Lead maintainer of Braindecode and MOABB."
 repository               : "bruaristimunha/bruaristimunha.github.io"
 url                      : "https://bruaristimunha.github.io" # explicit, otherwise the github-pages gem injects a wrong production fallback
 baseurl                  : "" # explicit, otherwise the github-pages gem injects /pages/bruaristimunha in CI
@@ -22,8 +22,8 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Bruno Aristimunha"
   avatar           : "images/bruno_profile.webp"
-  bio              : "Research Scientist <br>PhD in Computer Science"
-  location         : "France"
+  bio              : "Research Scientist at Yneuro<br>Hon. Research Associate, UC San Diego<br>PhD in Computer Science"
+  location         : "Paris, France"
   employer         : Yneuro · UC San Diego INC (Hon.)
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=2Gd5gOQAAAAJ"

@@ -1,50 +1,63 @@
 {% comment %}
-  CSS-only research contribution diagram, driven by the publication system.
-  Hierarchy/order: _data/research_areas.yml. Membership: the `map:` block on
-  entries in _data/publications.yml (single source of truth for title, venue,
-  year, type, status, and links). Pass anchors=false to render without
-  in-page links (standalone figure page has no publication list to anchor into).
+  Research tree: a silhouette of a young tree against an overcast sky.
+  Trunk = root, limbs = areas (_data/research_areas.yml, sized by paper
+  count), sub-branches = topics, leaves = publications carrying a `map:`
+  block in _data/publications.yml. The ordered list below is the single
+  source of truth: it is the accessible / no-JS reading of the tree, and
+  assets/js/research-tree.js reads its data attributes to grow the SVG.
+  Pass anchors=false to render without in-page links (standalone figure).
 {% endcomment %}
 {% assign rm_cfg = site.data.research_areas %}
-{% assign rm_pubs = site.data.publications | where_exp: "p", "p.map != nil" %}
+{% assign rm_pubs = site.data.publications | where_exp: "p", "p.map != nil" | sort: "year" %}
 {% assign rm_leaf_count = rm_pubs | size %}
 {% assign rm_branch_count = rm_cfg.areas | size %}
-<div class="research-map">
-  <div class="research-map__header">
-    <span class="research-map__eyebrow">Research map</span>
-    <span class="research-map__title" role="heading" aria-level="2"><span class="research-map__root-dot" aria-hidden="true"></span>{{ rm_cfg.root }}</span>
-    <span class="research-map__caption">{{ rm_leaf_count }} contributions across {{ rm_branch_count }} areas, colored by publication type.{% unless include.anchors == false %} The [P#] labels match the CV numbering and jump to the full reference below.{% endunless %}</span>
-    <span class="research-map__stem" aria-hidden="true"></span>
+<div class="research-map" data-research-tree{% if include.anchors == false %} data-anchors="false"{% endif %}>
+  <div class="research-map__sky">
+    <svg class="research-map__svg" viewBox="0 0 960 600" role="group" aria-labelledby="research-tree-title" aria-describedby="research-tree-desc" focusable="false">
+      <title id="research-tree-title">{{ rm_cfg.root }}: a tree of {{ rm_leaf_count }} publications</title>
+      <desc id="research-tree-desc">The trunk is {{ rm_cfg.root }}. Its {{ rm_branch_count }} limbs are research areas, sub-branches are topics, and every leaf is one publication, coloured by type. Papers run from oldest near the trunk to newest at each branch tip.{% unless include.anchors == false %} Each leaf is a link to the full reference.{% endunless %}</desc>
+    </svg>
+    <div class="research-map__foot">
+      <span class="research-map__root" role="heading" aria-level="2">{{ rm_cfg.root }}</span>
+      <span class="research-map__caption">{{ rm_leaf_count }} papers on {{ rm_branch_count }} branches. One leaf per paper, oldest to newest toward each tip.{% unless include.anchors == false %} Hover, focus or tap a leaf to explore.{% endunless %}</span>
+    </div>
+    <div class="research-map__card" role="tooltip" id="research-tree-card" hidden></div>
   </div>
-  <div class="research-map__columns">
+
+  <div class="research-map__key">
+    <ul class="research-map__legend" aria-label="Leaf colour by publication type">
+      {% assign rm_types = "journal,conference,workshop,abstract,software,report" | split: "," %}
+      {% for rm_type in rm_types %}
+      <li class="research-map__legend-item research-map__legend-item--{{ rm_type }}" data-type="{{ rm_type }}">
+        <svg class="research-map__leaf-icon" viewBox="-8 -14 16 16" aria-hidden="true" focusable="false"><path d="M0 0C7-3.5 6-9 0-12C-6-9-7-3.5 0 0Z" transform="rotate(35 0 -6)"/></svg>{{ rm_type | capitalize }}
+      </li>
+      {% endfor %}
+    </ul>
+    <button class="research-map__toggle" type="button" aria-expanded="false" aria-controls="research-tree-list" hidden>Read the tree as a list</button>
+  </div>
+
+  <ol class="research-map__list" id="research-tree-list" aria-label="{{ rm_cfg.root }}: research areas, topics and publications">
     {% for rm_area in rm_cfg.areas %}
     {% assign rm_area_pubs = rm_pubs | where_exp: "p", "p.map.area == rm_area.name" %}
-    <section class="research-map__group">
-      <span class="research-map__branch" role="heading" aria-level="3">{{ rm_area.name }}<span class="research-map__count" aria-label="{{ rm_area_pubs | size }} contributions">{{ rm_area_pubs | size }}</span></span>
-      <ul class="research-tree">
+    <li class="rm-area" data-name="{{ rm_area.name }}">
+      <span class="rm-area__name">{{ rm_area.name }}</span>
+      <ol class="rm-area__items">
         {% if rm_area.topics %}
           {% for rm_topic in rm_area.topics %}
           {% assign rm_topic_pubs = rm_area_pubs | where_exp: "p", "p.map.topic == rm_topic" %}
-          <li class="research-tree__item research-tree__item--sub">
-            <span class="research-tree__sub">{{ rm_topic }}</span>
-            <ul class="research-tree research-tree--nested">
+          <li class="rm-topic" data-name="{{ rm_topic }}">
+            <span class="rm-topic__name">{{ rm_topic }}</span>
+            <ol class="rm-topic__items">
               {% for rm_pub in rm_topic_pubs %}{% include research_map_card.html pub=rm_pub anchors=include.anchors %}{% endfor %}
-            </ul>
+            </ol>
           </li>
           {% endfor %}
         {% else %}
           {% for rm_pub in rm_area_pubs %}{% include research_map_card.html pub=rm_pub anchors=include.anchors %}{% endfor %}
         {% endif %}
-      </ul>
-    </section>
+      </ol>
+    </li>
     {% endfor %}
-  </div>
-  <ul class="research-map__legend" aria-label="Publication types">
-    <li class="research-map__legend-item research-map__legend-item--journal">Journal</li>
-    <li class="research-map__legend-item research-map__legend-item--conference">Conference</li>
-    <li class="research-map__legend-item research-map__legend-item--workshop">Workshop</li>
-    <li class="research-map__legend-item research-map__legend-item--abstract">Abstract</li>
-    <li class="research-map__legend-item research-map__legend-item--software">Software</li>
-    <li class="research-map__legend-item research-map__legend-item--report">Report</li>
-  </ul>
+  </ol>
 </div>
+<script src="{{ '/assets/js/research-tree.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

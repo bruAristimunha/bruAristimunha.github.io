@@ -87,10 +87,10 @@
 
 }
 
-$scroll_offset : 2em;
+$scroll_offset : 7rem;
 /* scroll-margin replaces the old display:block ::before hack, which broke the
    first line of list items containing .anchor spans (publication list) */
-h1, .anchor {
+h1, h2, .anchor, #about-me {
     scroll-margin-top: $scroll_offset;
 }
 
@@ -129,7 +129,7 @@ h1, .anchor {
     max-width: 620px;
     margin: 0;
     border: 1px solid rgba(31, 35, 43, 0.12);
-    box-shadow: 0 18px 36px rgba(31, 35, 43, 0.12);
+    border-radius: 8px;
 }
 
 .featured-paper__body {
@@ -195,10 +195,12 @@ h1, .anchor {
 }
 
 /* ==========================================================================
-   Research map — node-and-connector contribution diagram (CSS only).
-   Root node -> stem -> distribution rail -> branch spines -> paper cards.
-   Reflows from 320px to desktop with no horizontal scroll; chip/dot colors
-   match the pubtrack Okabe-Ito palette.
+   Research tree — a young tree's silhouette, drawn straight on the page.
+   The SVG is grown by assets/js/research-tree.js from the list rendered in
+   _includes/research_map.html (trunk = root, limbs = areas, sub-branches =
+   topics, leaves = papers). Geometry is JS; everything visual is here: the
+   silhouette, growth, sway, hover. Leaf colours are the pubtrack Okabe-Ito
+   publication-type palette.
    ========================================================================== */
 
 $pub-journal: #009E73;
@@ -208,331 +210,412 @@ $pub-abstract: #8a9099;
 $pub-software: #CC79A7;
 $pub-report: #D55E00;
 
+$wood: #22272e;
+
 .research-map {
-    --map-text: #1f232b;
-    --map-muted: #62686f;
-    --map-line: rgba(83, 88, 98, 0.42);
-    --map-link: #245dcc; /* 5.98:1 on white — matches featured-paper hover */
+    --sky-ink: #1f232b;
+    --sky-muted: #3d4650;  /* 9.6:1 on white */
+    --focus: #245dcc;
     margin: 1.5rem 0 0.5rem 0;
-    padding: 1.6rem 1.4rem 1.15rem 1.4rem;
-    border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 22px;
-    background: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 20px 38px rgba(31, 35, 43, 0.07);
-    color: var(--map-text);
+    color: var(--sky-ink);
 }
 
-/* --- Root node ---------------------------------------------------------- */
+/* --- Canvas (the page's own white is the sky) ---------------------------- */
 
-.research-map__header {
+.research-map__sky {
     position: relative;
-    max-width: 640px;
-    margin: 0 auto;
-    padding-bottom: 1.7rem; /* room for the stem down to the rail */
-    text-align: center;
 }
 
-.research-map__eyebrow {
-    display: inline-block;
-    padding: 0.2rem 0.65rem;
-    border: 1px solid rgba(83, 88, 98, 0.22);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--map-muted);
-    font-size: 0.78rem;
+.research-map__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font-family: inherit;
+}
+
+/* Without JS the tree cannot grow: the list below is the whole reading. */
+.research-map:not(.is-ready) .research-map__sky,
+.research-map:not(.is-ready) .research-map__toggle {
+    display: none;
+}
+
+/* --- Wood: trunk, limbs, sub-branches, twigs --------------------------- */
+
+.rt-wood__path {
+    fill: none;
+    stroke: $wood;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.rt-trunk { stroke: #1b2027; }
+.rt-twig  { stroke: #2a3039; }
+
+/* Before the tree is in view every branch is fully dashed out (the short
+   leaf stalks live inside the cluster and appear with it instead). */
+.research-map.is-ready .rt-wood > .rt-wood__path,
+.research-map.is-ready .rt-leaf > .rt-wood__path {
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--off);
+}
+
+.research-map.is-grown .rt-wood > .rt-wood__path,
+.research-map.is-grown .rt-leaf > .rt-wood__path {
+    animation: rt-grow var(--dur) linear var(--d) forwards;
+}
+
+@keyframes rt-grow {
+    to { stroke-dashoffset: 0; }
+}
+
+/* --- Labels ------------------------------------------------------------- */
+
+.rt-label {
+    fill: var(--sky-ink);
+    font-size: 12.5px;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    opacity: 0;
 }
 
-.research-map__title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    margin-top: 0.6rem;
-    font-size: 1.45rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    line-height: 1.2;
+.rt-label--topic {
+    fill: var(--sky-muted);
+    font-size: 11px;
+    font-weight: 500;
 }
 
-.research-map__root-dot {
-    flex: none;
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    background: #2b303a;
-    box-shadow: 0 0 0 4px rgba(43, 48, 58, 0.14);
+.research-map.is-grown .rt-label {
+    animation: rt-fade 0.7s ease-out var(--d) both;
+}
+
+@keyframes rt-fade {
+    to { opacity: 1; }
+}
+
+/* --- Leaves -------------------------------------------------------------- */
+
+.rt-leaf {
+    cursor: pointer;
+    outline: none;
+    color: $pub-abstract;
+    transition: opacity 0.35s ease;
+}
+
+.rt-leaf--journal    { color: $pub-journal; }
+.rt-leaf--conference { color: $pub-conference; }
+.rt-leaf--workshop   { color: $pub-workshop; }
+.rt-leaf--abstract   { color: $pub-abstract; }
+.rt-leaf--software   { color: $pub-software; }
+.rt-leaf--report     { color: $pub-report; }
+
+.rt-leaflet {
+    fill: currentColor;
+    stroke: rgba(27, 32, 39, 0.42);
+    stroke-width: 0.6;
+    stroke-linejoin: round;
+}
+
+.rt-leaf__hit {
+    fill: transparent;
+    stroke: none;
+    pointer-events: all;
+}
+
+/* Unfurl from the twig tip once the branch has reached it. */
+.rt-leaf__grow {
+    transform: scale(0);
+    transform-origin: 0 0;
+    opacity: 0;
+}
+
+.research-map.is-grown .rt-leaf__grow {
+    animation: rt-unfurl 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) var(--d) both;
+}
+
+@keyframes rt-unfurl {
+    0%   { transform: scale(0) rotate(-16deg); opacity: 0; }
+    25%  { opacity: 1; }
+    70%  { transform: scale(1.1) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* A breeze: each cluster rocks on its own period and phase, only while the
+   tree is on screen. */
+.rt-leaf__sway {
+    transform-origin: 0 0;
+}
+
+.research-map.is-swaying .rt-leaf__sway {
+    animation: rt-sway var(--sd) ease-in-out var(--sw) infinite alternate;
+}
+
+@keyframes rt-sway {
+    from { transform: rotate(-2.6deg); }
+    to   { transform: rotate(2.6deg); }
+}
+
+/* A cluster leans away from a nearby pointer (research-tree.js sets the angle). */
+.rt-leaf__lean {
+    transform-origin: 0 0;
+}
+
+/* A leaflet that has let go (research-tree.js animates its fall). */
+.rt-fall {
+    pointer-events: none;
+}
+
+/* Hover and focus answer with a lift of the cluster and a firmer twig. */
+.rt-leaf__hover {
+    transform-origin: 0 0;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.rt-leaf:hover .rt-leaf__hover,
+.rt-leaf:focus .rt-leaf__hover {
+    transform: scale(1.5);
+}
+
+.rt-leaf:hover .rt-twig,
+.rt-leaf:focus .rt-twig {
+    stroke-width: 1.9;
+}
+
+.rt-leaf:focus-visible .rt-leaf__hit {
+    fill: rgba(36, 93, 204, 0.08);
+    stroke: var(--focus);
+    stroke-width: 1.6;
+}
+
+/* Legend hover: the other types fall back into the sky. */
+.research-map[data-highlight] .rt-leaf { opacity: 0.16; }
+.research-map[data-highlight="journal"]    .rt-leaf--journal,
+.research-map[data-highlight="conference"] .rt-leaf--conference,
+.research-map[data-highlight="workshop"]   .rt-leaf--workshop,
+.research-map[data-highlight="abstract"]   .rt-leaf--abstract,
+.research-map[data-highlight="software"]   .rt-leaf--software,
+.research-map[data-highlight="report"]     .rt-leaf--report { opacity: 1; }
+
+/* --- Root heading at the foot of the trunk ------------------------------ */
+
+.research-map__foot {
+    position: absolute;
+    left: 3.6%;
+    bottom: 6%;
+    width: 27%;
+}
+
+.research-map__root {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
 }
 
 .research-map__caption {
     display: block;
     margin-top: 0.35rem;
-    color: var(--map-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    color: var(--sky-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
 }
 
-.research-map__stem {
+/* --- Hover / focus / tap card -------------------------------------------- */
+
+.research-map__card {
     position: absolute;
-    left: 50%;
-    bottom: 0;
-    height: 1.15rem;
-    border-left: 2px solid var(--map-line);
-    transform: translateX(-50%);
-}
-
-/* --- Distribution rail + branch columns --------------------------------- */
-
-.research-map__columns {
-    border-top: 2px solid var(--map-line);
-    padding-top: 1.5rem;
-    column-gap: 2.6rem;
-}
-
-.research-map__group {
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    margin: 0 0 1.6rem 0;
-}
-
-.research-map__branch {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.28rem 0.8rem 0.28rem 0.65rem;
-    border: 1.5px solid rgba(83, 88, 98, 0.3);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 1px 2px rgba(31, 35, 43, 0.06);
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.35;
-}
-
-/* Junction dot at the head of each branch pill */
-.research-map__branch::before {
-    content: "";
-    flex: none;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: #2b303a;
-}
-
-.research-map__count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1.4em;
-    padding: 0 0.3em;
-    border-radius: 999px;
-    background: rgba(31, 35, 43, 0.08);
-    color: var(--map-muted);
-    font-size: 0.74rem;
-    font-weight: 700;
-}
-
-/* --- Spines, curved elbows, node cards ---------------------------------- */
-
-.research-tree {
-    margin: 0;
-    padding: 0.55rem 0 0 0.85rem;
-    list-style: none;
-}
-
-.research-tree--nested {
-    padding: 0.1rem 0 0 0.55rem;
-}
-
-.research-tree__item {
-    position: relative;
-    padding: 0.32rem 0 0.32rem 1.35rem;
-}
-
-/* Curved elbow from the spine into this node */
-.research-tree__item::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -0.45rem;
-    width: 1rem;
-    height: 1.7rem;
-    border-left: 2px solid var(--map-line);
-    border-bottom: 2px solid var(--map-line);
-    border-bottom-left-radius: 14px;
-}
-
-/* Spine continues past this node for the siblings below */
-.research-tree__item:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -0.45rem;
-    bottom: 0;
-    border-left: 2px solid var(--map-line);
-}
-
-/* Sub-branch labels sit higher on the line than full cards */
-.research-tree__item--sub::before {
-    height: 1.3rem;
-    border-bottom-left-radius: 12px;
-}
-
-.research-tree__sub {
-    display: inline-flex;
-    align-items: center;
-    color: #4d535b;
-    font-size: 0.74rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    line-height: 1.5;
-    text-transform: uppercase;
-}
-
-/* Paper node card */
-.research-tree__node {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.55rem;
-    max-width: 30rem;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid rgba(83, 88, 98, 0.2);
-    border-left-width: 3px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 1px 2px rgba(31, 35, 43, 0.05);
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.research-tree__node:hover,
-.research-tree__node:focus-within {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(31, 35, 43, 0.11);
-    /* lift the node's stacking context above later sibling cards so the
-       .pubfig hover preview is not painted underneath them */
-    z-index: 70;
-}
-
-/* Junction dot where the elbow meets the card */
-.research-tree__node::before {
-    content: "";
-    position: absolute;
-    left: -0.55rem;
-    top: 0.86rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: $pub-abstract;
-    box-shadow: 0 0 0 2px #f4f4f1;
-}
-
-.research-tree__node--journal    { border-left-color: $pub-journal; }
-.research-tree__node--conference { border-left-color: $pub-conference; }
-.research-tree__node--workshop   { border-left-color: $pub-workshop; }
-.research-tree__node--abstract   { border-left-color: $pub-abstract; }
-.research-tree__node--software   { border-left-color: $pub-software; }
-.research-tree__node--report     { border-left-color: $pub-report; }
-
-.research-tree__node--journal::before    { background: $pub-journal; }
-.research-tree__node--conference::before { background: $pub-conference; }
-.research-tree__node--workshop::before   { background: $pub-workshop; }
-.research-tree__node--abstract::before   { background: $pub-abstract; }
-.research-tree__node--software::before   { background: $pub-software; }
-.research-tree__node--report::before     { background: $pub-report; }
-
-.research-tree__pid {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    min-height: 24px;
-    padding: 0 0.45rem;
-    border-radius: 6px;
-    background: rgba(138, 144, 153, 0.16);
-    color: #3f444c;
-    font-family: SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-}
-
-a.research-tree__pid:hover,
-a.research-tree__pid:focus-visible {
-    text-decoration: underline;
-}
-
-.research-tree__node--journal .research-tree__pid    { background: rgba($pub-journal, 0.15); color: #006148; }
-.research-tree__node--conference .research-tree__pid { background: rgba($pub-conference, 0.13); color: #00598c; }
-.research-tree__node--workshop .research-tree__pid   { background: rgba($pub-workshop, 0.20); color: #7a5400; }
-.research-tree__node--abstract .research-tree__pid   { background: rgba($pub-abstract, 0.18); color: #4d535b; }
-.research-tree__node--software .research-tree__pid   { background: rgba($pub-software, 0.18); color: #8f4368; }
-.research-tree__node--report .research-tree__pid     { background: rgba($pub-report, 0.15); color: #9c3f00; }
-
-.research-tree__node-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.05rem;
-    min-width: 0;
-}
-
-.research-tree__title {
-    color: var(--map-link);
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.35;
-    text-decoration: none;
-}
-
-a.research-tree__title:hover,
-a.research-tree__title:focus-visible {
-    text-decoration: underline;
-}
-
-.research-tree__title--static {
-    color: var(--map-text);
-}
-
-.research-tree__venue {
-    color: var(--map-muted);
-    font-size: 0.76rem;
+    z-index: 5;
+    width: 250px;
+    padding: 0.5rem 0.7rem 0.6rem 0.7rem;
+    border: 1px solid rgba(31, 35, 43, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 5px 16px rgba(31, 35, 43, 0.16);
+    font-size: 0.82rem;
     line-height: 1.4;
 }
 
-/* --- Legend (swatches repeat the chip styling so the key reads literally) */
+.research-map__card[hidden] { display: none; }
+
+.research-map__card-num {
+    margin-right: 0.4rem;
+    color: var(--sky-muted);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.research-map__card-title {
+    display: inline;
+    font-weight: 600;
+}
+
+.research-map__card-meta {
+    display: block;
+    margin-top: 0.1rem;
+    color: #4a525c;
+    font-size: 0.75rem;
+}
+
+.research-map__card-fig {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(31, 35, 43, 0.1);
+    border-radius: 2px;
+}
+
+.research-map__card-go {
+    display: inline-block;
+    margin-top: 0.4rem;
+    color: #245dcc;
+    font-weight: 600;
+}
+
+/* --- Legend row + list toggle -------------------------------------------- */
+
+.research-map__key {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem 1rem;
+    margin: 0.65rem 0 0 0;
+    padding: 0 0.15rem;
+}
 
 .research-map__legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem 0.6rem;
-    margin: 0.7rem 0 0 0;
-    padding: 0.85rem 0 0 0;
-    border-top: 1px solid rgba(83, 88, 98, 0.16);
+    gap: 0.3rem 1.05rem;
+    margin: 0;
+    padding: 0;
     list-style: none;
 }
 
 .research-map__legend-item {
     display: inline-flex;
     align-items: center;
-    min-height: 24px;
-    padding: 0 0.55rem;
-    border-radius: 6px;
-    font-size: 0.74rem;
+    gap: 0.32rem;
+    color: #3b4048;
+    font-size: 0.78rem;
+    line-height: 1.2;
+}
+
+.research-map__leaf-icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    stroke: rgba(27, 32, 39, 0.4);
+    stroke-width: 0.6;
+    color: $pub-abstract;
+}
+
+.research-map__legend-item--journal    .research-map__leaf-icon { color: $pub-journal; }
+.research-map__legend-item--conference .research-map__leaf-icon { color: $pub-conference; }
+.research-map__legend-item--workshop   .research-map__leaf-icon { color: $pub-workshop; }
+.research-map__legend-item--abstract   .research-map__leaf-icon { color: $pub-abstract; }
+.research-map__legend-item--software   .research-map__leaf-icon { color: $pub-software; }
+.research-map__legend-item--report     .research-map__leaf-icon { color: $pub-report; }
+
+.research-map__toggle {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #3b66c4;
+    font: inherit;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+}
+
+.research-map__toggle:hover { color: #245dcc; }
+
+.research-map__toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* --- The tree as a list (accessible reading, no-JS fallback) ------------- */
+
+.research-map__list {
+    margin: 0.8rem 0 0 0;
+    padding: 0.2rem 0 0.1rem 1rem;
+    border-left: 2px solid rgba(31, 35, 43, 0.14);
+    list-style: none;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.research-map__list ol {
+    margin: 0.25rem 0 0.7rem 0;
+    padding-left: 1rem;
+    list-style: none;
+}
+
+.rm-area { margin: 0.35rem 0; }
+
+.rm-area__name {
     font-weight: 700;
 }
 
-.research-map__legend-item--journal    { background: rgba($pub-journal, 0.15); color: #006148; }
-.research-map__legend-item--conference { background: rgba($pub-conference, 0.13); color: #00598c; }
-.research-map__legend-item--workshop   { background: rgba($pub-workshop, 0.20); color: #7a5400; }
-.research-map__legend-item--abstract   { background: rgba($pub-abstract, 0.18); color: #4d535b; }
-.research-map__legend-item--software   { background: rgba($pub-software, 0.18); color: #8f4368; }
-.research-map__legend-item--report     { background: rgba($pub-report, 0.15); color: #9c3f00; }
+.rm-topic__name {
+    color: #4a525c;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
-/* --- Actions row below the card ----------------------------------------- */
+.rm-paper {
+    position: relative;
+    margin: 0.2rem 0;
+    padding-left: 1rem;
+}
+
+/* A small leaf in the type colour, echoing the SVG. */
+.rm-paper::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.42em;
+    width: 8px;
+    height: 8px;
+    border-radius: 100% 0;
+    background: $pub-abstract;
+    box-shadow: inset 0 0 0 0.6px rgba(27, 32, 39, 0.4);
+}
+
+.rm-paper[data-type="journal"]::before    { background: $pub-journal; }
+.rm-paper[data-type="conference"]::before { background: $pub-conference; }
+.rm-paper[data-type="workshop"]::before   { background: $pub-workshop; }
+.rm-paper[data-type="software"]::before   { background: $pub-software; }
+.rm-paper[data-type="report"]::before     { background: $pub-report; }
+
+.rm-paper__link {
+    color: #245dcc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a.rm-paper__link:hover,
+a.rm-paper__link:focus-visible { text-decoration: underline; }
+
+span.rm-paper__link { color: var(--sky-ink); }
+
+.rm-paper__meta {
+    margin-left: 0.35rem;
+    color: #4a525c;
+    font-size: 0.78rem;
+}
+
+/* --- Actions row below the block ----------------------------------------- */
 
 .research-map__actions {
     margin: 0.6rem 0 2rem 0;
@@ -562,48 +645,59 @@ a.research-tree__title:focus-visible {
     text-decoration: none;
 }
 
-/* --- Responsive --------------------------------------------------------- */
+/* --- Narrow screens: the tree stands upright, the heading steps below ---- */
 
-@include breakpoint(48em) {
-    .research-map__columns {
-        columns: 2;
-    }
+.research-map--tall .research-map__foot {
+    position: static;
+    width: auto;
+    padding: 0.7rem 0.15rem 0 0.15rem;
 }
 
-@include breakpoint(max-width $small) {
-    .research-map {
-        padding: 1.2rem 0.85rem 0.95rem 0.85rem;
-    }
-
-    .research-map__title {
-        font-size: 1.25rem;
-    }
-
-    .research-tree {
-        padding-left: 0.55rem;
-    }
-
-    .research-tree__item {
-        padding-left: 1.1rem;
-    }
-
-    .research-tree__item::before {
-        width: 0.8rem;
-    }
-
-    .research-tree__node {
-        max-width: none;
-        padding: 0.45rem 0.6rem;
-    }
+.research-map--tall .research-map__root {
+    font-size: 1.1rem;
 }
+
+.research-map--tall .research-map__card {
+    width: 215px;
+    font-size: 0.78rem;
+}
+
+/* --- Reduced motion: the finished tree, still ---------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-    .research-tree__node {
-        transition: none;
+    .research-map.is-ready .rt-wood > .rt-wood__path,
+    .research-map.is-ready .rt-leaf > .rt-wood__path,
+    .research-map.is-grown .rt-wood > .rt-wood__path,
+    .research-map.is-grown .rt-leaf > .rt-wood__path {
+        animation: none;
+        stroke-dasharray: none;
+        stroke-dashoffset: 0;
     }
 
-    .research-tree__node:hover {
+    .research-map .rt-leaf__grow,
+    .research-map.is-grown .rt-leaf__grow {
+        animation: none;
         transform: none;
+        opacity: 1;
+    }
+
+    .research-map .rt-label,
+    .research-map.is-grown .rt-label {
+        animation: none;
+        opacity: 1;
+    }
+
+    .research-map.is-swaying .rt-leaf__sway {
+        animation: none;
+    }
+
+    .research-map .rt-leaf__lean {
+        transform: none !important;
+    }
+
+    .rt-leaf,
+    .rt-leaf__hover {
+        transition: none;
     }
 }
 
@@ -612,21 +706,20 @@ a.research-tree__title:focus-visible {
    ========================================================================== */
 
 .journey {
-    --journey-bg: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
+    --journey-bg: #f4f7fb;
     --journey-line: rgba(83, 88, 98, 0.34);
     --journey-line-strong: rgba(43, 48, 58, 0.82);
     --journey-text: #1f232b;
     --journey-muted: #353a44;
-    --journey-link: #4d86f7;
+    --journey-link: #24549a;
     --journey-link-soft: #7aa5ff;
 
     margin: 1.5rem 0 2rem 0;
     padding: 1.6rem 1.4rem 1.2rem 1.4rem;
     border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 22px;
+    border-radius: 10px;
     background: var(--journey-bg);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 20px 38px rgba(31, 35, 43, 0.07);
+    box-shadow: none;
     color: var(--journey-text);
 }
 
@@ -668,7 +761,7 @@ a.research-tree__title:focus-visible {
 .journey__rail {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1.6fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     margin: 1.4rem 0 1rem 0;
     padding: 0;
@@ -731,7 +824,7 @@ a.research-tree__title:focus-visible {
 
 .journey__panels {
     display: grid;
-    grid-template-columns: 1fr 1.6fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     align-items: stretch;
 }
@@ -905,10 +998,9 @@ a.research-tree__title:focus-visible {
 @include breakpoint(max-width 56.25em) {
     .journey {
         padding: 1.1rem 0.9rem 0.85rem 0.9rem;
-        border-radius: 16px;
+        border-radius: 10px;
     }
 
-    .journey__rail,
     .journey__panels {
         grid-template-columns: 1fr;
     }
@@ -942,19 +1034,18 @@ a.research-tree__title:focus-visible {
    ========================================================================== */
 
 .timeline-island {
-    --timeline-bg: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
+    --timeline-bg: #f4f7fb;
     --timeline-line: rgba(83, 88, 98, 0.34);
     --timeline-text: #1f232b;
     --timeline-muted: #353a44;
-    --timeline-link: #4d86f7;
+    --timeline-link: #24549a;
 
     margin: 1.5rem 0 2rem 0;
     padding: 1.4rem 1.4rem 1.2rem 1.4rem;
     border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 22px;
+    border-radius: 10px;
     background: var(--timeline-bg);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 20px 38px rgba(31, 35, 43, 0.07);
+    box-shadow: none;
     color: var(--timeline-text);
 }
 
@@ -1054,7 +1145,7 @@ a.research-tree__title:focus-visible {
 @include breakpoint(max-width $small) {
     .timeline-island {
         padding: 1rem 0.9rem 0.85rem 0.9rem;
-        border-radius: 16px;
+        border-radius: 10px;
     }
     .timeline-island__date { min-width: 0; }
 }
@@ -1080,18 +1171,27 @@ a.research-tree__title:focus-visible {
 }
 
 .mentorship__card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 0.3rem 0.9rem;
+    align-content: start;
     padding: 0.9rem 1rem;
     border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 14px;
-    background: linear-gradient(180deg, #fbfbfa 0%, #f3f3ef 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 6px 14px rgba(31, 35, 43, 0.05);
+    border-radius: 10px;
+    background: #f4f7fb;
+    box-shadow: none;
     transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
+.mentorship__photo { grid-row: 1 / 3; width: 72px; height: 72px; object-fit: cover; border-radius: 8px; }
+.mentorship__photo--adam { object-position: center 20%; }
+.mentorship__photo--tom { object-position: center top; }
+.mentorship__card .mentorship__name { grid-column: 2; align-self: end; }
+.mentorship__card .mentorship__role { grid-column: 2; }
+.mentorship__card .mentorship__detail { grid-column: 1 / -1; margin-top: 0.6rem; }
+
 .mentorship__card:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 14px 26px rgba(31, 35, 43, 0.08);
+    background: #edf2f8;
     border-color: rgba(83, 88, 98, 0.5);
 }
 
@@ -1153,21 +1253,43 @@ a.research-tree__title:focus-visible {
 .software-card {
     display: flex;
     flex-direction: column;
-    padding: 1rem 1.1rem 1.05rem 1.1rem;
+    padding: 0;
     border: 1px solid rgba(173, 178, 188, 0.38);
-    border-radius: 22px;
-    background: linear-gradient(180deg, #f8f8f6 0%, #f1f1ee 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 20px 38px rgba(31, 35, 43, 0.07);
+    border-radius: 10px;
+    background: #f4f7fb;
+    box-shadow: none;
     color: #1f232b;
     transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .software-card:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                0 24px 44px rgba(31, 35, 43, 0.1);
+    background: #edf2f8;
     border-color: rgba(83, 88, 98, 0.5);
 }
+
+.software-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem 1.1rem 1.05rem;
+}
+
+.library-showcase__controls { display: flex; justify-content: flex-end; }
+.library-motion-toggle {
+    padding: 0.4rem 0.65rem;
+    border: 1px solid #dfe5ed;
+    border-radius: 5px;
+    background: transparent;
+    color: #596579;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+.library-motion-toggle:hover { color: #1e2c3d; border-color: #aab9c9; }
+.library-motion-toggle[hidden] { display: none; }
+.library-showcase .software-cards { margin-top: 0.7rem; }
+
+@import "library-logos";
 
 .software-card__name {
     margin: 0 0 0.4rem 0;
@@ -1231,9 +1353,9 @@ a.research-tree__title:focus-visible {
         grid-template-columns: minmax(0, 1fr);
     }
     .software-card {
-        border-radius: 16px;
-        padding: 0.9rem 1rem 0.95rem 1rem;
+        border-radius: 10px;
     }
+    .software-card__body { padding: 0.9rem 1rem 0.95rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1520,8 +1642,8 @@ a.research-tree__title:focus-visible {
 
 /* --- Paper figure hover preview ----------------------------------------- */
 /* A `figure:` key on a publications.yml entry embeds a hidden representative
-   figure inside the publication title (and the research-map card, see
-   research_map_card.html). It surfaces as a tooltip-style card on hover or
+   figure inside the publication title (the research tree shows it in its
+   own hover card, see research-tree.js). It surfaces as a tooltip-style card on hover or
    keyboard focus. display:none keeps the lazy images from being fetched
    until first hover; hover-capable pointers only, so touch never pays. */
 
@@ -1531,7 +1653,7 @@ a.research-tree__title:focus-visible {
     left: 0;
     top: calc(100% + 0.45rem);
     z-index: 60;
-    width: min(420px, 78vw);
+    width: min(760px, 88vw);
     padding: 5px;
     background: #fff;
     border: 1px solid rgba(83, 88, 98, 0.28);
@@ -1547,15 +1669,9 @@ a.research-tree__title:focus-visible {
     border-radius: 6px;
 }
 
-.pubfig--map {
-    width: min(340px, 70vw);
-}
-
 @media (hover: hover) and (pointer: fine) {
     .pubtrack__title:hover .pubfig,
-    .pubtrack__title a:focus-visible .pubfig,
-    .research-tree__node:hover > .pubfig,
-    .research-tree__node:focus-within > .pubfig {
+    .pubtrack__title a:focus-visible .pubfig {
         display: block;
     }
 }
@@ -1798,3 +1914,418 @@ a.research-tree__title:focus-visible {
         transition: none !important;
     }
 }
+
+/* --- Publication panel: abstract beside the summary figure ------------- */
+/* A native <details> under each entry's link row. The left rule repeats the
+   entry's type colour (same as the timeline dot), so the open panel still
+   reads as part of that entry. Figure links to the full-size image. */
+
+.pubpanel {
+    margin: 0.15rem 0 0;
+}
+
+.pubpanel__toggle {
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #3b66c4;
+    padding-left: 1em;
+    position: relative;
+}
+
+.pubpanel__toggle::-webkit-details-marker { display: none; }
+
+.pubpanel__toggle::before {
+    content: '';
+    position: absolute;
+    left: 0.15em;
+    top: 0.42em;
+    width: 0.42em;
+    height: 0.42em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+}
+
+.pubpanel[open] > .pubpanel__toggle::before { transform: rotate(45deg); top: 0.3em; }
+
+.pubpanel__toggle:hover,
+.pubpanel__toggle:focus-visible {
+    color: #245dcc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pubpanel__toggle:focus-visible {
+    outline: 2px solid #245dcc;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.pubpanel__body {
+    margin: 0.7rem 0 0.35rem;
+    padding: 0.2rem 0 0.2rem 1rem;
+    border-left: 3px solid #1f232b;
+}
+
+.pubpanel--journal    .pubpanel__body { border-left-color: $pub-journal; }
+.pubpanel--conference .pubpanel__body { border-left-color: $pub-conference; }
+.pubpanel--workshop   .pubpanel__body { border-left-color: $pub-workshop; }
+.pubpanel--abstract   .pubpanel__body { border-left-color: $pub-abstract; }
+.pubpanel--software   .pubpanel__body { border-left-color: $pub-software; }
+.pubpanel--report     .pubpanel__body { border-left-color: $pub-report; }
+
+.pubpanel__body--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 1.4rem;
+    align-items: start;
+}
+
+.pubpanel__figure {
+    display: block;
+    border: 1px solid #e2e5ea;
+    border-radius: 4px;
+    background: #fff;
+    padding: 4px;
+}
+
+.pubpanel__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 32rem;
+    object-fit: contain;
+}
+
+.pubpanel__figure:hover,
+.pubpanel__figure:focus-visible {
+    border-color: #3b66c4;
+    outline: none;
+}
+
+.page__content .pubpanel__abstract {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: #3b4048;
+}
+
+@media (max-width: 700px) {
+    .pubpanel__body--split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.9rem;
+    }
+}
+
+/* --- Readability pass ---------------------------------------------------- */
+/* Base size is fluid (see _reset.scss); this block sets a measure on prose,
+   a heading scale with a 1.2 ratio, and lifts the publication list's small
+   text above 14px. Sizes are rem so they follow the base. */
+
+body {
+    line-height: 1.6;
+}
+
+/* Measure: cap the whole content column rather than single paragraphs, so
+   text, cards, the tree and the publication list share one right edge. */
+.page__content {
+    max-width: 880px;
+}
+
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4 {
+    line-height: 1.25;
+    margin: 1.6em 0 0.5em;
+    text-wrap: balance;
+}
+
+.page__content h1 { font-size: 1.65rem; }
+.page__content h2 { font-size: 1.4rem; }
+.page__content h3 { font-size: 1.17rem; }
+.page__content h4 { font-size: 1rem; }
+
+.sidebar .author__bio,
+.sidebar .author__urls li {
+    font-size: 0.92rem;   /* the theme's .sidebar p rule sets 1em; this needs the .sidebar prefix to win */
+    line-height: 1.5;
+}
+
+/* Publication list: nothing below 0.82rem (~14.8px at the desktop base). */
+.page__content .pubtrack__title   { font-size: 1.05rem; line-height: 1.35; }
+.page__content .pubtrack__meta    { font-size: 0.82rem; }
+.pubtrack__type                   { font-size: 0.72rem; }
+.pubtrack__num                    { font-size: 0.74rem; }
+.page__content .pubtrack__authors { font-size: 0.9rem; line-height: 1.55; }
+.page__content .pubtrack__links   { font-size: 0.86rem; margin-top: 0.2rem; }
+.pubpanel__toggle                 { font-size: 0.86rem; }
+.page__content .pubpanel__abstract { font-size: 0.95rem; line-height: 1.6; }
+
+@media (max-width: 700px) {
+    .page__content .pubpanel__abstract { font-size: 1rem; }
+}
+
+/* Year chart: 12 columns overflowed a 390px phone by ~24px; tighter column
+   padding keeps every year on screen without a horizontal scrollbar. */
+@media (max-width: 430px) {
+    .pubtrack__col { padding: 4px 3px; }
+}
+
+/* Sidebar contact lines: the theme sets nowrap, so the longest one ran into
+   the content column. Let them wrap like ordinary text. */
+.sidebar .author__urls li,
+.sidebar .author__urls a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Twigs and stalks inside a leaf link are 1px strokes that can cross another
+   cluster's leaflets; only the leaflets and the hit circle should catch the
+   pointer, so a click on a painted leaf always resolves to its own paper. */
+.rt-leaf .rt-wood__path { pointer-events: none; }
+
+/* Sidebar: contact links first, academic profiles after a small gap. */
+.sidebar .author__urls-gap { margin-top: 0.7em; }
+
+/* The Software limb passes behind the tree heading; a soft white plate keeps
+   the caption legible without hiding the wood elsewhere. */
+.research-map__foot {
+    padding: 0.3rem 0.5rem 0.3rem 0;
+    background: rgba(255, 255, 255, 0.86);
+    border-radius: 6px;
+}
+
+/* Journey, unsqueezed: the tabs pick one act, and that act gets the full
+   width. The other two are hidden (the script already sets aria-hidden), and
+   the panel no longer repeats the act number and period shown on its tab. */
+.journey__panels {
+    display: block;
+}
+
+.journey__panels .journey__panel {
+    display: none;
+    border-right: 0;
+    padding: 1.4rem 1.2rem 0.8rem;
+}
+
+.journey__panels .journey__panel.is-active {
+    display: flex;
+    opacity: 1;
+}
+
+.journey__panel-kicker,
+.journey__panel-period {
+    display: none;
+}
+
+.journey__panel-summary {
+    max-width: 70ch;
+}
+
+.journey__panel .journey__milestones {
+    columns: 2;
+    column-gap: 2rem;
+    column-rule: 1px dashed var(--journey-line);
+}
+
+.journey__panel .journey__ms { break-inside: avoid; }
+
+@include breakpoint(max-width 56.25em) {
+    .journey__panel .journey__milestones { columns: 1; }
+}
+
+
+/* Site composition: a quiet profile beside the research, on a shared grid. */
+:root { --page-gutter: clamp(1.2rem, 3vw, 4rem); }
+body { color: #344256; }
+html { scroll-behavior: smooth; }
+::selection { color: #fff; background: #24549a; }
+
+.masthead {
+    background: #fff;
+    animation: none;
+}
+
+.masthead__inner-wrap {
+    max-width: none;
+    margin: auto;
+    padding: 0.85rem var(--page-gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.masthead__inner-wrap::after,
+#main::after { display: none; }
+
+.site-name { color: #1e2c3d; font-weight: 700; letter-spacing: -0.035em; }
+.site-name__dot { color: #24549a; }
+.site-navigation ul { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+.site-navigation li { margin: 0; }
+.site-navigation a { display: block; padding: 0.5rem 0; color: #596579; font-size: 0.85rem; }
+.site-navigation a:hover,
+.site-navigation a[aria-current] { color: #24549a; text-decoration: underline; text-underline-offset: 0.4em; }
+
+#main {
+    max-width: none;
+    margin: 3.5rem auto 0;
+    padding: 0 var(--page-gutter);
+    animation: none;
+    scroll-margin-top: 7rem;
+}
+
+#main .page,
+#main .sidebar { float: none; width: auto; margin: 0; padding: 0; }
+#main .page__content { max-width: none; }
+
+.page__content > p { max-width: 72ch; margin-bottom: 1rem; text-wrap: pretty; }
+.page__content > h2 {
+    margin: 3.5rem 0 1.1rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid #dfe5ed;
+    font-size: 1.7rem;
+    letter-spacing: -0.035em;
+    color: #1e2c3d;
+}
+.page__content a { text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+
+.home-intro { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #dfe5ed; }
+.page__content .home-intro__field { color: #596579; font-size: 0.85rem; margin: 0 0 1rem; }
+.page__content .home-intro h1 {
+    margin: 0 0 1.1rem;
+    padding: 0;
+    border: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: unquote("clamp(2.1rem, 4.3vw, 4rem)");
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    color: #1e2c3d;
+}
+.page__content .home-intro__lead { max-width: 44ch; font-size: 1.2rem; line-height: 1.6; margin-bottom: 1.2rem; }
+.home-intro__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; }
+.home-intro__links a { padding: 0.35rem 0; font-size: 0.9rem; font-weight: 600; }
+.home-intro__links span { margin-left: 0.25rem; }
+
+.sidebar .author__avatar img { max-width: 184px; border-radius: 12px; padding: 0; border: 0; }
+.sidebar .author__name { font-size: 1.2rem; letter-spacing: -0.035em; color: #1e2c3d; }
+.sidebar .author__bio { font-size: 0.82rem; color: #596579; line-height: 1.65; }
+.sidebar .author__urls { z-index: auto; }
+.sidebar .author__urls li { font-size: 0.82rem; }
+.sidebar .author__urls a { padding: 0.3rem 0; }
+.sidebar .author__urls i { color: #596579; margin-right: 0.25rem; }
+
+.page__content .software-card__name { font-size: 1.15rem; margin-bottom: 0.3rem; }
+.page__content .software-card__name a { text-decoration: none; border: 0; }
+.software-card__role,
+.mentorship__role { padding: 0; border: 0; border-radius: 0; background: none; letter-spacing: 0; text-transform: none; color: #596579; font-size: 0.8rem; }
+.software-card__detail { line-height: 1.65; }
+.software-card { border-color: #dfe5ed; transition: background-color 0.2s, border-color 0.2s; }
+.page__content .software-card__meta { margin-top: auto; }
+
+.page__content .featured-paper__title { margin: 0 0 0.7rem; font-size: 1.35rem; letter-spacing: -0.025em; }
+.page__content .featured-paper__eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: #24549a; }
+.featured-paper__summary { font-size: 0.92rem; }
+.page__content .featured-paper__links a { border-radius: 5px; text-decoration: none; }
+
+.page__content .journey__title { margin: 0 0 0.7rem; font-size: 1.5rem; letter-spacing: -0.03em; }
+.page__content .journey__panel-title { margin-top: 0; }
+.journey__rail-tab { padding: 0.8rem; }
+.journey__rail-kicker { text-transform: none; letter-spacing: 0; font-size: 0.85rem; }
+.journey__rail-tab.is-active { background: #e4edf9; }
+.journey__rail-tab.is-active::after { background: #24549a; }
+.journey__rail-period { font-size: 0.78rem; }
+.journey__panel.is-active .journey__ms-note { max-height: none; }
+
+.publication-profiles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.85rem; }
+.pubtrack__chart-wrap { overflow-x: auto; }
+.pubtrack__links a,
+.pubtrack__bib,
+.pubpanel__toggle,
+.pubtrack__filter { min-height: 32px; display: inline-flex; align-items: center; }
+.page__content .mentorship__name { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.mentorship { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.5rem;
+    max-width: none;
+    margin: 4rem auto 0;
+    padding: 1.5rem var(--page-gutter);
+    border-top: 1px solid #dfe5ed;
+    font-size: 0.8rem;
+}
+.site-footer p { margin: 0 auto 0 0; color: #1e2c3d; font-weight: 600; }
+.site-footer span { display: block; color: #596579; font-weight: 400; }
+.site-footer a { padding: 0.5rem 0; }
+
+.skip-link { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 30; padding: 0.7rem 1rem; background: #fff; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid #24549a; outline-offset: 4px; }
+
+@media (min-width: 925px) {
+    #main { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--page-gutter); align-items: start; }
+    #main > .page:only-child { grid-column: 1 / -1; width: 100%; max-width: 854px; margin: auto; }
+    #main .sidebar { position: sticky; top: 6rem; max-height: calc(100vh - 7rem); overflow-y: auto; }
+    .sidebar .author__content { margin-top: 1.2rem; }
+}
+
+@media (min-width: 1280px) {
+    .home-intro { display: grid; grid-template-columns: 1.1fr 1fr; column-gap: var(--page-gutter); align-items: center; }
+    .home-intro__field { grid-column: 1 / -1; }
+    .page__content .home-intro h1 { grid-row: 2 / 4; margin-bottom: 0; }
+    .home-intro__lead { align-self: end; }
+    .home-intro__links { grid-column: 2; align-self: start; }
+    .home-context { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--page-gutter); }
+}
+
+@media (min-width: 1440px) {
+    .software-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .mentorship { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 924px) {
+    #main { margin-top: 2rem; }
+    #main .sidebar { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #dfe5ed; }
+    .profile_box { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 0.8rem 1.2rem; align-items: start; }
+    .sidebar .author__avatar { width: 88px; }
+    .sidebar .author__avatar img { min-width: 0; width: 88px; }
+    .author__content { display: block; padding: 0; }
+    .sidebar .author__name { margin: 0 0 0.4rem; }
+    .sidebar .author__bio { font-size: 0.78rem; }
+    .author__urls-wrapper { grid-column: 1 / -1; margin: 0; }
+    .author__urls_sm { display: flex; gap: 0.5rem; padding: 0; font-size: 1.1rem; }
+    .author__urls_sm a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f4f7fb; color: #344256; border-radius: 6px; }
+}
+
+@media (max-width: 600px) {
+    .masthead__inner-wrap { flex-direction: column; align-items: flex-start; gap: 0.2rem; padding: 0.7rem 1.2rem 0.4rem; }
+    .site-name { font-size: 0.95rem; }
+    .site-navigation { width: 100%; }
+    .site-navigation ul { justify-content: space-between; gap: 0.2rem 0.6rem; }
+    .site-navigation a { font-size: 0.76rem; padding: 0.55rem 0; }
+    #main { padding: 0 1.2rem; margin-top: 1.5rem; }
+    .page__content .home-intro__lead { font-size: 1.1rem; }
+    .page__content > h2 { margin-top: 2.8rem; font-size: 1.5rem; }
+    .journey__panels .journey__panel { padding: 1rem 0.25rem 0.5rem; }
+    .journey__rail-tab { padding: 0.7rem 0.45rem; }
+    .journey__rail-period { font-size: 0.68rem; }
+    .mentorship { grid-template-columns: minmax(0, 1fr); }
+    .site-footer p { flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+.page__content .home-context h2 { margin: 0 0 0.5em; padding: 0; border: 0; font-size: 1.17rem; }
+.home-context section { margin-bottom: 1.5rem; }

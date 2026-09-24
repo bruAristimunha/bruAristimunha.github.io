@@ -8,43 +8,88 @@ redirect_from:
   - /about.html
 ---
 
-<span class='anchor' id='about-me'></span>
-
 {% include_relative includes/intro.md %}
 
-<!-- # 🔥 News
-- *20XX*: &nbsp;🎉🎉 TO-DO... copy from my thesis report the event list... -->
+<h2 id="-featured">Selected work</h2>
 
-<span class='anchor' id='journey'></span>
+<section class="featured-paper">
+  <a
+    class="featured-paper__figure"
+    href="https://neural-interfaces26.github.io/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="{{ '/assets/images/publications/eeg-emg-foundation-challenge-2026.jpg' | relative_url }}"
+      alt="EEG/EMG Foundation Challenge 2026 — 4 tracks, 4 generalization shifts: EEG-to-IMG (cross-stimulus), BCI decoding (cross-session), sleep onset (cross-user), EMG-to-Pose (cross-user)"
+      loading="lazy"
+    >
+  </a>
+  <div class="featured-paper__body">
+    <p class="featured-paper__eyebrow">Competition · Brain and Body Workshop at NeurIPS 2026</p>
+    <h3 class="featured-paper__title">EEG/EMG Foundation Challenge 2026</h3>
+    <p class="featured-paper__authors">Main lead: Bruno Aristimunha · Hosted by Yneuro, Inria, and UC San Diego, with 30 organizers from 15 institutions and 8 countries</p>
+    <p class="featured-paper__summary">I am the main lead of the 2026 competition. Four decoding tracks — EEG-to-Image, BCI decoding, sleep onset, and EMG-to-Pose — test models across new stimuli, sessions, and people. Registration is open; the competition runs 21 Sep – 21 Nov 2026, with a $20,000 prize pool and winners celebrated at NeurIPS in Sydney. The 2025 edition gathered 1,197 teams from 247 institutions.</p>
+    <p class="featured-paper__links">
+      <a href="https://neural-interfaces26.github.io/" target="_blank" rel="noopener noreferrer">Competition website</a>
+      <a href="https://neural-interfaces26.github.io/tracks.html" target="_blank" rel="noopener noreferrer">Tracks</a>
+      <a href="https://neural-interfaces26.github.io/register.html" target="_blank" rel="noopener noreferrer">Register</a>
+    </p>
+  </div>
+</section>
 
-# 🗺️ Journey
+<section class="featured-paper">
+  <a
+    class="featured-paper__figure"
+    href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}"
+      alt="Figure from Learning aligned EEG representations with subject-specific encoders"
+      loading="lazy"
+    >
+  </a>
+  <div class="featured-paper__body">
+    <p class="featured-paper__eyebrow">EEG representation learning · Accepted</p>
+    <h3 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h3>
+    <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
+    <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment. Cross-subject decoding performance holds, and head selection becomes the main remaining bottleneck.</p>
+    <p class="featured-paper__links">
+      <a href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Read PDF</a>
+      <a href="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}" target="_blank" rel="noopener noreferrer">Open figure</a>
+    </p>
+  </div>
+</section>
+
+<h2 id="journey">Journey</h2>
 
 <div class="journey" data-journey>
   <div class="journey__header">
-    <div class="journey__eyebrow">Three Acts</div>
-    <h2 class="journey__title">A research scientist, in motion</h2>
+    <h3 class="journey__title">A research scientist, in motion</h3>
     <p class="journey__lede">
       Three countries, one through-line: building tools to decode signals from the brain. It started at a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen), went through a cotutelle PhD between Paris-Saclay and UFABC, and continues today at Yneuro, with an honorary affiliation at UC San Diego INC.
     </p>
   </div>
 
-  <div class="journey__rail" role="tablist" aria-label="Three acts">
-    <button type="button" role="tab" class="journey__rail-tab" aria-selected="false" data-journey-tab="now">
-      <span class="journey__rail-kicker">Act 01 — Now</span>
+  <div class="journey__rail" role="tablist" aria-label="Career stages">
+    <button type="button" role="tab" id="journey-tab-now" aria-controls="journey-panel-now" class="journey__rail-tab is-active" aria-selected="true" tabindex="0" data-journey-tab="now">
+      <span class="journey__rail-kicker">Now</span>
       <span class="journey__rail-period">2026 →</span>
     </button>
-    <button type="button" role="tab" class="journey__rail-tab is-active" aria-selected="true" data-journey-tab="before">
-      <span class="journey__rail-kicker">Act 02 — Before</span>
+    <button type="button" role="tab" id="journey-tab-before" aria-controls="journey-panel-before" class="journey__rail-tab" aria-selected="false" tabindex="-1" data-journey-tab="before">
+      <span class="journey__rail-kicker">PhD</span>
       <span class="journey__rail-period">2020 — 2026</span>
     </button>
-    <button type="button" role="tab" class="journey__rail-tab" aria-selected="false" data-journey-tab="origin">
-      <span class="journey__rail-kicker">Act 03 — Origin</span>
+    <button type="button" role="tab" id="journey-tab-origin" aria-controls="journey-panel-origin" class="journey__rail-tab" aria-selected="false" tabindex="-1" data-journey-tab="origin">
+      <span class="journey__rail-kicker">Early years</span>
       <span class="journey__rail-period">2012 — 2020</span>
     </button>
   </div>
 
   <div class="journey__panels">
-    <section class="journey__panel" data-journey-panel="now" role="tabpanel" aria-hidden="true">
+    <section class="journey__panel is-active" id="journey-panel-now" aria-labelledby="journey-tab-now" tabindex="0" data-journey-panel="now" role="tabpanel" aria-hidden="false">
       <header class="journey__panel-head">
         <div class="journey__panel-kicker">Act 01 — Now</div>
         <div class="journey__panel-period">2026 →</div>
@@ -96,7 +141,7 @@ redirect_from:
       </ol>
     </section>
 
-    <section class="journey__panel journey__panel--wide is-active" data-journey-panel="before" role="tabpanel" aria-hidden="false">
+    <section class="journey__panel journey__panel--wide" id="journey-panel-before" aria-labelledby="journey-tab-before" tabindex="0" data-journey-panel="before" role="tabpanel" aria-hidden="true">
       <header class="journey__panel-head">
         <div class="journey__panel-kicker">Act 02 — Before</div>
         <div class="journey__panel-period">2020 — 2026</div>
@@ -236,7 +281,7 @@ redirect_from:
       </ol>
     </section>
 
-    <section class="journey__panel" data-journey-panel="origin" role="tabpanel" aria-hidden="true">
+    <section class="journey__panel" id="journey-panel-origin" aria-labelledby="journey-tab-origin" tabindex="0" data-journey-panel="origin" role="tabpanel" aria-hidden="true">
       <header class="journey__panel-head">
         <div class="journey__panel-kicker">Act 03 — Origin</div>
         <div class="journey__panel-period">2012 — 2020</div>
@@ -306,60 +351,7 @@ redirect_from:
   </div>
 </div>
 
-# 🔬 Featured
-
-<section class="featured-paper">
-  <a
-    class="featured-paper__figure"
-    href="https://neural-interfaces26.github.io/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      src="{{ '/assets/images/publications/eeg-emg-foundation-challenge-2026.jpg' | relative_url }}"
-      alt="EEG/EMG Foundation Challenge 2026 — 4 tracks, 4 generalization shifts: EEG-to-IMG (cross-stimulus), BCI decoding (cross-session), sleep onset (cross-user), EMG-to-Pose (cross-user)"
-      loading="lazy"
-    >
-  </a>
-  <div class="featured-paper__body">
-    <p class="featured-paper__eyebrow">Competition · Brain and Body Workshop at NeurIPS 2026</p>
-    <h2 class="featured-paper__title">EEG/EMG Foundation Challenge 2026</h2>
-    <p class="featured-paper__authors">Main lead: Bruno Aristimunha · Hosted by Yneuro, Inria, and UC San Diego, with 30 organizers from 15 institutions and 8 countries</p>
-    <p class="featured-paper__summary">I am the main lead of the 2026 competition. Four decoding tracks — EEG-to-Image, BCI decoding, sleep onset, and EMG-to-Pose — test models across new stimuli, sessions, and people. Registration is open; the competition runs 21 Sep – 21 Nov 2026, with a $20,000 prize pool and winners celebrated at NeurIPS in Sydney. The 2025 edition gathered 1,197 teams from 247 institutions.</p>
-    <p class="featured-paper__links">
-      <a href="https://neural-interfaces26.github.io/" target="_blank" rel="noopener noreferrer">Competition website</a>
-      <a href="https://neural-interfaces26.github.io/tracks.html" target="_blank" rel="noopener noreferrer">Tracks</a>
-      <a href="https://neural-interfaces26.github.io/register.html" target="_blank" rel="noopener noreferrer">Register</a>
-    </p>
-  </div>
-</section>
-
-<section class="featured-paper">
-  <a
-    class="featured-paper__figure"
-    href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      src="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}"
-      alt="Figure from Learning aligned EEG representations with subject-specific encoders"
-      loading="lazy"
-    >
-  </a>
-  <div class="featured-paper__body">
-    <p class="featured-paper__eyebrow">EEG representation learning · Accepted</p>
-    <h2 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h2>
-    <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
-    <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment. Cross-subject decoding performance holds, and head selection becomes the main remaining bottleneck.</p>
-    <p class="featured-paper__links">
-      <a href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Read PDF</a>
-      <a href="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}" target="_blank" rel="noopener noreferrer">Open figure</a>
-    </p>
-  </div>
-</section>
-
-# 🧭 Research Overview
+<h2 id="-research-overview">Research overview</h2>
 
 {% include research_map.html %}
 
@@ -375,11 +367,9 @@ redirect_from:
 </p>
 
 
-# 📝 Publications (Full List)
+<h2 id="-publications-full-list">Publications</h2>
 
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-profile-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=2Gd5gOQAAAAJ)
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--5258--2995-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-5258-2995)
-[![OpenAlex](https://img.shields.io/badge/OpenAlex-profile-2D7DD2)](https://openalex.org/A5060466816)
+<p class="publication-profiles"><a href="https://scholar.google.com/citations?user=2Gd5gOQAAAAJ">Google Scholar</a><a href="https://orcid.org/0000-0001-5258-2995">ORCID</a><a href="https://openalex.org/A5060466816">OpenAlex</a></p>
 
 {% assign pubs = site.data.publications %}
 {% assign n_journal = pubs | where: "type", "journal" | size %}
@@ -430,11 +420,17 @@ redirect_from:
 {% assign authors = pub.authors | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
 {% if pub.links.pdf %}{% assign title_href = pub.links.pdf | relative_url %}{% elsif pub.links.arxiv %}{% assign title_href = pub.links.arxiv %}{% elsif pub.links.doi %}{% assign title_href = pub.links.doi %}{% elsif pub.links.site %}{% assign title_href = pub.links.site %}{% else %}{% assign title_href = "" %}{% endif %}
 <article class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
-{% if pub.figure %}{% capture pubfig %}<span class="pubfig" aria-hidden="true"><img src="{{ pub.figure | relative_url }}" alt="" loading="lazy"></span>{% endcapture %}{% else %}{% assign pubfig = "" %}{% endif %}
-{% if title_href != "" %}<p class="pubtrack__title"><a href="{{ title_href }}">{{ pub.title }}{{ pubfig }}</a></p>{% else %}<p class="pubtrack__title">{{ pub.title }}{{ pubfig }}</p>{% endif %}
+{% if title_href != "" %}<p class="pubtrack__title"><a href="{{ title_href }}">{{ pub.title }}</a></p>{% else %}<p class="pubtrack__title">{{ pub.title }}</p>{% endif %}
 <p class="pubtrack__meta"><span class="pubtrack__type pubtrack__type--{{ pub.type }}">{{ pub.type }}</span><span class="pubtrack__venue">{{ pub.venue }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}<span class="pubtrack__num">P{{ pub.num }}</span></p>
 <p class="pubtrack__authors">{{ authors }}</p>
 <p class="pubtrack__links">{% if pub.links.pdf %}<a href="{{ pub.links.pdf | relative_url }}">PDF<span class="pubtrack__glyph">&nbsp;&darr;</span></a>{% endif %}{% if pub.links.arxiv %}<a href="{{ pub.links.arxiv }}">arXiv<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.doi %}<a href="{{ pub.links.doi }}">DOI<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.journal %}<a href="{{ pub.links.journal }}">Journal<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.site %}<a href="{{ pub.links.site }}">Site<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.bibtex %}<button type="button" class="pubtrack__bib" data-copy-bibtex="{{ pub.bibtex | escape }}" aria-label="Copy BibTeX citation for {{ pub.title | escape }}">BibTeX<span class="pubtrack__glyph">&nbsp;&#10697;</span></button>{% endif %}</p>
+{% if pub.figure or pub.abstract %}<details class="pubpanel pubpanel--{{ pub.type }}">
+<summary class="pubpanel__toggle">{% if pub.figure and pub.abstract %}Abstract and figure{% elsif pub.abstract %}Abstract{% else %}Figure{% endif %}</summary>
+<div class="pubpanel__body{% if pub.figure and pub.abstract %} pubpanel__body--split{% endif %}">
+{% if pub.figure %}<a class="pubpanel__figure" href="{{ pub.figure | relative_url }}" target="_blank" rel="noopener noreferrer" title="Open figure at full size"><img src="{{ pub.figure | relative_url }}" alt="Summary figure for {{ pub.title | escape }}" loading="lazy"></a>{% endif %}
+{% if pub.abstract %}<p class="pubpanel__abstract">{{ pub.abstract }}</p>{% endif %}
+</div>
+</details>{% endif %}
 </article>
 {% endfor %}
 </div>
@@ -444,7 +440,7 @@ redirect_from:
 </div>
 
 
-# 📖 Education
+<h2 id="-education">Education</h2>
 
 <div class="timeline-island">
   <ol class="timeline-island__list">
@@ -468,7 +464,7 @@ redirect_from:
 <!-- # 💬 Invited Talks
 - Fill with all the talks... -->
 
-# 💻 Work Experience
+<h2 id="-work-experience">Work experience</h2>
 
 <div class="timeline-island">
   <ol class="timeline-island__list">
@@ -510,54 +506,78 @@ redirect_from:
   </ol>
 </div>
 
-# 👥 Mentorship
+<h2 id="-mentorship">Mentorship</h2>
 
 Students I was lucky to work with and mentor:
 
 <ul class="mentorship">
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/leoburgund/">Léo Burgund</a></h2>
+    <img class="mentorship__photo mentorship__photo--adam" src="{{ '/assets/images/mentorship/adam-mounir.jpg' | relative_url }}" alt="Adam Mounir" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name">Adam Mounir</h3>
+    <span class="mentorship__role">Master intern</span>
+    <p class="mentorship__detail">Université Paris-Saclay (Inria TAU), research internship on Braindecode.</p>
+  </li>
+  <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/leo-burgund.jpg' | relative_url }}" alt="Léo Burgund" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/leoburgund/">Léo Burgund</a></h3>
     <span class="mentorship__role">Master student → Yneuro</span>
     <p class="mentorship__detail">Université Paris-Saclay (M2 Mathematics &amp; AI), now Machine Learning Researcher at Yneuro.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/mariani-tom/">Tom Mariani</a></h2>
+    <img class="mentorship__photo mentorship__photo--tom" src="{{ '/assets/images/mentorship/tom-mariani.jpg' | relative_url }}" alt="Tom Mariani" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/mariani-tom/">Tom Mariani</a></h3>
     <span class="mentorship__role">Master student → Yneuro</span>
     <p class="mentorship__detail">MVA, ENS Paris-Saclay / Mines, now Research Scientist at Yneuro.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/amanjaiswal1503/">Aman Jaiswal</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/aman-jaiswal.jpg' | relative_url }}" alt="Aman Jaiswal" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/amanjaiswal1503/">Aman Jaiswal</a></h3>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">UC San Diego, MS in Computer Science.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/kuntal-kokate.jpg' | relative_url }}" alt="Kuntal Kokate" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h3>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">UC San Diego, MS in Machine Learning &amp; Data Science (ECE).</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/jose-mauricio.jpg' | relative_url }}" alt="Jose Mauricio" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h3>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">Federal University of ABC, Computer Science.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/taha-habib.jpg' | relative_url }}" alt="Taha Habib" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h3>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Université Paris-Saclay, now a master student.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/gustavo-rodrigues.jpg' | relative_url }}" alt="Gustavo H. Rodrigues" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h3>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Universidade de São Paulo (USP), now a master student at USP.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/bruna-junqueira.jpg' | relative_url }}" alt="Bruna Junqueira" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h3>
     <span class="mentorship__role">Undergrad → Master → PhD</span>
     <p class="mentorship__detail">USP, then the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay; now my PhD student.</p>
   </li>
   <li class="mentorship__card">
-    <h2 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h2>
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/alexandre-janoni.jpg' | relative_url }}" alt="Alexandre Janoni" width="72" height="72" loading="lazy">
+    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h3>
     <span class="mentorship__role">Undergrad → Industry</span>
     <p class="mentorship__detail">Federal University of ABC, now at Hospital Albert Einstein.</p>
   </li>
 </ul>
+
+
+<h2 id="community">Community</h2>
+
+During my PhD, I collaborated with research groups across the US (San Diego, San Francisco, Washington), UK, Ireland, Germany, Italy, Netherlands, Canada (Waterloo, MILA), Brazil (Sao Paulo), and France. Those collaborations turned into more than 16 publications (full/short papers, reports, abstracts), all listed on [Google Scholar](https://scholar.google.com.br/citations?user=2Gd5gOQAAAAJ). I particularly enjoyed the self-contained, code-oriented projects 🧠⚙️. For academic cooperation, contact me via email or [LinkedIn](https://www.linkedin.com/in/bruaristimunha/).
+
+I organized the [Braindecode Code-Sprint](https://braindecode.org/sprint2023/) in the European summer of 2023, co-organized the workshop Designing Brain-Computer Interfaces from Theory to Real-Life Scenarios at the [Graz BCI 2024](https://github.com/Inria-NERV/Graz24-DesigningBCITools-Workshop) conference, led the [Special Session on Decoding the Brain Time Series](https://mlsp2025-decoding-brain.github.io/) at IEEE MLSP 2025, and led the organization of the **NeurIPS 2025 Competition** [EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding](https://arxiv.org/abs/2506.19141).
+
+I review for machine learning conferences and journals: NeurIPS (twice), ICLR, ICML, NeuroImage, Imaging Neuroscience, the Journal of Machine Learning Research (JMLR), and the Learning from Time Series for Health workshop at ICLR.

@@ -1,0 +1,211 @@
+/* The official marks are the artwork. Motion follows their existing shapes. */
+.software-card__scene {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 9px 9px 0 0;
+    border-bottom: 1px solid #e3e9f1;
+    background: #fff;
+}
+.software-card__logo-wrap { width: 82%; max-width: 252px; }
+.library-logo { display: block; width: 100%; height: auto; max-height: 174px; }
+.library-logo--spdlearn { position: relative; width: 164px; height: 164px; margin: auto; }
+.library-logo--spdlearn img { display: block; width: 100%; height: 100%; }
+.spd-logo__light {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    clip-path: polygon(51% 19%, 92% 77%, 94% 87%, 78% 94%, 21% 94%, 5% 85%, 6% 76%);
+}
+.spd-logo__light::after {
+    content: "";
+    position: absolute;
+    inset: -20% -40%;
+    background: linear-gradient(110deg, transparent 36%, rgba(166, 220, 244, 0.35) 49%, rgba(255, 255, 255, 0.6) 50%, transparent 63%);
+    opacity: 0;
+    transform: translateX(-65%);
+}
+.spd-logo__ember {
+    position: absolute;
+    left: 16%;
+    top: 12%;
+    width: 13%;
+    height: 19%;
+    border-radius: 50%;
+    background: #ff6529;
+    filter: blur(8px);
+    opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .library-logo--spdlearn { animation: spd-cone-turn 8s ease-in-out infinite paused; }
+    .spd-logo__light::after { animation: spd-surface-light 8s ease-in-out infinite paused; }
+    .spd-logo__ember { animation: spd-ember 8s ease-in-out infinite paused; }
+    .is-playing .library-logo--spdlearn,
+    .is-playing .spd-logo__light::after,
+    .is-playing .spd-logo__ember { animation-play-state: running; }
+}
+@keyframes spd-cone-turn {
+    0%, 70%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-1.5deg); }
+    48% { transform: rotate(1deg); }
+}
+@keyframes spd-surface-light {
+    0%, 12% { opacity: 0; transform: translateX(-65%); }
+    20% { opacity: 0.85; }
+    45% { opacity: 0.85; }
+    54%, 100% { opacity: 0; transform: translateX(65%); }
+}
+@keyframes spd-ember {
+    0%, 45%, 80%, 100% { opacity: 0; }
+    60% { opacity: 0.2; }
+}
+
+/* The original Braindecode paths and palette stay intact; activity moves from
+   the EEG traces through the network, followed by a quiet resting interval. */
+.library-logo--braindecode .bd-logo__node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .library-logo--braindecode .bd-logo__signal {
+    animation: bd-signal 8s ease-in-out infinite paused;
+    animation-delay: calc(var(--bd-sequence) * 160ms);
+  }
+  .library-logo--braindecode .bd-logo__edges {
+    animation: bd-connections 8s ease-in-out infinite paused;
+  }
+  .library-logo--braindecode .bd-logo__node {
+    animation: bd-activation 8s ease-in-out infinite paused;
+  }
+  .library-logo--braindecode .bd-logo__node--2 { animation-delay: 380ms; }
+  .library-logo--braindecode .bd-logo__node--3 { animation-delay: 760ms; }
+  .library-logo--braindecode .bd-logo__brain {
+    animation: bd-brain 8s ease-in-out infinite paused;
+  }
+  .is-playing .library-logo--braindecode .bd-logo__signal,
+  .is-playing .library-logo--braindecode .bd-logo__edges,
+  .is-playing .library-logo--braindecode .bd-logo__node,
+  .is-playing .library-logo--braindecode .bd-logo__brain {
+    animation-play-state: running;
+  }
+}
+
+@keyframes bd-signal {
+  0%, 6%, 37%, 100% { opacity: 1; filter: none; }
+  13% { opacity: 0.5; filter: none; }
+  23% { opacity: 1; filter: drop-shadow(0 0 1.1px #48b4ef); }
+}
+@keyframes bd-connections {
+  0%, 25%, 60%, 100% { opacity: 1; filter: none; }
+  32% { opacity: 0.62; filter: none; }
+  44% { opacity: 1; filter: drop-shadow(0 0 0.7px #48b4ef); }
+}
+@keyframes bd-activation {
+  0%, 34%, 54%, 100% { transform: scale(1); filter: none; }
+  43% { transform: scale(1.09); filter: drop-shadow(0 0 1.7px #48b4ef); }
+}
+@keyframes bd-brain {
+  0%, 53%, 77%, 100% { filter: none; }
+  63% { filter: drop-shadow(0 0 1.6px #80c6eb); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .library-logo--braindecode * { animation: none !important; }
+}
+
+.library-logo--moabb {
+  overflow: visible;
+}
+
+.library-logo--moabb .moabb-band {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: moabb-mountain-breathe 7.2s cubic-bezier(.45, 0, .25, 1) infinite paused;
+}
+.library-logo--moabb .moabb-band--middle { animation-delay: .28s; }
+.library-logo--moabb .moabb-band--front { animation-delay: .56s; }
+
+.library-logo--moabb .moabb-brain,
+.library-logo--moabb .moabb-circuit {
+  animation: moabb-circuit-pulse 7.2s ease-in-out infinite paused;
+}
+.library-logo--moabb .moabb-brain { animation-delay: .5s; }
+.library-logo--moabb .moabb-circuit--2 { animation-delay: .12s; }
+.library-logo--moabb .moabb-circuit--3 { animation-delay: .24s; }
+.library-logo--moabb .moabb-circuit--4 { animation-delay: .72s; }
+.library-logo--moabb .moabb-circuit--5 { animation-delay: .84s; }
+.library-logo--moabb .moabb-circuit--6 { animation-delay: .96s; }
+
+.is-playing .library-logo--moabb .moabb-band,
+.is-playing .library-logo--moabb .moabb-brain,
+.is-playing .library-logo--moabb .moabb-circuit {
+  animation-play-state: running;
+}
+
+@keyframes moabb-mountain-breathe {
+  0%, 42%, 100% { transform: scaleY(1); }
+  18% { transform: scaleY(.965); }
+  30% { transform: scaleY(1.012); }
+}
+
+@keyframes moabb-circuit-pulse {
+  0%, 42%, 72%, 100% { opacity: 1; }
+  51% { opacity: .62; }
+  60% { opacity: 1; }
+  65% { opacity: .86; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .library-logo--moabb .moabb-band,
+  .library-logo--moabb .moabb-brain,
+  .library-logo--moabb .moabb-circuit {
+    animation: none;
+  }
+}
+
+/* The original blue signal and amber network remain visible beneath clipped light. */
+.library-logo--eegdash .eegdash-motion {
+  animation-duration: 7.2s;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+.library-logo--eegdash .eegdash-signal {
+  animation-name: eegdash-signal-travel;
+}
+.library-logo--eegdash .eegdash-network-light {
+  animation-name: eegdash-network-gather;
+}
+.library-logo--eegdash .eegdash-network-focus {
+  animation-name: eegdash-network-settle;
+}
+.is-playing .library-logo--eegdash .eegdash-motion {
+  animation-play-state: running;
+}
+@keyframes eegdash-signal-travel {
+  0%, 7% { opacity: 0; transform: translateX(0); }
+  11% { opacity: .92; }
+  35% { opacity: .92; }
+  41%, 100% { opacity: 0; transform: translateX(140px); }
+}
+@keyframes eegdash-network-gather {
+  0%, 31% { opacity: 0; transform: translate(173px, 40px) scale(1.2); }
+  41% { opacity: .82; }
+  62% { opacity: .94; transform: translate(126.2px, 90.2px) scale(.64); }
+  72%, 100% { opacity: 0; transform: translate(126.2px, 90.2px) scale(.35); }
+}
+@keyframes eegdash-network-settle {
+  0%, 58% { opacity: 0; }
+  67% { opacity: .9; }
+  82%, 100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .library-logo--eegdash .eegdash-motion {
+    animation: none;
+    opacity: 0;
+  }
+}

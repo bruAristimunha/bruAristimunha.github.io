@@ -8,7 +8,7 @@ html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
   background-color: $background-color;
-  font-size: 15px;
+  font-size: unquote("clamp(16.5px, calc(15.5px + 0.25vw), 18px)"); /* 16.5px on phones, 18px from ~1000px; was a fixed 15px. unquote keeps old Sass from evaluating it */
 
   // @include breakpoint($medium) {
   //   font-size: 18px;
