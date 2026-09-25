@@ -52,11 +52,12 @@ redirect_from:
     >
   </a>
   <div class="featured-paper__body">
-    <p class="featured-paper__eyebrow">EEG representation learning · Accepted</p>
+    <p class="featured-paper__eyebrow">EEG representation learning · Scientific Reports · 2026</p>
     <h3 class="featured-paper__title">Learning aligned EEG representations with subject-specific encoders</h3>
     <p class="featured-paper__authors">Bruna J. Lopes, Gabriel Schwartz, Sylvain Chevallier, Raphael Y. de Camargo, and Bruno Aristimunha</p>
     <p class="featured-paper__summary">Subject-specific encoders can internalise part of the alignment role usually handled by Euclidean Alignment. Cross-subject decoding performance holds, and head selection becomes the main remaining bottleneck.</p>
     <p class="featured-paper__links">
+      <a href="https://www.nature.com/articles/s41598-026-69220-z" target="_blank" rel="noopener noreferrer">Read in Scientific Reports</a>
       <a href="{{ '/assets/pdfs/learning-aligned-eeg-representations.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Read PDF</a>
       <a href="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}" target="_blank" rel="noopener noreferrer">Open figure</a>
     </p>
