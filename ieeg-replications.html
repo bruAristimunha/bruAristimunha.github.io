@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Five braindecode iEEG ports rerun in NeuralBench on the Brain Treebank against their public results.">
+<title>Brain Treebank replications · Bruno Aristimunha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #F4F6F3;
+  --surface: #EBEFEA;
+  --ink: #1B2528;
+  --muted: #5A676B;
+  --rule: #D3DAD4;
+  --band: #DCE8E0;
+  --accent: #0072B2;
+  --warn: #C4520A;
+  --c-cs: #0072B2;
+  --c-ws: #E69F00;
+  --c-xs: #009E73;
+  --c-rand: #CC79A7;
+  --c-chr: #D55E00;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111719; --surface: #192123; --ink: #E2E8E5; --muted: #98A6A7; --rule: #2B3638;
+    --band: #1D322C; --accent: #56B4E9; --warn: #F08A4B;
+    --c-cs: #56B4E9; --c-ws: #E69F00; --c-xs: #2BC49A; --c-rand: #E08CC0; --c-chr: #F08A4B;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111719; --surface: #192123; --ink: #E2E8E5; --muted: #98A6A7; --rule: #2B3638;
+  --band: #1D322C; --accent: #56B4E9; --warn: #F08A4B;
+  --c-cs: #56B4E9; --c-ws: #E69F00; --c-xs: #2BC49A; --c-rand: #E08CC0; --c-chr: #F08A4B;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font: 19px/1.6 var(--serif);
+  padding-inline: 20px; padding-block: 0 96px;
+}
+main { max-width: 820px; margin: 0 auto; }
+.prose, .prose-w { max-width: 64ch; }
+h1, h2, h3 { font-weight: 500; text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(34px, 6vw, 52px); letter-spacing: -0.01em; }
+h2 { font-size: clamp(26px, 4vw, 32px); }
+h3 { font: 600 13px/1.3 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.num, td.n, .mono { font-family: var(--mono); font-size: 0.86em; font-variant-numeric: tabular-nums; }
+.label { font: 500 13px/1.4 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+header.top { padding-block: 88px 40px; display: grid; gap: 22px; }
+.standfirst { font-size: 22px; line-height: 1.5; max-width: 60ch; }
+.standfirst strong { font-weight: 500; }
+.meta { font: 14px/1.5 var(--sans); color: var(--muted); }
+
+.roster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-block: 1px solid var(--rule); margin-block: 8px 0; }
+.roster a { background: var(--bg); padding: 14px 14px 16px; text-decoration: none; color: var(--ink); display: grid; gap: 4px; }
+.roster a:hover { background: var(--surface); }
+.roster .name { font: 500 17px/1.2 var(--sans); }
+.roster .pr { font: 13px var(--mono); color: var(--muted); }
+.verdict { font: 500 13px/1.3 var(--sans); display: inline-flex; align-items: center; gap: 6px; }
+.verdict::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.v-pass { color: var(--accent); }
+.v-part { color: var(--warn); }
+.v-none { color: var(--muted); }
+
+section { padding-block: 88px 0; display: grid; gap: 24px; }
+section > .label { margin-bottom: -8px; }
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+.versus > div { display: grid; gap: 10px; align-content: start; }
+blockquote { margin: 0; font-style: italic; font-size: 17.5px; line-height: 1.55; color: var(--ink); border-left: 2px solid var(--rule); padding-left: 16px; }
+blockquote + blockquote { margin-top: 10px; }
+cite { font: 13px/1.4 var(--sans); color: var(--muted); font-style: normal; padding-left: 18px; }
+.versus ul { margin: 0; padding-left: 18px; font-size: 16.5px; line-height: 1.5; display: grid; gap: 6px; }
+.recipe { font: 13px var(--mono); color: var(--muted); }
+
+figure { margin: 0; display: grid; gap: 12px; }
+figcaption { font: 14px/1.55 var(--sans); color: var(--muted); max-width: 72ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.chart { width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--sans); fill: var(--muted); }
+.chart .strong { fill: var(--ink); }
+.key { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 13px/1.3 var(--sans); color: var(--muted); }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.key svg { width: 12px; height: 12px; }
+.panel { max-width: 440px; }
+
+.pending { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--rule); border-block: 1px solid var(--rule); }
+.pending div { background: var(--bg); padding: 14px; display: grid; gap: 4px; font: 14px/1.4 var(--sans); }
+.pending .big { font: 500 24px/1.1 var(--mono); color: var(--ink); }
+
+.scheme { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.scheme figure { gap: 8px; }
+
+.tablewrap { overflow-x: auto; border-block: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font: 14px/1.4 var(--sans); }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-weight: 600; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+td.n { text-align: right; }
+td.fail { color: var(--warn); font-weight: 600; }
+td.ok { color: var(--accent); }
+
+.open { display: grid; gap: 18px; padding: 0; list-style: none; margin: 0; }
+.open li { display: grid; grid-template-columns: 11ch 1fr; gap: 16px; font-size: 17px; line-height: 1.5; }
+.open .tag { font: 500 12px/1.9 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--warn); }
+.sources { font: 14px/1.6 var(--sans); color: var(--muted); display: grid; gap: 6px; }
+.sources code { font: 12.5px var(--mono); }
+
+@media (max-width: 640px) {
+  body { font-size: 18px; }
+  header.top { padding-block: 56px 28px; }
+  section { padding-block: 64px 0; }
+  .versus, .scheme { grid-template-columns: 1fr; }
+  .open li { grid-template-columns: 1fr; gap: 2px; }
+  .roster { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .roster a { transition: background 0.15s; }
+}
+.crumb { font: 14px/1.4 var(--sans); color: var(--muted); }
+.crumb a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<main>
+<header class="top">
+  <nav class="crumb"><a href="/">bruno aristimunha</a> / brain treebank replications</nav>
+  <span class="label">braindecode · NeuralBench · SDSC Expanse</span>
+  <h1>Do the iEEG ports reproduce their public results?</h1>
+  <p class="standfirst">Mostly. Six intracranial models were ported to braindecode, and five have a public number to check against. Rerun in NeuralBench on the Brain Treebank, <strong>27 of 31</strong> split and task groups land within 0.05 AUROC of that number. PopT and one BaRISTA split do not, yet.</p>
+  <p class="meta" id="snapshot"></p>
+  <nav class="roster" aria-label="Models">
+    <a href="#brainbert"><span class="name">BrainBERT</span><span class="pr">#1104</span><span class="verdict v-pass">10 of 10 pass</span></a>
+    <a href="#mapa"><span class="name">MAPA</span><span class="pr">#1178</span><span class="verdict v-pass">7 of 7 pass</span></a>
+    <a href="#diver1"><span class="name">DIVER-1</span><span class="pr">#1170</span><span class="verdict v-pass">3 of 3 pass</span></a>
+    <a href="#barista"><span class="name">BaRISTA</span><span class="pr">#1173</span><span class="verdict v-part">2 of 4 pass</span></a>
+    <a href="#popt"><span class="name">PopT</span><span class="pr">#1105</span><span class="verdict v-part">5 of 7 pass</span></a>
+    <a href="#brant"><span class="name">Brant</span><span class="pr">#1100</span><span class="verdict v-none">no public result</span></a>
+  </nav>
+</header>
+
+<section id="dataset">
+  <span class="label">The dataset · Brain Treebank on NEMAR (nm000253)</span>
+  <h2>One dataset, one protocol</h2>
+  <p class="prose">To test whether the braindecode ports reproduce their public results, we ran each of them in NeuralBench on the Brain Treebank, with the splits, windows and readouts of the original evaluation. The public target is the Neuroprobe leaderboard for BrainBERT, PopT, MAPA and DIVER-1, and the paper tables for BaRISTA. A split and task pass when our mean test AUROC lies within 0.05 of the public mean over the same test cases. Overall, these results show that 27 of 31 split and task groups pass (Fig. 1), and that the four that fail come from PopT and from the chronological split of BaRISTA.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“intracranial recordings from 10 epilepsy patients collected over a total of 26 sessions as they watched Hollywood films […] Neural data is provided at a sampling rate of 2048 Hz.”</blockquote>
+      <cite>BaRISTA paper, describing the Brain Treebank (Wang et al., 2024)</cite>
+      <blockquote>“For all linear regression, we used the sklearn package […] In all cases, the features were first normalized using the sklearn StandardScaler.”</blockquote>
+      <cite>Neuroprobe paper, appendix</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>Recordings from NEMAR nm000253 v1.0.0, read as BIDS.</li>
+        <li>Neuroprobe 0.1.8 splits for 15 tasks: across sessions, within session (2 folds) and across subjects. Lite uses 12 subject and session pairs; across subjects, the probe is trained on subject 2 and tested on the other 10 pairs.</li>
+        <li>Three NEMAR gaps filled from the original release: subject 1's channel names, the coordinates of subject 2's “#” contacts, and “*” renamed to “x” in 62 channels of subjects 2, 7, 9 and 10.</li>
+        <li>Readout for the frozen models: StandardScaler, then LogisticRegression (random state 42, 10,000 iterations, tolerance 0.001), fitted on the training split only.</li>
+      </ul>
+    </div>
+  </div>
+  <figure>
+    <div class="chart" id="fig1" role="img" aria-label="Difference between our AUROC and the public AUROC, per model and split"></div>
+    <figcaption><b>Fig. 1. Most ports reproduce their public results within 0.05.</b> Each row shows one model and one split. Each small dot is one test cell (a test case, fold or seed), placed at the difference between our test AUROC and the public AUROC. The large mark is the mean across cells, and its bar the SEM across cells. The shaded band is the tolerance of 0.05 on each side of exact agreement (vertical line at 0). Cells beyond 0.2 on either side are drawn at the edge. Right: tasks that pass, out of the tasks run.</figcaption>
+  </figure>
+  <p class="meta prose">How to read the panels below (Fig. 2): our AUROC against the public AUROC, for each test cell. Each dot is a test cell, and its colour and shape give the split. The diagonal is exact agreement and the shaded band the tolerance of 0.05. Dashed lines indicate chance (0.5). Hover or focus a dot for its case and task.</p>
+</section>
+
+<section id="brainbert">
+  <span class="label">BrainBERT · #1104 · Wang et al., 2023</span>
+  <h2>BrainBERT reproduces the leaderboard in all three splits</h2>
+  <p class="prose">To test the BrainBERT port, we followed the public runner of the leaderboard entry: the same rereferenced contacts, the same spectrogram, every output token, and the same logistic regression. Our AUROC differs from the leaderboard by +0.007 across sessions (17 cells), +0.004 across subjects (18 cells) and +0.021 within sessions (34 cells; Fig. 2A), so that all 10 groups pass. The largest task differences are within sessions: sentence onset runs higher than the leaderboard (+0.030), and frame brightness lower (-0.037). To test whether this difference comes from our pipeline, we ran the official runner, unchanged, on our rereferenced copy: for sentence onset in subject 1, session 1, it gives 0.854 and 0.824 on the two folds, against 0.854 and 0.816 with NeuralBench and 0.735 and 0.784 on the leaderboard. The difference within sessions thus lies between the public code and the leaderboard file, whose rereferenced data are not public.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“the BrainTreebank data was Laplacian rereferenced […], with line noise removed, and then passed into the BrainBERT model as provided by [Wang et al.]. The output features were concatenated and used as input to the linear regression. For the electrodes which could not be Laplacian rereferenced, non-rereferenced data was inputted into BrainBERT.”</blockquote>
+      <cite>Neuroprobe paper, appendix</cite>
+      <blockquote>“This model was taken off-the-shelf and had per-window STFT z-scoring.”</blockquote>
+      <cite>Leaderboard entry, A. Zahorodnii, 2 May 2026</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>Lite contacts, each referenced to its ±1 neighbours among the non-corrupted contacts; contacts without a neighbour keep their raw signal.</li>
+        <li>Line-noise notches at 60 to 300 Hz (Q 12, zero phase).</li>
+        <li>STFT as the public runner <span class="mono">azaho/BrainBERT@neuroprobe-eval</span>: window 400, overlap 350, no edge padding, first 40 bins, z-scored per window.</li>
+        <li>Every output token kept (<span class="mono">keepall</span>); across subjects, features averaged per Desikan-Killiany region shared with subject 2.</li>
+      </ul>
+      <span class="recipe">recipe brainbert_frozen_perwindow_stft · braindecode/brainbert-pretrained @ d5abbde6</span>
+    </div>
+  </div>
+  <figure class="panel">
+    <div class="key" data-key="brainbert_frozen_perwindow_stft"></div>
+    <div class="chart" data-scatter="brainbert_frozen_perwindow_stft" data-letter="A"></div>
+    <figcaption><b>Fig. 2A. BrainBERT.</b> <span data-count="brainbert_frozen_perwindow_stft"></span></figcaption>
+  </figure>
+</section>
+
+<section id="mapa">
+  <span class="label">MAPA · #1178 · B. Tang, 2026</span>
+  <h2>MAPA reproduces once its session front end is kept</h2>
+  <p class="prose">The released MAPA evaluation normalizes each band of each contact by statistics of the whole session, and only then cuts the windows. This step matters: with a per-window front end, the cross-subject AUROC of subject 3, session 1 drops to 0.918, against 0.970 with the session front end and 0.961 on the leaderboard. With the session front end, all 7 groups pass (-0.013 across sessions, +0.009 across subjects, -0.006 within sessions; Fig. 2B).</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“A masked autoencoder for intracranial EEG, evaluated with a frozen encoder and a linear probe.”</blockquote>
+      <cite>Leaderboard entry, B. Tang, 9 Sep 2026. The protocol itself is the released code, <span class="mono">evals/neuroprobe/encode.py</span> and <span class="mono">readout.py</span>.</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>On the whole session: mean reference per shaft, notches at 60 to 300 Hz, 0.5 Hz high-pass.</li>
+        <li>Three band spectrograms (hop 64, 32 frames per second), each bin normalized by the session median and 1.4826 × MAD; 1 s windows cut from this series.</li>
+        <li>Raw output of encoder block 12 per contact, kept in fp16; across subjects, averaged per shared DKT region.</li>
+        <li>MAPA's ridge, its penalty chosen on the validation half.</li>
+      </ul>
+      <span class="recipe">recipe mapa_neuroprobe · bentang18/MAPA @ 988efbf3</span>
+    </div>
+  </div>
+  <figure class="panel">
+    <div class="key" data-key="mapa_neuroprobe"></div>
+    <div class="chart" data-scatter="mapa_neuroprobe" data-letter="B"></div>
+    <figcaption><b>Fig. 2B. MAPA.</b> <span data-count="mapa_neuroprobe"></span></figcaption>
+  </figure>
+</section>
+
+<section id="diver1">
+  <span class="label">DIVER-1 · #1170 · Y. Gwon, 2026</span>
+  <h2>DIVER-1 matches in linear probing and in fine-tuning</h2>
+  <p class="prose">DIVER-1 scales attention by one over the head dimension, rather than by its square root. Without this, the port differed from the official model by up to 0.34; with it, the outputs are identical. The frozen features then reach 0.724 against 0.723 on the leaderboard, and full fine-tuning 0.962 against 0.954 (Fig. 2C). These fine-tuning runs used seed 33, whereas the DIVER-1 script uses seed 41; the seed 41 runs are queued.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“linear probing on frozen DIVER-1(0.1spatch,tiny,pretrained on iEEG) model”</blockquote>
+      <blockquote>“full finetuing [sic] on DIVER-1(0.1spatch,tiny) pretrained model”</blockquote>
+      <cite>Leaderboard entries, Y. Gwon, 9 Jan 2026 (within session only)</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>As <span class="mono">scripts/finetune_neuroprobe.sh</span>: AdamW (lr 2e-3, weight decay 0.01), up to 40 epochs, early stopping on validation AUROC (patience 10), label smoothing 0.1.</li>
+        <li>Laplacian reference, resampling to 500 Hz, flatten and linear head.</li>
+        <li>Frozen recipe: only the head is trained.</li>
+        <li>Fix added to the PR: <span class="mono">mup_attention=True</span>.</li>
+      </ul>
+      <span class="recipe">recipes diver1_tiny_frozen, diver1_tiny_finetuned · official iEEG checkpoint, converted</span>
+    </div>
+  </div>
+  <figure class="panel">
+    <div class="key" data-key="diver1"></div>
+    <div class="chart" data-scatter="diver1" data-letter="C"></div>
+    <figcaption><b>Fig. 2C. DIVER-1, frozen and fine-tuned.</b> <span data-count="diver1"></span></figcaption>
+  </figure>
+</section>
+
+<section id="barista">
+  <span class="label">BaRISTA · #1173 · Oganesian et al.</span>
+  <h2>BaRISTA exceeds its paper on the random split</h2>
+  <p class="prose">BaRISTA was evaluated with its own split rules, 3 s windows and 5 fine-tuning seeds. On the random split, it reaches 0.936 against 0.912 for the per-subject values of the paper (38 runs; Fig. 2D). This difference is small but has the same sign for both tasks (+0.025 for sentence onset, +0.023 for speech). This consistency suggests a shared cause, such as the balancing seed of the paper, which is not public. The chronological split does not reproduce: our first runs exceed the paper by +0.092 (24 runs). However, these runs come from an older build and only use seed 0, so the chronological split is being run again before we interpret this gap.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“we generated non-overlapping 3-second-long neural data segments and randomly assigned them to 80/10/10 train/valid/test splits”</blockquote>
+      <blockquote>“we allowed for overlapping neural segments and generated the 80/10/10 train/valid/test splits chronologically in time to avoid any overlap between these splits.”</blockquote>
+      <cite>BaRISTA paper, section on the dataset</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>BaRISTA's clean-laplacian contact list, ventricle contacts removed.</li>
+        <li>Causal notch filters (Q 30), each contact referenced to its two neighbours.</li>
+        <li>3 s windows with the paper's labels, split and balancing rules; seed 0 for balancing.</li>
+        <li>Tokenizer frozen, learned pooling head; one learning rate instead of upstream's two groups.</li>
+      </ul>
+      <span class="recipe">recipe barista_parcels_paper · braindecode/BaRISTA-parcels @ 56c42de5</span>
+    </div>
+  </div>
+  <figure class="panel">
+    <div class="key" data-key="barista_parcels_paper"></div>
+    <div class="chart" data-scatter="barista_parcels_paper" data-letter="D"></div>
+    <figcaption><b>Fig. 2D. BaRISTA.</b> For BaRISTA, the public value is the per-subject value of the paper (random split) or its mean over subjects (chronological split). <span data-count="barista_parcels_paper"></span></figcaption>
+  </figure>
+</section>
+
+<section id="popt">
+  <span class="label">PopT · #1105 · Chau et al., 2025</span>
+  <h2>PopT remains below its per-window entry</h2>
+  <p class="prose">The runner of the PopT entry is not public. We therefore tried 4 variants of the pipeline on two cells, and kept the one closest to the leaderboard: BrainBERT tokens averaged over all frames, and the PopT CLS token. PopT nevertheless remains below the leaderboard (-0.046 across sessions, -0.032 within sessions), and sentence onset fails in both splits (-0.074 and -0.067; Fig. 2E). Since the same BrainBERT features pass on their own, these results suggest that the gap lies in the unknown runner rather than in the port.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“PopulationTransformer model (Chau et al. 2024). This model was taken off-the-shelf and had per-window STFT z-scoring.”</blockquote>
+      <cite>Leaderboard entry, A. Zahorodnii, 2 May 2026 (across and within sessions only)</cite>
+      <blockquote>“We use the publicly available weights which were pretrained on data from 10 iEEG subjects, using 5s BrainBERT temporal embeddings from individual channels.”</blockquote>
+      <cite>Neuroprobe paper, appendix</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li>The same rereferenced Lite contacts and per-window STFT as BrainBERT.</li>
+        <li>Per contact, BrainBERT tokens averaged over all frames; the PopT CLS token into the Neuroprobe logistic regression.</li>
+        <li>Variants on sentence onset, subject 3 session 1 and subject 2 session 0 (leaderboard 0.891 and 0.844): this recipe 0.857 and 0.801; centre 10 frames 0.820; clean contacts only 0.858 and 0.791; every PopT token 0.840 and 0.754.</li>
+      </ul>
+      <span class="recipe">recipe popt_perwindow_stft · braindecode/popt-pretrained @ 50b02d6f</span>
+    </div>
+  </div>
+  <figure class="panel">
+    <div class="key" data-key="popt_perwindow_stft"></div>
+    <div class="chart" data-scatter="popt_perwindow_stft" data-letter="E"></div>
+    <figcaption><b>Fig. 2E. PopT.</b> <span data-count="popt_perwindow_stft"></span></figcaption>
+  </figure>
+</section>
+
+<section id="globalz">
+  <span class="label">New · BrainBERT and PopT, global z-scoring</span>
+  <h2>Session-wide z-scoring of the spectrogram</h2>
+  <p class="prose">Two further entries, by the PopT authors, replace the per-window z-scoring of the spectrogram by a global one, but their code is not public. We implemented the most direct reading: each contact and frequency bin is z-scored with the mean and standard deviation of its whole session, and the windows are then cut from this series, as for MAPA. The first cells are running; their targets, for sentence onset across sessions, are 0.934 and 0.931 for BrainBERT, and 0.977 and 0.937 for PopT.</p>
+  <div class="versus">
+    <div>
+      <h3>In the text</h3>
+      <blockquote>“This model had global z-scoring as opposed to per-window z-scoring of STFT inputs.”</blockquote>
+      <cite>Leaderboard entries “BrainBERT (frozen, global z-scoring)” and “Population Transformer (global z-scoring)”, G. Chau, 2026</cite>
+    </div>
+    <div>
+      <h3>In NeuralBench</h3>
+      <ul>
+        <li><span class="mono">neuroprobe_session_stft</span>: the same rereferenced copy and STFT as the per-window recipes, over the whole session.</li>
+        <li>Each contact and bin z-scored with its session mean and standard deviation; no labels are used.</li>
+        <li>The extractor reads this series at 40.96 frames per second; each 1 s window keeps 34 frames, as a per-window STFT.</li>
+        <li>The fitting scope (session, subject or training split) is our choice, not a recovered procedure.</li>
+      </ul>
+      <span class="recipe">recipes brainbert_frozen_global_z, popt_laplacian_stft_global_z</span>
+    </div>
+  </div>
+  <div class="scheme" id="scheme"></div>
+  <div class="pending" aria-label="Global z-scoring targets, sentence onset across sessions">
+    <div><span class="label">BrainBERT · sub 3, session 1</span><span class="big">0.934</span><span>per-window entry 0.937 · running</span></div>
+    <div><span class="label">BrainBERT · sub 2, session 0</span><span class="big">0.931</span><span>per-window entry 0.770 · running</span></div>
+    <div><span class="label">PopT · sub 3, session 1</span><span class="big">0.977</span><span>per-window entry 0.891 · running</span></div>
+    <div><span class="label">PopT · sub 2, session 0</span><span class="big">0.937</span><span>per-window entry 0.844 · running</span></div>
+  </div>
+</section>
+
+<section id="brant">
+  <span class="label">Brant · #1100 · Zhang et al., 2023</span>
+  <h2>Brant has no public benchmark</h2>
+  <p class="prose">Brant reports downstream results only on private clinical data, so no public score can be recomputed. We therefore checked the weights and the forward pass instead: all 210 of 210 shared tensors are identical to the official release, and pooled features match the official model to 6.5e-5.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Check</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Weights against <span class="mono">Daoze/Brant</span> @ 7e6f9156</td><td>210 of 210 shared tensors identical</td></tr>
+        <tr><td>Band-power front end against upstream</td><td>max difference 4e-16 (float64), 2e-7 (float32)</td></tr>
+        <tr><td>Full forward pass, same input</td><td>pooled features within 6.5e-5; token cosine 1.000000</td></tr>
+        <tr><td>Sampling rate given as 250 instead of 256 Hz</td><td>features differ by up to 0.19; the PR documents it</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="open">
+  <span class="label">What remains</span>
+  <h2>Open items before the cards are final</h2>
+  <ul class="open">
+    <li><span class="tag">Running</span><span>Global z-scoring for BrainBERT and PopT, first four cells above.</span></li>
+    <li><span class="tag">Done</span><span>The official BrainBERT runner, unchanged, on our rereferenced copy gives the NeuralBench values (see BrainBERT above).</span></li>
+    <li><span class="tag">Running</span><span>PopT with its own fine-tuning (the whole transformer trained for 1000 steps, best validation checkpoint), since the entry is named “PopulationTransformer”, not “(frozen)”.</span></li>
+    <li><span class="tag">Queued</span><span>BaRISTA chronological and random splits on the current build, all 5 seeds.</span></li>
+    <li><span class="tag">Queued</span><span>DIVER-1 fine-tuning with the script's seed 41.</span></li>
+    <li><span class="tag">Running</span><span>All Neuroprobe sweeps again with the corrected electrode tables; <span id="v2count"></span> are already done.</span></li>
+    <li><span class="tag">Unresolved</span><span>PopT sentence onset, 0.07 below the leaderboard; the runner is not public.</span></li>
+  </ul>
+</section>
+
+<section id="ledger">
+  <span class="label">Every group</span>
+  <h2>The numbers behind Fig. 1</h2>
+  <div class="tablewrap"><table id="ledger-table"></table></div>
+  <div class="sources">
+    <p>Public values: Neuroprobe leaderboard JSON files (per test case, fold mean across sessions and subjects, per fold within session); BaRISTA paper Table 1, appendix per-subject table, Appendix K. Our values: the newest finished NeuralBench run per split, task, test case, fold and seed, final recipes only.</p>
+    <p>Code: NeuralBench branch <code>feat/ieeg-sentence-onset</code>; cards and extraction in <code>pr-evidence-20260924/ieeg_card.py</code>, <code>report_data.py</code>. Prose checked with the Jean-Rémi King author pack gate.</p>
+  </div>
+</section>
+
+</main>
+
+<script id="data" type="application/json">{"groups":[{"recipe":"brainbert_frozen_perwindow_stft","model":"BrainBERT","pr":"#1104","split":"CrossSession","split_label":"across sessions","n":17,"ours":0.643,"public":0.635,"diff":0.007,"sem":0.006,"tasks":{"onset":0.009,"word_length":0.015,"frame_brightness":-0.004,"speech":0.008},"passed":4,"seeds":[33],"v2":3},{"recipe":"brainbert_frozen_perwindow_stft","model":"BrainBERT","pr":"#1104","split":"CrossSubject","split_label":"across subjects","n":18,"ours":0.562,"public":0.558,"diff":0.004,"sem":0.006,"tasks":{"onset":0.003,"speech":0.006,"volume":0.001},"passed":3,"seeds":[33],"v2":11},{"recipe":"brainbert_frozen_perwindow_stft","model":"BrainBERT","pr":"#1104","split":"WithinSession","split_label":"within session","n":34,"ours":0.7,"public":0.679,"diff":0.021,"sem":0.006,"tasks":{"onset":0.03,"word_length":0.02,"frame_brightness":-0.037},"passed":3,"seeds":[33],"v2":14},{"recipe":"popt_perwindow_stft","model":"PopT","pr":"#1105","split":"CrossSession","split_label":"across sessions","n":17,"ours":0.643,"public":0.689,"diff":-0.046,"sem":0.019,"tasks":{"onset":-0.074,"frame_brightness":0.001,"word_length":-0.013,"speech":-0.008},"passed":3,"seeds":[33],"v2":2},{"recipe":"popt_perwindow_stft","model":"PopT","pr":"#1105","split":"WithinSession","split_label":"within session","n":17,"ours":0.593,"public":0.625,"diff":-0.032,"sem":0.028,"tasks":{"onset":-0.067,"frame_brightness":-0.012,"word_length":-0.004},"passed":2,"seeds":[33],"v2":10},{"recipe":"mapa_neuroprobe","model":"MAPA","pr":"#1178","split":"CrossSession","split_label":"across sessions","n":4,"ours":0.864,"public":0.877,"diff":-0.013,"sem":0.013,"tasks":{"onset":-0.003,"local_flow":-0.046},"passed":2,"seeds":[33],"v2":2},{"recipe":"mapa_neuroprobe","model":"MAPA","pr":"#1178","split":"CrossSubject","split_label":"across subjects","n":16,"ours":0.814,"public":0.806,"diff":0.009,"sem":0.005,"tasks":{"onset":0.007,"speech":0.011,"volume":-0.0},"passed":3,"seeds":[33],"v2":0},{"recipe":"mapa_neuroprobe","model":"MAPA","pr":"#1178","split":"WithinSession","split_label":"within session","n":5,"ours":0.9,"public":0.906,"diff":-0.006,"sem":0.006,"tasks":{"onset":-0.009,"local_flow":0.008},"passed":2,"seeds":[33],"v2":3},{"recipe":"diver1_tiny_frozen","model":"DIVER-1 frozen","pr":"#1170","split":"WithinSession","split_label":"within session","n":6,"ours":0.724,"public":0.723,"diff":0.001,"sem":0.003,"tasks":{"onset":0.006,"frame_brightness":-0.005},"passed":2,"seeds":[41],"v2":6},{"recipe":"diver1_tiny_finetuned","model":"DIVER-1 fine-tuned","pr":"#1170","split":"WithinSession","split_label":"within session","n":6,"ours":0.962,"public":0.954,"diff":0.008,"sem":0.004,"tasks":{"onset":0.008},"passed":1,"seeds":[33],"v2":0},{"recipe":"barista_parcels_paper","model":"BaRISTA","pr":"#1173","split":"BaRISTARandom","split_label":"random split","n":38,"ours":0.936,"public":0.912,"diff":0.024,"sem":0.006,"tasks":{"onset":0.025,"speech":0.023},"passed":2,"seeds":[0,1,2,3,4],"v2":0},{"recipe":"barista_parcels_paper","model":"BaRISTA","pr":"#1173","split":"BaRISTAChronological","split_label":"chronological split","n":24,"ours":0.936,"public":0.843,"diff":0.092,"sem":0.011,"tasks":{"onset":0.096,"speech":0.088},"passed":0,"seeds":[0],"v2":0}],"cells":[{"recipe":"mapa_neuroprobe","split":"CrossSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.9616,"public":0.9802,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_session_lite case=3,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.9697,"public":0.9612,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=3,1","v2":false},{"recipe":"mapa_neuroprobe","split":"WithinSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.9569,"public":0.9541,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=3,1","v2":false},{"recipe":"mapa_neuroprobe","split":"WithinSession","task":"onset","case":[3,1],"fold":1,"seed":33,"ours":0.9802,"public":0.9824,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=3,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSession","task":"onset","case":[2,0],"fold":0,"seed":33,"ours":0.9629,"public":0.9657,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_session_lite case=2,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.7946,"public":0.7942,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=4,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.9383,"public":0.9074,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=3,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.9574,"public":0.9288,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=1,2","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[4,1],"fold":0,"seed":33,"ours":0.7758,"public":0.7783,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=4,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.8733,"public":0.8757,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=1,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[7,0],"fold":0,"seed":33,"ours":0.5254,"public":0.5255,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=7,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[3,1],"fold":0,"seed":33,"ours":0.9314,"public":0.9309,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=3,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[4,0],"fold":0,"seed":33,"ours":0.7234,"public":0.7313,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=4,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[3,0],"fold":0,"seed":33,"ours":0.9316,"public":0.8586,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=3,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[1,2],"fold":0,"seed":33,"ours":0.9574,"public":0.9422,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=1,2","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[7,1],"fold":0,"seed":33,"ours":0.6084,"public":0.6083,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=7,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[4,1],"fold":0,"seed":33,"ours":0.7496,"public":0.7568,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=4,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"volume","case":[7,0],"fold":0,"seed":33,"ours":0.5671,"public":0.5672,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=volume dataset=braintreebank_cross_subject_lite case=7,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"onset","case":[10,0],"fold":0,"seed":33,"ours":0.8355,"public":0.8401,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_subject_lite case=10,0","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSubject","task":"speech","case":[1,1],"fold":0,"seed":33,"ours":0.893,"public":0.8894,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=speech dataset=braintreebank_cross_subject_lite case=1,1","v2":false},{"recipe":"mapa_neuroprobe","split":"CrossSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.9224,"public":0.9093,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"mapa_neuroprobe","split":"CrossSession","task":"local_flow","case":[1,1],"fold":0,"seed":33,"ours":0.6073,"public":0.6529,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=local_flow dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"mapa_neuroprobe","split":"WithinSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.9723,"public":0.9889,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"mapa_neuroprobe","split":"WithinSession","task":"local_flow","case":[1,1],"fold":0,"seed":33,"ours":0.698,"public":0.6901,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=local_flow dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"mapa_neuroprobe","split":"WithinSession","task":"onset","case":[1,1],"fold":1,"seed":33,"ours":0.8943,"public":0.9152,"run":"model=mapa_neuroprobe pr=pr1178-mapa@4a28fe92 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.9399,"public":0.9369,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=3,1","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.6868,"public":0.6816,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=3,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.5877,"public":0.5813,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[2,0],"fold":0,"seed":33,"ours":0.7801,"public":0.7696,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.8342,"public":0.832,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=3,0","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.8516,"public":0.8501,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=4,0","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[7,0],"fold":0,"seed":33,"ours":0.6454,"public":0.6085,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[7,1],"fold":0,"seed":33,"ours":0.6684,"public":0.6579,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[1,1],"fold":1,"seed":33,"ours":0.8157,"public":0.7841,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.8543,"public":0.7352,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,1],"fold":0,"seed":33,"ours":0.6001,"public":0.5427,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.6653,"public":0.6606,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[1,2],"fold":1,"seed":33,"ours":0.6797,"public":0.634,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"word_length","case":[1,1],"fold":0,"seed":33,"ours":0.5335,"public":0.5095,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[1,1],"fold":0,"seed":33,"ours":0.4965,"public":0.4513,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,2],"fold":0,"seed":33,"ours":0.6104,"public":0.5702,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"speech","case":[1,1],"fold":0,"seed":33,"ours":0.6203,"public":0.5793,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[2,0],"fold":1,"seed":33,"ours":0.8474,"public":0.8003,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[2,0],"fold":0,"seed":33,"ours":0.8346,"public":0.8188,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,1],"fold":1,"seed":33,"ours":0.6132,"public":0.5712,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,0],"fold":0,"seed":33,"ours":0.66,"public":0.6373,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.6564,"public":0.641,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=1,1","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[2,4],"fold":1,"seed":33,"ours":0.891,"public":0.8183,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[2,4],"fold":0,"seed":33,"ours":0.811,"public":0.7758,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,2],"fold":1,"seed":33,"ours":0.6111,"public":0.5595,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,4],"fold":0,"seed":33,"ours":0.632,"public":0.6358,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"word_length","case":[1,2],"fold":0,"seed":33,"ours":0.5193,"public":0.5039,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[1,2],"fold":0,"seed":33,"ours":0.4978,"public":0.4897,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.5569,"public":0.5681,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=1,2","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.6269,"public":0.6032,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=4,0","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.5843,"public":0.5755,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=3,0","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[3,0],"fold":1,"seed":33,"ours":0.8578,"public":0.871,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.8381,"public":0.8456,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"speech","case":[1,2],"fold":0,"seed":33,"ours":0.6343,"public":0.6369,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,0],"fold":1,"seed":33,"ours":0.6774,"public":0.6522,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[3,0],"fold":0,"seed":33,"ours":0.6061,"public":0.6042,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[3,1],"fold":1,"seed":33,"ours":0.9273,"public":0.927,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[1,1],"fold":0,"seed":33,"ours":0.6079,"public":0.534,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=1,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.8804,"public":0.8968,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,4],"fold":1,"seed":33,"ours":0.6338,"public":0.5998,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[4,0],"fold":1,"seed":33,"ours":0.864,"public":0.8155,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.8447,"public":0.8047,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[3,1],"fold":0,"seed":33,"ours":0.5633,"public":0.5428,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=3,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"word_length","case":[2,0],"fold":0,"seed":33,"ours":0.5815,"public":0.5759,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.5657,"public":0.5668,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[2,0],"fold":0,"seed":33,"ours":0.4824,"public":0.5482,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[3,1],"fold":0,"seed":33,"ours":0.6403,"public":0.6424,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[3,0],"fold":0,"seed":33,"ours":0.5226,"public":0.5206,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=3,0","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[1,2],"fold":0,"seed":33,"ours":0.5501,"public":0.5535,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=1,2","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[4,0],"fold":0,"seed":33,"ours":0.5254,"public":0.5296,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=4,0","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSession","task":"speech","case":[2,0],"fold":0,"seed":33,"ours":0.6886,"public":0.7024,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[3,0],"fold":1,"seed":33,"ours":0.6017,"public":0.6054,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[4,1],"fold":1,"seed":33,"ours":0.6147,"public":0.6088,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[4,1],"fold":0,"seed":33,"ours":0.8012,"public":0.7188,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"volume","case":[1,1],"fold":0,"seed":33,"ours":0.5403,"public":0.5489,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=volume dataset=braintreebank_cross_subject_lite case=1,1","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[4,0],"fold":0,"seed":33,"ours":0.5712,"public":0.5489,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[7,0],"fold":1,"seed":33,"ours":0.6286,"public":0.6123,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"volume","case":[3,1],"fold":0,"seed":33,"ours":0.5395,"public":0.5399,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=volume dataset=braintreebank_cross_subject_lite case=3,1","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"onset","case":[7,0],"fold":0,"seed":33,"ours":0.5895,"public":0.5708,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"volume","case":[3,0],"fold":0,"seed":33,"ours":0.5218,"public":0.5085,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=volume dataset=braintreebank_cross_subject_lite case=3,0","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"word_length","case":[3,1],"fold":1,"seed":33,"ours":0.6668,"public":0.6938,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=word_length dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[1,1],"fold":0,"seed":33,"ours":0.4981,"public":0.535,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[4,1],"fold":0,"seed":33,"ours":0.5541,"public":0.5511,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=4,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[1,2],"fold":0,"seed":33,"ours":0.459,"public":0.4662,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[10,0],"fold":0,"seed":33,"ours":0.5289,"public":0.5758,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=10,0","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[10,1],"fold":0,"seed":33,"ours":0.5273,"public":0.502,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=10,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"onset","case":[7,1],"fold":0,"seed":33,"ours":0.5348,"public":0.5583,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=sentence_onset dataset=braintreebank_cross_subject_lite case=7,1","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"CrossSubject","task":"speech","case":[7,0],"fold":0,"seed":33,"ours":0.4931,"public":0.5109,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=speech dataset=braintreebank_cross_subject_lite case=7,0","v2":true},{"recipe":"brainbert_frozen_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[2,0],"fold":0,"seed":33,"ours":0.4684,"public":0.5344,"run":"model=brainbert_frozen_perwindow_stft pr=pr1104-brainbert@e3124315 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[2,0],"fold":0,"seed":33,"ours":0.8006,"public":0.8442,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[2,4],"fold":0,"seed":33,"ours":0.7876,"public":0.8567,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.8032,"public":0.8534,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.8559,"public":0.8907,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.7069,"public":0.8728,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[4,1],"fold":0,"seed":33,"ours":0.6424,"public":0.7686,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[7,0],"fold":0,"seed":33,"ours":0.5822,"public":0.5058,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[7,1],"fold":0,"seed":33,"ours":0.561,"public":0.5649,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[10,0],"fold":0,"seed":33,"ours":0.6235,"public":0.7849,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"onset","case":[10,1],"fold":0,"seed":33,"ours":0.6354,"public":0.7997,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.6745,"public":0.7853,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[1,1],"fold":0,"seed":33,"ours":0.5045,"public":0.555,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,1],"fold":0,"seed":33,"ours":0.5012,"public":0.556,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.6893,"public":0.7374,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[1,1],"fold":0,"seed":33,"ours":0.4993,"public":0.4382,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"word_length","case":[1,1],"fold":0,"seed":33,"ours":0.5282,"public":0.5279,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_cross_session_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"speech","case":[1,1],"fold":0,"seed":33,"ours":0.72,"public":0.6647,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=speech dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"word_length","case":[1,2],"fold":0,"seed":33,"ours":0.5439,"public":0.5427,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[1,2],"fold":0,"seed":33,"ours":0.4974,"public":0.55,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[2,0],"fold":0,"seed":33,"ours":0.7599,"public":0.442,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,0],"fold":0,"seed":33,"ours":0.5482,"public":0.5399,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[2,0],"fold":0,"seed":33,"ours":0.4926,"public":0.4686,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[2,4],"fold":0,"seed":33,"ours":0.6848,"public":0.8462,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[1,2],"fold":0,"seed":33,"ours":0.4758,"public":0.4451,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"word_length","case":[2,4],"fold":0,"seed":33,"ours":0.5306,"public":0.4995,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[2,4],"fold":0,"seed":33,"ours":0.4799,"public":0.4502,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"word_length","case":[1,2],"fold":0,"seed":33,"ours":0.5055,"public":0.5325,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"speech","case":[1,2],"fold":0,"seed":33,"ours":0.7173,"public":0.789,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=speech dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[3,0],"fold":0,"seed":33,"ours":0.7045,"public":0.8501,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"word_length","case":[3,0],"fold":0,"seed":33,"ours":0.5305,"public":0.5338,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=word_length dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"frame_brightness","case":[3,0],"fold":0,"seed":33,"ours":0.5172,"public":0.5265,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.7853,"public":0.9032,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"CrossSession","task":"frame_brightness","case":[2,0],"fold":0,"seed":33,"ours":0.4909,"public":0.5795,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=frame_brightness dataset=braintreebank_cross_session_lite case=default","v2":false},{"recipe":"popt_perwindow_stft","split":"WithinSession","task":"onset","case":[4,0],"fold":0,"seed":33,"ours":0.6446,"public":0.8463,"run":"model=popt_perwindow_stft pr=combined-popt-brainbert@2cbb0016 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"onset","case":[1,1],"fold":0,"seed":41,"ours":0.9803,"public":0.9798,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"frame_brightness","case":[1,1],"fold":0,"seed":41,"ours":0.5216,"public":0.5331,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"onset","case":[1,2],"fold":0,"seed":41,"ours":0.9506,"public":0.9454,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"frame_brightness","case":[1,2],"fold":0,"seed":41,"ours":0.4144,"public":0.4155,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"onset","case":[2,0],"fold":0,"seed":41,"ours":0.9585,"public":0.9461,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_frozen","split":"WithinSession","task":"frame_brightness","case":[2,0],"fold":0,"seed":41,"ours":0.5175,"public":0.5189,"run":"model=diver1_tiny_frozen pr=pr1170-diver1@059f03f6 task=frame_brightness dataset=braintreebank_within_session_fold0_lite case=default","v2":true},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[3,1],"fold":0,"seed":33,"ours":0.9435,"public":0.9448,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=3,1","v2":false},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[3,1],"fold":1,"seed":33,"ours":0.9632,"public":0.9564,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=3,1","v2":false},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[1,1],"fold":0,"seed":33,"ours":0.9753,"public":0.9751,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[1,1],"fold":1,"seed":33,"ours":0.9406,"public":0.9135,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[1,2],"fold":0,"seed":33,"ours":0.9546,"public":0.9402,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold0_lite case=default","v2":false},{"recipe":"diver1_tiny_finetuned","split":"WithinSession","task":"onset","case":[1,2],"fold":1,"seed":33,"ours":0.9933,"public":0.9918,"run":"model=diver1_tiny_finetuned pr=pr1170-diver1@059f03f6 task=sentence_onset dataset=braintreebank_within_session_fold1_lite case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[1,1],"fold":0,"seed":0,"ours":0.923,"public":0.922,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[3,0],"fold":0,"seed":0,"ours":0.9554,"public":0.956,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[1,1],"fold":0,"seed":0,"ours":0.9591,"public":0.95,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[4,0],"fold":0,"seed":0,"ours":0.9121,"public":0.89,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[3,0],"fold":0,"seed":0,"ours":0.9706,"public":0.977,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[6,4],"fold":0,"seed":0,"ours":0.9338,"public":0.85,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[1,1],"fold":0,"seed":1,"ours":0.9124,"public":0.922,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[1,1],"fold":0,"seed":0,"ours":0.9817,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[3,0],"fold":0,"seed":1,"ours":0.9771,"public":0.956,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[4,0],"fold":0,"seed":0,"ours":0.9359,"public":0.91,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[1,1],"fold":0,"seed":0,"ours":0.987,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[6,4],"fold":0,"seed":0,"ours":0.9414,"public":0.827,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[4,0],"fold":0,"seed":1,"ours":0.8969,"public":0.89,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[1,1],"fold":1,"seed":0,"ours":0.9146,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[6,4],"fold":0,"seed":1,"ours":0.8625,"public":0.85,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[1,1],"fold":0,"seed":1,"ours":0.9648,"public":0.95,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[1,1],"fold":1,"seed":0,"ours":0.841,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[3,0],"fold":0,"seed":1,"ours":0.9794,"public":0.977,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[1,1],"fold":2,"seed":0,"ours":0.9621,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[1,1],"fold":0,"seed":2,"ours":0.9353,"public":0.922,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[1,1],"fold":2,"seed":0,"ours":0.9647,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[3,0],"fold":0,"seed":2,"ours":0.9665,"public":0.956,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[1,1],"fold":3,"seed":0,"ours":0.9896,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[4,0],"fold":0,"seed":1,"ours":0.9016,"public":0.91,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[4,0],"fold":0,"seed":2,"ours":0.8977,"public":0.89,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[1,1],"fold":3,"seed":0,"ours":0.9568,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[6,4],"fold":0,"seed":1,"ours":0.881,"public":0.827,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[6,4],"fold":0,"seed":2,"ours":0.9725,"public":0.85,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[1,1],"fold":0,"seed":3,"ours":0.9233,"public":0.922,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[1,1],"fold":4,"seed":0,"ours":0.8554,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[1,1],"fold":0,"seed":2,"ours":0.9709,"public":0.95,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[3,0],"fold":0,"seed":3,"ours":0.959,"public":0.956,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[1,1],"fold":4,"seed":0,"ours":0.836,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[3,0],"fold":0,"seed":2,"ours":0.9762,"public":0.977,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[3,0],"fold":0,"seed":0,"ours":0.9825,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[3,0],"fold":0,"seed":0,"ours":0.9616,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[4,0],"fold":0,"seed":3,"ours":0.8882,"public":0.89,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[3,0],"fold":1,"seed":0,"ours":0.9922,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[6,4],"fold":0,"seed":3,"ours":0.9388,"public":0.85,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[3,0],"fold":1,"seed":0,"ours":0.993,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[4,0],"fold":0,"seed":2,"ours":0.918,"public":0.91,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[3,0],"fold":2,"seed":0,"ours":0.9019,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[1,1],"fold":0,"seed":4,"ours":0.9285,"public":0.922,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[6,4],"fold":0,"seed":2,"ours":0.9324,"public":0.827,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[3,0],"fold":2,"seed":0,"ours":0.7993,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[3,0],"fold":3,"seed":0,"ours":0.9825,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[3,0],"fold":0,"seed":4,"ours":0.9699,"public":0.956,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[3,0],"fold":3,"seed":0,"ours":0.9844,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[1,1],"fold":0,"seed":3,"ours":0.961,"public":0.95,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[3,0],"fold":4,"seed":0,"ours":0.9603,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[4,0],"fold":0,"seed":4,"ours":0.8661,"public":0.89,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[3,0],"fold":4,"seed":0,"ours":0.9603,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[3,0],"fold":0,"seed":3,"ours":0.9794,"public":0.977,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"onset","case":[6,4],"fold":0,"seed":4,"ours":0.97,"public":0.85,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[4,0],"fold":0,"seed":0,"ours":0.9463,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[4,0],"fold":0,"seed":3,"ours":0.9133,"public":0.91,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[4,0],"fold":0,"seed":0,"ours":0.8982,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[6,4],"fold":0,"seed":3,"ours":0.8623,"public":0.827,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"onset","case":[4,0],"fold":1,"seed":0,"ours":0.9229,"public":0.853,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=sentence_onset dataset=barista_chronological_fold0 case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[1,1],"fold":0,"seed":4,"ours":0.9724,"public":0.95,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTARandom","task":"speech","case":[3,0],"fold":0,"seed":4,"ours":0.9753,"public":0.977,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_random case=default","v2":false},{"recipe":"barista_parcels_paper","split":"BaRISTAChronological","task":"speech","case":[4,0],"fold":1,"seed":0,"ours":0.8841,"public":0.834,"run":"model=barista_parcels_paper pr=pr1173-barista@5e23b45a task=speech dataset=barista_chronological_fold0 case=default","v2":false}],"snapshot":"25 Sep 2026, 14:55 CEST"}</script>
+<script>
+(function () {
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const NS = "http://www.w3.org/2000/svg";
+  const TOL = 0.05;
+  const SPLIT = {
+    CrossSession: { label: "across sessions", color: "var(--c-cs)", shape: "circle" },
+    WithinSession: { label: "within session", color: "var(--c-ws)", shape: "square" },
+    CrossSubject: { label: "across subjects", color: "var(--c-xs)", shape: "triangle" },
+    BaRISTARandom: { label: "random split", color: "var(--c-rand)", shape: "circle" },
+    BaRISTAChronological: { label: "chronological split", color: "var(--c-chr)", shape: "diamond" },
+  };
+  // DIVER-1 has one split: its two recipes are the categories instead.
+  const DIVER = {
+    diver1_tiny_frozen: { label: "frozen", color: "var(--c-ws)", shape: "square" },
+    diver1_tiny_finetuned: { label: "fine-tuned (seed 33)", color: "var(--c-ws)", shape: "square", hollow: true },
+  };
+  const category = (c) => DIVER[c.recipe] || SPLIT[c.split];
+  const TASK = { onset: "sentence onset", speech: "speech", volume: "volume", frame_brightness: "frame brightness",
+    word_length: "word length", local_flow: "local flow" };
+  const fmt = (v, d = 3) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d);
+
+  function el(name, attrs, parent) {
+    const node = document.createElementNS(NS, name);
+    for (const k in attrs) node.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+  function text(parent, x, y, str, attrs = {}) {
+    const t = el("text", Object.assign({ x, y, "font-size": 13 }, attrs), parent);
+    t.textContent = str;
+    return t;
+  }
+  function mark(parent, shape, x, y, r, color, hollow) {
+    const style = hollow
+      ? { fill: "var(--bg)", stroke: color, "stroke-width": 1.6 }
+      : { fill: color, stroke: "var(--bg)", "stroke-width": 0.8 };
+    if (shape === "square") return el("rect", Object.assign({ x: x - r * 0.88, y: y - r * 0.88, width: r * 1.76, height: r * 1.76 }, style), parent);
+    if (shape === "triangle") return el("path", Object.assign({ d: `M${x},${y - r * 1.15}L${x + r * 1.05},${y + r * 0.75}L${x - r * 1.05},${y + r * 0.75}Z` }, style), parent);
+    if (shape === "diamond") return el("path", Object.assign({ d: `M${x},${y - r * 1.2}L${x + r * 1.2},${y}L${x},${y + r * 1.2}L${x - r * 1.2},${y}Z` }, style), parent);
+    return el("circle", Object.assign({ cx: x, cy: y, r }, style), parent);
+  }
+  const caseName = (c) => (c.split.startsWith("BaRISTA")
+    ? `subject ${c.case[0]}, seed ${c.seed}${c.split === "BaRISTAChronological" ? `, fold ${c.fold}` : ""}`
+    : `subject ${c.case[0]}, session ${c.case[1]}${c.split === "WithinSession" ? `, fold ${c.fold}` : ""}`);
+
+  // Snapshot line and the corrected-table count.
+  const cells = DATA.cells;
+  document.getElementById("snapshot").textContent =
+    `Snapshot of ${DATA.snapshot} · ${cells.length} finished test cells · sweeps still running, this page will be refreshed.`;
+  document.getElementById("v2count").textContent =
+    `${cells.filter((c) => c.v2).length} of ${cells.length} cells`;
+
+  // Fig. 1: every cell's difference, per model and split.
+  function fig1() {
+    const host = document.getElementById("fig1");
+    host.textContent = "";
+    const W = Math.max(300, host.clientWidth);
+    const narrow = W < 560;
+    const groups = DATA.groups;
+    const labelW = narrow ? 0 : 150, rightW = narrow ? 0 : 64;
+    const rowH = narrow ? 50 : 40, top = 34, bottom = 30;
+    const H = top + groups.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H }, host);
+    const x0 = labelW + 8, x1 = W - rightW - 8, D = 0.2;
+    const sx = (v) => x0 + ((Math.max(-D, Math.min(D, v)) + D) / (2 * D)) * (x1 - x0);
+    el("rect", { x: sx(-TOL), y: top - 8, width: sx(TOL) - sx(-TOL), height: groups.length * rowH + 8, fill: "var(--band)" }, svg);
+    [-0.2, -0.1, 0, 0.1, 0.2].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top - 8, y2: H - bottom, stroke: t === 0 ? "var(--ink)" : "var(--rule)", "stroke-width": t === 0 ? 1 : 0.8 }, svg);
+      text(svg, sx(t), H - bottom + 18, t === 0 ? "0" : fmt(t, 1), { "text-anchor": "middle", "font-size": 12 });
+    });
+    text(svg, sx(0), 14, "ours − public AUROC", { "text-anchor": "middle", "font-size": 12 });
+    text(svg, sx(TOL) + 4, top + 2, "tolerance ±0.05", { "font-size": 11 });
+    groups.forEach((g, i) => {
+      const y0 = top + i * rowH;
+      const y = narrow ? y0 + 34 : y0 + rowH / 2;
+      const failed = g.passed < Object.keys(g.tasks).length;
+      const color = failed ? "var(--warn)" : "var(--accent)";
+      const name = `${g.model} · ${g.split_label}`;
+      if (narrow) {
+        text(svg, 0, y0 + 14, name, { class: "strong", "font-size": 13 });
+        text(svg, W, y0 + 14, `${g.passed}/${Object.keys(g.tasks).length}`, { "text-anchor": "end", fill: color, "font-weight": 600 });
+      } else {
+        text(svg, 0, y - 2, g.model, { class: "strong", "font-size": 13.5, "font-weight": 500 });
+        text(svg, 0, y + 13, g.split_label, { "font-size": 12 });
+        text(svg, W, y + 4, `${g.passed}/${Object.keys(g.tasks).length}`, { "text-anchor": "end", fill: color, "font-weight": 600 });
+      }
+      if (i) el("line", { x1: narrow ? 0 : x0, x2: x1, y1: y0, y2: y0, stroke: "var(--rule)", "stroke-width": 0.5, "stroke-dasharray": "2 3" }, svg);
+      const mine = cells.filter((c) => c.recipe === g.recipe && c.split === g.split);
+      mine.forEach((c, j) => {
+        const jitter = ((j * 7919) % 11 - 5) * 1.1;
+        const d = c.ours - c.public;
+        const dot = el("circle", { cx: sx(d), cy: y + jitter, r: 2.6, fill: "var(--muted)", "fill-opacity": Math.abs(d) > D ? 0.9 : 0.45 }, svg);
+        el("title", {}, dot).textContent = `${caseName(c)} · ${TASK[c.task] || c.task}: ours ${c.ours.toFixed(3)}, public ${c.public.toFixed(3)}`;
+      });
+      if (g.sem) el("line", { x1: sx(g.diff - g.sem), x2: sx(g.diff + g.sem), y1: y, y2: y, stroke: color, "stroke-width": 2.2 }, svg);
+      const m = el("circle", { cx: sx(g.diff), cy: y, r: 5.5, fill: color, stroke: "var(--bg)", "stroke-width": 1.5 }, svg);
+      el("title", {}, m).textContent = `${name}: mean ${fmt(g.diff)} over ${g.n} cells`;
+    });
+  }
+
+  // Fig. 2: ours against public, one panel per model.
+  function scatter(host) {
+    host.textContent = "";
+    const key = host.dataset.scatter;
+    const mine = cells.filter((c) => (key === "diver1" ? c.recipe.startsWith("diver1") : c.recipe === key));
+    const W = Math.min(440, Math.max(260, host.clientWidth)), H = W;
+    const m = { l: 46, r: 12, t: 16, b: 42 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": `Our AUROC against the public AUROC, ${mine.length} test cells` }, host);
+    const lo = 0.4, hi = 1.0;
+    const sx = (v) => m.l + ((v - lo) / (hi - lo)) * (W - m.l - m.r);
+    const sy = (v) => H - m.b - ((v - lo) / (hi - lo)) * (H - m.t - m.b);
+    const clip = "c" + key;
+    el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b }, el("clipPath", { id: clip }, el("defs", {}, svg)));
+    const g = el("g", { "clip-path": `url(#${clip})` }, svg);
+    el("path", { d: `M${sx(lo)},${sy(lo - TOL)}L${sx(hi)},${sy(hi - TOL)}L${sx(hi)},${sy(hi + TOL)}L${sx(lo)},${sy(lo + TOL)}Z`, fill: "var(--band)" }, g);
+    for (let t = 0.4; t <= 1.001; t += 0.1) {
+      el("line", { x1: sx(t), x2: sx(t), y1: m.t, y2: H - m.b, stroke: "var(--rule)", "stroke-width": 0.6 }, g);
+      el("line", { x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t), stroke: "var(--rule)", "stroke-width": 0.6 }, g);
+      text(svg, sx(t), H - m.b + 17, t.toFixed(1), { "text-anchor": "middle", "font-size": 12 });
+      text(svg, m.l - 7, sy(t) + 4, t.toFixed(1), { "text-anchor": "end", "font-size": 12 });
+    }
+    el("line", { x1: sx(0.5), x2: sx(0.5), y1: m.t, y2: H - m.b, stroke: "var(--muted)", "stroke-dasharray": "4 3", "stroke-width": 0.9 }, g);
+    el("line", { x1: m.l, x2: W - m.r, y1: sy(0.5), y2: sy(0.5), stroke: "var(--muted)", "stroke-dasharray": "4 3", "stroke-width": 0.9 }, g);
+    el("line", { x1: sx(lo), y1: sy(lo), x2: sx(hi), y2: sy(hi), stroke: "var(--ink)", "stroke-width": 1 }, g);
+    mine.forEach((c) => {
+      const cat = category(c);
+      const dot = mark(g, cat.shape, sx(c.public), sy(c.ours), 4.2, cat.color, cat.hollow);
+      dot.setAttribute("fill-opacity", cat.hollow ? 1 : 0.85);
+      el("title", {}, dot).textContent = `${cat.label} · ${caseName(c)} · ${TASK[c.task] || c.task}: ours ${c.ours.toFixed(3)}, public ${c.public.toFixed(3)}`;
+    });
+    text(svg, (m.l + W - m.r) / 2, H - 6, "Public AUROC", { "text-anchor": "middle", "font-size": 12.5 });
+    const yl = text(svg, 0, 0, "Our AUROC", { "text-anchor": "middle", "font-size": 12.5 });
+    yl.setAttribute("transform", `translate(12 ${(m.t + H - m.b) / 2}) rotate(-90)`);
+    text(svg, m.l + 8, m.t + 20, host.dataset.letter, { class: "strong", "font-size": 18, "font-weight": 600 });
+  }
+
+  function keys() {
+    document.querySelectorAll("[data-key]").forEach((host) => {
+      const k = host.dataset.key;
+      const mine = cells.filter((c) => (k === "diver1" ? c.recipe.startsWith("diver1") : c.recipe === k));
+      const seen = new Map();
+      mine.forEach((c) => seen.set(category(c).label, category(c)));
+      host.textContent = "";
+      seen.forEach((cat, label) => {
+        const span = document.createElement("span");
+        const svg = el("svg", { viewBox: "0 0 12 12" }, span);
+        mark(svg, cat.shape, 6, 6, 4.2, cat.color, cat.hollow);
+        span.appendChild(document.createTextNode(`${label} (${mine.filter((c) => category(c).label === label).length})`));
+        host.appendChild(span);
+      });
+    });
+    document.querySelectorAll("[data-count]").forEach((node) => {
+      const k = node.dataset.count;
+      const n = cells.filter((c) => (k === "diver1" ? c.recipe.startsWith("diver1") : c.recipe === k)).length;
+      node.textContent = `${n} test cells.`;
+    });
+  }
+
+  function ledger() {
+    const t = document.getElementById("ledger-table");
+    const head = "<thead><tr><th>Model</th><th>Split</th><th>Cells</th><th>Ours</th><th>Public</th><th>Difference</th><th>Tasks passing</th><th>Per task</th></tr></thead>";
+    const rows = DATA.groups.map((g) => {
+      const n = Object.keys(g.tasks).length;
+      const per = Object.entries(g.tasks).map(([k, v]) =>
+        `<span class="${Math.abs(v) > TOL ? "fail" : ""}">${TASK[k] || k} ${fmt(v)}</span>`).join(" · ");
+      return `<tr><td>${g.model} <span class="mono">${g.pr}</span></td><td>${g.split_label}</td><td class="n">${g.n}</td>` +
+        `<td class="n">${g.ours.toFixed(3)}</td><td class="n">${g.public.toFixed(3)}</td><td class="n">${fmt(g.diff)}</td>` +
+        `<td class="${g.passed < n ? "fail" : "ok"}">${g.passed} of ${n}</td><td>${per}</td></tr>`;
+    }).join("");
+    t.innerHTML = head + "<tbody>" + rows + "</tbody>";
+    t.querySelectorAll("span.fail").forEach((s) => { s.style.color = "var(--warn)"; s.style.fontWeight = 600; });
+  }
+
+  // Schematic: where the z-score statistics come from.
+  function scheme() {
+    const host = document.getElementById("scheme");
+    const panels = [
+      ["Per window", "mean and std over the 34 frames of each 1 s window", false],
+      ["Global, as implemented", "mean and std over every frame of the session", true],
+    ];
+    panels.forEach(([title, note, global]) => {
+      const fig = document.createElement("figure");
+      const W = 360, H = 118;
+      const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${title}: ${note}` }, fig);
+      const cols = 72, rows = 5, x0 = 4, cw = (W - 8) / cols, y0 = 40, rh = 9;
+      for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+        const v = 0.25 + 0.6 * Math.abs(Math.sin(i * 1.7 + j * 2.3) * Math.cos(i * 0.31 - j));
+        el("rect", { x: x0 + i * cw, y: y0 + j * rh, width: cw - 0.6, height: rh - 0.6, fill: "var(--muted)", "fill-opacity": (v * 0.55).toFixed(2) }, svg);
+      }
+      const w0 = x0 + 30 * cw, w1 = w0 + 5 * cw;
+      el("rect", { x: w0 - 1, y: y0 - 3, width: w1 - w0 + 2, height: rows * rh + 6, fill: "none", stroke: "var(--accent)", "stroke-width": 1.8 }, svg);
+      text(svg, (w0 + w1) / 2, y0 + rows * rh + 20, "one 1 s window", { "text-anchor": "middle", "font-size": 12 });
+      const b0 = global ? x0 : w0, b1 = global ? W - 4 : w1;
+      el("path", { d: `M${b0},${y0 - 8}V${y0 - 14}H${b1}V${y0 - 8}`, fill: "none", stroke: "var(--warn)", "stroke-width": 1.6 }, svg);
+      text(svg, global ? W / 2 : (w0 + w1) / 2, y0 - 20, global ? "statistics: whole session" : "statistics: this window", { "text-anchor": "middle", "font-size": 12, fill: "var(--warn)" });
+      const cap = document.createElement("figcaption");
+      cap.innerHTML = `<b>${title}.</b> Each column is one STFT frame and each row a frequency bin of one contact; ${note}.`;
+      fig.appendChild(cap);
+      host.appendChild(fig);
+    });
+  }
+
+  function draw() {
+    fig1();
+    document.querySelectorAll("[data-scatter]").forEach(scatter);
+  }
+  keys();
+  ledger();
+  scheme();
+  draw();
+  let pending;
+  window.addEventListener("resize", () => { clearTimeout(pending); pending = setTimeout(draw, 120); });
+})();
+</script>
+
+
+</body>
+</html>
