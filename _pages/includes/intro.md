@@ -57,17 +57,6 @@ I build and maintain tools for learning from time series, geometric deep learnin
     </div>
   </div>
   <div class="software-card">
-    {% include library_logo.html library="spdlearn" %}
-    <div class="software-card__body">
-    <p class="software-card__name"><a href="https://spdlearn.org">SPD Learn</a></p>
-    <span class="software-card__role">Creator</span>
-    <p class="software-card__detail">Geometric (Riemannian/SPD) deep learning library for neural decoding through trivialization.</p>
-    <p class="software-card__meta">
-      <a href="https://pepy.tech/project/spd-learn"><img class="software-card__badge" src="https://pepy.tech/badge/spd-learn" alt="SPD Learn downloads on PyPI" height="20" loading="lazy"></a>
-    </p>
-    </div>
-  </div>
-  <div class="software-card">
     {% include library_logo.html library="eegdash" %}
     <div class="software-card__body">
     <p class="software-card__name"><a href="https://eegdash.org">EEG-DaSh</a></p>
@@ -75,6 +64,17 @@ I build and maintain tools for learning from time series, geometric deep learnin
     <p class="software-card__detail">Open data, tools, and compute resource for machine learning on neuroelectromagnetic data.</p>
     <p class="software-card__meta">
       <a href="https://pepy.tech/project/eegdash"><img class="software-card__badge" src="https://pepy.tech/badge/eegdash" alt="EEG-DaSh downloads on PyPI" height="20" loading="lazy"></a>
+    </p>
+    </div>
+  </div>
+  <div class="software-card">
+    {% include library_logo.html library="spdlearn" %}
+    <div class="software-card__body">
+    <p class="software-card__name"><a href="https://spdlearn.org">SPD Learn</a></p>
+    <span class="software-card__role">Creator</span>
+    <p class="software-card__detail">Geometric (Riemannian/SPD) deep learning library for neural decoding through trivialization.</p>
+    <p class="software-card__meta">
+      <a href="https://pepy.tech/project/spd-learn"><img class="software-card__badge" src="https://pepy.tech/badge/spd-learn" alt="SPD Learn downloads on PyPI" height="20" loading="lazy"></a>
     </p>
     </div>
   </div>
