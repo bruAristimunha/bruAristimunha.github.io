@@ -7,6 +7,8 @@
   venue_short: ICASSP
   type: conference
   status: submitted
+  links:
+    arxiv: https://arxiv.org/abs/2609.31195
   figure: /assets/images/publications/artifact-removal-age-icassp27.png
   map:
     area: Preprocessing
@@ -18,7 +20,10 @@
       title = {Automated Artifact Removal in EEG Age Prediction: A Systematic Comparison},
       author = {Hajhassani, D. and Graignic, P-A. and Aristimunha, B. and Mellot, A. and Mariani, T. and Nober, C. and Lopes, B. J. and Burgund, L. and Kusch, L. and Semah, T. and Caillet, A. H.},
       year = {2026},
-      howpublished = {Submitted to ICASSP 2027}
+      eprint = {2609.31195},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2609.31195},
+      note = {Submitted to ICASSP 2027}
     }
 - id: paper-p39
   num: 39
@@ -57,6 +62,7 @@
   type: conference
   status: submitted
   links:
+    arxiv: https://arxiv.org/abs/2609.33880
     pdf: /assets/pdfs/neuron-growth-eeg-icassp27.pdf
   figure: /assets/images/publications/neuron-growth-eeg-icassp27.png
   map:
@@ -70,7 +76,10 @@
       title = {Neuron-Level Architecture Growth: A Controlled Evaluation for EEG Time-Series Decoding},
       author = {Mounir, A. and Douka, S. and Caillet, A. H. and Aristimunha, B. and Chevallier, S.},
       year = {2026},
-      howpublished = {Submitted to ICASSP 2027}
+      eprint = {2609.33880},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2609.33880},
+      note = {Submitted to ICASSP 2027}
     }
 - id: paper-p37
   num: 37
@@ -161,6 +170,8 @@
   venue: Manuscript
   type: conference
   status: submitted to nice conference :)
+  links:
+    arxiv: https://arxiv.org/abs/2609.33487
   map:
     area: Models
     topic: Foundation and transfer models
@@ -170,7 +181,9 @@
       title = {What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA},
       author = {Guetschel, P. and Aristimunha, B. and El Ouahidi, Y. and Delorme, A. and Moreau, T. and Tangermann, M.},
       year = {2026},
-      howpublished = {Manuscript}
+      eprint = {2609.33487},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2609.33487}
     }
 - id: paper-p24
   num: 24
