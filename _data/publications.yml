@@ -29,6 +29,8 @@
   venue_short: ICASSP
   type: conference
   status: submitted
+  links:
+    arxiv: https://arxiv.org/abs/2609.35056
   figure: /assets/images/publications/scaling-laws-eeg-icassp27.png
   map:
     area: Benchmark and Evaluation
@@ -40,7 +42,10 @@
       title = {Scaling Laws for EEG Decoding: How Much Data is Enough?},
       author = {Nunes de Oliveira Junior, J. M. and Lopes, B. J. and Burgund, L. and de Camargo, R. Y. and Aristimunha, B.},
       year = {2026},
-      howpublished = {Submitted to ICASSP 2027}
+      eprint = {2609.35056},
+      archivePrefix = {arXiv},
+      url = {https://arxiv.org/abs/2609.35056},
+      note = {Submitted to ICASSP 2027}
     }
 - id: paper-p38
   num: 38
