@@ -2244,6 +2244,17 @@ html { scroll-behavior: smooth; }
 .journey__panel.is-active .journey__ms-note { max-height: none; }
 
 .publication-profiles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.85rem; }
+.citation-growth { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem 2rem; margin: 0.5rem 0 1.5rem; }
+.citation-growth__stats { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.85rem; }
+.citation-growth__stats strong { font-size: 1.05rem; }
+.citation-growth__total strong { font-size: 1.6rem; color: #24549a; }
+.citation-growth__chart { display: block; overflow-x: auto; text-decoration: none; }
+.citation-growth__chart svg { display: block; max-width: 100%; height: auto; }
+.citation-growth__chart rect { fill: #24549a; opacity: 0.85; }
+.citation-growth__chart:hover rect { opacity: 1; }
+.citation-growth__chart text { font-size: 10px; text-anchor: middle; fill: currentColor; }
+.citation-growth__chart text.y { opacity: 0.6; }
+.citation-growth__note { flex-basis: 100%; margin: 0; font-size: 0.75rem; opacity: 0.7; }
 .pubtrack__chart-wrap { overflow-x: auto; }
 .pubtrack__links a,
 .pubtrack__bib,

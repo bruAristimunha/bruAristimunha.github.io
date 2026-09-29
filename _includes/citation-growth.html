@@ -1,0 +1,31 @@
+{% assign c = site.data.citations %}
+{% if c and c.by_year %}
+{% assign max = 1 %}
+{% for y in c.by_year %}{% if y.count > max %}{% assign max = y.count %}{% endif %}{% endfor %}
+{% assign n = c.by_year | size %}
+{% assign bw = 34 %}{% assign gap = 10 %}{% assign ch = 90 %}
+{% assign w = bw | plus: gap | times: n | minus: gap %}
+<div class="citation-growth">
+  <div class="citation-growth__stats">
+    <a href="{{ c.profile }}" class="citation-growth__total" title="Google Scholar profile">
+      <strong>{{ c.citations }}</strong> citations
+    </a>
+    <span><strong>{{ c.h_index }}</strong> h-index</span>
+    <span><strong>{{ c.i10_index }}</strong> i10-index</span>
+  </div>
+  <a href="{{ c.profile }}" class="citation-growth__chart" aria-label="Citations per year on Google Scholar">
+    <svg viewBox="0 0 {{ w }} {{ ch | plus: 32 }}" width="{{ w }}" height="{{ ch | plus: 32 }}" role="img">
+      <title>Citations per year (Google Scholar)</title>
+      {% for y in c.by_year %}
+        {% assign h = y.count | times: ch | divided_by: max %}{% if h < 2 %}{% assign h = 2 %}{% endif %}
+        {% assign x = forloop.index0 | times: bw %}{% assign x2 = forloop.index0 | times: gap %}{% assign x = x | plus: x2 %}
+        {% assign ytop = ch | plus: 14 | minus: h %}
+        <rect x="{{ x }}" y="{{ ytop }}" width="{{ bw }}" height="{{ h }}" rx="2"><title>{{ y.year }}: {{ y.count }}</title></rect>
+        <text x="{{ x | plus: 17 }}" y="{{ ytop | minus: 3 }}" class="v">{{ y.count }}</text>
+        <text x="{{ x | plus: 17 }}" y="{{ ch | plus: 28 }}" class="y">{{ y.year }}</text>
+      {% endfor %}
+    </svg>
+  </a>
+  <p class="citation-growth__note">Citations per year · <a href="{{ c.profile }}">Google Scholar</a> · updated {{ c.updated }}</p>
+</div>
+{% endif %}

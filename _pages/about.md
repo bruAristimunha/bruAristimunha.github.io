@@ -372,6 +372,8 @@ redirect_from:
 
 <p class="publication-profiles"><a href="https://scholar.google.com/citations?user=2Gd5gOQAAAAJ">Google Scholar</a><a href="https://orcid.org/0000-0001-5258-2995">ORCID</a><a href="https://openalex.org/A5060466816">OpenAlex</a></p>
 
+{% include citation-growth.html %}
+
 {% assign pubs = site.data.publications %}
 {% assign n_journal = pubs | where: "type", "journal" | size %}
 {% assign n_conference = pubs | where: "type", "conference" | size %}
