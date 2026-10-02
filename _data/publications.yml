@@ -172,6 +172,7 @@
   status: submitted to nice conference :)
   links:
     arxiv: https://arxiv.org/abs/2609.33487
+    site: https://pierregtch.github.io/eeg-fm-masking/
   map:
     area: Models
     topic: Foundation and transfer models
@@ -183,7 +184,8 @@
       year = {2026},
       eprint = {2609.33487},
       archivePrefix = {arXiv},
-      url = {https://arxiv.org/abs/2609.33487}
+      url = {https://arxiv.org/abs/2609.33487},
+      note = {Project page: https://pierregtch.github.io/eeg-fm-masking/}
     }
 - id: paper-p24
   num: 24
