@@ -35,6 +35,9 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Check public agent exports
+        run: bundle exec ruby docs/check-agent-exports.rb _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

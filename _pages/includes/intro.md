@@ -13,14 +13,14 @@
 
 <h2>About me</h2>
 
-I work at [Yneuro](https://yneuro.com/) in France and hold an honorary research appointment at [UC San Diego](https://inc.ucsd.edu/people/#Associate-Members). I earned my PhD in Computer Science jointly at [Université Paris-Saclay](https://www.universite-paris-saclay.fr/) and the [Federal University of ABC](https://www.ufabc.edu.br/), advised by [Sylvain Chevallier](https://sylvchev.github.io/), [Marie-Constance Corsi](https://marieconstance-corsi.netlify.app/) and [Raphael Y. de Camargo](https://rycamargo.github.io).
+{% include bio.md %}
 
 </section>
 <section markdown="1">
 
 ## Research interests
 
-My focus is **representation learning from time series**: learning structure that supports decoding, generation and transfer across subjects, sessions and datasets. I explore these questions through EEG and other neural signals, combining deep learning, Riemannian geometry and reproducible benchmarks.
+{% include research-interests.md %}
 
 </section>
 </div>

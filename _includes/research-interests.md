@@ -1,0 +1,1 @@
+My focus is **representation learning from time series**: learning structure that supports decoding, generation and transfer across subjects, sessions and datasets. I explore these questions through EEG and other neural signals, combining deep learning, Riemannian geometry and reproducible benchmarks.

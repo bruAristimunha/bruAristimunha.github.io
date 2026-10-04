@@ -1,0 +1,8 @@
+---
+layout: null
+permalink: /publications.bib
+sitemap: false
+---
+{% for pub in site.data.publications %}{% if pub.bibtex %}{{ pub.bibtex }}
+
+{% endif %}{% endfor %}

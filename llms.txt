@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.author.name }}
+
+> {{ site.description }}
+
+This directory describes the public personal website, not a complete scholarly database.
+Publication exports share the data used by the visible publication list. Preserve the
+recorded status: submitted or under-review work must not be described as accepted.
+A missing status is unspecified, not evidence of acceptance. Relative publication
+asset links are rooted at {{ '/' | absolute_url }}.
+
+## Biography
+
+- [Biography (Markdown)]({{ '/bio.md' | absolute_url }}): Shared biography and research interests from the homepage.
+- [Homepage]({{ '/' | absolute_url }}): Full research, software, education, and community context.
+
+## Publications
+
+- [Publication records (JSON)]({{ '/publications.json' | absolute_url }}): {{ site.data.publications | size }} records, retaining source IDs, authors, years, venues, types, statuses where supplied, links, and BibTeX.
+- [Citations (BibTeX)]({{ '/publications.bib' | absolute_url }}): Existing citations, verbatim; no inferred publication status or identifiers.
+- [Visible publication list]({{ '/' | absolute_url }}#-publications-full-list): Human-readable source for the exports.

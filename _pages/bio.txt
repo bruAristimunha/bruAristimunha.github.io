@@ -1,0 +1,18 @@
+---
+layout: null
+permalink: /bio.md
+sitemap: false
+---
+# {{ site.author.name }}
+
+{% include bio.md %}
+
+## Research interests
+
+{% include research-interests.md %}
+
+## Sources and publications
+
+- [Personal website]({{ '/' | absolute_url }})
+- [Publications (JSON)]({{ '/publications.json' | absolute_url }})
+- [Citations (BibTeX)]({{ '/publications.bib' | absolute_url }})
