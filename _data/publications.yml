@@ -1,9 +1,32 @@
+- id: paper-p41
+  num: 41
+  authors: Shahi, K., Aristimunha, B., & Delorme, A.
+  year: 2026
+  title: 'EEGDash Corpus: A Training-Ready Public Corpus for EEG Foundation Models'
+  venue: International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM)
+  event_month: 12
+  venue_short: MLESP / BIBM
+  type: workshop
+  status: accepted
+  map:
+    area: Data
+    topic: Data resources and platforms
+    label: EEGDash Corpus
+  bibtex: |-
+    @inproceedings{Shahi2026p41,
+      title = {EEGDash Corpus: A Training-Ready Public Corpus for EEG Foundation Models},
+      author = {Shahi, Kuber and Aristimunha, Bruno and Delorme, Arnaud},
+      booktitle = {International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM) 2026},
+      year = {2026},
+      note = {Accepted for presentation}
+    }
 - id: paper-p40
   num: 40
   authors: Hajhassani, D., Graignic, P-A., Aristimunha, B., Mellot, A., Mariani, T., Nober, C., Lopes, B. J., Burgund, L., Kusch, L., Semah, T., & Caillet, A. H.
-  year: 2026
+  year: 2027
   title: 'Automated Artifact Removal in EEG Age Prediction: A Systematic Comparison'
-  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+  event_month: 5
   venue_short: ICASSP
   type: conference
   status: submitted
@@ -28,9 +51,10 @@
 - id: paper-p39
   num: 39
   authors: Nunes de Oliveira Junior, J. M., Lopes, B. J., Burgund, L., de Camargo, R. Y., & Aristimunha, B.
-  year: 2026
+  year: 2027
   title: 'Scaling Laws for EEG Decoding: How Much Data is Enough?'
-  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+  event_month: 5
   venue_short: ICASSP
   type: conference
   status: submitted
@@ -55,9 +79,10 @@
 - id: paper-p38
   num: 38
   authors: Mounir, A., Douka, S., Caillet, A. H., Aristimunha, B., & Chevallier, S.
-  year: 2026
+  year: 2027
   title: 'Neuron-Level Architecture Growth: A Controlled Evaluation for EEG Time-Series Decoding'
-  venue: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP 2027)
+  venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+  event_month: 5
   venue_short: ICASSP
   type: conference
   status: submitted
@@ -86,7 +111,7 @@
   authors: Delorme, A., Ranganath, S., Kothe, C., Jaiswal, A., Makeig, S., & Aristimunha, B.
   year: 2026
   title: 'EEGPrep: a validated Python implementation of the EEGLAB preprocessing pipeline'
-  venue: J. Neural Engineering
+  venue: Journal of Neural Engineering
   type: journal
   status: submitted
   links:
@@ -169,7 +194,7 @@
   title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
   venue: Manuscript
   type: conference
-  status: submitted to nice conference :)
+  status: submitted
   links:
     arxiv: https://arxiv.org/abs/2609.33487
     site: https://pierregtch.github.io/eeg-fm-masking/
@@ -192,9 +217,11 @@
   authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
   year: 2026
   title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
-  venue: Preprint (arXiv)
-  type: conference
-  status: under-review
+  venue: International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM)
+  event_month: 12
+  venue_short: MLESP / BIBM
+  type: workshop
+  status: accepted
   links:
     pdf: /assets/pdfs/channel-adaptation-eeg-fm.pdf
     arxiv: https://arxiv.org/abs/2604.23091
@@ -212,7 +239,8 @@
       year = {2026},
       eprint = {2604.23091},
       archivePrefix = {arXiv},
-      url = {https://arxiv.org/abs/2604.23091}
+      url = {https://arxiv.org/abs/2604.23091},
+      note = {Accepted at the International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM) 2026}
     }
 - id: paper-p1
   num: 1
@@ -220,8 +248,9 @@
   year: 2026
   title: 'From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs'
   venue: European Signal Processing Conference (EUSIPCO)
+  event_month: 8
   type: conference
-  status: submitted
+  status: accepted
   links:
     pdf: /assets/pdfs/artifact-rejection-eusipco26.pdf
     arxiv: https://arxiv.org/abs/2605.12408
@@ -239,14 +268,16 @@
       year = {2026},
       eprint = {2605.12408},
       archivePrefix = {arXiv},
-      url = {https://arxiv.org/abs/2605.12408}
+      url = {https://arxiv.org/abs/2605.12408},
+      note = {Accepted at EUSIPCO 2026}
     }
 - id: paper-p35
   num: 35
   authors: Caillet, A. H., Mellot, A., Aristimunha, B., Delorme, A., & Semah, T.
   year: 2026
   title: 'Real-Time Continuous EEG Authentication: Streaming Neural Biometrics'
-  venue: ICASSP 2026 (Show & Tell Demos), Barcelona
+  venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) — Show & Tell Demos
+  event_month: 5
   venue_short: ICASSP Demo
   type: abstract
   status: demo
@@ -287,6 +318,7 @@
   year: 2026
   title: 'Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models'
   venue: European Signal Processing Conference (EUSIPCO)
+  event_month: 8
   type: conference
   links:
     pdf: /assets/pdfs/openeeg-bench-eusipco26.pdf
@@ -312,9 +344,9 @@
   authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
   year: 2026
   title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
-  venue: JMLR (Open Source Track)
+  venue: Journal of Machine Learning Research (JMLR) — Open Source Software Track
   type: journal
-  status: in preparation
+  status: under-review
   links:
     pdf: /assets/pdfs/spd-learn-jmlr.pdf
     arxiv: https://arxiv.org/abs/2602.22895
@@ -333,7 +365,8 @@
       year = {2026},
       eprint = {2602.22895},
       archivePrefix = {arXiv},
-      url = {https://arxiv.org/abs/2602.22895}
+      url = {https://arxiv.org/abs/2602.22895},
+      note = {Under review at JMLR (Open Source Track)}
     }
 - id: paper-p4
   num: 4
@@ -371,7 +404,8 @@
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
   year: 2025
   title: 'EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding'
-  venue: NeurIPS
+  venue: Conference on Neural Information Processing Systems (NeurIPS)
+  event_month: 12
   type: conference
   links:
     pdf: /assets/pdfs/eeg-foundation-challenge-neurips25.pdf
@@ -395,7 +429,8 @@
   authors: Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B.
   year: 2025
   title: 'Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study'
-  venue: EMBC
+  venue: Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
+  event_month: 7
   type: conference
   links:
     pdf: /assets/pdfs/finetuning-continual-eeg-embc25.pdf
@@ -423,7 +458,8 @@
   authors: Darvishi-Bayazi, M. J., Ghonia, H., Riachi, R., Aristimunha, B., Khorasani, A., Arefin, M. R., Dumas, G. & Rish, I.
   year: 2024
   title: General-Purpose Brain Foundation Models for Time-Series Neuroimaging Data
-  venue: NeurIPS Workshop (TSALM)
+  venue: Time Series in the Age of Large Models (TSALM) Workshop, at the Conference on Neural Information Processing Systems (NeurIPS)
+  event_month: 12
   type: workshop
   links:
     pdf: /assets/pdfs/brain-foundation-models-tsalm24.pdf
@@ -447,7 +483,7 @@
   authors: Carrara, I.*, Aristimunha, B.*, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
   year: 2025
   title: Geometric Neural Network based on Phase Space for BCI decoding
-  venue: J. Neural Engineering
+  venue: Journal of Neural Engineering
   type: journal
   links:
     pdf: /assets/pdfs/phase-space-geometric-nn-jne.pdf
@@ -478,7 +514,8 @@
   authors: Aristimunha, B., Moreau, T., Chevallier, S., Camargo, R. Y., & Corsi, M. C.
   year: 2024
   title: What is the best model for decoding neurophysiological signals? Depends on how you evaluate
-  venue: CNS
+  venue: Annual Computational Neuroscience Meeting (CNS)
+  event_month: 7
   type: abstract
   links:
     pdf: /assets/pdfs/best-model-evaluation-cns24.pdf
@@ -527,7 +564,7 @@
   authors: Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A.
   year: 2024
   title: 'Alljoined: A dataset for EEG-to-Image decoding'
-  venue: CVPR Workshop
+  venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops
   type: workshop
   links:
     pdf: /assets/pdfs/alljoined-eeg-image-cvpr24.pdf
@@ -551,7 +588,7 @@
   authors: Junqueira, B., Aristimunha, B., Chevallier, S., & de Camargo, R. Y.
   year: 2024
   title: A systematic evaluation of Euclidean alignment with deep learning for EEG decoding
-  venue: J. Neural Engineering
+  venue: Journal of Neural Engineering
   type: journal
   links:
     pdf: /assets/pdfs/euclidean-alignment-deeplearning-jne.pdf
@@ -582,7 +619,8 @@
   authors: Aristimunha, B., de Camargo, R. Y., Chevallier, S., Lucena, O., Thomas, A. G., Cardoso, M. J., Pinaya, W. L. & Dafflon, J.
   year: 2023
   title: Synthetic Sleep EEG Signal Generation using Latent Diffusion Models
-  venue: NeurIPS Workshop (DGM4H, Spotlight)
+  venue: Deep Generative Models for Health (DGM4H) Workshop, at the Conference on Neural Information Processing Systems (NeurIPS) — Spotlight
+  event_month: 12
   type: workshop
   links:
     pdf: /assets/pdfs/synthetic-sleep-eeg-diffusion-neurips23.pdf
@@ -606,7 +644,7 @@
   authors: Aristimunha, B., de Camargo, R. Y., Pinaya, W. L., Chevallier, S., Gramfort, A., & Rommel, C.
   year: 2023
   title: Evaluating the structure of cognitive tasks with transfer learning
-  venue: NeurIPS Workshop (AI for Science)
+  venue: AI for Science Workshop, at the Conference on Neural Information Processing Systems (NeurIPS)
   type: workshop
   links:
     pdf: /assets/pdfs/cognitive-tasks-transfer-neurips23.pdf
@@ -631,7 +669,8 @@
   authors: Moraes, C. P., Aristimunha, B., Dos Santos, L. H., Pinaya, W. H. L., de Camargo, R. Y., Fantinato, D. G., & Neves, A.
   year: 2023
   title: Applying independent vector analysis on EEG-based motor imagery classification
-  venue: ICASSP
+  venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+  event_month: 6
   type: conference
   links:
     pdf: /assets/pdfs/iva-motor-imagery-icassp23.pdf
@@ -867,7 +906,7 @@
   authors: Gueron, E., Pellegrini, J., & Aristimunha, B.
   year: 2023
   title: Distribuição de Newcomb-Benford, Mudanças de Bases e Aplicações Eleitorais
-  venue: Proc. SBMAC
+  venue: Proceeding Series of the Brazilian Society of Computational and Applied Mathematics (SBMAC)
   type: workshop
   links:
     pdf: /assets/pdfs/newcomb-benford-sbmac23.pdf
@@ -890,7 +929,7 @@
   authors: Aristimunha, B.
   year: 2020
   title: Quem é Estamira? Uma análise da coerência dos discursos através de combinação de medidas para classificação de texto
-  venue: ERAMIA-SP
+  venue: Escola Regional de Aprendizado de Máquina e Inteligência Artificial de São Paulo (ERAMIA-SP)
   type: workshop
   links:
     pdf: /assets/pdfs/estamira-eramia20.pdf

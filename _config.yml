@@ -22,9 +22,9 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Bruno Aristimunha"
   avatar           : "images/bruno_profile.webp"
-  bio              : "Research Scientist at Yneuro<br>Hon. Research Associate, UC San Diego<br>PhD in Computer Science"
+  bio              : "Research Scientist at Yneuro<br>Research Associate, UC San Diego<br>PhD in Computer Science"
   location         : "Paris, France"
-  employer         : Yneuro · UC San Diego INC (Hon.)
+  employer         : Yneuro · UC San Diego INC
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=2Gd5gOQAAAAJ"
   email            : "b.aristimunha@gmail.com"
@@ -64,6 +64,8 @@ include:
   - _pages
   - files
 exclude:
+  - .claude
+  - "CV - Bruno Aristimunha.txt"
   - docs
   - google_scholar_crawler
   - "*.sublime-project"

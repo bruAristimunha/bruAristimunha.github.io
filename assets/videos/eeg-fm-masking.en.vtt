@@ -1,0 +1,107 @@
+WEBVTT
+
+00:00.560 --> 00:04.640
+Most EEG foundation models learn by hiding
+parts of the signal.
+
+00:04.640 --> 00:06.640
+But which parts should they hide?
+
+00:08.420 --> 00:10.080
+Take masked autoencoders:
+
+00:10.080 --> 00:12.500
+the network sees parts of the EEG and
+
+00:12.500 --> 00:15.020
+rebuilds the raw signal of the hidden
+pieces.
+
+00:17.000 --> 00:20.860
+JEPA does the same, but predicts how a
+teacher network would encode them.
+
+00:22.300 --> 00:26.220
+They both rely on a mask. So which mask
+works best?
+
+00:27.540 --> 00:32.960
+We describe every mask with three
+parameters: radius, length and ratio.
+
+00:33.480 --> 00:36.220
+With one electrode at a time, you have
+random patches.
+
+00:36.220 --> 00:39.620
+With all electrodes at once, you have
+whole time segments.
+
+00:39.660 --> 00:43.100
+If you stretch a block over a whole
+window, you hide an entire channel.
+
+00:43.100 --> 00:46.500
+And in between, you have spatio-temporal
+blocks.
+
+00:46.680 --> 00:50.520
+With three numbers, we cover all the masks
+from the literature.
+
+00:51.880 --> 00:57.560
+In this study, we trained 58 models that
+differ only in mask and pretext.
+
+00:57.980 --> 01:01.640
+We evaluated them on OpenEEGBench.
+
+01:03.160 --> 01:07.300
+The winner is the same for both masked
+autoencoders and JEPA:
+
+01:07.300 --> 01:10.400
+blocks of 2 seconds with a 9 cm radius.
+
+01:10.940 --> 01:13.300
+Masks fail when they are too local,
+
+01:13.300 --> 01:15.860
+because the neighbouring electrodes give
+away the answer.
+
+01:15.860 --> 01:21.060
+They also fail when they are too global,
+leaving only the time to predict from,
+
+01:21.160 --> 01:24.020
+or, in most cases, when they are too long.
+
+01:25.680 --> 01:28.840
+Yet the winning configuration is quite
+robust,
+
+01:28.840 --> 01:32.440
+with multiple masks statistically tied
+with the best.
+
+01:33.910 --> 01:35.400
+How do we explain these results?
+
+01:35.400 --> 01:39.740
+We observed that EEG is highly redundant
+across electrodes,
+
+01:39.740 --> 01:41.840
+but much less across time.
+
+01:41.900 --> 01:46.800
+So a good mask should hide enough
+neighbours to make the task hard,
+
+01:46.800 --> 01:49.260
+while staying short in time.
+
+01:52.520 --> 01:57.820
+All weights are available on Hugging Face,
+the paper is on arXiv.

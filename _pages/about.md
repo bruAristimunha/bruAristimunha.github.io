@@ -12,6 +12,30 @@ redirect_from:
 
 <h2 id="-featured">Selected work</h2>
 
+<section class="featured-paper featured-paper--video" aria-labelledby="masking-highlight-title">
+  <div class="featured-paper__body">
+    <p class="featured-paper__eyebrow">EEG foundation models · 2026</p>
+    <h3 class="featured-paper__title" id="masking-highlight-title">What masking geometry works best for EEG foundation models?</h3>
+    <p class="featured-paper__authors">Pierre Guetschel, Bruno Aristimunha, Yassine El Ouahidi, Arnaud Delorme, Thomas Moreau, and Michael Tangermann</p>
+    <p class="featured-paper__summary">Which parts of an EEG signal should a model learn to reconstruct? In a controlled comparison of 58 models across MAE and JEPA, spatiotemporal masks spanning 2 seconds and a 9 cm radius performed best for both approaches. The results suggest hiding neighbouring electrodes together while keeping masks short in time.</p>
+    <p class="featured-paper__summary">Watch Pierre Guetschel’s two-minute explanation, with English captions.</p>
+    <p class="featured-paper__links">
+      <a class="featured-paper__primary" href="https://arxiv.org/abs/2609.33487">Read the paper</a>
+      <a href="https://pierregtch.github.io/eeg-fm-masking/">Project page</a>
+      <a href="https://lnkd.in/p/eEjsJ9NA">Original video on LinkedIn</a>
+    </p>
+  </div>
+  <div class="featured-paper__figure">
+    <video controls playsinline preload="none" width="720" height="900"
+      poster="{{ '/assets/videos/eeg-fm-masking-poster.jpg' | relative_url }}"
+      aria-label="Pierre Guetschel explains masking geometry for EEG foundation models">
+      <source src="{{ '/assets/videos/eeg-fm-masking.mp4' | relative_url }}" type="video/mp4">
+      <track kind="captions" src="{{ '/assets/videos/eeg-fm-masking.en.vtt' | relative_url }}" srclang="en" label="English" default>
+      <a href="{{ '/assets/videos/eeg-fm-masking.mp4' | relative_url }}">Download the video</a>.
+    </video>
+  </div>
+</section>
+
 <section class="featured-paper">
   <a
     class="featured-paper__figure"
@@ -70,7 +94,7 @@ redirect_from:
   <div class="journey__header">
     <h3 class="journey__title">A research scientist, in motion</h3>
     <p class="journey__lede">
-      Three countries, one through-line: building tools to decode signals from the brain. It started at a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen), went through a cotutelle PhD between Paris-Saclay and UFABC, and continues today at Yneuro, with an honorary affiliation at UC San Diego INC.
+      Three countries, one through-line: building tools to decode signals from the brain. It started at a 2012 high-school science fair in Mato Grosso do Sul (I was sixteen), went through a cotutelle PhD between Paris-Saclay and UFABC, and continues today at Yneuro, as a Research Associate at UC San Diego INC.
     </p>
   </div>
 
@@ -95,8 +119,8 @@ redirect_from:
         <div class="journey__panel-kicker">Act 01 — Now</div>
         <div class="journey__panel-period">2026 →</div>
         <h3 class="journey__panel-title">Research Scientist</h3>
-        <div class="journey__panel-place">Yneuro 🇫🇷 · UC San Diego INC 🇺🇸 (Honorary)</div>
-        <p class="journey__panel-summary">Research Scientist at Yneuro and Honorary Research Associate at UC San Diego (INC). Lead maintainer of <strong>Braindecode</strong> and <strong>MOABB</strong>. Lead organizer of the MLSP 2025 Special Session on Decoding the Brain Time Series.</p>
+        <div class="journey__panel-place">Yneuro 🇫🇷 · UC San Diego INC 🇺🇸</div>
+        <p class="journey__panel-summary">Research Scientist at Yneuro and Research Associate at UC San Diego (INC). Lead maintainer of <strong>Braindecode</strong> and <strong>MOABB</strong>. Lead organizer of the MLSP 2025 Special Session on Decoding the Brain Time Series.</p>
       </header>
       <ol class="journey__milestones">
         <li class="journey__ms is-highlight">
@@ -129,7 +153,7 @@ redirect_from:
             <span class="journey__ms-year">2026 →</span>
             <span class="journey__ms-label">UC San Diego INC</span>
           </div>
-          <div class="journey__ms-note">Honorary Research Associate at the Institute for Neural Computation.</div>
+          <div class="journey__ms-note">Research Associate at the Institute for Neural Computation.</div>
         </li>
         <li class="journey__ms">
           <span class="journey__ms-dot" aria-hidden="true"></span>
@@ -386,8 +410,12 @@ redirect_from:
 {% assign chart_groups = pubs | group_by: "year" | sort: "name" %}
 <div class="pubtrack" data-pubtrack>
 <div class="pubtrack__chart-wrap">
-<div class="pubtrack__chart" role="img" aria-label="One square per publication, stacked by year from 2015 to 2026 and colored by type. Output rises sharply from 2023 onward.">
-{% for y in (2015..2026) %}
+<div class="pubtrack__chart" role="img" aria-label="One square per publication or submission, stacked by year and colored by type.">
+{% assign first_year = chart_groups | first %}
+{% assign last_year = chart_groups | last %}
+{% assign chart_start = first_year.name | plus: 0 %}
+{% assign chart_end = last_year.name | plus: 0 %}
+{% for y in (chart_start..chart_end) %}
 {% assign ystr = y | append: "" %}
 {% assign g = chart_groups | where: "name", ystr | first %}
 {% if g %}
@@ -403,7 +431,7 @@ redirect_from:
 {% endif %}
 {% endfor %}
 </div>
-<p class="pubtrack__chart-note">One square = one publication. Click a year to jump to it.</p>
+<p class="pubtrack__chart-note">One square = one publication. Click a year to jump to it. Conference papers use the event year and appear newest first where event dates are known; other works follow by venue.</p>
 </div>
 <div class="pubtrack__filters" role="group" aria-label="Filter publications by type">
 <button type="button" class="pubtrack__filter is-active" data-filter="all" aria-pressed="true">All <span class="pubtrack__count">{{ n_all }}</span></button>
@@ -419,7 +447,10 @@ redirect_from:
 <div class="pubtrack__year anchor" id="pubyear-{{ group.name }}" data-year-group>
 <p class="pubtrack__year-label">{{ group.name }}</p>
 <div class="pubtrack__rows">
-{% for pub in group.items %}
+{% assign dated_pubs = group.items | where_exp: "p", "p.event_month != nil" | sort: "event_month" | reverse %}
+{% assign undated_pubs = group.items | where_exp: "p", "p.event_month == nil" | sort: "venue" %}
+{% assign venue_sorted_pubs = dated_pubs | concat: undated_pubs %}
+{% for pub in venue_sorted_pubs %}
 {% assign authors = pub.authors | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
 {% if pub.links.pdf %}{% assign title_href = pub.links.pdf | relative_url %}{% elsif pub.links.arxiv %}{% assign title_href = pub.links.arxiv %}{% elsif pub.links.doi %}{% assign title_href = pub.links.doi %}{% elsif pub.links.site %}{% assign title_href = pub.links.site %}{% else %}{% assign title_href = "" %}{% endif %}
 <article class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
@@ -481,7 +512,7 @@ redirect_from:
     <li class="timeline-island__item">
       <div class="timeline-island__row">
         <span class="timeline-island__date">2026 →</span>
-        <span class="timeline-island__title">Honorary Research Associate, <a href="https://inc.ucsd.edu/people/#Associate-Members">UC San Diego (INC)</a></span>
+        <span class="timeline-island__title">Research Associate, <a href="https://inc.ucsd.edu/people/#Associate-Members">UC San Diego (INC)</a></span>
       </div>
       <p class="timeline-island__detail">Institute for Neural Computation, USA 🇺🇸.</p>
     </li>
@@ -511,71 +542,89 @@ redirect_from:
 
 <h2 id="-mentorship">Mentorship</h2>
 
-Students I was lucky to work with and mentor:
+Students and researchers I supervise or have mentored.
 
-<ul class="mentorship">
+<h3 id="current-students">Current students and mentees</h3>
+
+<ul class="mentorship" aria-labelledby="current-students">
   <li class="mentorship__card">
     <img class="mentorship__photo mentorship__photo--adam" src="{{ '/assets/images/mentorship/adam-mounir.jpg' | relative_url }}" alt="Adam Mounir" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name">Adam Mounir</h3>
+    <h4 class="mentorship__name">Adam Mounir</h4>
     <span class="mentorship__role">Master intern</span>
     <p class="mentorship__detail">Université Paris-Saclay (Inria TAU), research internship on Braindecode.</p>
   </li>
   <li class="mentorship__card">
-    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/leo-burgund.jpg' | relative_url }}" alt="Léo Burgund" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/leoburgund/">Léo Burgund</a></h3>
-    <span class="mentorship__role">Master student → Yneuro</span>
-    <p class="mentorship__detail">Université Paris-Saclay (M2 Mathematics &amp; AI), now Machine Learning Researcher at Yneuro.</p>
-  </li>
-  <li class="mentorship__card">
-    <img class="mentorship__photo mentorship__photo--tom" src="{{ '/assets/images/mentorship/tom-mariani.jpg' | relative_url }}" alt="Tom Mariani" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/mariani-tom/">Tom Mariani</a></h3>
-    <span class="mentorship__role">Master student → Yneuro</span>
-    <p class="mentorship__detail">MVA, ENS Paris-Saclay / Mines, now Research Scientist at Yneuro.</p>
-  </li>
-  <li class="mentorship__card">
-    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/aman-jaiswal.jpg' | relative_url }}" alt="Aman Jaiswal" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/amanjaiswal1503/">Aman Jaiswal</a></h3>
-    <span class="mentorship__role">Master student</span>
-    <p class="mentorship__detail">UC San Diego, MS in Computer Science.</p>
-  </li>
-  <li class="mentorship__card">
     <img class="mentorship__photo" src="{{ '/assets/images/mentorship/kuntal-kokate.jpg' | relative_url }}" alt="Kuntal Kokate" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h3>
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/kuntal-kokate-b05743169">Kuntal Kokate</a></h4>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">UC San Diego, MS in Machine Learning &amp; Data Science (ECE).</p>
   </li>
   <li class="mentorship__card">
     <img class="mentorship__photo" src="{{ '/assets/images/mentorship/jose-mauricio.jpg' | relative_url }}" alt="Jose Mauricio" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h3>
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/jos%C3%A9-maur%C3%ADcio-nunes-de-oliveira-junior-aa174b92/">Jose Mauricio</a></h4>
     <span class="mentorship__role">Master student</span>
     <p class="mentorship__detail">Federal University of ABC, Computer Science.</p>
   </li>
   <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/bruna-junqueira.jpg' | relative_url }}" alt="Bruna Junqueira" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h4>
+    <span class="mentorship__role">Undergrad → Master → PhD</span>
+    <p class="mentorship__detail">USP, then the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay; now my PhD student.</p>
+  </li>
+  <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/kuber-shahi.jpg' | relative_url }}" alt="Kuber Shahi" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/kubershahi/">Kuber Shahi</a></h4>
+    <span class="mentorship__role">Research mentee</span>
+    <p class="mentorship__detail">UC San Diego.</p>
+  </li>
+  <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/bhargav-kowshik.jpg' | relative_url }}" alt="Bhargav Kowshik" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/bkowshik/">Bhargav Kowshik</a></h4>
+    <span class="mentorship__role">Research mentee</span>
+    <p class="mentorship__detail">UC San Diego.</p>
+  </li>
+</ul>
+
+<h3 id="mentorship-alumni">Alumni</h3>
+
+<ul class="mentorship" aria-labelledby="mentorship-alumni">
+  <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/leo-burgund.jpg' | relative_url }}" alt="Léo Burgund" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/leoburgund/">Léo Burgund</a></h4>
+    <span class="mentorship__role">Master student → Yneuro</span>
+    <p class="mentorship__detail">Université Paris-Saclay (M2 Mathematics &amp; AI), now Machine Learning Researcher at Yneuro.</p>
+  </li>
+  <li class="mentorship__card">
+    <img class="mentorship__photo mentorship__photo--tom" src="{{ '/assets/images/mentorship/tom-mariani.jpg' | relative_url }}" alt="Tom Mariani" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/mariani-tom/">Tom Mariani</a></h4>
+    <span class="mentorship__role">Master student → Yneuro</span>
+    <p class="mentorship__detail">MVA, ENS Paris-Saclay / Mines, now Research Scientist at Yneuro.</p>
+  </li>
+  <li class="mentorship__card">
+    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/aman-jaiswal.jpg' | relative_url }}" alt="Aman Jaiswal" width="72" height="72" loading="lazy">
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/amanjaiswal1503/">Aman Jaiswal</a></h4>
+    <span class="mentorship__role">Master student</span>
+    <p class="mentorship__detail">UC San Diego, MS in Computer Science.</p>
+  </li>
+  <li class="mentorship__card">
     <img class="mentorship__photo" src="{{ '/assets/images/mentorship/taha-habib.jpg' | relative_url }}" alt="Taha Habib" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h3>
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/taha-habib-a694a31b7/">Taha Habib</a></h4>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Université Paris-Saclay, now a master student.</p>
   </li>
   <li class="mentorship__card">
     <img class="mentorship__photo" src="{{ '/assets/images/mentorship/gustavo-rodrigues.jpg' | relative_url }}" alt="Gustavo H. Rodrigues" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h3>
+    <h4 class="mentorship__name"><a href="https://orcid.org/0000-0002-0922-126X">Gustavo H. Rodrigues</a></h4>
     <span class="mentorship__role">Undergrad → Master</span>
     <p class="mentorship__detail">Universidade de São Paulo (USP), now a master student at USP.</p>
   </li>
   <li class="mentorship__card">
-    <img class="mentorship__photo" src="{{ '/assets/images/mentorship/bruna-junqueira.jpg' | relative_url }}" alt="Bruna Junqueira" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/brunajaflopes/">Bruna Junqueira</a></h3>
-    <span class="mentorship__role">Undergrad → Master → PhD</span>
-    <p class="mentorship__detail">USP, then the Mathématiques, Vision, Apprentissage master at Université Paris-Saclay; now my PhD student.</p>
-  </li>
-  <li class="mentorship__card">
     <img class="mentorship__photo" src="{{ '/assets/images/mentorship/alexandre-janoni.jpg' | relative_url }}" alt="Alexandre Janoni" width="72" height="72" loading="lazy">
-    <h3 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h3>
+    <h4 class="mentorship__name"><a href="https://www.linkedin.com/in/alexandre-janoni-bayerlein-047955220/">Alexandre Janoni</a></h4>
     <span class="mentorship__role">Undergrad → Industry</span>
     <p class="mentorship__detail">Federal University of ABC, now at Hospital Albert Einstein.</p>
   </li>
 </ul>
-
 
 <h2 id="community">Community</h2>
 

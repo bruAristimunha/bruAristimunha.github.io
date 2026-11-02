@@ -88,3 +88,25 @@ for (const mode of ['wide', 'tall']) {
   });
 }
 console.log(`PASS: ${mapped.length} unique papers, chronological branches, and non-overlapping desktop/mobile leaf targets.`);
+
+// Event years and months take priority over venue names.
+const publicationIds = [...html.matchAll(/<article class="pubtrack__entry[^>]* id="([^"]+)"/g)].map(match => match[1]);
+assert.equal(publicationIds.length, data.papers.length);
+assert.equal(new Set(publicationIds).size, data.papers.length);
+const orderedPapers = publicationIds.map(id => data.papers.find(p => p.id === id));
+for (let i = 1; i < orderedPapers.length; i++) {
+  const previous = orderedPapers[i - 1], current = orderedPapers[i];
+  assert.ok(previous.year >= current.year);
+  if (previous.year === current.year) {
+    assert.ok((previous.event_month || 0) >= (current.event_month || 0));
+    if (!previous.event_month && !current.event_month) assert.ok(previous.venue <= current.venue);
+  }
+}
+for (const id of ['paper-p38', 'paper-p39', 'paper-p40']) {
+  assert.equal(data.papers.find(p => p.id === id).year, 2027);
+  assert.equal(data.papers.find(p => p.id === id).status, 'submitted');
+  assert.equal(data.papers.find(p => p.id === id).venue_short, 'ICASSP');
+  assert.ok(html.includes('id="pubyear-2027"'));
+  assert.ok(html.includes('data-chart-year="2027"'));
+}
+console.log('PASS: all publications appear once, ordered by event year/month with undated works following by venue.');
