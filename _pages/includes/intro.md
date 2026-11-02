@@ -27,7 +27,7 @@
 
 ## Open-source software
 
-I build and maintain tools for learning from time series, geometric deep learning and reproducible neuroscience. Alongside these projects, I contribute to MNE-Python, MONAI, MONAI Generative and SpeechBrain.
+I build and maintain tools for learning from time series, geometric deep learning and reproducible neuroscience.
 
 <div class="library-showcase" data-library-showcase>
 <div class="library-showcase__controls">
