@@ -1,7 +1,7 @@
 {
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=2Gd5gOQAAAAJ",
-  "citations": 428,
+  "citations": 443,
   "h_index": 10,
   "i10_index": 10,
   "by_year": [
@@ -19,8 +19,8 @@
     },
     {
       "year": 2026,
-      "count": 226
+      "count": 240
     }
   ],
-  "updated": "2026-10-19"
+  "updated": "2026-11-09"
 }
