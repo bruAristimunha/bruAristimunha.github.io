@@ -6,6 +6,9 @@ No plugin, remote API, or separate generated-data commit is required.
 - Edit publication data only in `_data/publications.yml`. JSON preserves its array
   and all fields unchanged (including absent statuses); BibTeX concatenates the
   existing `bibtex` strings. Relative asset URLs resolve against the site root.
+- Each entry’s `summary` supplies the one-sentence takeaway shown with its citation. When the
+  citable version differs from the event listing, `citation_year` and
+  `citation_venue` supply the corresponding values for **Copy reference**.
 - Edit biography and research interests in `_includes/bio.md` and
   `_includes/research-interests.md`. Both the homepage and Markdown export include
   these same texts; do not maintain an independent biography in the export.

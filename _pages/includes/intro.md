@@ -3,7 +3,7 @@
   <h1>Learning representations<br>from time series.</h1>
   <p class="home-intro__lead">I’m Bruno, a research scientist studying how models learn useful representations from time series, with brain signals as a central application.</p>
   <div class="home-intro__links">
-    <a href="#-research-overview">Explore my research <span aria-hidden="true">↗</span></a>
+    <a href="#-research-overview">Explore my research <span aria-hidden="true">↓</span></a>
     <a href="mailto:{{ site.author.email }}">Get in touch <span aria-hidden="true">↗</span></a>
   </div>
 </header>

@@ -20,9 +20,16 @@ pubs.each do |pub|
   entry = entries.find { |e| e['id'] == pub['id'] }
   check(entry, "visible ID #{pub['id']}")
   check(entry.at_css('.pubtrack__title').text == pub['title'], "title #{pub['id']}")
+  summary = pub.fetch('summary')
+  check(!summary.strip.empty? && entry.at_css('.pubtrack__summary').text == summary, "summary #{pub['id']}")
   check(entry.at_css('.pubtrack__venue').text == pub['venue'], "venue #{pub['id']}")
   check(entry.at_css('.pubtrack__status')&.text == pub['status']&.tr('-', ' '), "status #{pub['id']}")
   check(entry.at_css('[data-copy-bibtex]')&.[]('data-copy-bibtex') == pub['bibtex'], "citation #{pub['id']}")
+  reference = entry.at_css('[data-copy-reference]')['data-copy-reference']
+  year = pub['bibtex'].to_s[/^\s*year\s*=\s*\{(\d{4})\}/i, 1] || pub.fetch('citation_year', pub['year'])
+  check(reference.start_with?("#{pub['authors'].delete('*')} (#{year}). #{pub['title']}"), "reference #{pub['id']}")
+  link = pub.dig('links', 'doi') || pub.dig('links', 'arxiv')
+  check(reference.end_with?(link), "persistent link #{pub['id']}") if link
   (pub['links'] || {}).each_value do |link|
     next unless link.start_with?('/')
     check(File.file?(File.join(site, URI.parse(link).path)), "local publication link #{link}")

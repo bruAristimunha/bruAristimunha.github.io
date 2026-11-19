@@ -46,6 +46,7 @@ redirect_from:
     <img
       src="{{ '/assets/images/publications/eeg-emg-foundation-challenge-2026.jpg' | relative_url }}"
       alt="EEG/EMG Foundation Challenge 2026 — 4 tracks, 4 generalization shifts: EEG-to-IMG (cross-stimulus), BCI decoding (cross-session), sleep onset (cross-user), EMG-to-Pose (cross-user)"
+      width="1240" height="648"
       loading="lazy"
     >
   </a>
@@ -72,6 +73,7 @@ redirect_from:
     <img
       src="{{ '/assets/images/publications/learning-aligned-eeg-representations.png' | relative_url }}"
       alt="Figure from Learning aligned EEG representations with subject-specific encoders"
+      width="2000" height="1725"
       loading="lazy"
     >
   </a>
@@ -392,11 +394,10 @@ redirect_from:
 </p>
 
 
+<header class="publication-heading">
 <h2 id="-publications-full-list">Publications</h2>
-
 <p class="publication-profiles"><a href="https://scholar.google.com/citations?user=2Gd5gOQAAAAJ">Google Scholar</a><a href="https://orcid.org/0000-0001-5258-2995">ORCID</a><a href="https://openalex.org/A5060466816">OpenAlex</a></p>
-
-{% include citation-growth.html %}
+</header>
 
 {% assign pubs = site.data.publications %}
 {% assign n_journal = pubs | where: "type", "journal" | size %}
@@ -406,11 +407,14 @@ redirect_from:
 {% assign n_software = pubs | where: "type", "software" | size %}
 {% assign n_report = pubs | where: "type", "report" | size %}
 {% assign n_all = pubs | size %}
+{% assign preprint_statuses = "submitted,under-review" | split: "," %}
 {% assign year_groups = pubs | group_by: "year" | sort: "name" | reverse %}
 {% assign chart_groups = pubs | group_by: "year" | sort: "name" %}
 <div class="pubtrack" data-pubtrack>
+<div class="pubtrack__overview">
 <div class="pubtrack__chart-wrap">
-<div class="pubtrack__chart" role="img" aria-label="One square per publication or submission, stacked by year and colored by type.">
+<h3 class="pubtrack__chart-title">Publications by year</h3>
+<nav class="pubtrack__chart" aria-label="Publications by year">
 {% assign first_year = chart_groups | first %}
 {% assign last_year = chart_groups | last %}
 {% assign chart_start = first_year.name | plus: 0 %}
@@ -419,19 +423,21 @@ redirect_from:
 {% assign ystr = y | append: "" %}
 {% assign g = chart_groups | where: "name", ystr | first %}
 {% if g %}
-<a class="pubtrack__col" href="#pubyear-{{ y }}" data-chart-year="{{ y }}" aria-label="{{ y }}: {{ g.items | size }} publications">
+<a class="pubtrack__col" href="#pubyear-{{ y }}" data-chart-year="{{ y }}" aria-label="{{ g.items | size }} publication{% if g.items.size != 1 %}s{% endif %} in {{ y }}">
 <span class="pubtrack__stack">{% for pub in g.items %}<i class="pubtrack__cell pubtrack__cell--{{ pub.type }}" data-cell-type="{{ pub.type }}" title="{{ pub.title | escape }}"></i>{% endfor %}</span>
-<span class="pubtrack__col-year">&rsquo;{{ ystr | slice: 2, 2 }}</span>
+<span class="pubtrack__col-year"><span class="pubtrack__century">{{ ystr | slice: 0, 2 }}</span>{{ ystr | slice: 2, 2 }}</span>
 </a>
 {% else %}
 <span class="pubtrack__col pubtrack__col--empty" aria-hidden="true">
 <span class="pubtrack__stack"><i class="pubtrack__tick"></i></span>
-<span class="pubtrack__col-year">&rsquo;{{ ystr | slice: 2, 2 }}</span>
+<span class="pubtrack__col-year"><span class="pubtrack__century">{{ ystr | slice: 0, 2 }}</span>{{ ystr | slice: 2, 2 }}</span>
 </span>
 {% endif %}
 {% endfor %}
+</nav>
+<p class="pubtrack__chart-note">One square per work. Select a year to browse. Conferences use the event year.</p>
 </div>
-<p class="pubtrack__chart-note">One square = one publication. Click a year to jump to it. Conference papers use the event year and appear newest first where event dates are known; other works follow by venue.</p>
+{% include citation-growth.html %}
 </div>
 <div class="pubtrack__filters" role="group" aria-label="Filter publications by type">
 <button type="button" class="pubtrack__filter is-active" data-filter="all" aria-pressed="true">All <span class="pubtrack__count">{{ n_all }}</span></button>
@@ -442,22 +448,52 @@ redirect_from:
 <button type="button" class="pubtrack__filter pubtrack__filter--software" data-filter="software" aria-pressed="false">Software <span class="pubtrack__count">{{ n_software }}</span></button>
 <button type="button" class="pubtrack__filter pubtrack__filter--report" data-filter="report" aria-pressed="false">Report <span class="pubtrack__count">{{ n_report }}</span></button>
 </div>
+<div class="visually-hidden" role="status" data-pub-status></div>
+<noscript><a href="{{ '/publications.bib' | relative_url }}">Download the bibliography (BibTeX)</a></noscript>
+<label class="pubtrack__manual" hidden>Copy the selected citation text<textarea readonly rows="4"></textarea></label>
 <div class="pubtrack__years">
 {% for group in year_groups %}
 <div class="pubtrack__year anchor" id="pubyear-{{ group.name }}" data-year-group>
-<p class="pubtrack__year-label">{{ group.name }}</p>
+<div class="pubtrack__year-head">
+<h3 class="pubtrack__year-label">{{ group.name }}</h3>
+<span class="pubtrack__note-heading" aria-hidden="true">Takeaways</span>
+</div>
 <div class="pubtrack__rows">
 {% assign dated_pubs = group.items | where_exp: "p", "p.event_month != nil" | sort: "event_month" | reverse %}
 {% assign undated_pubs = group.items | where_exp: "p", "p.event_month == nil" | sort: "venue" %}
 {% assign venue_sorted_pubs = dated_pubs | concat: undated_pubs %}
 {% for pub in venue_sorted_pubs %}
-{% assign authors = pub.authors | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
+{% assign authors = pub.authors | escape | replace: "Aristimunha, B.", "<strong>Aristimunha, B.</strong>" | replace: "Pinto, B. A.", "<strong>Pinto, B. A.</strong>" %}
 {% if pub.links.pdf %}{% assign title_href = pub.links.pdf | relative_url %}{% elsif pub.links.arxiv %}{% assign title_href = pub.links.arxiv %}{% elsif pub.links.doi %}{% assign title_href = pub.links.doi %}{% elsif pub.links.site %}{% assign title_href = pub.links.site %}{% else %}{% assign title_href = "" %}{% endif %}
 <article class="pubtrack__entry pubtrack__entry--{{ pub.type }} anchor" id="{{ pub.id }}" data-type="{{ pub.type }}">
-{% if title_href != "" %}<p class="pubtrack__title"><a href="{{ title_href }}">{{ pub.title }}</a></p>{% else %}<p class="pubtrack__title">{{ pub.title }}</p>{% endif %}
-<p class="pubtrack__meta"><span class="pubtrack__type pubtrack__type--{{ pub.type }}">{{ pub.type }}</span><span class="pubtrack__venue">{{ pub.venue }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}<span class="pubtrack__num">P{{ pub.num }}</span></p>
+<div class="pubtrack__citation">
+<h4 class="pubtrack__title">{% if title_href != "" %}<a href="{{ title_href | escape }}">{{ pub.title | escape }}</a>{% else %}{{ pub.title | escape }}{% endif %}</h4>
 <p class="pubtrack__authors">{{ authors }}</p>
-<p class="pubtrack__links">{% if pub.links.pdf %}<a href="{{ pub.links.pdf | relative_url }}">PDF<span class="pubtrack__glyph">&nbsp;&darr;</span></a>{% endif %}{% if pub.links.arxiv %}<a href="{{ pub.links.arxiv }}">arXiv<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.doi %}<a href="{{ pub.links.doi }}">DOI<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.journal %}<a href="{{ pub.links.journal }}">Journal<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.links.site %}<a href="{{ pub.links.site }}">Site<span class="pubtrack__glyph">&nbsp;&nearr;</span></a>{% endif %}{% if pub.bibtex %}<button type="button" class="pubtrack__bib" data-copy-bibtex="{{ pub.bibtex | escape }}" aria-label="Copy BibTeX citation for {{ pub.title | escape }}">BibTeX<span class="pubtrack__glyph">&nbsp;&#10697;</span></button>{% endif %}</p>
+<p class="pubtrack__meta"><span class="pubtrack__type pubtrack__type--{{ pub.type }}">{{ pub.type | capitalize }}</span><span class="pubtrack__venue">{{ pub.venue }}</span>{% if pub.status %}<span class="pubtrack__status">{{ pub.status | replace: "-", " " }}</span>{% endif %}<span class="pubtrack__num">P{{ pub.num }}</span></p>
+</div>
+<p class="pubtrack__summary">{{ pub.summary | escape }}</p>
+{% assign reference_url = pub.links.doi | default: pub.links.arxiv | default: pub.links.site | default: pub.links.journal %}
+{% if reference_url == nil and pub.links.pdf %}{% assign reference_url = pub.links.pdf | absolute_url %}{% endif %}
+{% assign reference_venue = pub.venue %}
+{% if pub.citation_venue %}
+{% assign reference_venue = pub.citation_venue %}
+{% elsif pub.links.arxiv and preprint_statuses contains pub.status %}
+{% assign reference_venue = "arXiv preprint" %}
+{% elsif pub.status and pub.status != "demo" %}
+{% capture reference_venue %}{{ pub.venue }} ({{ pub.status | replace: "-", " " }}){% endcapture %}
+{% endif %}
+{% assign title_end = pub.title | slice: -1, 1 %}
+{% capture reference %}{{ pub.authors | remove: "*" }} ({{ pub.citation_year | default: pub.year }}). {{ pub.title }}{% unless ".?!" contains title_end %}.{% endunless %} {{ reference_venue }}.{% if reference_url %} {{ reference_url }}{% endif %}{% endcapture %}
+<div class="pubtrack__links">
+{% if pub.links.pdf %}<a href="{{ pub.links.pdf | relative_url }}">PDF</a>{% endif %}
+{% if pub.links.arxiv %}<a href="{{ pub.links.arxiv }}">arXiv</a>{% endif %}
+{% if pub.links.doi %}<a href="{{ pub.links.doi }}">DOI</a>{% endif %}
+{% if pub.links.journal %}<a href="{{ pub.links.journal }}">Journal</a>{% endif %}
+{% if pub.links.site %}<a href="{{ pub.links.site }}">Website</a>{% endif %}
+<span class="pubtrack__copies">
+<button type="button" class="pubtrack__copy" data-copy-reference="{{ reference | escape }}" aria-label="Copy reference for {{ pub.title | escape }}"><span>Copy reference</span></button>
+{% if pub.bibtex %}<button type="button" class="pubtrack__copy" data-copy-bibtex="{{ pub.bibtex | escape }}" aria-label="Copy BibTeX for {{ pub.title | escape }}"><span>Copy BibTeX</span></button>{% endif %}
+</span>
 {% if pub.figure or pub.abstract %}<details class="pubpanel pubpanel--{{ pub.type }}">
 <summary class="pubpanel__toggle">{% if pub.figure and pub.abstract %}Abstract and figure{% elsif pub.abstract %}Abstract{% else %}Figure{% endif %}</summary>
 <div class="pubpanel__body{% if pub.figure and pub.abstract %} pubpanel__body--split{% endif %}">
@@ -465,6 +501,7 @@ redirect_from:
 {% if pub.abstract %}<p class="pubpanel__abstract">{{ pub.abstract }}</p>{% endif %}
 </div>
 </details>{% endif %}
+</div>
 </article>
 {% endfor %}
 </div>

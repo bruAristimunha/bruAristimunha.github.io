@@ -3,11 +3,14 @@
   authors: Shahi, K., Aristimunha, B., & Delorme, A.
   year: 2026
   title: 'EEGDash Corpus: A Training-Ready Public Corpus for EEG Foundation Models'
+  summary: Pretraining REVE on 14,075 hours of public EEG nearly matched the released model across seven decoding tasks when the encoder weights were held fixed.
   venue: International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM)
   event_month: 12
   venue_short: MLESP / BIBM
   type: workshop
   status: accepted
+  links:
+    arxiv: https://arxiv.org/abs/2611.06356
   map:
     area: Data
     topic: Data resources and platforms
@@ -18,13 +21,16 @@
       author = {Shahi, Kuber and Aristimunha, Bruno and Delorme, Arnaud},
       booktitle = {International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM) 2026},
       year = {2026},
-      note = {Accepted for presentation}
+      note = {Accepted for presentation},
+      url = {https://arxiv.org/abs/2611.06356}
     }
 - id: paper-p40
   num: 40
   authors: Hajhassani, D., Graignic, P-A., Aristimunha, B., Mellot, A., Mariani, T., Nober, C., Lopes, B. J., Burgund, L., Kusch, L., Semah, T., & Caillet, A. H.
   year: 2027
+  citation_year: 2026
   title: 'Automated Artifact Removal in EEG Age Prediction: A Systematic Comparison'
+  summary: Of nine EEG cleaning methods, only the two GEDAI variants consistently improved age prediction across datasets, and quality guidance preserved more of the signal.
   venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
   event_month: 5
   venue_short: ICASSP
@@ -52,7 +58,9 @@
   num: 39
   authors: Nunes de Oliveira Junior, J. M., Lopes, B. J., Burgund, L., de Camargo, R. Y., & Aristimunha, B.
   year: 2027
+  citation_year: 2026
   title: 'Scaling Laws for EEG Decoding: How Much Data is Enough?'
+  summary: Across four EEG datasets, gains from adding trials or participants followed power laws specific to the model and dataset.
   venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
   event_month: 5
   venue_short: ICASSP
@@ -80,7 +88,9 @@
   num: 38
   authors: Mounir, A., Douka, S., Caillet, A. H., Aristimunha, B., & Chevallier, S.
   year: 2027
+  citation_year: 2026
   title: 'Neuron-Level Architecture Growth: A Controlled Evaluation for EEG Time-Series Decoding'
+  summary: Growing one motor imagery decoder during training raised accuracy by 2.9 points with 57% of the original parameters.
   venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
   event_month: 5
   venue_short: ICASSP
@@ -111,6 +121,7 @@
   authors: Delorme, A., Ranganath, S., Kothe, C., Jaiswal, A., Makeig, S., & Aristimunha, B.
   year: 2026
   title: 'EEGPrep: a validated Python implementation of the EEGLAB preprocessing pipeline'
+  summary: EEGPrep reproduced EEGLAB’s artifact-rejection decisions for every participant in the validation study, making the tested preprocessing pipeline available in Python.
   venue: Journal of Neural Engineering
   type: journal
   status: submitted
@@ -136,6 +147,7 @@
   authors: Aristimunha, B., Dotan, A., Guetschel, P., Jaiswal, A., Ashkenazi, G., Truong, D., Kokate, K., Majumdar, A., Shriki, O., Delorme, A.
   year: 2026
   title: 'EEGDash: An open-source platform for machine learning on public neurophysiological data'
+  summary: EEGDash lets researchers search public neurophysiological recordings and load them into a common Python workflow, with checks for files that need repair.
   venue: Database (Oxford University Press)
   type: journal
   status: submitted
@@ -164,6 +176,7 @@
   authors: Lopes, B. J., Schwartz, G., Chevallier, S., de Camargo, R. Y., & Aristimunha, B.
   year: 2026
   title: Learning aligned EEG representations with subject-specific encoders
+  summary: Giving each participant a separate encoder helped align EEG representations across people, even without an explicit alignment step.
   venue: Scientific Reports
   type: journal
   links:
@@ -192,6 +205,7 @@
   authors: Guetschel, P., Aristimunha, B., El Ouahidi, Y., Delorme, A., Moreau, T., & Tangermann, M.
   year: 2026
   title: What masking geometry works best for EEG foundation models? A controlled evaluation across MAE and JEPA
+  summary: Across 58 models, hiding neighboring electrodes within a 9 cm radius for two seconds gave the best results for both EEG pretraining methods tested.
   venue: Manuscript
   type: conference
   status: submitted
@@ -217,6 +231,7 @@
   authors: Kokate, K., Aristimunha, B., Truong, D., & Delorme, A.
   year: 2026
   title: 'Channel Adaptation for EEG Foundation Models: A Systematic Benchmark Across Architectures, Tasks, and Training Regimes'
+  summary: Across five EEG foundation models, the best way to adapt to a new electrode layout depended on the architecture and whether it was fine-tuned.
   venue: International Workshop on Machine Learning for EEG Signal Processing (MLESP), at the IEEE International Conference on Bioinformatics and Biomedicine (BIBM)
   event_month: 12
   venue_short: MLESP / BIBM
@@ -247,6 +262,7 @@
   authors: Hajhassani, D., Aristimunha, B., Graignic, P-A., Mellot, A., Kusch, L., Delorme, A., Semah, T., Caillet, A. H.
   year: 2026
   title: 'From EEG Cleaning to Decoding: The Role of Artifact Rejection in MI-based BCIs'
+  summary: Across 13 motor imagery datasets, rejecting noisy EEG trials helped most when signal quality was poor and reduced differences in decoding accuracy between participants.
   venue: European Signal Processing Conference (EUSIPCO)
   event_month: 8
   type: conference
@@ -276,6 +292,7 @@
   authors: Caillet, A. H., Mellot, A., Aristimunha, B., Delorme, A., & Semah, T.
   year: 2026
   title: 'Real-Time Continuous EEG Authentication: Streaming Neural Biometrics'
+  summary: This demo uses a continuous EEG stream to check a person’s identity as new brain signals arrive.
   venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) — Show & Tell Demos
   event_month: 5
   venue_short: ICASSP Demo
@@ -296,6 +313,7 @@
   authors: Aristimunha, B.
   year: 2026
   title: Learning Representations of Electroencephalogram using Deep Learning
+  summary: This thesis explores how transfer learning, synthetic recordings, and geometric neural networks help decode EEG when training data are scarce.
   venue: PhD Thesis (cotutelle) · Université Paris-Saclay & UFABC
   venue_short: PhD Thesis
   type: report
@@ -317,6 +335,7 @@
   authors: Guetschel, P., Aristimunha, B., Truong, D., Kokate, K., Tangermann, M., & Delorme, A.
   year: 2026
   title: 'Toward OpenEEG-Bench: A live community-driven benchmark for EEG foundation models'
+  summary: OpenEEG-Bench uses common preprocessing and fine-tuning protocols so researchers can compare EEG foundation models on a live leaderboard.
   venue: European Signal Processing Conference (EUSIPCO)
   event_month: 8
   type: conference
@@ -344,6 +363,7 @@
   authors: Aristimunha, B., Ju, C., Collas, A., Bouchard, F., Mian, A., Thirion, B., Chevallier, S., & Kobler, R.
   year: 2026
   title: 'SPD Learn: A geometric deep learning Python library for neural decoding through trivialization'
+  summary: SPD Learn lets researchers train neural networks on covariance matrices with standard optimizers while preserving the mathematical constraints those matrices must satisfy.
   venue: Journal of Machine Learning Research (JMLR) — Open Source Software Track
   type: journal
   status: under-review
@@ -373,6 +393,7 @@
   authors: Klepachevskyi, D., Romano, A., Aristimunha, B., Angiolelli, M., Trojsi, F., Bonavita, S., ..., Corsi M.-C. & Sorrentino, P.
   year: 2026
   title: Magnetoencephalography-based interpretable automated differential diagnosis in neurodegenerative diseases
+  summary: A classifier using a small set of connections between brain regions measured with MEG reached 67.1% balanced accuracy in distinguishing neurological conditions.
   venue: Heliyon
   type: journal
   links:
@@ -404,6 +425,7 @@
   authors: Aristimunha, B., Truong, D., Guetschel, P., Shirazi, S. Y., Guyon, I., Franco, A. R., ... & Delorme, A.
   year: 2025
   title: 'EEG Foundation Challenge: From Cross-Task to Cross-Subject EEG Decoding'
+  summary: Two competition tracks use EEG from over 3,000 young people to test whether models can generalize to new tasks and participants and predict measures of mental health.
   venue: Conference on Neural Information Processing Systems (NeurIPS)
   event_month: 12
   type: conference
@@ -429,6 +451,7 @@
   authors: Wimpff, M., Aristimunha, B., Chevallier, S. & Yang, B.
   year: 2025
   title: 'Fine-Tuning Strategies for Continual Online EEG Motor Imagery Decoding: Insights from a Large-Scale Longitudinal Study'
+  summary: Updating a motor imagery decoder with each participant’s past sessions improved the accuracy and stability of its predictions in later sessions.
   venue: Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
   event_month: 7
   type: conference
@@ -458,6 +481,7 @@
   authors: Darvishi-Bayazi, M. J., Ghonia, H., Riachi, R., Aristimunha, B., Khorasani, A., Arefin, M. R., Dumas, G. & Rish, I.
   year: 2024
   title: General-Purpose Brain Foundation Models for Time-Series Neuroimaging Data
+  summary: A model trained on both EEG and functional MRI generated brain signals more accurately than the baseline models in the study.
   venue: Time Series in the Age of Large Models (TSALM) Workshop, at the Conference on Neural Information Processing Systems (NeurIPS)
   event_month: 12
   type: workshop
@@ -483,6 +507,7 @@
   authors: Carrara, I.*, Aristimunha, B.*, Corsi, M. C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
   year: 2025
   title: Geometric Neural Network based on Phase Space for BCI decoding
+  summary: Phase-SPDNet uses time-delayed signals from just three electrodes over the motor cortex to distinguish imagined movements.
   venue: Journal of Neural Engineering
   type: journal
   links:
@@ -514,6 +539,7 @@
   authors: Aristimunha, B., Moreau, T., Chevallier, S., Camargo, R. Y., & Corsi, M. C.
   year: 2024
   title: What is the best model for decoding neurophysiological signals? Depends on how you evaluate
+  summary: Changing how the same EEG recordings were split for training and testing changed which decoder ranked first.
   venue: Annual Computational Neuroscience Meeting (CNS)
   event_month: 7
   type: abstract
@@ -535,6 +561,7 @@
   authors: Rodrigues, G., Aristimunha, B., Chevallier, S. & Camargo, R. Y. de
   year: 2024
   title: Combining Euclidean Alignment and Data Augmentation for BCI decoding
+  summary: Combining alignment with data augmentation improved motor imagery decoding most when a shared model was fine-tuned for each participant.
   venue: European Signal Processing Conference (EUSIPCO)
   type: conference
   links:
@@ -564,6 +591,7 @@
   authors: Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A.
   year: 2024
   title: 'Alljoined: A dataset for EEG-to-Image decoding'
+  summary: Alljoined pairs 64-channel EEG from eight people with the natural images they viewed, giving researchers data to test image reconstruction from brain activity.
   venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops
   type: workshop
   links:
@@ -588,6 +616,7 @@
   authors: Junqueira, B., Aristimunha, B., Chevallier, S., & de Camargo, R. Y.
   year: 2024
   title: A systematic evaluation of Euclidean alignment with deep learning for EEG decoding
+  summary: Aligning EEG recordings across participants improved decoding for new users and cut the time a shared neural network needed to converge by more than 70%.
   venue: Journal of Neural Engineering
   type: journal
   links:
@@ -619,6 +648,7 @@
   authors: Aristimunha, B., de Camargo, R. Y., Chevallier, S., Lucena, O., Thomas, A. G., Cardoso, M. J., Pinaya, W. L. & Dafflon, J.
   year: 2023
   title: Synthetic Sleep EEG Signal Generation using Latent Diffusion Models
+  summary: Adding a frequency-based training objective helped a diffusion model generate 30-second sleep EEG segments with rhythms characteristic of each sleep stage.
   venue: Deep Generative Models for Health (DGM4H) Workshop, at the Conference on Neural Information Processing Systems (NeurIPS) — Spotlight
   event_month: 12
   type: workshop
@@ -644,6 +674,7 @@
   authors: Aristimunha, B., de Camargo, R. Y., Pinaya, W. L., Chevallier, S., Gramfort, A., & Rommel, C.
   year: 2023
   title: Evaluating the structure of cognitive tasks with transfer learning
+  summary: Training a decoder on one cognitive task and testing its features on another revealed which of 11 EEG tasks share useful representations.
   venue: AI for Science Workshop, at the Conference on Neural Information Processing Systems (NeurIPS)
   type: workshop
   links:
@@ -669,6 +700,7 @@
   authors: Moraes, C. P., Aristimunha, B., Dos Santos, L. H., Pinaya, W. H. L., de Camargo, R. Y., Fantinato, D. G., & Neves, A.
   year: 2023
   title: Applying independent vector analysis on EEG-based motor imagery classification
+  summary: Independent vector analysis identified EEG patterns shared across participants that a support vector machine could use to distinguish imagined movements.
   venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
   event_month: 6
   type: conference
@@ -697,6 +729,7 @@
   authors: Aristimunha, B., De Camargo, R. Y., Pinaya, W. H. L., Yger, F., Corsi, M. C., & Chevallier, S.
   year: 2023
   title: 'CONCERTO: Coherence & Functional Connectivity Graph Network'
+  summary: CONCERTO combines signals from individual electrodes with measures of how strongly pairs of electrodes oscillate together to classify motor imagery.
   venue: Journée CORTICO
   type: abstract
   links:
@@ -718,6 +751,7 @@
   authors: Carrara, I.*, Aristimunha, B.*, Chevallier, S., Corsi, M. C., & Papadopoulo, T.
   year: 2023
   title: 'Holographic EEG: multi-view deep learning for BCI'
+  summary: Holographic EEG learns from multiple views of unlabeled EEG and uses a small labeled sample to classify imagined movements.
   venue: Journée CORTICO
   type: abstract
   links:
@@ -739,6 +773,7 @@
   authors: Aristimunha, B., Bayerlein, A. J., Cardoso, M. J., Pinaya, W. H. L., & De Camargo, R. Y.
   year: 2023
   title: 'Sleep-Energy: An Energy Optimization Method to Sleep Stage Scoring'
+  summary: Sleep-Energy uses a classifier’s stage probabilities to smooth noisy sequences of sleep-stage predictions, improving scoring accuracy on two datasets.
   venue: IEEE Access
   type: journal
   links:
@@ -767,7 +802,9 @@
   authors: Chevallier, S., Carrara, I., Aristimunha, B., Guetschel, P., Lopes, B., ... & Moreau, T.
   year: 2025
   title: 'The largest EEG-based BCI reproducibility study for open science: the MOABB benchmark'
+  summary: A comparison of 30 decoding pipelines on 36 public EEG datasets found that methods based on covariance matrices performed well across several brain–computer interface tasks.
   venue: In re-submission queue
+  citation_venue: Manuscript under review
   type: journal
   status: under-review
   links:
@@ -792,7 +829,9 @@
   authors: Aristimunha, B., Pinaya, W. H. L., de Camargo, R. Y., Chevallier, S., Gramfort, A., & Rommel, C.
   year: 2025
   title: Uncovering and improving the structure of cognitive tasks with transfer learning
+  summary: Mapping transfer between cognitive tasks showed that some tasks provide useful pretraining for several others, while some gain little from pretraining.
   venue: In re-submission queue
+  citation_venue: Manuscript under review
   type: journal
   status: under-review
   links:
@@ -817,6 +856,7 @@
   authors: Aristimunha, B., Carrara, I., Guetschel, P., Sedlar, S., Rodrigues, P., Sosulski, J., Narayanan, D., Bjareholt, E., Quentin, B., Schirrmeister, R. T., Kobler, R., Kalunga, E., Darmet, L., Gregoire, C., Abdul Hussain, A., Gatti, R., Goncharenko, V., Thielen, J., Moreau, T., ... Chevallier, S.
   year: 2024
   title: Mother of all BCI Benchmarks
+  summary: MOABB lets researchers run competing brain–computer interface algorithms on the same public EEG datasets under the same evaluation protocol.
   venue: Zenodo
   type: software
   links:
@@ -839,6 +879,7 @@
   authors: Aristimunha, B., Tibor, R., Gemein, L., Gramfort, A., Rommel, C., Banville, H., Sliwowskim, M., Wilson, D., Theo gnassou, P., Gtch, P., Lopes, B., Moreau, T., Sedlar, S., Zamboni, M., Paillard, J., Terris, M., Chevallier, S., ... Yao, E.
   year: 2023
   title: Braindecode
+  summary: Braindecode provides PyTorch models and data tools for training neural networks directly on EEG and MEG recordings.
   venue: Zenodo / braindecode.org
   type: software
   links:
@@ -860,6 +901,7 @@
   authors: Aristimunha, B., Cattan, G., & Andreev, A.
   year: 2024
   title: Evaluation of the Electroencephalogram Conformer for the P300 Signal
+  summary: This report tests whether the EEG Conformer can detect the P300 response, a brief change in brain activity after a person notices a target.
   venue: Preprint (HAL)
   type: report
   links:
@@ -883,6 +925,7 @@
   authors: Carrara, I., Aristimunha, B., Corsi, M.-C., de Camargo, R. Y., Chevallier, S., & Papadopoulo, T.
   year: 2023
   title: 'Augmented SPDNet: Second-Order Neural Network for Motor Imagery-Based BCI'
+  summary: Adding delayed copies of EEG signals to a compact neural network improved motor imagery decoding when only a few electrodes were available.
   venue: Soph.I.A Summit
   type: abstract
   links:
@@ -906,6 +949,7 @@
   authors: Gueron, E., Pellegrini, J., & Aristimunha, B.
   year: 2023
   title: Distribuição de Newcomb-Benford, Mudanças de Bases e Aplicações Eleitorais
+  summary: The study compares leading digits in Brazilian presidential vote counts across number bases to see how closely the results follow Benford’s law.
   venue: Proceeding Series of the Brazilian Society of Computational and Applied Mathematics (SBMAC)
   type: workshop
   links:
@@ -929,6 +973,7 @@
   authors: Aristimunha, B.
   year: 2020
   title: Quem é Estamira? Uma análise da coerência dos discursos através de combinação de medidas para classificação de texto
+  summary: The study uses word meanings and patterns of word co-occurrence to analyze speech coherence in dialogue from the Brazilian documentary Estamira.
   venue: Escola Regional de Aprendizado de Máquina e Inteligência Artificial de São Paulo (ERAMIA-SP)
   type: workshop
   links:
@@ -947,7 +992,10 @@
   num: 29
   authors: Aristimunha, B., Júnior, J. S. F., Batagelo, H. C., Goya, D., & dos Santos, C. S.
   year: 2020
+  citation_year: 2019
+  citation_venue: Zenodo
   title: Evasão em Nível de Disciplinas na Ciência da Computação na Universidade Federal do ABC
+  summary: Using course records from UFABC, the study identifies patterns associated with computer science students failing courses because of absences.
   venue: Workshop do Nuvem
   type: workshop
   links:
@@ -971,6 +1019,7 @@
   authors: Aristimunha, B., Borges, F. S. B., Gonçalves, A. B., & Pistori, H.
   year: 2019
   title: 'A comparison study of deep convolutional neural networks for the classification of Brazilian savannah pollen grains: Preliminary results'
+  summary: Three convolutional networks classified images of Brazilian savannah pollen into 55 types with more than 93% accuracy.
   venue: Workshop of Computer Vision (WVC)
   type: workshop
   links:
@@ -996,6 +1045,7 @@
   authors: Albuquerque, P. L. F., Pinto, B. A., Martins, J. M. P., da Silveira, E. S., Cereda, M. P., & Pistori, H.
   year: 2016
   title: Contagem de Carunchos do Bambu através de Técnicas de Limiarização
+  summary: The study compares five ways to separate insects from the background in images so researchers can count bamboo borers during laboratory experiments.
   venue: The Conference on Graphics, Patterns and Images (SIBGRAPI)
   type: workshop
   links:
@@ -1013,6 +1063,7 @@
   authors: Martins, J. M. P., Pinto, B. A., de Albuquerque, P. L. F., da Silveira, E. S., de Souza, K. P., & Pistori, H.
   year: 2015
   title: Rastreamento do caruncho do bambu usando fluxo óptico
+  summary: The study tracks bamboo borers across video frames and tests how the optical flow window size affects tracking accuracy.
   venue: Computer on the Beach
   type: conference
   links:
